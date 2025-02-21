@@ -5,17 +5,23 @@
 /* :root {
   --background: #ffffff;
   --foreground: #171717;
-}
+} */
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
   }
-}
+} */
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-} */
+  color:#607B96;
+  background: #1E2D3D;
+  /* font-family: Arial, Helvetica, sans-serif; */
+}
+
+/* Change color of selected text */
+::selection {
+  background-color: #607B96;  /* Optional: Set background color of the selected text */
+  color: white;
+}

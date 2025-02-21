@@ -15,10 +15,10 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full bg-transparent border-b">
-      <div className=" mx-auto flex items-center justify-between lg:px-8">
+    <header className="w-full bg-transparent border-b border-gray-500">
+      <div className=" mx-auto flex items-center justify-between ">
         {/* Logo / Name */}
-        <Link href="/" className="lg:w-1/5 border-r p-4">
+        <Link href="/" className="lg:w-1/5 border-r p-4 border-gray-500">
           Md. Abdullah Az-Zahur
         </Link>
 
@@ -29,7 +29,7 @@ const Header = () => {
               <Link
                 key={item.href}
                 href={item.href}
-                className="hover:text-gray-600 border-r p-4"
+                className="hover:text-gray-600 border-r p-4 border-gray-500 "
               >
                 {item.label}
               </Link>
@@ -37,7 +37,7 @@ const Header = () => {
           </div>
           <Link
             href={navItems[2].href}
-            className="hover:text-gray-600 border-l p-4"
+            className="hover:text-gray-600 border-l p-4 border-gray-500"
           >
             {navItems[3].label}
           </Link>
