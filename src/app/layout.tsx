@@ -22,10 +22,9 @@ export default function RootLayout({
         <div className="flex flex-1 mt-14">
           {/* Sidebar - Only Rendered If Not on Home Page */}
           {pathname !== "/" && <SidebarLeft />}
-          <SidebarLeft />
 
           {/* Main Content (Scrollable) */}
-          <main className="flex-1 p-4 overflow-auto h-[calc(100vh-56px-48px)]">
+          <main className="flex-1 p-4 overflow-auto ">
             {children}
           </main>
         </div>
