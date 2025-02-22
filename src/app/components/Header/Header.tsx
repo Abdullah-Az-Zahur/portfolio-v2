@@ -15,11 +15,11 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
 
   return (
-    <header className="w-full bg-transparent border-b border-gray-500">
+    <header className="fixed w-full h-14 bg-transparent border-b border-gray-500 z-50">
       <div className=" mx-auto flex items-center justify-between ">
         {/* Logo / Name */}
         <Link href="/" className="lg:w-1/5 border-r p-4 border-gray-500">
-          Md. Abdullah Az-Zahur
+          md. abdullah az-zahur
         </Link>
 
         {/* Desktop Navigation */}

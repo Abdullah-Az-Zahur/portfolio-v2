@@ -1,11 +1,11 @@
-import React from 'react';
+import React from "react";
 
 const Footer = () => {
-    return (
-        <div className='border-t border-gray-500'>
-            <h2>footer</h2>
-        </div>
-    );
+  return (
+    <div className="fixed p-2 bottom-0 left-0 border border-gray-500 h-12 w-full ">
+      <h2>footer</h2>
+    </div>
+  );
 };
 
 export default Footer;

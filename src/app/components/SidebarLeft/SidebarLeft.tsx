@@ -1,9 +1,8 @@
 const SidebarLeft = () => {
   return (
-    <div >
-      <h2 >left Side bar</h2>
+    <div className="w-1/5 border-r p-4 border-gray-500 h-[calc(100vh-56px-48px)] overflow-hidden">
+      <h2>Left Sidebar</h2>
     </div>
   );
 };
-
 export default SidebarLeft;

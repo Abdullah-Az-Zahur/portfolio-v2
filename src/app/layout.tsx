@@ -1,7 +1,6 @@
 "use client";
 import "./globals.css";
 import SidebarLeft from "./components/SidebarLeft/SidebarLeft";
-
 import { usePathname } from "next/navigation";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -16,16 +15,22 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col border border-gray-500 rounded-md">
-        <main className="flex-grow">
-          <Header />
-          <div className="flex">
-            <div className="lg:w-1/5 border-r p-4 border-gray-500 h-full ">
-              {/* {pathname !== "/" && <SidebarLeft />} */}
-              <SidebarLeft />
-            </div>
-            <div className="flex-1">{children}</div>
-          </div>
-        </main>
+        {/* Fixed Header */}
+        <Header />
+
+        {/* Layout Wrapper */}
+        <div className="flex flex-1 mt-14">
+          {/* Sidebar - Only Rendered If Not on Home Page */}
+          {pathname !== "/" && <SidebarLeft />}
+          <SidebarLeft />
+
+          {/* Main Content (Scrollable) */}
+          <main className="flex-1 p-4 overflow-auto h-[calc(100vh-56px-48px)]">
+            {children}
+          </main>
+        </div>
+
+        {/* Fixed Footer */}
         <Footer />
       </body>
     </html>
