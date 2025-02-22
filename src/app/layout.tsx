@@ -21,7 +21,7 @@ export default function RootLayout({
         {/* Layout Wrapper */}
         <div className="flex flex-1 mt-14">
           {/* Sidebar - Only Rendered If Not on Home Page */}
-          {pathname !== "/" && <SidebarLeft />}
+          {pathname !== "/" && <SidebarLeft  />}
 
           {/* Main Content (Scrollable) */}
           <main className="flex-1 p-4 overflow-auto ">
