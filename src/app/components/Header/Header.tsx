@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Menu } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
 
 // Navigation items array
@@ -31,11 +31,8 @@ const Header = () => {
         {/* Desktop Navigation */}
         <nav className="hidden md:flex flex-1 justify-between items-center h-full">
           <div className="flex h-full">
-            {navItems.slice(0, 3).map((item, index) => (
-              <div
-                key={item.href}
-                className="relative flex items-center h-full"
-              >
+            {navItems.slice(0, 3).map((item) => (
+              <div key={item.href} className="relative flex items-center h-full">
                 {/* Navigation Link */}
                 <Link
                   href={item.href}
@@ -44,7 +41,6 @@ const Header = () => {
                   }`}
                 >
                   {item.label}
-                  {/* Active underline (Full width of link) */}
                   {pathname === item.href && (
                     <span className="absolute bottom-0 left-0 w-full h-1 bg-[#FEA55F]"></span>
                   )}
@@ -74,23 +70,23 @@ const Header = () => {
         </nav>
 
         {/* Mobile Menu Button */}
-        <button className="md:hidden" onClick={() => setIsOpen(!isOpen)}>
-          <Menu className="w-6 h-6" />
+        <button className="md:hidden mr-4" onClick={() => setIsOpen(!isOpen)}>
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
         <div className="md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
-          <nav className="flex flex-col items-center  ">
+          <nav className="flex flex-col items-center">
             {navItems.map((item) => (
               <Link
                 key={item.href}
                 href={item.href}
-                className="block w-full text-start text-white  "
+                className="block w-full text-start text-white"
                 onClick={() => setIsOpen(false)}
               >
-                <hr className="border-gray-600 " />
+                <hr className="border-gray-600" />
                 <div className="p-4">{item.label}</div>
               </Link>
             ))}
