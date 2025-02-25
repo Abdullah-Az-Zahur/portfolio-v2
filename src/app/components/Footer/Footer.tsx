@@ -11,30 +11,46 @@ const Footer = () => {
           <Link
             target="_blank"
             href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
-            className="p-[15px]  border-l border-gray-500  "
+            className="p-[15px]  border-l border-gray-500 hidden sm:block"
           >
             <FaLinkedin />
           </Link>
           <Link
             target="_blank"
-            href="href='https://www.facebook.com/abdullahaazzahur.giyas'"
-            className="p-[15px]  border-x border-gray-500"
+            href="https://www.facebook.com/abdullahaazzahur.giyas"
+            className="p-[15px]  border-x border-gray-500 hidden sm:block"
           >
             <FaFacebookF />
           </Link>
         </div>
-        <Link
-          target="_blank"
-          href="https://github.com/Abdullah-Az-Zahur"
-          className="flex items-center"
-        >
-          <h2 className=" p-3 border-l border-gray-500 text-sm ">
-            @Abdullah-Az-Zahur
-          </h2>
-          <div className="pr-3 ">
-            <FaGithub />
-          </div>
-        </Link>
+        <div className="flex items-center">
+          <Link
+            target="_blank"
+            href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
+            className="p-[15px]  border-l border-gray-500 block md:hidden"
+          >
+            <FaLinkedin />
+          </Link>
+          <Link
+            target="_blank"
+            href="https://www.facebook.com/abdullahaazzahur.giyas"
+            className="p-[15px]  border-x border-gray-500 block md:hidden"
+          >
+            <FaFacebookF />
+          </Link>
+          <Link
+            target="_blank"
+            href="https://github.com/Abdullah-Az-Zahur"
+            className="flex items-center"
+          >
+            <h2 className=" p-3 border-l border-gray-500 text-sm hidden sm:block  ">
+              @Abdullah-Az-Zahur
+            </h2>
+            <div className="px-3 ">
+              <FaGithub />
+            </div>
+          </Link>
+        </div>
       </div>
     </div>
   );
