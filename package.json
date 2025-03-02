@@ -9,7 +9,6 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@next/font": "^14.2.15",
     "@tailwindcss/postcss": "^4.0.7",
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.475.0",

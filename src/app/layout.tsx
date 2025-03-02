@@ -1,6 +1,6 @@
 "use client";
 import "./globals.css";
-import SidebarLeft from "./components/SidebarLeft/SidebarLeft";
+import Sidebar from "./components/Sidebar/Sidebar";
 import { usePathname } from "next/navigation";
 import Header from "./components/Header/Header";
 import Footer from "./components/Footer/Footer";
@@ -37,9 +37,12 @@ export default function RootLayout({
         <Header />
 
         <div className="flex flex-1 mt-14">
-          {pathname !== "/" && <SidebarLeft />}
+          {pathname !== "/" && <Sidebar />}
 
-          <main className="flex-1 p-4 overflow-auto ">{children}</main>
+          <main className="flex-1 p-4 overflow-auto ">
+            <div>dynamic tab here , depending on sidebar item .</div>
+            {children}
+          </main>
         </div>
 
         {!(pathname === "/" && isMobile) && <Footer />}

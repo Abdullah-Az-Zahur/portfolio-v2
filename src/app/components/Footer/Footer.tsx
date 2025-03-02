@@ -2,7 +2,7 @@ import Link from "next/link";
 import React from "react";
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 
-const Footer = () => {
+const Footer: React.FC = () => {
   return (
     <div className="fixed bottom-0 left-0 border border-gray-500 h-12 w-full ">
       <div className="flex justify-between items-center h-full">

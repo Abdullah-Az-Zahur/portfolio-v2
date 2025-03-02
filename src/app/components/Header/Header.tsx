@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
@@ -13,7 +13,7 @@ const navItems = [
   { href: "/contact", label: "_contact-me" },
 ];
 
-const Header = () => {
+const Header: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu state
   const pathname = usePathname(); // Gets the current pathname to highlight the active link
 
@@ -32,7 +32,10 @@ const Header = () => {
         <nav className="hidden md:flex flex-1 justify-between items-center h-full">
           <div className="flex h-full">
             {navItems.slice(0, 3).map((item) => (
-              <div key={item.href} className="relative flex items-center h-full">
+              <div
+                key={item.href}
+                className="relative flex items-center h-full"
+              >
                 {/* Navigation Link */}
                 <Link
                   href={item.href}
