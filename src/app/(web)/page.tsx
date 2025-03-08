@@ -3,8 +3,6 @@ import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { TbSlashes } from "react-icons/tb";
 
-import green from "../../public/assets/images/home/Green.png";
-import blue from "../../public/assets/images/home/Blue.png";
 
 const Home: React.FC = () => {
   return (
@@ -12,7 +10,7 @@ const Home: React.FC = () => {
       {/* Green Image - Middle Top */}
       <div className="col-start-1 row-start-1 justify-self-center self-start">
         <Image
-          src={green}
+          src='/assets/images/home/Green.png'
           alt="Green"
           width={600} // Default size
           height={600}
@@ -23,7 +21,7 @@ const Home: React.FC = () => {
       {/* Blue Image - Middle Right */}
       <div className="col-start-1 row-start-1 justify-self-end self-center">
         <Image
-          src={blue}
+          src='/assets/images/home/Blue.png'
           alt="Blue"
           width={600} // Default size
           height={600}

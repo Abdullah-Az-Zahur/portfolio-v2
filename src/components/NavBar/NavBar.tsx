@@ -13,7 +13,7 @@ const navItems = [
   { href: "/contact", label: "_contact-me" },
 ];
 
-const Header: React.FC = () => {
+const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu state
   const pathname = usePathname(); // Gets the current pathname to highlight the active link
 
@@ -101,4 +101,4 @@ const Header: React.FC = () => {
   );
 };
 
-export default Header;
+export default NavBar;

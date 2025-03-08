@@ -1,52 +1,19 @@
-"use client";
+import { Metadata } from "next";
 import "./globals.css";
-import Sidebar from "./components/Sidebar/Sidebar";
-import { usePathname } from "next/navigation";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
-import { useState, useEffect } from "react";
+
+export const metadata: Metadata ={
+  title: "Md. Abdullah Az-Zahur",
+  description: "web developer",
+}
 
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const pathname = usePathname();
-  const [isMobile, setIsMobile] = useState(false);
-
-  // Check window size on mount and on resize
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Set to true for mobile screens
-    };
-
-    // Initialize on mount
-    handleResize();
-
-    // Listen for resize events
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener on unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Render layout
   return (
     <html lang="en">
-      <body className="min-h-screen flex flex-col border border-gray-500 rounded-md">
-        <Header />
-
-        <div className="flex flex-1 mt-14">
-          {pathname !== "/" && <Sidebar />}
-
-          <main className="flex-1 p-4 overflow-auto ">
-            <div>dynamic tab here , depending on sidebar item .</div>
-            {children}
-          </main>
-        </div>
-
-        {!(pathname === "/" && isMobile) && <Footer />}
-      </body>
+      <body>{children}</body>
     </html>
   );
 }
