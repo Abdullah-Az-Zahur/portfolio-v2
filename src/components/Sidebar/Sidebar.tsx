@@ -2,44 +2,14 @@
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import Link from "next/link";
-import {
-  FaAngular,
-  FaCss3Alt,
-  FaHtml5,
-  FaReact,
-  FaVuejs,
-  FaYoutube,
-  FaTwitter,
-  FaInstagram,
-} from "react-icons/fa";
-import { MdEmail, MdPhone } from "react-icons/md";
-import { RiFolder3Fill } from "react-icons/ri";
 import { BiChevronDown, BiChevronRight } from "react-icons/bi";
+import { sidebarConfig } from "@/config/navigationConfig";
 import { IoMdArrowDropdown } from "react-icons/io";
 
 const Sidebar: React.FC = () => {
   const pathname = usePathname();
   const [expandedSubMenu, setExpandedSubMenu] = useState<string | null>(null);
   const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
-
-  interface SidebarItem {
-    title: string;
-    icon: React.ReactNode;
-    customClass: string;
-    path?: string;
-    href?: string;
-    isSelectable?: boolean;
-    isAlwaysVisible?: boolean;
-    subMenu?: SidebarItem[];
-  }
-
-  interface SidebarConfig {
-    [key: string]: {
-      pageName: string;
-      items: SidebarItem[];
-      sidebarClass: string;
-    };
-  }
 
   const toggleSubMenu = (title: string) => {
     setExpandedSubMenu(expandedSubMenu === title ? null : title);
@@ -48,153 +18,11 @@ const Sidebar: React.FC = () => {
   const handleItemSelect = (title: string) => {
     const newSelection = new Set(selectedItems);
     if (newSelection.has(title)) {
-      newSelection.delete(title); // Deselect if already selected
+      newSelection.delete(title);
     } else {
-      newSelection.add(title); // Select if not already selected
+      newSelection.add(title);
     }
     setSelectedItems(newSelection);
-  };
-
-  const sidebarConfig: SidebarConfig = {
-    "/about": {
-      pageName: "About",
-      items: [
-        {
-          title: "bio",
-          icon: <RiFolder3Fill className="text-blue-500" />,
-          customClass: "text-gray-500 hover:text-blue-500 ml-4",
-          path: "/about", // Path for internal routing
-        },
-        {
-          title: "interests",
-          icon: <RiFolder3Fill className="text-green-500" />,
-          customClass: "text-gray-500 hover:text-green-500 ml-4",
-          path: "/about/interests", // Path for internal routing
-        },
-        {
-          title: "education",
-          icon: <RiFolder3Fill className="text-purple-500" />,
-          customClass: "text-gray-500 hover:text-purple-500 ml-4",
-          subMenu: [
-            {
-              title: "high-school",
-              icon: <RiFolder3Fill className="text-yellow-500" />,
-              customClass: "text-gray-500 hover:text-yellow-500 ml-4",
-              path: "/about/education/high-school", // Path for internal routing
-            },
-            {
-              title: "university",
-              icon: <RiFolder3Fill className="text-red-500" />,
-              customClass: "text-gray-500 hover:text-red-500 ml-4",
-              path: "/about/education/university", // Path for internal routing
-            },
-          ],
-        },
-        {
-          title: "contact",
-          icon: <IoMdArrowDropdown className="" />,
-          customClass:
-            "text-white hover:text-blue-500 border-t border-b border-gray-500 py-2",
-          isAlwaysVisible: true, // Always visible subsection
-          subMenu: [
-            {
-              title: "abdullah.az.zahur@gmail.com",
-              icon: <MdEmail className="text-purple-500" />,
-              customClass: "text-gray-500 hover:text-purple-500",
-              href: "mailto:abdullah.az.zahur@gmail.com", // Link to open Gmail
-            },
-            {
-              title: "+880-1705697897",
-              icon: <MdPhone className="text-green-500" />,
-              customClass: "text-gray-500 hover:text-green-500",
-              href: "tel:+8801705697897", // Link to make a phone call
-            },
-          ],
-        },
-      ],
-      sidebarClass: "",
-    },
-    "/project": {
-      pageName: "Projects",
-      items: [
-        {
-          title: "React",
-          icon: <FaReact className="text-blue-500" />,
-          customClass: "text-gray-500 hover:text-blue-500 ml-4",
-          isSelectable: true,
-        },
-        {
-          title: "Vue",
-          icon: <FaVuejs className="text-green-500" />,
-          customClass: "text-gray-500 hover:text-green-500 ml-4",
-          isSelectable: true,
-        },
-        {
-          title: "Angular",
-          icon: <FaAngular className="text-red-500" />,
-          customClass: "text-gray-500 hover:text-red-500 ml-4",
-          isSelectable: true,
-        },
-        {
-          title: "HTML",
-          icon: <FaHtml5 className="text-orange-500" />,
-          customClass: "text-gray-500 hover:text-orange-500 ml-4",
-          isSelectable: true,
-        },
-        {
-          title: "CSS",
-          icon: <FaCss3Alt className="text-blue-300" />,
-          customClass: "text-gray-500 hover:text-blue-300 ml-4",
-          isSelectable: true,
-        },
-      ],
-      sidebarClass: "",
-    },
-    "/contact": {
-      pageName: "Contact",
-      items: [
-        {
-          title: "abdullah.az.zahur@gmail.com",
-          icon: <MdEmail className="text-purple-500" />,
-          customClass: "text-gray-500 hover:text-purple-500 ml-4",
-          href: "mailto:abdullah.az.zahur@gmail.com", // Link to open Gmail
-        },
-        {
-          title: "+880-1705697897",
-          icon: <MdPhone className="text-green-500" />,
-          customClass: "text-gray-500 hover:text-green-500 ml-4",
-          href: "tel:+8801705697897", // Link to make a phone call
-        },
-        {
-          title: "find-me-also-in",
-          icon: <IoMdArrowDropdown className="" />,
-          customClass:
-            "text-white hover:text-blue-500 border-t border-b border-gray-500 py-2",
-          isAlwaysVisible: true, // Always visible subsection
-          subMenu: [
-            {
-              title: "YouTube link",
-              icon: <FaYoutube className="text-red-500" />,
-              customClass: "text-gray-500 hover:text-red-500",
-              href: "https://www.youtube.com", // Link to YouTube
-            },
-            {
-              title: "Twitter link",
-              icon: <FaTwitter className="text-blue-500" />,
-              customClass: "text-gray-500 hover:text-blue-500",
-              href: "https://www.twitter.com", // Link to Twitter
-            },
-            {
-              title: "Instagram link",
-              icon: <FaInstagram className="text-pink-500" />,
-              customClass: "text-gray-500 hover:text-pink-500",
-              href: "https://www.instagram.com", // Link to Instagram
-            },
-          ],
-        },
-      ],
-      sidebarClass: "",
-    },
   };
 
   const getSidebarConfig = (path: string) => {
@@ -252,11 +80,11 @@ const Sidebar: React.FC = () => {
               ) : (
                 <>
                   {item.icon && <span className="mr-2">{item.icon}</span>}
-                  {item.path ? ( // Internal link
+                  {item.path ? (
                     <Link href={item.path} className="hover:underline">
                       {item.title}
                     </Link>
-                  ) : item.href ? ( // External link
+                  ) : item.href ? (
                     <a
                       href={item.href}
                       target="_blank"
@@ -266,7 +94,7 @@ const Sidebar: React.FC = () => {
                       {item.title}
                     </a>
                   ) : (
-                    <span>{item.title}</span> // No link
+                    <span>{item.title}</span>
                   )}
                 </>
               )}
@@ -282,11 +110,11 @@ const Sidebar: React.FC = () => {
                       {subItem.icon && (
                         <span className="mr-2">{subItem.icon}</span>
                       )}
-                      {subItem.path ? ( // Internal link
+                      {subItem.path ? (
                         <Link href={subItem.path} className="hover:underline">
                           {subItem.title}
                         </Link>
-                      ) : subItem.href ? ( // External link
+                      ) : subItem.href ? (
                         <a
                           href={subItem.href}
                           target="_blank"
@@ -296,7 +124,7 @@ const Sidebar: React.FC = () => {
                           {subItem.title}
                         </a>
                       ) : (
-                        <span>{subItem.title}</span> // No link
+                        <span>{subItem.title}</span>
                       )}
                     </li>
                   ))}
