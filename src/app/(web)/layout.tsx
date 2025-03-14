@@ -6,6 +6,8 @@ import Footer from "@/components/Footer/Footer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TabBar from "@/components/TabBar/TabBar";
 import NavBar from "@/components/NavBar/NavBar";
+import { ContextProvider } from "@/contexts/Context";
+
 
 export default function RootLayout({
   children,
@@ -35,18 +37,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col border border-gray-500 rounded-md">
-        <NavBar/>
-
-        <div className="flex flex-1 mt-14">
-          {pathname !== "/" && <Sidebar />}
-
-          <main className="flex-1  overflow-auto ">
-            {pathname !== "/" && !isMobile && <TabBar />}
-            {children}
-          </main>
-        </div>
-
-        {!(pathname === "/" && isMobile) && <Footer />}
+        <ContextProvider>
+          <NavBar />
+          <div className="flex flex-1 mt-14">
+            {pathname !== "/" && <Sidebar />}
+            <main className="flex-1  overflow-auto ">
+              {pathname !== "/" && !isMobile && <TabBar />}
+              {children}
+            </main>
+          </div>
+          {!(pathname === "/" && isMobile) && <Footer />}
+        </ContextProvider>
       </body>
     </html>
   );

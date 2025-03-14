@@ -1,8 +1,12 @@
 "use client";
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
-import Link from "next/link";
-import { IoIosArrowDown, IoIosArrowForward, IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
+import {
+  IoIosArrowDown,
+  IoIosArrowForward,
+  IoMdArrowDropdown,
+  IoMdArrowDropright,
+} from "react-icons/io";
 import {
   FaAngular,
   FaCss3Alt,
@@ -17,14 +21,19 @@ import {
 } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { RiFolder3Fill } from "react-icons/ri";
+import { useTabs } from "@/contexts/Context"; // Import the TabContext
+import Bio from "../../components/About/Bio"; // Import your components
+import Interests from "../../components/About/Interests";
+import HighSchool from "../../components/About/HighSchool";
+import University from "../../components/About/University";
 
-// Sidebar Component
 const Sidebar: React.FC = () => {
   const pathname = usePathname();
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     new Set()
   );
   const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
+  const { addTab } = useTabs(); // Use the TabContext to add tabs
 
   const toggleDropdown = (title: string) => {
     const newExpandedDropdowns = new Set(expandedDropdowns);
@@ -46,6 +55,15 @@ const Sidebar: React.FC = () => {
       newSelection.add(skill);
     }
     setSelectedSkills(newSelection);
+  };
+
+  // Function to handle sidebar item clicks for About page
+  const handleAboutItemClick = (title: string, component: React.ReactNode) => {
+    addTab({
+      id: title.toLowerCase().replace(/\s+/g, "-"), // Generate a unique ID for the tab
+      title,
+      content: component,
+    });
   };
 
   return (
@@ -70,14 +88,27 @@ const Sidebar: React.FC = () => {
             </div>
             {isDropdownExpanded("about") && (
               <ul className="ml-4 mt-2 space-y-1">
-                <li className="flex items-center gap-2 text-gray-500 hover:text-blue-500">
+                {/* Bio */}
+                <li
+                  className="flex items-center gap-2 text-gray-500 hover:text-blue-500 cursor-pointer"
+                  onClick={() => handleAboutItemClick("Bio", <Bio />)}
+                >
                   <RiFolder3Fill className="text-blue-500" />
-                  <Link href="/about">bio</Link>
+                  <span>bio</span>
                 </li>
-                <li className="flex items-center gap-2 text-gray-500 hover:text-green-500">
+
+                {/* Interests */}
+                <li
+                  className="flex items-center gap-2 text-gray-500 hover:text-green-500 cursor-pointer"
+                  onClick={() =>
+                    handleAboutItemClick("Interests", <Interests />)
+                  }
+                >
                   <RiFolder3Fill className="text-green-500" />
-                  <Link href="/about/interests">interests</Link>
+                  <span>interests</span>
                 </li>
+
+                {/* Education Dropdown */}
                 <li
                   className="flex items-center gap-2 text-gray-500 hover:text-purple-500 cursor-pointer"
                   onClick={() => toggleDropdown("education")}
@@ -92,15 +123,26 @@ const Sidebar: React.FC = () => {
                 </li>
                 {isDropdownExpanded("education") && (
                   <ul className="ml-6 mt-1 space-y-1">
-                    <li className="flex items-center gap-2 text-sm text-gray-500 hover:text-yellow-500">
+                    {/* High School */}
+                    <li
+                      className="flex items-center gap-2 text-sm text-gray-500 hover:text-yellow-500 cursor-pointer"
+                      onClick={() =>
+                        handleAboutItemClick("High School", <HighSchool />)
+                      }
+                    >
                       <FaSchool className="text-yellow-500" />
-                      <Link href="/about/education/high-school">
-                        high-school
-                      </Link>
+                      <span>high-school</span>
                     </li>
-                    <li className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-500">
+
+                    {/* University */}
+                    <li
+                      className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-500 cursor-pointer"
+                      onClick={() =>
+                        handleAboutItemClick("University", <University />)
+                      }
+                    >
                       <FaUserGraduate className="text-red-500" />
-                      <Link href="/about/education/university">university</Link>
+                      <span>university</span>
                     </li>
                   </ul>
                 )}
@@ -261,11 +303,10 @@ const Sidebar: React.FC = () => {
               <ul className="ml-4 mt-2 space-y-1">
                 <li className="flex items-center gap-2 text-gray-500 hover:text-purple-500">
                   <MdEmail className="text-purple-500 flex-shrink-0" />{" "}
-                  {/* Prevent icon from shrinking */}
                   <a
                     href="mailto:abdullah.az.zahur@gmail.com"
                     className="truncate"
-                    title="abdullah.az.zahur@gmail.com" // Show full email on hover
+                    title="abdullah.az.zahur@gmail.com"
                   >
                     abdullah.az.zahur@gmail.com
                   </a>
