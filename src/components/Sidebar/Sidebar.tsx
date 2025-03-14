@@ -2,8 +2,7 @@
 import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import Link from "next/link";
-import { BiChevronDown, BiChevronRight } from "react-icons/bi";
-import { IoMdArrowDropdown } from "react-icons/io";
+import { IoIosArrowDown, IoIosArrowForward, IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import {
   FaAngular,
   FaCss3Alt,
@@ -13,343 +12,320 @@ import {
   FaYoutube,
   FaTwitter,
   FaInstagram,
+  FaSchool,
+  FaUserGraduate,
 } from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { RiFolder3Fill } from "react-icons/ri";
 
-// Define types
-interface SidebarItem {
-  title: string;
-  icon: React.ReactNode;
-  customClass: string;
-  path?: string;
-  href?: string;
-  isSelectable?: boolean;
-  isAlwaysVisible?: boolean;
-  subMenu?: SidebarItem[];
-}
-
-interface SidebarConfig {
-  [key: string]: {
-    pageName: string;
-    mainTitle: {
-      title: string;
-      icon: React.ReactNode;
-      customClass: string;
-    };
-    items: SidebarItem[];
-    sidebarClass: string;
-  };
-}
-
-// Sidebar Configuration
-const sidebarConfig: SidebarConfig = {
-  "/about": {
-    pageName: "About",
-    mainTitle: {
-      title: "About",
-      icon: <IoMdArrowDropdown className="text-white" />,
-      customClass: "text-white hover:text-blue-500",
-    },
-    items: [
-      {
-        title: "bio",
-        icon: <RiFolder3Fill className="text-blue-500" />,
-        customClass: "text-gray-500 hover:text-blue-500 ml-4",
-        path: "/about",
-      },
-      {
-        title: "interests",
-        icon: <RiFolder3Fill className="text-green-500" />,
-        customClass: "text-gray-500 hover:text-green-500 ml-4",
-        path: "/about/interests",
-      },
-      {
-        title: "education",
-        icon: <RiFolder3Fill className="text-purple-500" />,
-        customClass: "text-gray-500 hover:text-purple-500 ml-4",
-        subMenu: [
-          {
-            title: "high-school",
-            icon: <RiFolder3Fill className="text-yellow-500" />,
-            customClass: "text-gray-500 hover:text-yellow-500 ml-4",
-            path: "/about/education/high-school",
-          },
-          {
-            title: "university",
-            icon: <RiFolder3Fill className="text-red-500" />,
-            customClass: "text-gray-500 hover:text-red-500 ml-4",
-            path: "/about/education/university",
-          },
-        ],
-      },
-      {
-        title: "contact",
-        icon: <IoMdArrowDropdown className="" />,
-        customClass:
-          "text-white hover:text-blue-500 border-t border-b border-gray-500 py-2",
-        isAlwaysVisible: true,
-        subMenu: [
-          {
-            title: "abdullah.az.zahur@gmail.com",
-            icon: <MdEmail className="text-purple-500" />,
-            customClass: "text-gray-500 hover:text-purple-500",
-            href: "mailto:abdullah.az.zahur@gmail.com",
-          },
-          {
-            title: "+880-1705697897",
-            icon: <MdPhone className="text-green-500" />,
-            customClass: "text-gray-500 hover:text-green-500",
-            href: "tel:+8801705697897",
-          },
-        ],
-      },
-    ],
-    sidebarClass: "",
-  },
-  "/project": {
-    pageName: "Projects",
-    mainTitle: {
-      title: "Projects",
-      icon: <IoMdArrowDropdown className="text-white" />,
-      customClass: "text-white hover:text-blue-500",
-    },
-    items: [
-      {
-        title: "React",
-        icon: <FaReact className="text-blue-500" />,
-        customClass: "text-gray-500 hover:text-blue-500 ml-4",
-        isSelectable: true,
-      },
-      {
-        title: "Vue",
-        icon: <FaVuejs className="text-green-500" />,
-        customClass: "text-gray-500 hover:text-green-500 ml-4",
-        isSelectable: true,
-      },
-      {
-        title: "Angular",
-        icon: <FaAngular className="text-red-500" />,
-        customClass: "text-gray-500 hover:text-red-500 ml-4",
-        isSelectable: true,
-      },
-      {
-        title: "HTML",
-        icon: <FaHtml5 className="text-orange-500" />,
-        customClass: "text-gray-500 hover:text-orange-500 ml-4",
-        isSelectable: true,
-      },
-      {
-        title: "CSS",
-        icon: <FaCss3Alt className="text-blue-300" />,
-        customClass: "text-gray-500 hover:text-blue-300 ml-4",
-        isSelectable: true,
-      },
-    ],
-    sidebarClass: "",
-  },
-  "/contact": {
-    pageName: "Contact",
-    mainTitle: {
-      title: "Contact",
-      icon: <IoMdArrowDropdown className="text-white" />,
-      customClass: "text-white hover:text-blue-500",
-    },
-    items: [
-      {
-        title: "abdullah.az.zahur@gmail.com",
-        icon: <MdEmail className="text-purple-500" />,
-        customClass: "text-gray-500 hover:text-purple-500 ml-4",
-        href: "mailto:abdullah.az.zahur@gmail.com",
-      },
-      {
-        title: "+880-1705697897",
-        icon: <MdPhone className="text-green-500" />,
-        customClass: "text-gray-500 hover:text-green-500 ml-4",
-        href: "tel:+8801705697897",
-      },
-      {
-        title: "find-me-also-in",
-        icon: <IoMdArrowDropdown className="" />,
-        customClass:
-          "text-white hover:text-blue-500 border-t border-b border-gray-500 py-2",
-        isAlwaysVisible: true,
-        subMenu: [
-          {
-            title: "YouTube link",
-            icon: <FaYoutube className="text-red-500" />,
-            customClass: "text-gray-500 hover:text-red-500",
-            href: "https://www.youtube.com",
-          },
-          {
-            title: "Twitter link",
-            icon: <FaTwitter className="text-blue-500" />,
-            customClass: "text-gray-500 hover:text-blue-500",
-            href: "https://www.twitter.com",
-          },
-          {
-            title: "Instagram link",
-            icon: <FaInstagram className="text-pink-500" />,
-            customClass: "text-gray-500 hover:text-pink-500",
-            href: "https://www.instagram.com",
-          },
-        ],
-      },
-    ],
-    sidebarClass: "",
-  },
-};
-
 // Sidebar Component
 const Sidebar: React.FC = () => {
   const pathname = usePathname();
-  const [expandedSubMenu, setExpandedSubMenu] = useState<string | null>(null);
-  const [selectedItems, setSelectedItems] = useState<Set<string>>(new Set());
-  const [isMainTitleExpanded, setIsMainTitleExpanded] = useState<boolean>(true);
-  const [expandedSections, setExpandedSections] = useState<Set<string>>(new Set());
+  const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
+    new Set()
+  );
+  const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
 
-  const toggleSubMenu = (title: string) => {
-    setExpandedSubMenu(expandedSubMenu === title ? null : title);
-  };
-
-  const toggleSection = (title: string) => {
-    const newExpandedSections = new Set(expandedSections);
-    if (newExpandedSections.has(title)) {
-      newExpandedSections.delete(title);
+  const toggleDropdown = (title: string) => {
+    const newExpandedDropdowns = new Set(expandedDropdowns);
+    if (newExpandedDropdowns.has(title)) {
+      newExpandedDropdowns.delete(title);
     } else {
-      newExpandedSections.add(title);
+      newExpandedDropdowns.add(title);
     }
-    setExpandedSections(newExpandedSections);
+    setExpandedDropdowns(newExpandedDropdowns);
   };
 
-  const handleItemSelect = (title: string) => {
-    const newSelection = new Set(selectedItems);
-    if (newSelection.has(title)) {
-      newSelection.delete(title);
+  const isDropdownExpanded = (title: string) => expandedDropdowns.has(title);
+
+  const handleSkillSelect = (skill: string) => {
+    const newSelection = new Set(selectedSkills);
+    if (newSelection.has(skill)) {
+      newSelection.delete(skill);
     } else {
-      newSelection.add(title);
+      newSelection.add(skill);
     }
-    setSelectedItems(newSelection);
+    setSelectedSkills(newSelection);
   };
-
-  const getSidebarConfig = (path: string) => {
-    if (path.includes("/about")) {
-      return sidebarConfig["/about"];
-    } else if (path.includes("/project")) {
-      return sidebarConfig["/project"];
-    } else if (path.includes("/contact")) {
-      return sidebarConfig["/contact"];
-    } else {
-      return { items: [], sidebarClass: "", pageName: "Sidebar", mainTitle: null };
-    }
-  };
-
-  const { items, sidebarClass, pageName, mainTitle } = getSidebarConfig(pathname);
 
   return (
     <div
-      className={`w-full md:w-1/5 border-r border-gray-500 md:h-[calc(100vh-56px-48px)] h-auto overflow-hidden ${sidebarClass}`}
+      className={`w-full md:w-1/5 border-r border-gray-500 md:h-[calc(100vh-56px-48px)] h-auto overflow-hidden`}
     >
-      <h2
-        className="flex text-white text-lg font-semibold mb-4 border-b border-gray-500 h-10 text-center pt-1 cursor-pointer"
-        onClick={() => setIsMainTitleExpanded(!isMainTitleExpanded)}
-      >
-        {mainTitle && (
-          <span className={`flex items-center gap-2 ${mainTitle.customClass}`}>
-            {mainTitle.icon}
-            {mainTitle.title}
-          </span>
-        )}
-      </h2>
-      {isMainTitleExpanded && (
-        <nav>
-          {items.map((item, index) => (
-            <div key={index} className="mb-2">
-              <div
-                className={`flex items-center gap-2 cursor-pointer ${item.customClass}`}
-                onClick={() =>
-                  item.isAlwaysVisible
-                    ? toggleSection(item.title)
-                    : item.subMenu && toggleSubMenu(item.title)
-                }
-              >
-                {item.subMenu && (
-                  <span className="">
-                    {expandedSections.has(item.title) || expandedSubMenu === item.title ? (
-                      <BiChevronDown />
-                    ) : (
-                      <BiChevronRight />
-                    )}
-                  </span>
-                )}
-                {item.isSelectable ? (
-                  <label className="flex items-center gap-2 cursor-pointer">
-                    <input
-                      type="checkbox"
-                      checked={selectedItems.has(item.title)}
-                      onChange={() => handleItemSelect(item.title)}
-                      className="mr-2"
-                    />
-                    {item.icon && <span>{item.icon}</span>}
-                    <span>{item.title}</span>
-                  </label>
-                ) : (
-                  <>
-                    {item.icon && <span className="mr-2">{item.icon}</span>}
-                    {item.path ? (
-                      <Link href={item.path} className="hover:underline">
-                        {item.title}
+      <nav>
+        {/* About Page */}
+        {pathname.includes("/about") && (
+          <>
+            {/* About Dropdown */}
+            <div
+              className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
+              onClick={() => toggleDropdown("about")}
+            >
+              {isDropdownExpanded("about") ? (
+                <IoMdArrowDropdown className="text-white" />
+              ) : (
+                <IoMdArrowDropright className="text-white" />
+              )}
+              <span>About</span>
+            </div>
+            {isDropdownExpanded("about") && (
+              <ul className="ml-4 mt-2 space-y-1">
+                <li className="flex items-center gap-2 text-gray-500 hover:text-blue-500">
+                  <RiFolder3Fill className="text-blue-500" />
+                  <Link href="/about">bio</Link>
+                </li>
+                <li className="flex items-center gap-2 text-gray-500 hover:text-green-500">
+                  <RiFolder3Fill className="text-green-500" />
+                  <Link href="/about/interests">interests</Link>
+                </li>
+                <li
+                  className="flex items-center gap-2 text-gray-500 hover:text-purple-500 cursor-pointer"
+                  onClick={() => toggleDropdown("education")}
+                >
+                  {isDropdownExpanded("education") ? (
+                    <IoIosArrowDown className="text-purple-500" />
+                  ) : (
+                    <IoIosArrowForward className="text-purple-500" />
+                  )}
+                  <RiFolder3Fill className="text-purple-500" />
+                  <span>education</span>
+                </li>
+                {isDropdownExpanded("education") && (
+                  <ul className="ml-6 mt-1 space-y-1">
+                    <li className="flex items-center gap-2 text-sm text-gray-500 hover:text-yellow-500">
+                      <FaSchool className="text-yellow-500" />
+                      <Link href="/about/education/high-school">
+                        high-school
                       </Link>
-                    ) : item.href ? (
-                      <a
-                        href={item.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="hover:underline"
-                      >
-                        {item.title}
-                      </a>
-                    ) : (
-                      <span>{item.title}</span>
-                    )}
-                  </>
-                )}
-              </div>
-              {item.subMenu &&
-                (expandedSections.has(item.title) || expandedSubMenu === item.title) && (
-                  <ul className="ml-6 mt-2 space-y-1">
-                    {item.subMenu.map((subItem, subIndex) => (
-                      <li
-                        key={subIndex}
-                        className={`flex items-center gap-2 text-sm ${subItem.customClass}`}
-                      >
-                        {subItem.icon && (
-                          <span className="mr-2">{subItem.icon}</span>
-                        )}
-                        {subItem.path ? (
-                          <Link href={subItem.path} className="hover:underline">
-                            {subItem.title}
-                          </Link>
-                        ) : subItem.href ? (
-                          <a
-                            href={subItem.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:underline"
-                          >
-                            {subItem.title}
-                          </a>
-                        ) : (
-                          <span>{subItem.title}</span>
-                        )}
-                      </li>
-                    ))}
+                    </li>
+                    <li className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-500">
+                      <FaUserGraduate className="text-red-500" />
+                      <Link href="/about/education/university">university</Link>
+                    </li>
                   </ul>
                 )}
+              </ul>
+            )}
+
+            {/* Contact Dropdown */}
+            <div
+              className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-y border-gray-500 py-2 "
+              onClick={() => toggleDropdown("contact")}
+            >
+              {isDropdownExpanded("contact") ? (
+                <IoMdArrowDropdown className="text-white " />
+              ) : (
+                <IoMdArrowDropright className="text-white" />
+              )}
+              <span>contact</span>
             </div>
-          ))}
-        </nav>
-      )}
+            {isDropdownExpanded("contact") && (
+              <ul className="ml-4 mt-2 space-y-1">
+                <li className="flex items-center gap-2 text-gray-500 hover:text-purple-500">
+                  <MdEmail className="text-purple-500 flex-shrink-0" />{" "}
+                  {/* Prevent icon from shrinking */}
+                  <a
+                    href="mailto:abdullah.az.zahur@gmail.com"
+                    className="truncate"
+                    title="abdullah.az.zahur@gmail.com" // Show full email on hover
+                  >
+                    abdullah.az.zahur@gmail.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-gray-500 hover:text-green-500">
+                  <MdPhone className="text-green-500" />
+                  <a href="tel:+8801705697897">+880-1705697897</a>
+                </li>
+              </ul>
+            )}
+          </>
+        )}
+
+        {/* Projects Page */}
+        {pathname.includes("/project") && (
+          <>
+            {/* Projects Dropdown */}
+            <div
+              className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
+              onClick={() => toggleDropdown("projects")}
+            >
+              {isDropdownExpanded("projects") ? (
+                <IoMdArrowDropdown className="text-white" />
+              ) : (
+                <IoMdArrowDropright className="text-white" />
+              )}
+              <span>Projects</span>
+            </div>
+            {isDropdownExpanded("projects") && (
+              <ul className="ml-4 mt-2 space-y-1">
+                {/* React Skill */}
+                <label
+                  htmlFor="React"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-blue-500"
+                >
+                  <input
+                    type="checkbox"
+                    id="React"
+                    checked={selectedSkills.has("React")}
+                    onChange={() => handleSkillSelect("React")}
+                    className="mr-2"
+                  />
+                  <FaReact className="text-blue-500" />
+                  <span>React</span>
+                </label>
+
+                {/* Vue Skill */}
+                <label
+                  htmlFor="Vue"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-green-500"
+                >
+                  <input
+                    type="checkbox"
+                    id="Vue"
+                    checked={selectedSkills.has("Vue")}
+                    onChange={() => handleSkillSelect("Vue")}
+                    className="mr-2"
+                  />
+                  <FaVuejs className="text-green-500" />
+                  <span>Vue</span>
+                </label>
+
+                {/* Angular Skill */}
+                <label
+                  htmlFor="Angular"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-red-500"
+                >
+                  <input
+                    type="checkbox"
+                    id="Angular"
+                    checked={selectedSkills.has("Angular")}
+                    onChange={() => handleSkillSelect("Angular")}
+                    className="mr-2"
+                  />
+                  <FaAngular className="text-red-500" />
+                  <span>Angular</span>
+                </label>
+
+                {/* HTML Skill */}
+                <label
+                  htmlFor="HTML"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-orange-500"
+                >
+                  <input
+                    type="checkbox"
+                    id="HTML"
+                    checked={selectedSkills.has("HTML")}
+                    onChange={() => handleSkillSelect("HTML")}
+                    className="mr-2"
+                  />
+                  <FaHtml5 className="text-orange-500" />
+                  <span>HTML</span>
+                </label>
+
+                {/* CSS Skill */}
+                <label
+                  htmlFor="CSS"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-blue-300"
+                >
+                  <input
+                    type="checkbox"
+                    id="CSS"
+                    checked={selectedSkills.has("CSS")}
+                    onChange={() => handleSkillSelect("CSS")}
+                    className="mr-2"
+                  />
+                  <FaCss3Alt className="text-blue-300" />
+                  <span>CSS</span>
+                </label>
+              </ul>
+            )}
+          </>
+        )}
+
+        {/* Contact Page */}
+        {pathname.includes("/contact") && (
+          <>
+            {/* Contact Dropdown */}
+            <div
+              className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
+              onClick={() => toggleDropdown("contact")}
+            >
+              {isDropdownExpanded("contact") ? (
+                <IoMdArrowDropdown className="text-white" />
+              ) : (
+                <IoMdArrowDropright className="text-white" />
+              )}
+              <span>Contact</span>
+            </div>
+            {isDropdownExpanded("contact") && (
+              <ul className="ml-4 mt-2 space-y-1">
+                <li className="flex items-center gap-2 text-gray-500 hover:text-purple-500">
+                  <MdEmail className="text-purple-500 flex-shrink-0" />{" "}
+                  {/* Prevent icon from shrinking */}
+                  <a
+                    href="mailto:abdullah.az.zahur@gmail.com"
+                    className="truncate"
+                    title="abdullah.az.zahur@gmail.com" // Show full email on hover
+                  >
+                    abdullah.az.zahur@gmail.com
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-gray-500 hover:text-green-500">
+                  <MdPhone className="text-green-500" />
+                  <a href="tel:+8801705697897">+880-1705697897</a>
+                </li>
+              </ul>
+            )}
+
+            {/* Find Me Also In Dropdown */}
+            <div
+              className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-y border-gray-500 py-2 "
+              onClick={() => toggleDropdown("find-me-also-in")}
+            >
+              {isDropdownExpanded("find-me-also-in") ? (
+                <IoMdArrowDropdown className="text-white" />
+              ) : (
+                <IoMdArrowDropright className="text-white" />
+              )}
+              <span>find-me-also-in</span>
+            </div>
+            {isDropdownExpanded("find-me-also-in") && (
+              <ul className="ml-4 mt-2 space-y-1">
+                <li className="flex items-center gap-2 text-gray-500 hover:text-red-500">
+                  <FaYoutube className="text-red-500" />
+                  <a
+                    href="https://www.youtube.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    YouTube
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-gray-500 hover:text-blue-500">
+                  <FaTwitter className="text-blue-500" />
+                  <a
+                    href="https://www.twitter.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Twitter
+                  </a>
+                </li>
+                <li className="flex items-center gap-2 text-gray-500 hover:text-pink-500">
+                  <FaInstagram className="text-pink-500" />
+                  <a
+                    href="https://www.instagram.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Instagram
+                  </a>
+                </li>
+              </ul>
+            )}
+          </>
+        )}
+      </nav>
     </div>
   );
 };
