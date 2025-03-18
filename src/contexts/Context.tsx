@@ -1,5 +1,6 @@
 "use client";
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useState, useEffect } from "react";
+import { usePathname } from "next/navigation";
 
 interface Tab {
   id: string;
@@ -13,8 +14,8 @@ interface ContextType {
   removeTab: (id: string) => void;
   setActiveTab: (id: string) => void;
   activeTab: string | null;
-  selectedSkills: Set<string>; // Add selectedSkills to the context
-  setSelectedSkills: (skills: Set<string>) => void; // Add setSelectedSkills to the context
+  selectedSkills: Set<string>;
+  setSelectedSkills: (skills: Set<string>) => void;
 }
 
 const TabContext = createContext<ContextType | undefined>(undefined);
@@ -24,7 +25,14 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
 }) => {
   const [tabs, setTabs] = useState<Tab[]>([]);
   const [activeTab, setActiveTab] = useState<string | null>(null);
-  const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set()); // State for selected skills
+  const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
+  const pathname = usePathname();
+
+  // Clear tabs when the route changes
+  useEffect(() => {
+    setTabs([]);
+    setActiveTab(null);
+  }, [pathname]);
 
   const addTab = (tab: Tab) => {
     setTabs((prevTabs) => {
@@ -58,8 +66,8 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
         removeTab,
         setActiveTab,
         activeTab,
-        selectedSkills, // Provide selectedSkills
-        setSelectedSkills, // Provide setSelectedSkills
+        selectedSkills,
+        setSelectedSkills,
       }}
     >
       {children}
