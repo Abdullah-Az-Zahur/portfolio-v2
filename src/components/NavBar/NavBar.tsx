@@ -18,7 +18,7 @@ const NavBar: React.FC = () => {
   const pathname = usePathname(); // Gets the current pathname to highlight the active link
 
   return (
-    <header className="fixed w-full h-14 bg-transparent border-b border-gray-500 z-50">
+    <header className="fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50">
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
         <Link
