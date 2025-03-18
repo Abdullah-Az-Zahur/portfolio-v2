@@ -8,7 +8,6 @@ import TabBar from "@/components/TabBar/TabBar";
 import NavBar from "@/components/NavBar/NavBar";
 import { ContextProvider } from "@/contexts/Context";
 
-
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -39,9 +38,9 @@ export default function RootLayout({
       <body className="min-h-screen flex flex-col border border-gray-500 rounded-md">
         <ContextProvider>
           <NavBar />
-          <div className="flex flex-1 mt-14">
+          <div className="flex flex-col md:flex-row flex-1 mt-14">
             {pathname !== "/" && <Sidebar />}
-            <main className="flex-1  overflow-auto ">
+            <main className="flex-1 overflow-auto">
               {pathname !== "/" && !isMobile && <TabBar />}
               {children}
             </main>

@@ -151,7 +151,7 @@ const Sidebar: React.FC = () => {
 
             {/* Contact Dropdown */}
             <div
-              className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-y border-gray-500 py-2 "
+              className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-y  border-gray-500 py-2 "
               onClick={() => toggleDropdown("contact")}
             >
               {isDropdownExpanded("contact") ? (
@@ -162,7 +162,7 @@ const Sidebar: React.FC = () => {
               <span>contact</span>
             </div>
             {isDropdownExpanded("contact") && (
-              <ul className="ml-4 mt-2 space-y-1">
+              <ul className="ml-4 mt-2 space-y-1 ">
                 <li className="flex items-center gap-2 text-gray-500 hover:text-purple-500">
                   <MdEmail className="text-purple-500 flex-shrink-0" />{" "}
                   {/* Prevent icon from shrinking */}
