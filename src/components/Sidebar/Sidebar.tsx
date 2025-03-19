@@ -69,7 +69,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <div
-      className={`w-full md:w-1/5 border-r border-gray-500 md:h-[calc(100vh-56px-48px)] h-auto overflow-hidden`}
+    className={`md:fixed w-full md:w-1/5 border-r border-gray-500 md:h-[calc(100vh-56px-48px)] h-auto overflow-y-auto bg-[#011627]`}
     >
       <nav>
         {/* About Page */}

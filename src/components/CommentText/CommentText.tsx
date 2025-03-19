@@ -6,14 +6,14 @@ interface CommentTextProps {
 
 const CommentText: React.FC<CommentTextProps> = ({ text }) => {
   // Split the text into lines
-  const lines = text.split("\n").filter((line) => line.trim() !== "");
+  const lines = useMemo(() => text.split("\n").filter((line) => line.trim() !== ""), [text]);
 
   // Memoize the formattedLines array
-  const formattedLines = useMemo(() => ["/**", ...lines, "*/"], [lines]); // Only recalculate if `lines` changes
+  const formattedLines = useMemo(() => ["/**", ...lines, "*/"], [lines]);
 
   // State to store the number of rendered lines
-  const [renderedLines, setRenderedLines] = useState<number[]>([]); // Explicitly type as number[]
-  const textRef = useRef<HTMLDivElement>(null); // Explicitly type as HTMLDivElement
+  const [renderedLines, setRenderedLines] = useState<number[]>([]);
+  const textRef = useRef<HTMLDivElement>(null);
 
   // Effect to calculate the number of rendered lines
   useEffect(() => {
@@ -27,9 +27,13 @@ const CommentText: React.FC<CommentTextProps> = ({ text }) => {
 
       // Generate line numbers based on the total lines
       const lineNumbers = Array.from({ length: totalLines }, (_, i) => i + 1);
-      setRenderedLines(lineNumbers);
+
+      // Only update state if the line numbers have changed
+      if (lineNumbers.length !== renderedLines.length) {
+        setRenderedLines(lineNumbers);
+      }
     }
-  }, [formattedLines]); // Only run when `formattedLines` changes
+  }, [formattedLines, renderedLines.length]); // Only run when `formattedLines` or `renderedLines.length` changes
 
   return (
     <div className="flex font-mono whitespace-pre-wrap leading-6 md:p-10 p-3">

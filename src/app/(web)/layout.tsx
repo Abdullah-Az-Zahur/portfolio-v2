@@ -8,6 +8,7 @@ import TabBar from "@/components/TabBar/TabBar";
 import NavBar from "@/components/NavBar/NavBar";
 import { ContextProvider } from "@/contexts/Context";
 
+// RootLayout component
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -16,31 +17,27 @@ export default function RootLayout({
   const pathname = usePathname();
   const [isMobile, setIsMobile] = useState(false);
 
-  // Check window size on mount and on resize
   useEffect(() => {
     const handleResize = () => {
-      setIsMobile(window.innerWidth < 768); // Set to true for mobile screens
+      setIsMobile(window.innerWidth < 768);
     };
 
-    // Initialize on mount
     handleResize();
-
-    // Listen for resize events
     window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener on unmount
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Render layout
   return (
     <html lang="en">
       <body className="min-h-screen flex flex-col border border-gray-500 rounded-md">
         <ContextProvider>
           <NavBar />
           <div className="flex flex-col md:flex-row flex-1 mt-14">
+            {/* Sidebar */}
             {pathname !== "/" && <Sidebar />}
-            <main className="flex-1 overflow-auto">
+
+            {/* Main Content */}
+            <main className="flex-1 overflow-y-auto pb-10 md:ml-[20%] md:pt-14">
               {pathname !== "/" && !isMobile && <TabBar />}
               {children}
             </main>

@@ -19,7 +19,7 @@ const NavBar: React.FC = () => {
 
   return (
     <header className="fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50">
-      <div className="mx-auto flex items-center justify-between h-full">
+    <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
         <Link
           href="/"

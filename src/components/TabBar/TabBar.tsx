@@ -5,7 +5,7 @@ const TabBar = () => {
   const { tabs, removeTab, setActiveTab, activeTab } = useTabs();
 
   return (
-    <div className="h-[41px] border-b border-gray-500 flex items-center">
+    <div className="fixed top-14 left-0 md:left-[20%] w-full md:w-[80%] h-[41px] border-b border-l border-gray-500 flex items-center bg-[#011627] z-40">
       {tabs.map((tab) => (
         <React.Fragment key={tab.id}>
           <div

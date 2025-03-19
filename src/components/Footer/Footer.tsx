@@ -4,8 +4,8 @@ import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 
 const Footer: React.FC = () => {
   return (
-    <div className="fixed bg-[#011627] bottom-0 left-0 border border-gray-500 h-12 w-full ">
-      <div className="flex justify-between items-center h-full">
+    <div className="fixed bg-[#011627] bottom-0 left-0 border border-gray-500 h-12 w-full">
+  <div className="flex justify-between items-center h-full">
         <div className="flex items-center">
           <h2 className="p-3">find me in:</h2>
           <Link
