@@ -26,6 +26,7 @@ import Bio from "../../components/About/Bio"; // Import your components
 import Interests from "../../components/About/Interests";
 import HighSchool from "../../components/About/HighSchool";
 import University from "../../components/About/University";
+import College from "../../components/About/College";
 
 const Sidebar: React.FC = () => {
   const pathname = usePathname();
@@ -132,6 +133,17 @@ const Sidebar: React.FC = () => {
                     >
                       <FaSchool className="text-yellow-500" />
                       <span>high-school</span>
+                    </li>
+
+                    {/* College */}
+                    <li
+                      className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-500 cursor-pointer"
+                      onClick={() =>
+                        handleAboutItemClick("College", <College />)
+                      }
+                    >
+                      <FaUserGraduate className="text-red-500" />
+                      <span>college</span>
                     </li>
 
                     {/* University */}
