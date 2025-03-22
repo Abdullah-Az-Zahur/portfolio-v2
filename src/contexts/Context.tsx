@@ -1,6 +1,7 @@
 "use client";
 import { createContext, useContext, useState, useEffect } from "react";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
+import Bio from "@/components/About/Bio";
 
 interface Tab {
   id: string;
@@ -27,12 +28,50 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
   const [activeTab, setActiveTab] = useState<string | null>(null);
   const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
   const pathname = usePathname();
+  const router = useRouter();
 
   // Clear tabs when the route changes
   useEffect(() => {
-    setTabs([]);
-    setActiveTab(null);
+    setTabs([]); // Clear all tabs
+    setActiveTab(null); // Reset the active tab
   }, [pathname]);
+
+  // Add default tabs based on the route
+  useEffect(() => {
+    if (pathname.includes("/about")) {
+      addTab({
+        id: "bio",
+        title: "Bio",
+        content: <Bio />,
+      });
+    } else if (pathname.includes("/project")) {
+      addTab({
+        id: "projects",
+        title: "Projects",
+        content: <div>Projects Content</div>,
+      });
+    } else if (pathname.includes("/contact")) {
+      addTab({
+        id: "contact",
+        title: "Contact",
+        content: <div>Contact Content</div>,
+      });
+    }
+  }, [pathname]);
+
+  // Redirect to home only if all tabs are manually closed
+  useEffect(() => {
+    if (tabs.length === 0 && pathname !== "/") {
+      // Check if the tabs were cleared due to a route change or manual closure
+      const isManualClosure =
+        !pathname.includes("/about") &&
+        !pathname.includes("/project") &&
+        !pathname.includes("/contact");
+      if (isManualClosure) {
+        router.push("/");
+      }
+    }
+  }, [tabs, pathname, router]);
 
   const addTab = (tab: Tab) => {
     setTabs((prevTabs) => {

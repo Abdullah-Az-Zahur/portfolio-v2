@@ -7,18 +7,6 @@ import {
   IoMdArrowDropdown,
   IoMdArrowDropright,
 } from "react-icons/io";
-import {
-  FaAngular,
-  FaCss3Alt,
-  FaHtml5,
-  FaReact,
-  FaVuejs,
-  FaYoutube,
-  FaTwitter,
-  FaInstagram,
-  FaSchool,
-  FaUserGraduate,
-} from "react-icons/fa";
 import { MdEmail, MdPhone } from "react-icons/md";
 import { RiFolder3Fill } from "react-icons/ri";
 import { useTabs } from "@/contexts/Context"; // Import the TabContext
@@ -27,14 +15,39 @@ import Interests from "../../components/About/Interests";
 import HighSchool from "../../components/About/HighSchool";
 import University from "../../components/About/University";
 import College from "../../components/About/College";
+import {
+  FaCss3Alt,
+  FaHtml5,
+  FaInstagram,
+  FaNodeJs,
+  FaReact,
+  FaSchool,
+  FaTwitter,
+  FaUserGraduate,
+  FaYoutube,
+} from "react-icons/fa";
+import {
+  SiExpress,
+  SiFirebase,
+  SiJavascript,
+  SiMongodb,
+  SiNextdotjs,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
 
 const Sidebar: React.FC = () => {
-  const pathname = usePathname();
+  const pathname = usePathname(); // Get the current path
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     new Set()
   );
   const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
   const { addTab } = useTabs(); // Use the TabContext to add tabs
+
+  // Hide the sidebar if the path is '/'
+  if (pathname === "/") {
+    return null;
+  }
 
   const toggleDropdown = (title: string) => {
     const newExpandedDropdowns = new Set(expandedDropdowns);
@@ -59,7 +72,7 @@ const Sidebar: React.FC = () => {
   };
 
   // Function to handle sidebar item clicks for About page
-  const handleAboutItemClick = (title: string, component: React.ReactNode) => {
+  const handleSideBarItemClick = (title: string, component: React.ReactNode) => {
     addTab({
       id: title.toLowerCase().replace(/\s+/g, "-"), // Generate a unique ID for the tab
       title,
@@ -69,7 +82,7 @@ const Sidebar: React.FC = () => {
 
   return (
     <div
-    className={`md:fixed w-full md:w-1/5 border-r border-gray-500 md:h-[calc(100vh-56px-48px)] h-auto overflow-y-auto bg-[#011627]`}
+      className={`md:fixed w-full md:w-1/5 border-r border-gray-500 md:h-[calc(100vh-56px-48px)] h-auto overflow-y-auto bg-[#011627]`}
     >
       <nav>
         {/* About Page */}
@@ -92,7 +105,7 @@ const Sidebar: React.FC = () => {
                 {/* Bio */}
                 <li
                   className="flex items-center gap-2 text-gray-500 hover:text-blue-500 cursor-pointer"
-                  onClick={() => handleAboutItemClick("Bio", <Bio />)}
+                  onClick={() => handleSideBarItemClick("Bio", <Bio />)}
                 >
                   <RiFolder3Fill className="text-blue-500" />
                   <span>bio</span>
@@ -102,7 +115,7 @@ const Sidebar: React.FC = () => {
                 <li
                   className="flex items-center gap-2 text-gray-500 hover:text-green-500 cursor-pointer"
                   onClick={() =>
-                    handleAboutItemClick("Interests", <Interests />)
+                    handleSideBarItemClick("Interests", <Interests />)
                   }
                 >
                   <RiFolder3Fill className="text-green-500" />
@@ -128,7 +141,7 @@ const Sidebar: React.FC = () => {
                     <li
                       className="flex items-center gap-2 text-sm text-gray-500 hover:text-yellow-500 cursor-pointer"
                       onClick={() =>
-                        handleAboutItemClick("High School", <HighSchool />)
+                        handleSideBarItemClick("High School", <HighSchool />)
                       }
                     >
                       <FaSchool className="text-yellow-500" />
@@ -139,7 +152,7 @@ const Sidebar: React.FC = () => {
                     <li
                       className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-500 cursor-pointer"
                       onClick={() =>
-                        handleAboutItemClick("College", <College />)
+                        handleSideBarItemClick("College", <College />)
                       }
                     >
                       <FaUserGraduate className="text-red-500" />
@@ -150,7 +163,7 @@ const Sidebar: React.FC = () => {
                     <li
                       className="flex items-center gap-2 text-sm text-gray-500 hover:text-red-500 cursor-pointer"
                       onClick={() =>
-                        handleAboutItemClick("University", <University />)
+                        handleSideBarItemClick("University", <University />)
                       }
                     >
                       <FaUserGraduate className="text-red-500" />
@@ -212,52 +225,148 @@ const Sidebar: React.FC = () => {
             </div>
             {isDropdownExpanded("projects") && (
               <ul className="ml-4 mt-2 space-y-1">
-                {/* React Skill */}
+                {/* React.js Skill */}
                 <label
-                  htmlFor="React"
+                  htmlFor="React.js"
                   className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-blue-500"
                 >
                   <input
                     type="checkbox"
-                    id="React"
-                    checked={selectedSkills.has("React")}
-                    onChange={() => handleSkillSelect("React")}
+                    id="React.js"
+                    checked={selectedSkills.has("React.js")}
+                    onChange={() => handleSkillSelect("React.js")}
                     className="mr-2"
                   />
                   <FaReact className="text-blue-500" />
-                  <span>React</span>
+                  <span>React.js</span>
                 </label>
 
-                {/* Vue Skill */}
+                {/* Next.js Skill */}
                 <label
-                  htmlFor="Vue"
+                  htmlFor="Next.js"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-black"
+                >
+                  <input
+                    type="checkbox"
+                    id="Next.js"
+                    checked={selectedSkills.has("Next.js")}
+                    onChange={() => handleSkillSelect("Next.js")}
+                    className="mr-2"
+                  />
+                  <SiNextdotjs className="text-black" />
+                  <span>Next.js</span>
+                </label>
+
+                {/* Node.js Skill */}
+                <label
+                  htmlFor="Node.js"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-green-600"
+                >
+                  <input
+                    type="checkbox"
+                    id="Node.js"
+                    checked={selectedSkills.has("Node.js")}
+                    onChange={() => handleSkillSelect("Node.js")}
+                    className="mr-2"
+                  />
+                  <FaNodeJs className="text-green-600" />
+                  <span>Node.js</span>
+                </label>
+
+                {/* Express.js Skill */}
+                <label
+                  htmlFor="Express.js"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-gray-700"
+                >
+                  <input
+                    type="checkbox"
+                    id="Express.js"
+                    checked={selectedSkills.has("Express.js")}
+                    onChange={() => handleSkillSelect("Express.js")}
+                    className="mr-2"
+                  />
+                  <SiExpress className="text-gray-700" />
+                  <span>Express.js</span>
+                </label>
+
+                {/* MongoDB Skill */}
+                <label
+                  htmlFor="MongoDB"
                   className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-green-500"
                 >
                   <input
                     type="checkbox"
-                    id="Vue"
-                    checked={selectedSkills.has("Vue")}
-                    onChange={() => handleSkillSelect("Vue")}
+                    id="MongoDB"
+                    checked={selectedSkills.has("MongoDB")}
+                    onChange={() => handleSkillSelect("MongoDB")}
                     className="mr-2"
                   />
-                  <FaVuejs className="text-green-500" />
-                  <span>Vue</span>
+                  <SiMongodb className="text-green-500" />
+                  <span>MongoDB</span>
                 </label>
 
-                {/* Angular Skill */}
+                {/* Firebase Skill */}
                 <label
-                  htmlFor="Angular"
-                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-red-500"
+                  htmlFor="Firebase"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-yellow-500"
                 >
                   <input
                     type="checkbox"
-                    id="Angular"
-                    checked={selectedSkills.has("Angular")}
-                    onChange={() => handleSkillSelect("Angular")}
+                    id="Firebase"
+                    checked={selectedSkills.has("Firebase")}
+                    onChange={() => handleSkillSelect("Firebase")}
                     className="mr-2"
                   />
-                  <FaAngular className="text-red-500" />
-                  <span>Angular</span>
+                  <SiFirebase className="text-yellow-500" />
+                  <span>Firebase</span>
+                </label>
+
+                {/* TypeScript Skill */}
+                <label
+                  htmlFor="TypeScript"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-blue-600"
+                >
+                  <input
+                    type="checkbox"
+                    id="TypeScript"
+                    checked={selectedSkills.has("TypeScript")}
+                    onChange={() => handleSkillSelect("TypeScript")}
+                    className="mr-2"
+                  />
+                  <SiTypescript className="text-blue-600" />
+                  <span>TypeScript</span>
+                </label>
+
+                {/* JavaScript Skill */}
+                <label
+                  htmlFor="JavaScript"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-yellow-400"
+                >
+                  <input
+                    type="checkbox"
+                    id="JavaScript"
+                    checked={selectedSkills.has("JavaScript")}
+                    onChange={() => handleSkillSelect("JavaScript")}
+                    className="mr-2"
+                  />
+                  <SiJavascript className="text-yellow-400" />
+                  <span>JavaScript</span>
+                </label>
+
+                {/* TailwindCSS Skill */}
+                <label
+                  htmlFor="TailwindCSS"
+                  className="flex items-center gap-2 cursor-pointer text-gray-500 hover:text-blue-400"
+                >
+                  <input
+                    type="checkbox"
+                    id="TailwindCSS"
+                    checked={selectedSkills.has("TailwindCSS")}
+                    onChange={() => handleSkillSelect("TailwindCSS")}
+                    className="mr-2"
+                  />
+                  <SiTailwindcss className="text-blue-400" />
+                  <span>TailwindCSS</span>
                 </label>
 
                 {/* HTML Skill */}

@@ -14,6 +14,7 @@ const Home: React.FC = () => {
           alt="Green"
           width={600} // Default size
           height={600}
+          priority
           className="w-[300px] md:w-[500px] lg:w-[600px] opacity-80" // Reduced transparency
         />
       </div>
@@ -25,6 +26,7 @@ const Home: React.FC = () => {
           alt="Blue"
           width={600} // Default size
           height={600}
+          priority
           className="w-[300px] md:w-[500px] lg:w-[600px] opacity-80" // Reduced transparency
         />
       </div>

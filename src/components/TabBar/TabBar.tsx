@@ -1,11 +1,19 @@
+'use client'; 
+
 import { useTabs } from "@/contexts/Context";
+import { usePathname } from "next/navigation"; 
 import React from "react";
 
 const TabBar = () => {
   const { tabs, removeTab, setActiveTab, activeTab } = useTabs();
+  const pathname = usePathname(); // Get the current path
+
+  if (pathname === "/") {
+    return null;
+  }
 
   return (
-    <div className="fixed top-14 left-0 md:left-[20%] w-full md:w-[80%] h-[41px] border-b border-l border-gray-500 flex items-center bg-[#011627] z-40">
+    <div className="hidden md:flex fixed top-14 left-0 md:left-[20%] w-full md:w-[80%] h-[41px] border-b border-l border-gray-500 items-center bg-[#011627] z-40">
       {tabs.map((tab) => (
         <React.Fragment key={tab.id}>
           <div
@@ -25,7 +33,6 @@ const TabBar = () => {
               x
             </button>
           </div>
-          
         </React.Fragment>
       ))}
     </div>
