@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2.6.1",
     "@tailwindcss/postcss": "^4.0.7",
     "framer-motion": "^12.5.0",
     "lucide-react": "^0.475.0",

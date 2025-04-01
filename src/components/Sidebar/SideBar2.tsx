@@ -41,14 +41,7 @@ const Sidebar: React.FC = () => {
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     new Set()
   );
-  const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
-  const { addTab } = useTabs(); // Use the TabContext to add tabs
-
-  // Hide the sidebar if the path is '/'
-  if (pathname === "/") {
-    return null;
-  }
-
+  
   const toggleDropdown = (title: string) => {
     const newExpandedDropdowns = new Set(expandedDropdowns);
     if (newExpandedDropdowns.has(title)) {
@@ -59,7 +52,18 @@ const Sidebar: React.FC = () => {
     setExpandedDropdowns(newExpandedDropdowns);
   };
 
-  const isDropdownExpanded = (title: string) => expandedDropdowns.has(title);
+    const isDropdownExpanded = (title: string) => expandedDropdowns.has(title);
+
+  const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
+  const { addTab } = useTabs(); // Use the TabContext to add tabs
+
+  // Hide the sidebar if the path is '/'
+  if (pathname === "/") {
+    return null;
+  }
+
+
+
 
   const handleSkillSelect = (skill: string) => {
     const newSelection = new Set(selectedSkills);

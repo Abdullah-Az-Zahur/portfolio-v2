@@ -14,4 +14,4 @@ const AboutPage = () => { // Renamed to start with an uppercase letter
     );
 };
 
-export default AboutPage; // Export the renamed component
+export default AboutPage;
