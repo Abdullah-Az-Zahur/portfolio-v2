@@ -2,8 +2,9 @@
 
 import React, { useState } from "react";
 import Link from "next/link";
-import { Menu, X } from "lucide-react";
 import { usePathname } from "next/navigation";
+import { IoMdClose } from "react-icons/io";
+import { IoMenu } from "react-icons/io5";
 
 // Navigation items array
 const navItems = [
@@ -74,7 +75,7 @@ const NavBar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button className="md:hidden mr-4" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          {isOpen ? <IoMdClose className="w-6 h-6" /> : <IoMenu className="w-6 h-6" /> }
         </button>
       </div>
 
