@@ -1,12 +1,20 @@
 "use client";
 import { usePathname } from "next/navigation";
-import React from "react";
+import React, { useEffect } from "react";
 import AboutMeSidebar from "./SidebarOptions/AboutMeSidebar";
 import ProjectSidebar from "./SidebarOptions/ProjectSidebar";
 import ContactSidebar from "./SidebarOptions/ContactSidebar";
+import { useAppDispatch } from "@/redux/hooks";
+import { clearTabs } from "@/redux/features/tabs/tabsSlice";
 
 const Sidebar = () => {
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    dispatch(clearTabs());
+  }, [pathname, dispatch]);
+
   if (pathname == "/") {
     return null;
   }

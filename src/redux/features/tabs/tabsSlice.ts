@@ -29,8 +29,22 @@ const tabsSlice = createSlice({
       }
       state.activeTab = action.payload.id;
     },
+    removeTab: (state, action: PayloadAction<string>) => {
+      state.tabs = state.tabs.filter((tab) => tab.id !== action.payload);
+      if (state.activeTab === action.payload) {
+        state.activeTab =
+          state.tabs.length > 0 ? state.tabs[state.tabs.length - 1].id : null;
+      }
+    },
+    setActiveTab: (state, action: PayloadAction<string>) => {
+      state.activeTab = action.payload;
+    },
+    clearTabs: (state) => {
+      state.tabs = [];
+      state.activeTab = null;
+    },
   },
 });
 
-export const { addTab } = tabsSlice.actions;
+export const { addTab, removeTab, setActiveTab, clearTabs } = tabsSlice.actions;
 export default tabsSlice.reducer;
