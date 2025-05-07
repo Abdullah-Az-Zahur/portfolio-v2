@@ -6,14 +6,17 @@ import HighSchool from "@/components/About/HighSchool";
 import Interests from "@/components/About/Interests";
 import University from "@/components/About/University";
 import { useState } from "react";
-import { FaSchool, FaUserGraduate } from "react-icons/fa";
+import { FaStar, FaUniversity, FaUser } from "react-icons/fa";
+import { GiSchoolBag } from "react-icons/gi";
 import {
   IoIosArrowDown,
   IoIosArrowForward,
   IoMdArrowDropdown,
   IoMdArrowDropright,
 } from "react-icons/io";
+import { MdScience } from "react-icons/md";
 import { RiFolder3Fill } from "react-icons/ri";
+import { motion, AnimatePresence } from "framer-motion";
 
 const AboutMeSidebar = () => {
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
@@ -37,7 +40,10 @@ const AboutMeSidebar = () => {
     return expandedDropdowns.has(title);
   };
 
-  const handleSideBarItemClick = (title: string, component: React.ReactNode) => {
+  const handleSideBarItemClick = (
+    title: string,
+    component: React.ReactNode
+  ) => {
     setActiveItem(title);
     console.log(title, component);
   };
@@ -46,107 +52,271 @@ const AboutMeSidebar = () => {
     return activeItem === title;
   };
 
-  // Check if any education item is active
-  const isEducationActive = ["High School", "College", "University"].some(isItemActive);
+  // Animation variants
+  const dropdownVariants = {
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        opacity: { delay: 0.15 },
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.3,
+        ease: "easeInOut",
+      },
+    },
+  };
+
+  const itemVariants = {
+    hover: {
+      scale: 1.02,
+      x: 5,
+      transition: { duration: 0.2 },
+    },
+    tap: {
+      scale: 0.98,
+    },
+  };
+
+  const iconVariants = {
+    rotate: {
+      rotate: 0,
+      transition: { duration: 0.2 },
+    },
+    rotateReverse: {
+      rotate: -0,
+      transition: { duration: 0.2 },
+    },
+  };
 
   return (
     <>
-      <div
+      <motion.div
         className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
         onClick={() => toggleDropdown("about")}
+        whileHover={{ x: 3 }}
+        whileTap={{ scale: 0.98 }}
       >
-        {isDropdownExpanded("about") ? (
-          <IoMdArrowDropdown className="text-white" />
-        ) : (
-          <IoMdArrowDropright className="text-white" />
-        )}
-        <span>About</span>
-      </div>
-      {isDropdownExpanded("about") && (
-        <ul className="ml-4 mt-2 space-y-1">
-          <li
-            className={`flex items-center gap-2 ${
-              isItemActive("Bio")
-                ? "text-blue-500 font-medium"
-                : "text-gray-500 hover:text-blue-500"
-            } cursor-pointer`}
-            onClick={() => handleSideBarItemClick("Bio", <Bio />)}
-          >
-            <IoIosArrowForward className="text-blue-500" />
-            <RiFolder3Fill className="text-blue-500" />
-            <span>bio</span>
-          </li>
-          <li
-            className={`flex items-center gap-2 ${
-              isItemActive("Interests")
-                ? "text-green-500 font-medium"
-                : "text-gray-500 hover:text-green-500"
-            } cursor-pointer`}
-            onClick={() => handleSideBarItemClick("Interests", <Interests />)}
-          >
-            <IoIosArrowForward className="text-green-500" />
-            <RiFolder3Fill className="text-green-500" />
-            <span>interests</span>
-          </li>
-          <li
-            className={`flex items-center gap-2 ${
-              isEducationActive
-                ? "text-purple-500 font-medium"
-                : "text-gray-500 hover:text-purple-500"
-            } cursor-pointer`}
-            onClick={() => toggleDropdown("education")}
-          >
-            {isDropdownExpanded("education") ? (
-              <IoIosArrowDown className="text-purple-500" />
-            ) : (
-              <IoIosArrowForward className="text-purple-500" />
-            )}
-            <RiFolder3Fill className="text-purple-500" />
-            <span>education</span>
-          </li>
-          {isDropdownExpanded("education") && (
-            <ul className="ml-6 mt-1 space-y-1">
-              <li
-                className={`flex items-center gap-2 text-sm ${
-                  isItemActive("High School")
-                    ? "text-yellow-500 font-medium"
-                    : "text-gray-500 hover:text-yellow-500"
-                } cursor-pointer`}
-                onClick={() =>
-                  handleSideBarItemClick("High School", <HighSchool />)
-                }
-              >
-                <FaSchool className="text-yellow-500" />
-                <span>high-school</span>
-              </li>
-              <li
-                className={`flex items-center gap-2 text-sm ${
-                  isItemActive("College")
-                    ? "text-red-500 font-medium"
-                    : "text-gray-500 hover:text-red-500"
-                } cursor-pointer`}
-                onClick={() => handleSideBarItemClick("College", <College />)}
-              >
-                <FaUserGraduate className="text-red-500" />
-                <span>college</span>
-              </li>
-              <li
-                className={`flex items-center gap-2 text-sm ${
-                  isItemActive("University")
-                    ? "text-red-500 font-medium"
-                    : "text-gray-500 hover:text-red-500"
-                } cursor-pointer`}
-                onClick={() =>
-                  handleSideBarItemClick("University", <University />)
-                }
-              >
-                <FaUserGraduate className="text-red-500" />
-                <span>university</span>
-              </li>
-            </ul>
+        <motion.div
+          animate={isDropdownExpanded("about") ? "rotate" : "rotateReverse"}
+          variants={iconVariants}
+        >
+          {isDropdownExpanded("about") ? (
+            <IoMdArrowDropdown className="text-white" />
+          ) : (
+            <IoMdArrowDropright className="text-white" />
           )}
-        </ul>
-      )}
+        </motion.div>
+        <span>About</span>
+      </motion.div>
+
+      <AnimatePresence>
+        {isDropdownExpanded("about") && (
+          <motion.ul
+            className="ml-4 mt-2 space-y-1 overflow-hidden"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={dropdownVariants}
+          >
+            {/* bio */}
+            <motion.li
+              className={`flex items-center gap-2 text-gray-500 hover:text-blue-500 cursor-pointer`}
+              onClick={() => toggleDropdown("bio")}
+              variants={itemVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <motion.div
+                animate={isDropdownExpanded("bio") ? "rotate" : "rotateReverse"}
+                variants={iconVariants}
+              >
+                {isDropdownExpanded("bio") ? (
+                  <IoIosArrowDown className="text-blue-500" />
+                ) : (
+                  <IoIosArrowForward className="text-blue-500" />
+                )}
+              </motion.div>
+              <RiFolder3Fill className="text-blue-500" />
+              <span>bio</span>
+            </motion.li>
+
+            <AnimatePresence>
+              {isDropdownExpanded("bio") && (
+                <motion.ul
+                  className="ml-6 mt-1 space-y-1 overflow-hidden"
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  variants={dropdownVariants}
+                >
+                  <motion.li
+                    className={`flex items-center gap-2 text-sm ${
+                      isItemActive("Bio")
+                        ? "text-blue-500 font-medium"
+                        : "text-gray-500 hover:text-blue-500"
+                    } cursor-pointer`}
+                    onClick={() => handleSideBarItemClick("Bio", <Bio />)}
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    <FaUser className="text-blue-500" />
+                    <span>bio</span>
+                  </motion.li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
+
+            {/* Interests */}
+            <motion.li
+              className={`flex items-center gap-2 ${
+                isItemActive("Interests")
+                  ? "text-green-500 font-medium"
+                  : "text-gray-500 hover:text-green-500"
+              } cursor-pointer`}
+              onClick={() => toggleDropdown("interest")}
+              variants={itemVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <motion.div
+                animate={
+                  isDropdownExpanded("interest") ? "rotate" : "rotateReverse"
+                }
+                variants={iconVariants}
+              >
+                {isDropdownExpanded("interest") ? (
+                  <IoIosArrowDown className="text-green-500" />
+                ) : (
+                  <IoIosArrowForward className="text-green-500" />
+                )}
+              </motion.div>
+              <RiFolder3Fill className="text-green-500" />
+              <span>interests</span>
+            </motion.li>
+
+            <AnimatePresence>
+              {isDropdownExpanded("interest") && (
+                <motion.ul
+                  className="ml-6 mt-1 space-y-1 overflow-hidden"
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  variants={dropdownVariants}
+                >
+                  <motion.li
+                    className={`flex items-center gap-2 text-sm ${
+                      isItemActive("Interest")
+                        ? "text-green-500 font-medium"
+                        : "text-gray-500 hover:text-green-500"
+                    } cursor-pointer`}
+                    onClick={() =>
+                      handleSideBarItemClick("Interest", <Interests />)
+                    }
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    <FaStar className="text-green-500" />
+                    <span>interests</span>
+                  </motion.li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
+
+            <motion.li
+              className={`flex items-center gap-2 text-gray-500 hover:text-purple-500 cursor-pointer`}
+              onClick={() => toggleDropdown("education")}
+              variants={itemVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <motion.div
+                animate={
+                  isDropdownExpanded("education") ? "rotate" : "rotateReverse"
+                }
+                variants={iconVariants}
+              >
+                {isDropdownExpanded("education") ? (
+                  <IoIosArrowDown className="text-purple-500" />
+                ) : (
+                  <IoIosArrowForward className="text-purple-500" />
+                )}
+              </motion.div>
+              <RiFolder3Fill className="text-purple-500" />
+              <span>education</span>
+            </motion.li>
+
+            <AnimatePresence>
+              {isDropdownExpanded("education") && (
+                <motion.ul
+                  className="ml-6 mt-1 space-y-1 overflow-hidden"
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  variants={dropdownVariants}
+                >
+                  <motion.li
+                    className={`flex items-center gap-2 text-sm ${
+                      isItemActive("High School")
+                        ? "text-yellow-500 font-medium"
+                        : "text-gray-500 hover:text-yellow-500"
+                    } cursor-pointer`}
+                    onClick={() =>
+                      handleSideBarItemClick("High School", <HighSchool />)
+                    }
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    <GiSchoolBag className="text-yellow-500" />
+                    <span>high-school</span>
+                  </motion.li>
+                  <motion.li
+                    className={`flex items-center gap-2 text-sm ${
+                      isItemActive("College")
+                        ? "text-blue-500 font-medium"
+                        : "text-gray-500 hover:text-blue-500"
+                    } cursor-pointer`}
+                    onClick={() =>
+                      handleSideBarItemClick("College", <College />)
+                    }
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    <FaUniversity className="text-blue-500" />
+                    <span>college</span>
+                  </motion.li>
+                  <motion.li
+                    className={`flex items-center gap-2 text-sm ${
+                      isItemActive("University")
+                        ? "text-purple-500 font-medium"
+                        : "text-gray-500 hover:text-purple-500"
+                    } cursor-pointer`}
+                    onClick={() =>
+                      handleSideBarItemClick("University", <University />)
+                    }
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    <MdScience className="text-purple-500" />
+                    <span>university</span>
+                  </motion.li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
+          </motion.ul>
+        )}
+      </AnimatePresence>
     </>
   );
 };

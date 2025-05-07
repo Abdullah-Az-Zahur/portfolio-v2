@@ -1,5 +1,5 @@
 "use client";
-import { projects } from "@/utils/data";
+// import { projects } from "@/utils/data";
 
 const ProjectPage = () => {
   return (
