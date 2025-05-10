@@ -40,7 +40,7 @@ const NavBar: React.FC = () => {
                 {/* Navigation Link */}
                 <Link
                   href={item.href}
-                  className={`hover:text-gray-400 p-4 transition relative flex items-center h-full ${
+                  className={`hover:text-gray-400 hover:bg-[#1E1E1E]/60 p-4 transition relative flex items-center h-full ${
                     pathname === item.href ? "text-white" : ""
                   }`}
                 >

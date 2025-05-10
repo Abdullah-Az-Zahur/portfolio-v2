@@ -17,12 +17,15 @@ import {
 import { MdScience } from "react-icons/md";
 import { RiFolder3Fill } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addTab } from "@/redux/features/tabs/tabsSlice";
 
 const AboutMeSidebar = () => {
+  const dispatch = useAppDispatch();
+  const { activeTab } = useAppSelector((state) => state.tabs);
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     () => new Set()
   );
-  const [activeItem, setActiveItem] = useState<string | null>(null);
 
   const toggleDropdown = (title: string) => {
     setExpandedDropdowns((prev) => {
@@ -44,12 +47,19 @@ const AboutMeSidebar = () => {
     title: string,
     component: React.ReactNode
   ) => {
-    setActiveItem(title);
     console.log(title, component);
+
+    dispatch(
+      addTab({
+        id: title,
+        title: title,
+        content: component,
+      })
+    );
   };
 
   const isItemActive = (title: string): boolean => {
-    return activeItem === title;
+    return activeTab === title;
   };
 
   // Animation variants
