@@ -51,7 +51,7 @@ const AboutMeSidebar = () => {
 
     dispatch(
       addTab({
-        id: title,
+        id: title.toLowerCase().replace(/\s+/g, "-"),
         title: title,
         content: component,
       })
