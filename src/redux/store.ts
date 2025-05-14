@@ -1,11 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import tabsReducer from "./features/tabs/tabsSlice";
-import skillsReducer from "./features/skills/skillsSlice";
+import projectsReducer from "./features/projects/projectsSlice";
 
 export const store = configureStore({
   reducer: {
     tabs: tabsReducer,
-    skills: skillsReducer,
+    projects: projectsReducer,
   },
 });
 
