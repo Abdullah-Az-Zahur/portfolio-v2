@@ -1,3 +1,5 @@
+export const dynamic = "force-dynamic";
+
 import TypingAnimation from "@/components/TypingAnimation/TypingAnimation";
 import Image from "next/image";
 import Link from "next/link";
