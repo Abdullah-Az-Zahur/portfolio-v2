@@ -1,14 +1,22 @@
-'use client';
-import React, { useState } from 'react';
-import { IoMdArrowDropdown, IoMdArrowDropright } from 'react-icons/io';
-import { MdEmail, MdPhone } from 'react-icons/md';
-import { FaYoutube, FaTwitter, FaInstagram } from 'react-icons/fa';
+"use client";
+import React, { useState } from "react";
+import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
+import { MdEmail, MdPhone } from "react-icons/md";
+import {
+  FaYoutube,
+  FaTwitter,
+  FaInstagram,
+  FaFacebook,
+  FaLinkedin,
+} from "react-icons/fa";
 
 const ContactSidebar = () => {
-  const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(new Set());
+  const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
+    new Set()
+  );
 
   const toggleDropdown = (title: string) => {
-    setExpandedDropdowns(prev => {
+    setExpandedDropdowns((prev) => {
       const newSet = new Set(prev);
       if (newSet.has(title)) {
         newSet.delete(title);
@@ -52,10 +60,7 @@ const ContactSidebar = () => {
             </li>
             <li className="flex items-center gap-2 text-gray-500 hover:text-green-500 cursor-pointer">
               <MdPhone className="text-green-500" />
-              <a
-                href="tel:+8801705697897"
-                className="hover:underline"
-              >
+              <a href="tel:+8801705697897" className="hover:underline">
                 +880-1705697897
               </a>
             </li>
@@ -79,6 +84,28 @@ const ContactSidebar = () => {
       <div className="overflow-hidden transition-all duration-300">
         {isDropdownExpanded("find-me-also-in") && (
           <ul className="ml-4 mt-2 space-y-1">
+            <li className="flex items-center gap-2 text-gray-500 hover:text-blue-700">
+              <FaFacebook className="text-blue-700" />
+              <a
+                href="https://www.facebook.com/abdullahaazzahur.giyas"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                Facebook
+              </a>
+            </li>
+            <li className="flex items-center gap-2 text-gray-500 hover:text-blue-600">
+              <FaLinkedin className="text-blue-600" />
+              <a
+                href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:underline"
+              >
+                LinkedIn
+              </a>
+            </li>
             <li className="flex items-center gap-2 text-gray-500 hover:text-red-500">
               <FaYoutube className="text-red-500" />
               <a

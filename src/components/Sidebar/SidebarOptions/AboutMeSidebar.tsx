@@ -6,7 +6,13 @@ import HighSchool from "@/components/About/HighSchool";
 import Interests from "@/components/About/Interests";
 import University from "@/components/About/University";
 import { useState } from "react";
-import { FaStar, FaUniversity, FaUser } from "react-icons/fa";
+import {
+  FaBriefcase,
+  FaDownload,
+  FaStar,
+  FaUniversity,
+  FaUser,
+} from "react-icons/fa";
 import { GiSchoolBag } from "react-icons/gi";
 import {
   IoIosArrowDown,
@@ -19,6 +25,9 @@ import { RiFolder3Fill } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { addTab } from "@/redux/features/tabs/tabsSlice";
+import QwikIt from "@/components/About/QwikIt";
+import EncoderIT from "@/components/About/EncoderIT";
+import Link from "next/link";
 
 const AboutMeSidebar = () => {
   const dispatch = useAppDispatch();
@@ -324,9 +333,105 @@ const AboutMeSidebar = () => {
                 </motion.ul>
               )}
             </AnimatePresence>
+            <motion.li
+              className={`flex items-center gap-2 text-gray-500 hover:text-blue-500 cursor-pointer`}
+              onClick={() => toggleDropdown("experience")}
+              variants={itemVariants}
+              whileHover="hover"
+              whileTap="tap"
+            >
+              <motion.div
+                animate={
+                  isDropdownExpanded("experience") ? "rotate" : "rotateReverse"
+                }
+                variants={iconVariants}
+              >
+                {isDropdownExpanded("experience") ? (
+                  <IoIosArrowDown className="text-blue-500" />
+                ) : (
+                  <IoIosArrowForward className="text-blue-500" />
+                )}
+              </motion.div>
+              <RiFolder3Fill className="text-blue-500" />
+              <span>experience</span>
+            </motion.li>
+
+            <AnimatePresence>
+              {isDropdownExpanded("experience") && (
+                <motion.ul
+                  className="ml-6 mt-1 space-y-1 overflow-hidden"
+                  initial="closed"
+                  animate="open"
+                  exit="closed"
+                  variants={dropdownVariants}
+                >
+                  <motion.li
+                    className={`flex items-center gap-2 text-sm ${
+                      isItemActive("QwikIt")
+                        ? "text-yellow-500 font-medium"
+                        : "text-gray-500 hover:text-yellow-500"
+                    } cursor-pointer`}
+                    onClick={() => handleSideBarItemClick("QwikIt", <QwikIt />)}
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    <FaBriefcase className="text-yellow-500" />
+                    <span>QwikIt</span>
+                  </motion.li>
+                  <motion.li
+                    className={`flex items-center gap-2 text-sm ${
+                      isItemActive("Encoder IT")
+                        ? "text-blue-500 font-medium"
+                        : "text-gray-500 hover:text-blue-500"
+                    } cursor-pointer`}
+                    onClick={() =>
+                      handleSideBarItemClick("Encoder IT", <EncoderIT />)
+                    }
+                    variants={itemVariants}
+                    whileHover="hover"
+                    whileTap="tap"
+                  >
+                    <FaBriefcase className="text-blue-500" />
+                    <span>Encoder IT</span>
+                  </motion.li>
+                </motion.ul>
+              )}
+            </AnimatePresence>
           </motion.ul>
         )}
       </AnimatePresence>
+
+      <div
+        className={` py-2 my-2 flex items-center justify-between ${
+          isDropdownExpanded("about") ? "border-t border-gray-500" : ""
+        }`}
+      >
+        <Link
+          href="https://drive.google.com/uc?export=download&id=1fuMYadVqT74gf7RX545ERff8RFl0BJYG"
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+          className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
+        >
+          <FaDownload className="text-lg" />
+          Resume
+        </Link>
+      </div>
+      <div
+        className={`py-2 my-2 flex items-center justify-between border-y border-gray-500`}
+      >
+        <Link
+          href="https://drive.google.com/uc?export=download&id=15_17rv6PbTe_A7zyhBmR2pwwCJXpjPBq"
+          target="_blank"
+          rel="noopener noreferrer"
+          download
+          className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
+        >
+          <FaDownload className="text-lg" />
+          CV
+        </Link>
+      </div>
     </>
   );
 };

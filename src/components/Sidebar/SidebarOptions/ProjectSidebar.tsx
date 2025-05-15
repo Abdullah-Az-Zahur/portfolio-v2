@@ -15,7 +15,6 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import SkillCheckbox from "../SkillCheckbox/SkillCheckbox";
-import { addTab, removeTab } from "@/redux/features/tabs/tabsSlice";
 
 const ProjectSidebar = () => {
   const dispatch = useAppDispatch();

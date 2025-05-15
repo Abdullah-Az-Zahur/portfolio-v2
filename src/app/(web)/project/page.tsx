@@ -1,7 +1,7 @@
 "use client";
 
 import { useAppSelector } from "@/redux/hooks";
-import ProjectCard from "@/components/ProjectCard/ProjectCard";
+import ProjectCard from "@/components/Project/ProjectCard/ProjectCard";
 
 const ProjectPage = () => {
   const { filteredProjects } = useAppSelector((state) => state.projects);

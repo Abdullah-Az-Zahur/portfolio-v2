@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface Tab {
   id: string;
   title: string;
-  // content: React.ReactNode;
+  content: React.ReactNode;
 }
 
 interface TabsState {
