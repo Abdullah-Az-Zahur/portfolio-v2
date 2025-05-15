@@ -61,7 +61,7 @@ const Page = () => {
   };
 
   return (
-    <div className="md:flex">
+    <div className="flex flex-col-reverse md:flex-row">
       {isSuccess ? (
         <SuccessMessage onNewMessage={handleNewMessage} />
       ) : (
