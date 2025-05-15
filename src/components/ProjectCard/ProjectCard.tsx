@@ -34,7 +34,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
             className="object-cover w-full h-full rounded-t-lg"
           />
         </div>
-        <div className="p-5 flex flex-col flex-grow bg-[#011221] rounded-lg">
+        <div className="p-5 flex flex-col flex-grow bg-slate-950 rounded-lg">
           <p className="mb-5 line-clamp-3">{project.description}</p> {/* Limits to 3 lines */}
           <div className="mt-auto"> {/* Pushes button to bottom */}
             <Link

@@ -51,6 +51,20 @@ const projectsSlice = createSlice({
         );
       }
     },
+
+    uncheckedSkill: (state, action: PayloadAction<string>) => {
+      const skill = action.payload;
+      state.selectedSkills = state.selectedSkills.filter((s) => s !== skill);
+
+      if (state.selectedSkills.length === 0) {
+        state.filteredProjects = state.allProjects;
+      } else {
+        state.filteredProjects = state.allProjects.filter((project) =>
+          state.selectedSkills.every((skill) => project.skills.includes(skill))
+        );
+      }
+    },
+
     resetFilters: (state) => {
       state.selectedSkills = [];
       state.filteredProjects = state.allProjects;
@@ -58,6 +72,6 @@ const projectsSlice = createSlice({
   },
 });
 
-export const { setSelectedSkills, toggleSkill, resetFilters } =
+export const { setSelectedSkills, toggleSkill, resetFilters, uncheckedSkill } =
   projectsSlice.actions;
 export default projectsSlice.reducer;

@@ -8,6 +8,9 @@ export const projects = [
     description:
       "Jobify is an advanced job portal built using the MERN stack...",
     skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
       "React.js",
       "TailwindCSS",
       "Node.js",
@@ -37,6 +40,9 @@ export const projects = [
     image: "/assets/images/projects/Survey-Vista.png", // Add image link here
     description: "A feature-rich survey platform built using the MERN stack...",
     skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
       "React.js",
       "TailwindCSS",
       "Node.js",
@@ -69,6 +75,9 @@ export const projects = [
     description:
       "A full-stack job-seeking platform where users can post, search, and apply...",
     skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
       "React.js",
       "TailwindCSS",
       "Node.js",
@@ -102,12 +111,15 @@ export const projects = [
     image: "/assets/images/projects/BD-Art-Gallery.png", // Add image link here
     description: "A MERN stack-based Art & Craft Store website...",
     skills: [
+      "HTML",
+      "CSS",
+      "JavaScript",
       "React.js",
       "TailwindCSS",
       "Node.js",
       "Express.js",
       "MongoDB",
-      "Firebaseentication",
+      "Firebase",
       "ContextAPI",
       "ReactRouter",
       "DaisyUI",
@@ -127,7 +139,7 @@ export const projects = [
       "https://github.com/programming-hero-web-course-4/b9a8-book-vibe-Abdullah-Az-Zahur",
     image: "/assets/images/projects/Book-Vibe.png", // Add image link here
     description: "Book Vibe is a modern web application for book lovers...",
-    skills: ["HTML", "CSS", "Tailwind", "JavaScript", "React"],
+    skills: ["HTML", "CSS", "TailwindCSS", "JavaScript", "React.js"],
   },
   {
     id: 6,
@@ -137,7 +149,7 @@ export const projects = [
       "https://github.com/Abdullah-Az-Zahur/react-chefs-table?tab=readme-ov-file",
     image: "/assets/images/projects/Chef-Table.png", // Add image link here
     description: "RecipeHub is a dynamic recipe management web application...",
-    skills: ["HTML", "CSS", "Tailwind", "JavaScript", "React"],
+    skills: ["HTML", "CSS", "TailwindCSS", "JavaScript", "React.js"],
   },
   {
     id: 7,
@@ -146,7 +158,7 @@ export const projects = [
     repoLink: "https://github.com/Abdullah-Az-Zahur/Retro-Forum",
     image: "/assets/images/projects/Retro-Forum.png", // Add image link here
     description: "Search option, API integration, intermediate JavaScript...",
-    skills: ["HTML", "CSS", "Tailwind", "JavaScript"],
+    skills: ["HTML", "CSS", "TailwindCSS", "JavaScript"],
   },
   {
     id: 8,
@@ -156,7 +168,7 @@ export const projects = [
     repoLink: "https://github.com/Abdullah-Az-Zahur/bus-ticket-landing",
     image: "/assets/images/projects/Bus-Ticket-Landing.png", // Add image link here
     description: "A bus ticket management website...",
-    skills: ["HTML", "CSS", "Tailwind", "JavaScript"],
+    skills: ["HTML", "CSS", "TailwindCSS", "JavaScript"],
   },
   {
     id: 9,
@@ -166,7 +178,7 @@ export const projects = [
     image: "/assets/images/projects/Hockeys.png", // Add image link here
     description:
       "Hockey website with carousel, progress dial, responsive UI...",
-    skills: ["HTML", "CSS", "Tailwind", "DaisyUI"],
+    skills: ["HTML", "CSS", "JavaScript", "TailwindCSS", "DaisyUI"],
   },
   {
     id: 10,

@@ -15,6 +15,7 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import SkillCheckbox from "../SkillCheckbox/SkillCheckbox";
+import { addTab, removeTab } from "@/redux/features/tabs/tabsSlice";
 
 const ProjectSidebar = () => {
   const dispatch = useAppDispatch();
@@ -28,6 +29,21 @@ const ProjectSidebar = () => {
   const handleSkillToggle = (skill: string) => {
     dispatch(toggleSkill(skill));
   };
+
+  // const handleSkillToggle = (skill: string) => {
+  //   dispatch(toggleSkill(skill));
+
+  //   if (selectedSkills.includes(skill)) {
+  //     dispatch(removeTab(skill));
+  //   } else {
+  //     dispatch(
+  //       addTab({
+  //         id: skill,
+  //         title: skill,
+  //       })
+  //     );
+  //   }
+  // };
 
   return (
     <>

@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 interface Tab {
   id: string;
   title: string;
-  content: React.ReactNode;
+  // content: React.ReactNode;
 }
 
 interface TabsState {
@@ -36,15 +36,18 @@ const tabsSlice = createSlice({
           state.tabs.length > 0 ? state.tabs[state.tabs.length - 1].id : null;
       }
     },
+
     setActiveTab: (state, action: PayloadAction<string>) => {
       state.activeTab = action.payload;
     },
+
     clearTabs: (state) => {
       state.tabs = [];
       state.activeTab = null;
     },
   },
 });
+
 
 export const { addTab, removeTab, setActiveTab, clearTabs } = tabsSlice.actions;
 export default tabsSlice.reducer;
