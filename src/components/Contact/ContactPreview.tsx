@@ -13,7 +13,7 @@ interface ContactPreviewProps {
 
 const ContactPreview = ({ formData }: ContactPreviewProps) => {
   return (
-    <div className="px-5 py-32 h-auto md:w-1/2">
+    <div className="p-5 md:py-32 h-auto md:w-1/2">
       <pre className="p-4 rounded-md text-sm text-indigo-500 overflow-x-auto">
         <code>
           <>{`\n`}</>
