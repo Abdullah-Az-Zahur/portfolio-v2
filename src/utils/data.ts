@@ -199,4 +199,23 @@ export const projects = [
       "A simple New Year celebration website using raw HTML & CSS...",
     skills: ["HTML", "CSS"],
   },
+  {
+    id: 12,
+    name: "Portfolio v1",
+    liveLink: "https://abdullah-az-zahur.github.io/web-developer-portfolio/",
+    repoLink: "https://github.com/Abdullah-Az-Zahur/web-developer-portfolio",
+    image: "/assets/images/projects/portfolioV1.png", // Add image link here
+    description: "A simple Portfolio website using raw HTML & CSS...",
+    skills: ["HTML", "CSS"],
+  },
+  {
+    id: 13,
+    name: "Portfolio v2",
+    liveLink: "https://portfolio-v2-beige-eta.vercel.app/",
+    repoLink: "https://github.com/Abdullah-Az-Zahur/portfolio-v2",
+    image: "/assets/images/projects/portfolioV2.png", // Add image link here
+    description:
+      "PortfolioV2 – A clean, minimalistic developer portfolio built with Next.js, TypeScript, Redux Toolkit, and Framer Motion. Inspired by the VS Code UI, this project reflects my preference for simple, IDE-like design. I independently explored and practiced Next.js, Redux Toolkit, and TypeScript—skills not covered in my paid course—through free resources and tutorials, and applied them in building this project from scratch.",
+    skills: ["HTML", "CSS", "Next.js", "TypeScript", "Redux" ],
+  },
 ];

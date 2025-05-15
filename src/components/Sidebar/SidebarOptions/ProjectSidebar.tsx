@@ -11,6 +11,7 @@ import {
   SiJavascript,
   SiMongodb,
   SiNextdotjs,
+  SiRedux,
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
@@ -68,6 +69,17 @@ const ProjectSidebar = () => {
             onChange={() => handleSkillToggle("React.js")}
             iconColor="text-blue-500"
             hoverColor="text-blue-500"
+          />
+
+          {/* Redux Skill */}
+          <SkillCheckbox
+            id="Redux"
+            skillName="Redux"
+            icon={<SiRedux />}
+            checked={selectedSkills.includes("Redux")}
+            onChange={() => handleSkillToggle("Redux")}
+            iconColor="text-purple-500"
+            hoverColor="text-purple-500"
           />
 
           {/* Next.js Skill */}
