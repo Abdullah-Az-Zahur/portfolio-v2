@@ -216,6 +216,6 @@ export const projects = [
     image: "/assets/images/projects/portfolioV2.png", // Add image link here
     description:
       "PortfolioV2 – A clean, minimalistic developer portfolio built with Next.js, TypeScript, Redux Toolkit, and Framer Motion. Inspired by the VS Code UI, this project reflects my preference for simple, IDE-like design. I independently explored and practiced Next.js, Redux Toolkit, and TypeScript—skills not covered in my paid course—through free resources and tutorials, and applied them in building this project from scratch.",
-    skills: ["HTML", "CSS", "Next.js", "TypeScript", "Redux" ],
+    skills: ["HTML", "CSS", "Next.js", "TypeScript", "Redux", "FramerMotion", "GitHub", "Vercel"],
   },
 ];
