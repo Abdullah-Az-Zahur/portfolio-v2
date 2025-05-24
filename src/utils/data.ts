@@ -4,7 +4,7 @@ export const projects = [
     name: "Jobify",
     liveLink: "https://jobify-13db1.web.app/",
     repoLink: "https://github.com/shahoriarniloy/Jobify",
-    image: "/assets/images/projects/Jobify.png", // Add image link here
+    image: "/assets/images/projects/Jobify.png",
     description:
       "Jobify is an advanced job portal built using the MERN stack...",
     skills: [
@@ -37,7 +37,7 @@ export const projects = [
     name: "Survey Vista",
     liveLink: "https://survey-vista.web.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/survey-vista-client",
-    image: "/assets/images/projects/Survey-Vista.png", // Add image link here
+    image: "/assets/images/projects/Survey-Vista.png",
     description: "A feature-rich survey platform built using the MERN stack...",
     skills: [
       "HTML",
@@ -71,7 +71,7 @@ export const projects = [
     name: "Job Nest",
     liveLink: "https://job-nest-391e1.web.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/work-nest-client",
-    image: "/assets/images/projects/Job-Nest.png", // Add image link here
+    image: "/assets/images/projects/Job-Nest.png",
     description:
       "A full-stack job-seeking platform where users can post, search, and apply...",
     skills: [
@@ -108,7 +108,7 @@ export const projects = [
     liveLink: "https://bd-art-gallery.firebaseapp.com/",
     repoLink:
       "https://github.com/programming-hero-web-course-4/B9A10-client-side-Abdullah-Az-Zahur",
-    image: "/assets/images/projects/BD-Art-Gallery.png", // Add image link here
+    image: "/assets/images/projects/BD-Art-Gallery.png",
     description: "A MERN stack-based Art & Craft Store website...",
     skills: [
       "HTML",
@@ -137,7 +137,7 @@ export const projects = [
     liveLink: "https://playful-gingersnap-532cbd.netlify.app/",
     repoLink:
       "https://github.com/programming-hero-web-course-4/b9a8-book-vibe-Abdullah-Az-Zahur",
-    image: "/assets/images/projects/Book-Vibe.png", // Add image link here
+    image: "/assets/images/projects/Book-Vibe.png",
     description: "Book Vibe is a modern web application for book lovers...",
     skills: ["HTML", "CSS", "TailwindCSS", "JavaScript", "React.js"],
   },
@@ -147,7 +147,7 @@ export const projects = [
     liveLink: "https://teal-pegasus-af4f19.netlify.app/",
     repoLink:
       "https://github.com/Abdullah-Az-Zahur/react-chefs-table?tab=readme-ov-file",
-    image: "/assets/images/projects/Chef-Table.png", // Add image link here
+    image: "/assets/images/projects/Chef-Table.png",
     description: "RecipeHub is a dynamic recipe management web application...",
     skills: ["HTML", "CSS", "TailwindCSS", "JavaScript", "React.js"],
   },
@@ -156,7 +156,7 @@ export const projects = [
     name: "Retro Forum",
     liveLink: "https://resonant-bublanina-05cc2c.netlify.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/Retro-Forum",
-    image: "/assets/images/projects/Retro-Forum.png", // Add image link here
+    image: "/assets/images/projects/Retro-Forum.png",
     description: "Search option, API integration, intermediate JavaScript...",
     skills: ["HTML", "CSS", "TailwindCSS", "JavaScript"],
   },
@@ -166,7 +166,7 @@ export const projects = [
     liveLink:
       "https://abdullah-az-zahur.github.io/bus-ticket-landing/#bus-section",
     repoLink: "https://github.com/Abdullah-Az-Zahur/bus-ticket-landing",
-    image: "/assets/images/projects/Bus-Ticket-Landing.png", // Add image link here
+    image: "/assets/images/projects/Bus-Ticket-Landing.png",
     description: "A bus ticket management website...",
     skills: ["HTML", "CSS", "TailwindCSS", "JavaScript"],
   },
@@ -175,7 +175,7 @@ export const projects = [
     name: "Hockeys",
     liveLink: "https://hockeys-with-daisyui.netlify.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/hockeys-with-daisyui",
-    image: "/assets/images/projects/Hockeys.png", // Add image link here
+    image: "/assets/images/projects/Hockeys.png",
     description:
       "Hockey website with carousel, progress dial, responsive UI...",
     skills: ["HTML", "CSS", "JavaScript", "TailwindCSS", "DaisyUI"],
@@ -185,7 +185,7 @@ export const projects = [
     name: "Luxury Travel",
     liveLink: "https://luxury-travel-responsive.netlify.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/luxury-travel",
-    image: "/assets/images/projects/Luxury-Travel.png", // Add image link here
+    image: "/assets/images/projects/Luxury-Travel.png",
     description: "A fully responsive travel website...",
     skills: ["HTML", "CSS", "Responsive"],
   },
@@ -194,7 +194,7 @@ export const projects = [
     name: "New Year Party Celebration",
     liveLink: "https://new-year-party-celebration-html-css.netlify.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/New-Year-Party-Celebration",
-    image: "/assets/images/projects/New-Year.png", // Add image link here
+    image: "/assets/images/projects/New-Year.png",
     description:
       "A simple New Year celebration website using raw HTML & CSS...",
     skills: ["HTML", "CSS"],
@@ -204,7 +204,7 @@ export const projects = [
     name: "Portfolio v1",
     liveLink: "https://abdullah-az-zahur.github.io/web-developer-portfolio/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/web-developer-portfolio",
-    image: "/assets/images/projects/portfolioV1.png", // Add image link here
+    image: "/assets/images/projects/portfolioV1.png",
     description: "A simple Portfolio website using raw HTML & CSS...",
     skills: ["HTML", "CSS"],
   },
@@ -213,9 +213,19 @@ export const projects = [
     name: "Portfolio v2",
     liveLink: "https://portfolio-v2-beige-eta.vercel.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/portfolio-v2",
-    image: "/assets/images/projects/portfolioV2.png", // Add image link here
+    image: "/assets/images/projects/portfolioV2.png",
     description:
       "PortfolioV2 – A clean, minimalistic developer portfolio built with Next.js, TypeScript, Redux Toolkit, and Framer Motion. Inspired by the VS Code UI, this project reflects my preference for simple, IDE-like design. I independently explored and practiced Next.js, Redux Toolkit, and TypeScript—skills not covered in my paid course—through free resources and tutorials, and applied them in building this project from scratch.",
-    skills: ["HTML", "CSS", "Next.js", "TypeScript", "Redux", "FramerMotion", "GitHub", "Vercel"],
+    skills: [
+      "HTML",
+      "CSS",
+      "Next.js",
+      "TypeScript",
+      "Redux",
+      "FramerMotion",
+      "GitHub",
+      "Vercel",
+      "TailwindCSS",
+    ],
   },
 ];

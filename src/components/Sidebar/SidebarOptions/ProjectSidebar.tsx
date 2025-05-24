@@ -68,7 +68,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("React.js")}
             onChange={() => handleSkillToggle("React.js")}
             iconColor="text-blue-500"
-            hoverColor="text-blue-500"
+            hoverColor="hover:text-blue-500"
           />
 
           {/* Redux Skill */}
@@ -79,7 +79,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("Redux")}
             onChange={() => handleSkillToggle("Redux")}
             iconColor="text-purple-500"
-            hoverColor="text-purple-500"
+            hoverColor="hover:text-purple-500"
           />
 
           {/* Next.js Skill */}
@@ -89,8 +89,8 @@ const ProjectSidebar = () => {
             icon={<SiNextdotjs />}
             checked={selectedSkills.includes("Next.js")}
             onChange={() => handleSkillToggle("Next.js")}
-            iconColor="text-black"
-            hoverColor="text-black"
+            iconColor="text-gray"
+            hoverColor="hover:text-gray-700"
           />
 
           {/* Node.js Skill */}
@@ -101,7 +101,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("Node.js")}
             onChange={() => handleSkillToggle("Node.js")}
             iconColor="text-green-600"
-            hoverColor="text-green-600"
+            hoverColor="hover:text-green-600"
           />
 
           {/* Express.js Skill */}
@@ -112,7 +112,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("Express.js")}
             onChange={() => handleSkillToggle("Express.js")}
             iconColor="text-gray-700"
-            hoverColor="text-gray-700"
+            hoverColor="hover:text-gray-700"
           />
 
           {/* MongoDB Skill */}
@@ -123,7 +123,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("MongoDB")}
             onChange={() => handleSkillToggle("MongoDB")}
             iconColor="text-green-500"
-            hoverColor="text-green-500"
+            hoverColor="hover:text-green-500"
           />
 
           {/* Firebase Skill */}
@@ -134,7 +134,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("Firebase")}
             onChange={() => handleSkillToggle("Firebase")}
             iconColor="text-yellow-500"
-            hoverColor="text-yellow-500"
+            hoverColor="hover:text-yellow-500"
           />
 
           {/* TypeScript Skill */}
@@ -145,7 +145,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("TypeScript")}
             onChange={() => handleSkillToggle("TypeScript")}
             iconColor="text-blue-600"
-            hoverColor="text-blue-600"
+            hoverColor="hover:text-blue-600"
           />
 
           {/* JavaScript Skill */}
@@ -156,7 +156,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("JavaScript")}
             onChange={() => handleSkillToggle("JavaScript")}
             iconColor="text-yellow-400"
-            hoverColor="text-yellow-400"
+            hoverColor="hover:text-yellow-400"
           />
 
           {/* TailwindCSS Skill */}
@@ -167,7 +167,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("TailwindCSS")}
             onChange={() => handleSkillToggle("TailwindCSS")}
             iconColor="text-blue-400"
-            hoverColor="text-blue-400"
+            hoverColor="hover:text-blue-400"
           />
 
           {/* HTML Skill */}
@@ -178,7 +178,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("HTML")}
             onChange={() => handleSkillToggle("HTML")}
             iconColor="text-orange-500"
-            hoverColor="text-orange-500"
+            hoverColor="hover:text-orange-500"
           />
 
           {/* CSS Skill */}
@@ -189,7 +189,7 @@ const ProjectSidebar = () => {
             checked={selectedSkills.includes("CSS")}
             onChange={() => handleSkillToggle("CSS")}
             iconColor="text-blue-300"
-            hoverColor="text-blue-300"
+            hoverColor="hover:text-blue-300"
           />
         </ul>
       )}

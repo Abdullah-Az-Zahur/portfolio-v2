@@ -22,7 +22,7 @@ const SkillCheckbox: React.FC<SkillCheckboxProps> = ({
   return (
     <label
       htmlFor={id}
-      className={`flex items-center gap-2 cursor-pointer text-gray-500 hover:${hoverColor}`}
+      className={`flex items-center gap-2 cursor-pointer text-gray-500 ${hoverColor}`}
     >
       <input
         type="checkbox"
