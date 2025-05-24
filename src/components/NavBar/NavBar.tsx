@@ -5,7 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 // Navigation items array
 const navItems = [
