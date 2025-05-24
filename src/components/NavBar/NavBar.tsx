@@ -19,8 +19,8 @@ const NavBar: React.FC = () => {
   const pathname = usePathname(); // Gets the current pathname to highlight the active link
 
   return (
-    <header className="fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50">
-    <div className="mx-auto flex items-center justify-between h-full">
+    <header className="fixed w-full h-14 bg-gray-900 border-b border-gray-500 z-50">
+      <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
         <Link
           href="/"
@@ -40,13 +40,15 @@ const NavBar: React.FC = () => {
                 {/* Navigation Link */}
                 <Link
                   href={item.href}
-                  className={`hover:text-gray-400 hover:bg-[#1E1E1E]/60 p-4 transition relative flex items-center h-full ${
-                    pathname === item.href ? "text-white" : ""
+                  className={`hover:text-gray-400 hover:bg-gray-900/60  p-4 transition relative flex items-center h-full ${
+                    pathname === item.href
+                      ? "text-white "
+                      : "hover:border-b-4 hover:border-orange-300"
                   }`}
                 >
                   {item.label}
                   {pathname === item.href && (
-                    <span className="absolute bottom-0 left-0 w-full h-1 bg-[#FEA55F]"></span>
+                    <span className="absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300"></span>
                   )}
                 </Link>
 
@@ -62,12 +64,12 @@ const NavBar: React.FC = () => {
             <Link
               href={navItems[3].href}
               className={`hover:text-gray-400 p-4 transition relative flex items-center h-full ${
-                pathname === navItems[3].href ? "text-white" : ""
+                pathname === navItems[3].href ? "text-white" : "hover:border-b-4 hover:border-orange-300"
               }`}
             >
               {navItems[3].label}
               {pathname === navItems[3].href && (
-                <span className="absolute bottom-0 left-0 w-full h-1 bg-[#FEA55F]"></span>
+                <span className="absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300"></span>
               )}
             </Link>
           </div>
@@ -75,13 +77,17 @@ const NavBar: React.FC = () => {
 
         {/* Mobile Menu Button */}
         <button className="md:hidden mr-4" onClick={() => setIsOpen(!isOpen)}>
-          {isOpen ? <IoMdClose className="w-6 h-6" /> : <IoMenu className="w-6 h-6" /> }
+          {isOpen ? (
+            <IoMdClose className="w-6 h-6" />
+          ) : (
+            <IoMenu className="w-6 h-6" />
+          )}
         </button>
       </div>
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
+        <div className="md:hidden bg-gray-900 border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
           <nav className="flex flex-col items-center">
             {navItems.map((item) => (
               <Link
