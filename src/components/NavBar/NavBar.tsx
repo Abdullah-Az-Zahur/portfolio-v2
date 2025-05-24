@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
+import { motion, AnimatePresence } from "framer-motion";
 
 // Navigation items array
 const navItems = [
@@ -64,7 +65,9 @@ const NavBar: React.FC = () => {
             <Link
               href={navItems[3].href}
               className={`hover:text-gray-400 p-4 transition relative flex items-center h-full ${
-                pathname === navItems[3].href ? "text-white" : "hover:border-b-4 hover:border-orange-300"
+                pathname === navItems[3].href
+                  ? "text-white"
+                  : "hover:border-b-4 hover:border-orange-300"
               }`}
             >
               {navItems[3].label}
@@ -78,9 +81,25 @@ const NavBar: React.FC = () => {
         {/* Mobile Menu Button */}
         <button className="md:hidden mr-4" onClick={() => setIsOpen(!isOpen)}>
           {isOpen ? (
-            <IoMdClose className="w-6 h-6" />
+            <motion.div
+              key={"close"}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <IoMdClose className="w-6 h-6" />
+            </motion.div>
           ) : (
-            <IoMenu className="w-6 h-6" />
+            <motion.div
+              key={"menu"}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ duration: 0.3 }}
+            >
+              <IoMenu className="w-6 h-6" />
+            </motion.div>
           )}
         </button>
       </div>
