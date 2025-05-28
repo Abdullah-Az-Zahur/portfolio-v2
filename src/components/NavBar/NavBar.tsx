@@ -6,6 +6,8 @@ import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { motion } from "framer-motion";
+import Image from "next/image";
+import myPic from "../../../public/assets/images/My half Photo.png";
 
 // Navigation items array
 const navItems = [
@@ -20,13 +22,20 @@ const NavBar: React.FC = () => {
   const pathname = usePathname(); // Gets the current pathname to highlight the active link
 
   return (
-    <header className="fixed w-full h-14 bg-gray-900 border-b border-gray-500 z-50">
+    <header className="fixed w-full h-14 bg-transparent border-b border-gray-500 z-50">
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
         <Link
           href="/"
-          className="md:w-1/5 md:border-r p-4 border-gray-500 h-full flex items-center"
+          className="md:w-1/5 md:border-r p-4 border-gray-500 h-full flex items-center hover:text-gray-400 gap-2"
         >
+          <Image
+            src={myPic}
+            height="200"
+            width="200"
+            alt="profile Pic"
+            className="w-7 h-7 rounded-full"
+          />
           md. abdullah az-zahur
         </Link>
 
@@ -41,7 +50,7 @@ const NavBar: React.FC = () => {
                 {/* Navigation Link */}
                 <Link
                   href={item.href}
-                  className={`hover:text-gray-400 hover:bg-gray-900/60  p-4 transition relative flex items-center h-full ${
+                  className={`hover:text-gray-400 hover:bg-transparent/10  p-4 transition relative flex items-center h-full ${
                     pathname === item.href
                       ? "text-white "
                       : "hover:border-b-4 hover:border-orange-300"
@@ -67,7 +76,7 @@ const NavBar: React.FC = () => {
               className={`hover:text-gray-400 p-4 transition relative flex items-center h-full ${
                 pathname === navItems[3].href
                   ? "text-white"
-                  : "hover:border-b-4 hover:border-orange-300"
+                  : "hover:border-b-4 hover:border-orange-300 hover:bg-transparent/10"
               }`}
             >
               {navItems[3].label}
@@ -106,7 +115,7 @@ const NavBar: React.FC = () => {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden bg-gray-900 border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
+        <div className="md:hidden bg-transparent border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
           <nav className="flex flex-col items-center">
             {navItems.map((item) => (
               <Link
