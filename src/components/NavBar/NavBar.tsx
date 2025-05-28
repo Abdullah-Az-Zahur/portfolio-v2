@@ -22,7 +22,7 @@ const NavBar: React.FC = () => {
   const pathname = usePathname(); // Gets the current pathname to highlight the active link
 
   return (
-    <header className="fixed w-full h-14 bg-transparent border-b border-gray-500 z-50">
+    <header className="fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50">
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
         <Link
@@ -50,7 +50,7 @@ const NavBar: React.FC = () => {
                 {/* Navigation Link */}
                 <Link
                   href={item.href}
-                  className={`hover:text-gray-400 hover:bg-transparent/10  p-4 transition relative flex items-center h-full ${
+                  className={`hover:text-gray-400 hover:bg-[#011627]/10  p-4 transition relative flex items-center h-full ${
                     pathname === item.href
                       ? "text-white "
                       : "hover:border-b-4 hover:border-orange-300"
