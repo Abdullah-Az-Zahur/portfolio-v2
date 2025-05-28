@@ -115,7 +115,7 @@ const NavBar: React.FC = () => {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden bg-transparent border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
+        <div className="md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
           <nav className="flex flex-col items-center">
             {navItems.map((item) => (
               <Link
