@@ -2,7 +2,10 @@ import { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Md. Abdullah Az-Zahur",
+  title: {
+     default: "Md. Abdullah Az-Zahur",
+     template: "%s | Md. Abdullah Az-Zahur"
+  },
   description: "web developer",
 };
 

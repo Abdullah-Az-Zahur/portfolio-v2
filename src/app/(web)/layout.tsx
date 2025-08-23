@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import Footer from "@/components/Footer/Footer";
 import Sidebar from "@/components/Sidebar/Sidebar";
 import TabBar from "@/components/TabBar/TabBar";

@@ -1,10 +1,17 @@
 export const dynamic = "force-dynamic";
 
 import TypingAnimation from "@/components/TypingAnimation/TypingAnimation";
+import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { TbSlashes } from "react-icons/tb";
+
+export const metadata: Metadata = {
+  title: "Home",
+  description:
+    "Welcome to my portfolio! I’m Md. Abdullah Az Zahur, a passionate MERN Stack and Front-End Developer from Bangladesh. I build scalable, responsive, and user-friendly web applications with React, Next.js, Node.js, and MongoDB.",
+};
 
 const Home: React.FC = () => {
   return (
