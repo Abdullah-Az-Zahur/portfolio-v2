@@ -1,19 +1,17 @@
-"use client";
+import ProjectClient from "@/components/Project/ProjectClient";
+import { Metadata } from "next";
 
-import { useAppSelector } from "@/redux/hooks";
-import ProjectCard from "@/components/Project/ProjectCard/ProjectCard";
+export const metadata: Metadata = {
+  title: "Projects",
+  description:
+    "Explore my featured projects built with React, Next.js, Node.js, Express, and MongoDB. I create modern, scalable, and interactive web applications focused on performance and user experience.",
+};
 
 const ProjectPage = () => {
-  const { filteredProjects } = useAppSelector((state) => state.projects);
-
   return (
-    <div className="p-7 md:p-24">
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-        {filteredProjects.map((project) => (
-          <ProjectCard key={project.id} project={project}/>
-        ))}
-      </div>
-    </div>
+    <>
+      <ProjectClient />
+    </>
   );
 };
 

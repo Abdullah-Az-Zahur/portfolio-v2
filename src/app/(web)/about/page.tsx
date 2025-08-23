@@ -1,12 +1,19 @@
-"use client";
-import { useAppSelector } from "@/redux/hooks";
-import Bio from "../../../components/About/Bio";
 import React from "react";
+import { Metadata } from "next";
+import AboutClient from "@/components/About/AboutClient";
+
+export const metadata: Metadata = {
+  title: "About",
+  description:
+    "Learn more about me, my background, and my journey in web development.",
+};
 
 const AboutPage = () => {
-  const { tabs, activeTab } = useAppSelector((state) => state.tabs);
-  const activeTabContent = tabs.find((tab) => tab.id === activeTab)?.content;
-  return <div>{activeTabContent || <Bio />}</div>;
+  return (
+    <>
+      <AboutClient />
+    </>
+  );
 };
 
 export default AboutPage;
