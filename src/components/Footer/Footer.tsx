@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
           </Link>
           <Link
             target="_blank"
-            href="https://www.facebook.com/abdullahaazzahur.giyas"
+            href="https://www.facebook.com/abdullah.az.zahur"
             className="p-[15px] border-x border-gray-500 hidden sm:block"
           >
             <FaFacebookF />
@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
           </Link>
           <Link
             target="_blank"
-            href="https://www.facebook.com/abdullahaazzahur.giyas"
+            href="https://www.facebook.com/abdullah.az.zahur"
             className="p-[15px] border-x border-gray-500 block md:hidden"
           >
             <FaFacebookF />
