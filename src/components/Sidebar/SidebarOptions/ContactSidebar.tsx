@@ -87,7 +87,7 @@ const ContactSidebar = () => {
             <li className="flex items-center gap-2 text-gray-500 hover:text-blue-700">
               <FaFacebook className="text-blue-700" />
               <a
-                href="https://www.facebook.com/abdullahaazzahur.giyas"
+                href="https://www.facebook.com/abdullah.az.zahur"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
