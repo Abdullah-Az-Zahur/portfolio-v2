@@ -131,7 +131,7 @@ const ContactSidebar = () => {
             <li className="flex items-center gap-2 text-gray-500 hover:text-pink-500">
               <FaInstagram className="text-pink-500" />
               <a
-                href="https://www.instagram.com/md_abdullah_az_zahur_gias/"
+                href="https://www.instagram.com/abdullah.az.zahur/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
