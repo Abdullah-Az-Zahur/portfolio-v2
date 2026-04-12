@@ -45,7 +45,7 @@ const Home: React.FC = () => {
         <div className="p-5">
           <div className="mt-10 md:mt-0">
             <h4 className="text-[#E5E9F0] text-xl">Hi all. I am</h4>
-            <h2 className="text-[#E5E9F0] md:text-6xl text-4xl">
+            <h2 className="text-[#E5E9F0] md:text-5xl text-3xl">
               Md. Abdullah Az-Zahur
             </h2>
             <h4 className="text-[#4D5BCE]  flex items-center text-center">
