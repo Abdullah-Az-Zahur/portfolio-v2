@@ -43,7 +43,7 @@ const Home: React.FC = () => {
       {/* Content */}
       <div className="col-start-1 row-start-1 grid md:grid-cols-2 md:gap-4 md:items-center">
         <div className="p-5">
-          <div className="mt-10 md:mt-0">
+          <div className="mt-10 md:mt-0 md:space-y-5 space-y-3">
             <h4 className="text-[#E5E9F0] text-xl">Hi all. I am</h4>
             <h2 className="text-[#E5E9F0] font-bold lg:7xl md:text-5xl text-3xl">
               Md. Abdullah Az&#8209;Zahur
