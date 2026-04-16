@@ -1,4 +1,3 @@
-import React from "react";
 import CommentText from "../CommentText/CommentText";
 
 const Bio = () => {
