@@ -63,29 +63,27 @@ const Home: React.FC = () => {
               />
             </h4>
           </div>
-          <div className="mt-48 md:mt-0">
-            <div className="hidden md:block">
-              <p className="flex items-center">
-                <TbSlashes className="mr-2" /> complete the game to continue
-              </p>
-              <p className="flex items-center">
-                <TbSlashes className="mr-2" /> you can also see it on my Github
-                page
-              </p>
-            </div>
-            <p>
-              <span className="text-[#4D5BCE]">const</span>{" "}
-              <span className="text-[#43D9AD]">githubLink</span> =
-              <Link
-                href="https://github.com/Abdullah-Az-Zahur"
-                className="text-[#E99287] ml-1 underline"
-              >
-                &quot;https://github.com/Abdullah-Az-Zahur&quot;
-              </Link>
+
+          <div className="hidden md:block">
+            <p className="flex items-center">
+              <TbSlashes className="mr-2" /> complete the game to continue
+            </p>
+            <p className="flex items-center">
+              <TbSlashes className="mr-2" /> you can also see it on my Github
+              page
             </p>
           </div>
+          <div className="my-2">
+            <span className="text-[#4D5BCE]">const</span>{" "}
+            <span className="text-[#43D9AD]">githubLink</span> =
+            <Link
+              href="https://github.com/Abdullah-Az-Zahur"
+              className="text-[#E99287] ml-1 underline"
+            >
+              &quot;https://github.com/Abdullah-Az-Zahur&quot;
+            </Link>
+          </div>
         </div>
-        <div></div>
       </div>
     </div>
   );
