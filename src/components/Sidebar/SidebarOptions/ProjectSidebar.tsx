@@ -1,8 +1,9 @@
 "use client";
 
+import { addTab, removeTab } from "@/redux/features/tabs/tabsSlice";
 import { toggleSkill } from "@/redux/features/projects/projectsSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FaCss3Alt, FaHtml5, FaNodeJs, FaReact } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
@@ -21,7 +22,9 @@ import SkillCheckbox from "../SkillCheckbox/SkillCheckbox";
 const ProjectSidebar = () => {
   const dispatch = useAppDispatch();
   const { selectedSkills } = useAppSelector((state) => state.projects);
+  const { tabs } = useAppSelector((state) => state.tabs);
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
+  const skillTabId = (skill: string) => `project-skill:${skill}`;
 
   const dropdownVariants = {
     open: {
@@ -48,8 +51,52 @@ const ProjectSidebar = () => {
   };
 
   const handleSkillToggle = (skill: string) => {
+    const isCurrentlySelected = selectedSkills.includes(skill);
     dispatch(toggleSkill(skill));
+
+    if (isCurrentlySelected) {
+      dispatch(removeTab(skillTabId(skill)));
+      return;
+    }
+
+    dispatch(
+      addTab({
+        id: skillTabId(skill),
+        title: skill,
+        content: null,
+      }),
+    );
   };
+
+  useEffect(() => {
+    const selectedSkillTabIds = new Set(
+      selectedSkills.map((skill) => skillTabId(skill)),
+    );
+    const existingSkillTabIds = new Set(
+      tabs
+        .filter((tab) => tab.id.startsWith("project-skill:"))
+        .map((tab) => tab.id),
+    );
+
+    selectedSkills.forEach((skill) => {
+      const tabId = skillTabId(skill);
+      if (!existingSkillTabIds.has(tabId)) {
+        dispatch(
+          addTab({
+            id: tabId,
+            title: skill,
+            content: null,
+          }),
+        );
+      }
+    });
+
+    existingSkillTabIds.forEach((tabId) => {
+      if (!selectedSkillTabIds.has(tabId)) {
+        dispatch(removeTab(tabId));
+      }
+    });
+  }, [dispatch, selectedSkills, tabs]);
 
   // const handleSkillToggle = (skill: string) => {
   //   dispatch(toggleSkill(skill));

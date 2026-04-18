@@ -1,10 +1,13 @@
 "use client";
 
+import { uncheckedSkill } from "@/redux/features/projects/projectsSlice";
 import { removeTab, setActiveTab } from "@/redux/features/tabs/tabsSlice";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { usePathname } from "next/navigation";
 import React from "react";
 import { FiX } from "react-icons/fi";
+
+const PROJECT_SKILL_TAB_PREFIX = "project-skill:";
 
 const TabBar = () => {
   const { tabs, activeTab } = useAppSelector((state) => state.tabs);
@@ -31,6 +34,10 @@ const TabBar = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
+              if (tab.id.startsWith(PROJECT_SKILL_TAB_PREFIX)) {
+                const skillName = tab.id.replace(PROJECT_SKILL_TAB_PREFIX, "");
+                dispatch(uncheckedSkill(skillName));
+              }
               dispatch(removeTab(tab.id));
             }}
             className={`ml-2 text-gray-400 hover:text-white hover:bg-gray-600 rounded p-0.5 transition-all duration-150 ${
