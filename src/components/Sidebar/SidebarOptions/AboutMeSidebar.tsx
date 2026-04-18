@@ -33,7 +33,7 @@ const AboutMeSidebar = () => {
   const dispatch = useAppDispatch();
   const { activeTab } = useAppSelector((state) => state.tabs);
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
-    () => new Set()
+    () => new Set(["about"]), // Initially expand "about"
   );
 
   const toggleDropdown = (title: string) => {
@@ -54,7 +54,7 @@ const AboutMeSidebar = () => {
 
   const handleSideBarItemClick = (
     title: string,
-    component: React.ReactNode
+    component: React.ReactNode,
   ) => {
     console.log(title, component);
 
@@ -63,7 +63,7 @@ const AboutMeSidebar = () => {
         id: title.toLowerCase().replace(/\s+/g, "-"),
         title: title,
         content: component,
-      })
+      }),
     );
   };
 
