@@ -1,0 +1,12 @@
+#!/bin/sh
+
+echo "🚀 Running pre-push checks..."
+
+# Run build to ensure production readiness
+echo "🏗️ Building Next.js project..."
+npm run build || {
+  echo "❌ Build failed! Fix errors before pushing."
+  exit 1
+}
+
+echo "✅ Build succeeded! Push in progress..."
