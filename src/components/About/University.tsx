@@ -1,9 +1,7 @@
-import React from 'react';
-import CommentText from '../CommentText/CommentText';
+import CommentText from "../CommentText/CommentText";
 
 const University = () => {
-
-    const text = `
+  const text = `
         Bachelor of Science in Computer Science and Engineering
         North Western University, Khulna | 2023
         CGPA: 3.23/4.00
@@ -14,11 +12,11 @@ const University = () => {
         Databases, and algorithms, shaping my tech career.
   `;
 
-    return (
-        <div>
-            <CommentText text={text}/>
-        </div>
-    );
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default University;

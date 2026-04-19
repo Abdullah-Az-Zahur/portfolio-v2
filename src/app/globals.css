@@ -15,15 +15,38 @@
 } */
 
 body {
-  color:#607B96;
+  color: #607b96;
   background: #011627;
-  font-family: 'Fira Code', monospace; /* Apply Fira Code as the default font */
- 
+  font-family: "Fira Code", monospace; /* Apply Fira Code as the default font */
 }
 
 /* Change color of selected text */
 ::selection {
-  background-color: #607B96;  /* Optional: Set background color of the selected text */
+  background-color: #607b96; /* Optional: Set background color of the selected text */
   color: white;
 }
 
+/* TabBar horizontal scrollbar */
+.tabbar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3b4f66 #0b2035;
+}
+
+.tabbar-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tabbar-scroll::-webkit-scrollbar-track {
+  background: #0b2035;
+  border-radius: 999px;
+}
+
+.tabbar-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #3b4f66 0%, #4f6b88 100%);
+  border-radius: 999px;
+  border: 1px solid #0b2035;
+}
+
+.tabbar-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #4f6b88 0%, #5f83a8 100%);
+}
