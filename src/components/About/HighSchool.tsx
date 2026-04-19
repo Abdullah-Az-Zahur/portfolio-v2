@@ -1,9 +1,7 @@
-import React from 'react';
-import CommentText from '../CommentText/CommentText';
+import CommentText from "../CommentText/CommentText";
 
 const HighSchool = () => {
-
-    const text = `
+  const text = `
         Higher Secondary Certificate
         Science Group, BN School & College, Mongla | Jessore Board | 2018
         GPA: 3.92/5.00
@@ -13,11 +11,11 @@ const HighSchool = () => {
         A strong foundation for future tech studies.
   `;
 
-    return (
-        <div>
-            <CommentText text={text} />
-        </div>
-    );
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default HighSchool;

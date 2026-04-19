@@ -1,9 +1,7 @@
-import React from 'react';
-import CommentText from '../CommentText/CommentText';
+import CommentText from "../CommentText/CommentText";
 
 const Interests = () => {
-
-    const text = `
+  const text = `
         Interests
         Love playing football, cricket, and volleyball
         Enjoy traveling and experiencing diverse cultures
@@ -11,11 +9,11 @@ const Interests = () => {
         Passionate about continuous learning and personal growth
   `;
 
-    return (
-        <div>
-            <CommentText text={text}/>
-        </div>
-    );
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default Interests;

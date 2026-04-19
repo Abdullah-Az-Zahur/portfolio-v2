@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { MdEmail, MdPhone } from "react-icons/md";
 import {
@@ -12,8 +13,28 @@ import {
 
 const ContactSidebar = () => {
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
-    new Set()
+    () => new Set(["contact"]),
   );
+
+  const dropdownVariants = {
+    open: {
+      opacity: 1,
+      height: "auto",
+      transition: {
+        opacity: { delay: 0.12 },
+        duration: 0.28,
+        ease: "easeInOut",
+      },
+    },
+    closed: {
+      opacity: 0,
+      height: 0,
+      transition: {
+        duration: 0.25,
+        ease: "easeInOut",
+      },
+    },
+  };
 
   const toggleDropdown = (title: string) => {
     setExpandedDropdowns((prev) => {
@@ -34,9 +55,11 @@ const ContactSidebar = () => {
   return (
     <>
       {/* Contact Dropdown */}
-      <div
+      <motion.div
         className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
         onClick={() => toggleDropdown("contact")}
+        whileHover={{ x: 3 }}
+        whileTap={{ scale: 0.98 }}
       >
         {isDropdownExpanded("contact") ? (
           <IoMdArrowDropdown className="text-white" />
@@ -44,11 +67,17 @@ const ContactSidebar = () => {
           <IoMdArrowDropright className="text-white" />
         )}
         <span>Contact</span>
-      </div>
+      </motion.div>
 
-      <div className="overflow-hidden transition-all duration-300">
+      <AnimatePresence>
         {isDropdownExpanded("contact") && (
-          <ul className="ml-4 mt-2 space-y-1">
+          <motion.ul
+            className="ml-4 mt-2 space-y-1 overflow-hidden"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={dropdownVariants}
+          >
             <li className="flex items-center gap-2 text-gray-500 hover:text-purple-500 cursor-pointer">
               <MdEmail className="text-purple-500 flex-shrink-0" />
               <a
@@ -64,14 +93,16 @@ const ContactSidebar = () => {
                 +880-1705697897
               </a>
             </li>
-          </ul>
+          </motion.ul>
         )}
-      </div>
+      </AnimatePresence>
 
       {/* Find Me Also In Dropdown */}
-      <div
+      <motion.div
         className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-y border-gray-500 py-2"
         onClick={() => toggleDropdown("find-me-also-in")}
+        whileHover={{ x: 3 }}
+        whileTap={{ scale: 0.98 }}
       >
         {isDropdownExpanded("find-me-also-in") ? (
           <IoMdArrowDropdown className="text-white" />
@@ -79,11 +110,17 @@ const ContactSidebar = () => {
           <IoMdArrowDropright className="text-white" />
         )}
         <span>find-me-also-in</span>
-      </div>
+      </motion.div>
 
-      <div className="overflow-hidden transition-all duration-300">
+      <AnimatePresence>
         {isDropdownExpanded("find-me-also-in") && (
-          <ul className="ml-4 mt-2 space-y-1">
+          <motion.ul
+            className="ml-4 mt-2 space-y-1 overflow-hidden"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={dropdownVariants}
+          >
             <li className="flex items-center gap-2 text-gray-500 hover:text-blue-700">
               <FaFacebook className="text-blue-700" />
               <a
@@ -139,9 +176,9 @@ const ContactSidebar = () => {
                 Instagram
               </a>
             </li>
-          </ul>
+          </motion.ul>
         )}
-      </div>
+      </AnimatePresence>
     </>
   );
 };

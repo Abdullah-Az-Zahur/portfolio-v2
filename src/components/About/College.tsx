@@ -1,9 +1,7 @@
-import React from 'react';
-import CommentText from '../CommentText/CommentText';
+import CommentText from "../CommentText/CommentText";
 
 const College = () => {
-
-    const text = `
+  const text = `
         Secondary School Certificate
         Science Group, Mongla Bandar Secondary School, Mongla | 2016
         GPA: 4.11/5.00
@@ -12,11 +10,11 @@ const College = () => {
         Logical thinking—key to my journey in tech.
   `;
 
-    return (
-        <div>
-            <CommentText text={text} />
-        </div>
-    );
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default College;
