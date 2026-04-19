@@ -1,7 +1,13 @@
 "use client";
-import { createContext, useContext, useState, useEffect } from "react";
+import {
+  createContext,
+  useContext,
+  useState,
+  useEffect,
+  useReducer,
+} from "react";
 import { usePathname, useRouter } from "next/navigation";
-import Bio from "@/components/About/Bio";
+import BioInfo from "@/components/About/PersonalInfo/Bio/BioInfo";
 
 interface Tab {
   id: string;
@@ -19,21 +25,81 @@ interface ContextType {
   setSelectedSkills: (skills: Set<string>) => void;
 }
 
+interface TabState {
+  tabs: Tab[];
+  activeTab: string | null;
+}
+
+type TabAction =
+  | { type: "reset" }
+  | { type: "add"; payload: Tab }
+  | { type: "remove"; payload: string }
+  | { type: "setActive"; payload: string };
+
+const initialTabState: TabState = {
+  tabs: [],
+  activeTab: null,
+};
+
+const tabReducer = (state: TabState, action: TabAction): TabState => {
+  switch (action.type) {
+    case "reset":
+      return initialTabState;
+    case "add": {
+      const existingTab = state.tabs.find(
+        (tab) => tab.id === action.payload.id,
+      );
+      if (existingTab) {
+        return {
+          ...state,
+          activeTab: action.payload.id,
+        };
+      }
+      return {
+        tabs: [...state.tabs, action.payload],
+        activeTab: action.payload.id,
+      };
+    }
+    case "remove": {
+      const newTabs = state.tabs.filter((tab) => tab.id !== action.payload);
+      const nextActiveTab =
+        state.activeTab === action.payload
+          ? newTabs.length > 0
+            ? newTabs[newTabs.length - 1].id
+            : null
+          : state.activeTab;
+      return {
+        tabs: newTabs,
+        activeTab: nextActiveTab,
+      };
+    }
+    case "setActive":
+      return {
+        ...state,
+        activeTab: action.payload,
+      };
+    default:
+      return state;
+  }
+};
+
 const TabContext = createContext<ContextType | undefined>(undefined);
 
 export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [tabs, setTabs] = useState<Tab[]>([]);
-  const [activeTab, setActiveTab] = useState<string | null>(null);
+  const [tabState, dispatchTab] = useReducer(tabReducer, initialTabState);
   const [selectedSkills, setSelectedSkills] = useState<Set<string>>(new Set());
   const pathname = usePathname();
   const router = useRouter();
 
+  const addTab = (tab: Tab) => {
+    dispatchTab({ type: "add", payload: tab });
+  };
+
   // Clear tabs when the route changes
   useEffect(() => {
-    setTabs([]); // Clear all tabs
-    setActiveTab(null); // Reset the active tab
+    dispatchTab({ type: "reset" });
   }, [pathname]);
 
   // Add default tabs based on the route
@@ -42,7 +108,7 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
       addTab({
         id: "bio",
         title: "Bio",
-        content: <Bio />,
+        content: <BioInfo />,
       });
     } else if (pathname.includes("/project")) {
       addTab({
@@ -61,7 +127,7 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Redirect to home only if all tabs are manually closed
   useEffect(() => {
-    if (tabs.length === 0 && pathname !== "/") {
+    if (tabState.tabs.length === 0 && pathname !== "/") {
       // Check if the tabs were cleared due to a route change or manual closure
       const isManualClosure =
         !pathname.includes("/about") &&
@@ -71,40 +137,24 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
         router.push("/");
       }
     }
-  }, [tabs, pathname, router]);
-
-  const addTab = (tab: Tab) => {
-    setTabs((prevTabs) => {
-      const existingTab = prevTabs.find((t) => t.id === tab.id);
-      if (existingTab) {
-        setActiveTab(tab.id);
-        return prevTabs;
-      }
-      return [...prevTabs, tab];
-    });
-    setActiveTab(tab.id);
-  };
+  }, [tabState.tabs, pathname, router]);
 
   const removeTab = (id: string) => {
-    setTabs((prevTabs) => {
-      const newTabs = prevTabs.filter((tab) => tab.id !== id);
-      if (activeTab === id) {
-        setActiveTab(
-          newTabs.length > 0 ? newTabs[newTabs.length - 1].id : null
-        );
-      }
-      return newTabs;
-    });
+    dispatchTab({ type: "remove", payload: id });
+  };
+
+  const setActiveTab = (id: string) => {
+    dispatchTab({ type: "setActive", payload: id });
   };
 
   return (
     <TabContext.Provider
       value={{
-        tabs,
+        tabs: tabState.tabs,
         addTab,
         removeTab,
         setActiveTab,
-        activeTab,
+        activeTab: tabState.activeTab,
         selectedSkills,
         setSelectedSkills,
       }}
