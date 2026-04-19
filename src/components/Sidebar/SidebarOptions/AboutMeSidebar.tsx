@@ -98,7 +98,7 @@ const AboutMeSidebar = () => {
       height: "auto",
       transition: {
         opacity: { delay: 0.15 },
-        duration: 0.3,
+        duration: 0.34,
         ease: "easeInOut",
       },
     },
@@ -106,8 +106,9 @@ const AboutMeSidebar = () => {
       opacity: 0,
       height: 0,
       transition: {
-        duration: 0.3,
-        ease: "easeInOut",
+        opacity: { duration: 0.2 },
+        height: { duration: 0.42 },
+        ease: "easeOut",
       },
     },
   };
@@ -137,128 +138,94 @@ const AboutMeSidebar = () => {
   const renderCategoryGroups = (
     category: SidebarCategory,
     isExpanded: boolean,
-    includeFooter = true,
   ) => {
-    if (!isExpanded) {
-      return null;
-    }
-
     return (
-      <AnimatePresence>
-        <motion.div
-          className="overflow-hidden"
-          initial="closed"
-          animate="open"
-          exit="closed"
-          variants={dropdownVariants}
-        >
-          <motion.ul className="ml-4 mt-2 space-y-1 overflow-hidden">
-            {category.groups.map((group) => {
-              const groupKey = `${category.id}-${group.id}`;
+      <AnimatePresence initial={false}>
+        {isExpanded && (
+          <motion.div
+            className="overflow-hidden"
+            initial="closed"
+            animate="open"
+            exit="closed"
+            variants={dropdownVariants}
+          >
+            <motion.ul className="ml-4 mt-2 space-y-1 overflow-hidden">
+              {category.groups.map((group) => {
+                const groupKey = `${category.id}-${group.id}`;
 
-              return (
-                <div key={groupKey}>
-                  <motion.li
-                    className="flex items-center gap-2 text-gray-500 cursor-pointer"
-                    onClick={() => toggleDropdown(groupKey)}
-                    variants={itemVariants}
-                    whileHover="hover"
-                    whileTap="tap"
-                  >
-                    <motion.div
-                      animate={
-                        isDropdownExpanded(groupKey)
-                          ? "rotate"
-                          : "rotateReverse"
-                      }
-                      variants={iconVariants}
+                return (
+                  <div key={groupKey}>
+                    <motion.li
+                      className="flex items-center gap-2 text-gray-500 cursor-pointer"
+                      onClick={() => toggleDropdown(groupKey)}
+                      variants={itemVariants}
+                      whileHover="hover"
+                      whileTap="tap"
                     >
-                      {isDropdownExpanded(groupKey) ? (
-                        <IoIosArrowDown className={group.arrowClass} />
-                      ) : (
-                        <IoIosArrowForward className={group.arrowClass} />
-                      )}
-                    </motion.div>
-                    <RiFolder3Fill className={group.folderClass} />
-                    <span className={`hover:${group.folderClass}`}>
-                      {group.label}
-                    </span>
-                  </motion.li>
-
-                  <AnimatePresence>
-                    {isDropdownExpanded(groupKey) && (
-                      <motion.ul
-                        className="ml-6 mt-1 space-y-1 overflow-hidden"
-                        initial="closed"
-                        animate="open"
-                        exit="closed"
-                        variants={dropdownVariants}
+                      <motion.div
+                        animate={
+                          isDropdownExpanded(groupKey)
+                            ? "rotate"
+                            : "rotateReverse"
+                        }
+                        variants={iconVariants}
                       >
-                        {group.items.map((item) => {
-                          const ItemIcon = item.icon;
+                        {isDropdownExpanded(groupKey) ? (
+                          <IoIosArrowDown className={group.arrowClass} />
+                        ) : (
+                          <IoIosArrowForward className={group.arrowClass} />
+                        )}
+                      </motion.div>
+                      <RiFolder3Fill className={group.folderClass} />
+                      <span className={`hover:${group.folderClass}`}>
+                        {group.label}
+                      </span>
+                    </motion.li>
 
-                          return (
-                            <motion.li
-                              key={item.id}
-                              className={`flex items-center gap-2 text-sm ${
-                                isItemActive(item.title)
-                                  ? item.activeClass
-                                  : `text-gray-500 ${item.hoverClass}`
-                              } cursor-pointer`}
-                              onClick={() =>
-                                handleSideBarItemClick(item.title, item.content)
-                              }
-                              variants={itemVariants}
-                              whileHover="hover"
-                              whileTap="tap"
-                            >
-                              <ItemIcon className={item.iconClass} />
-                              <span>{item.label}</span>
-                            </motion.li>
-                          );
-                        })}
-                      </motion.ul>
-                    )}
-                  </AnimatePresence>
-                </div>
-              );
-            })}
-          </motion.ul>
+                    <AnimatePresence>
+                      {isDropdownExpanded(groupKey) && (
+                        <motion.ul
+                          className="ml-6 mt-1 space-y-1 overflow-hidden"
+                          initial="closed"
+                          animate="open"
+                          exit="closed"
+                          variants={dropdownVariants}
+                        >
+                          {group.items.map((item) => {
+                            const ItemIcon = item.icon;
 
-          {includeFooter && (
-            <>
-              <div
-                className={`-ml-3 mt-2 py-2 pl-3 flex items-center justify-between ${
-                  isExpanded ? "border-t border-gray-500" : ""
-                }`}
-              >
-                <Link
-                  href="https://drive.google.com/uc?export=download&id=1fuMYadVqT74gf7RX545ERff8RFl0BJYG"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
-                >
-                  <FaDownload className="text-lg" />
-                  Resume
-                </Link>
-              </div>
-
-              <div className="-ml-3 py-2 pl-3 flex items-center justify-between border-y border-gray-500">
-                <Link
-                  href="https://drive.google.com/uc?export=download&id=15_17rv6PbTe_A7zyhBmR2pwwCJXpjPBq"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  download
-                  className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
-                >
-                  <FaDownload className="text-lg" />
-                  CV
-                </Link>
-              </div>
-            </>
-          )}
-        </motion.div>
+                            return (
+                              <motion.li
+                                key={item.id}
+                                className={`flex items-center gap-2 text-sm ${
+                                  isItemActive(item.title)
+                                    ? item.activeClass
+                                    : `text-gray-500 ${item.hoverClass}`
+                                } cursor-pointer`}
+                                onClick={() =>
+                                  handleSideBarItemClick(
+                                    item.title,
+                                    item.content,
+                                  )
+                                }
+                                variants={itemVariants}
+                                whileHover="hover"
+                                whileTap="tap"
+                              >
+                                <ItemIcon className={item.iconClass} />
+                                <span>{item.label}</span>
+                              </motion.li>
+                            );
+                          })}
+                        </motion.ul>
+                      )}
+                    </AnimatePresence>
+                  </div>
+                );
+              })}
+            </motion.ul>
+          </motion.div>
+        )}
       </AnimatePresence>
     );
   };
@@ -294,7 +261,7 @@ const AboutMeSidebar = () => {
                 )}
               </motion.button>
 
-              {renderCategoryGroups(category, isActive, false)}
+              {renderCategoryGroups(category, isActive)}
             </div>
           );
         })}
@@ -381,6 +348,40 @@ const AboutMeSidebar = () => {
             activeCategory,
             isDropdownExpanded(`main-${activeCategory.id}`),
           )}
+
+          <div
+            className={`-ml-3 mt-2 ${
+              isDropdownExpanded(`main-${activeCategory.id}`)
+                ? "border-t border-gray-500"
+                : "border-t-0"
+            }`}
+          >
+            <div className="py-2 pl-3 flex items-center justify-between border-b border-gray-500">
+              <Link
+                href="https://drive.google.com/uc?export=download&id=1fuMYadVqT74gf7RX545ERff8RFl0BJYG"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
+              >
+                <FaDownload className="text-lg" />
+                Resume
+              </Link>
+            </div>
+
+            <div className="py-2 pl-3 flex items-center justify-between border-b border-gray-500">
+              <Link
+                href="https://drive.google.com/uc?export=download&id=15_17rv6PbTe_A7zyhBmR2pwwCJXpjPBq"
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
+              >
+                <FaDownload className="text-lg" />
+                CV
+              </Link>
+            </div>
+          </div>
         </div>
       </div>
     </>
