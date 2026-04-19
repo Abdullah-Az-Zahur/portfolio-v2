@@ -1,13 +1,13 @@
-import CommentText from "../CommentText/CommentText";
+import CommentText from "@/components/CommentText/CommentText";
 
-const HighSchool = () => {
+const HighSchoolInfo = () => {
   const text = `
         Higher Secondary Certificate
         Science Group, BN School & College, Mongla | Jessore Board | 2018
         GPA: 3.92/5.00
-        Focused on Science 
+        Focused on Science
         Excelling in math, physics, and chemistry.
-        Developed analytical skills and 
+        Developed analytical skills and
         A strong foundation for future tech studies.
   `;
 
@@ -18,4 +18,4 @@ const HighSchool = () => {
   );
 };
 
-export default HighSchool;
+export default HighSchoolInfo;

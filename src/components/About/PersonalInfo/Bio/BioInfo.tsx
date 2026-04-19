@@ -1,9 +1,9 @@
-import CommentText from "../CommentText/CommentText";
+import CommentText from "@/components/CommentText/CommentText";
 
-const Bio = () => {
+const BioInfo = () => {
   const text = `
         About Me
-        Hi, I’m MD. Abdullah Az-Zahur,
+        Hi, I'm MD. Abdullah Az-Zahur,
         A passionate and results-driven Web Developer
         Skilled in React, Tailwind CSS, Node.js, MongoDB, and Next.js
         Building dynamic, user-friendly web apps
@@ -12,7 +12,7 @@ const Bio = () => {
         Contributed to projects like Jobify and Survey Vista
         Driven by problem-solving and innovation
         Thrive in collaborative environments and love exploring new tech
-        Let’s connect and create something amazing!
+        Let's connect and create something amazing!
   `;
 
   return (
@@ -22,4 +22,4 @@ const Bio = () => {
   );
 };
 
-export default Bio;
+export default BioInfo;
