@@ -1,4 +1,4 @@
-import AboutTextBlock from "@/components/About/Shared/AboutTextBlock";
+import CommentText from "@/components/CommentText/CommentText";
 
 const NatureWalksHobby = () => {
   const text = `
@@ -7,7 +7,11 @@ const NatureWalksHobby = () => {
         They help me maintain clarity and consistency.
   `;
 
-  return <AboutTextBlock text={text} />;
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default NatureWalksHobby;

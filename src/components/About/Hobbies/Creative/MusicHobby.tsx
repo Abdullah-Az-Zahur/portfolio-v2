@@ -1,4 +1,4 @@
-import AboutTextBlock from "@/components/About/Shared/AboutTextBlock";
+import CommentText from "@/components/CommentText/CommentText";
 
 const MusicHobby = () => {
   const text = `
@@ -7,7 +7,11 @@ const MusicHobby = () => {
         I explore different genres to stay creative and focused.
   `;
 
-  return <AboutTextBlock text={text} />;
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default MusicHobby;

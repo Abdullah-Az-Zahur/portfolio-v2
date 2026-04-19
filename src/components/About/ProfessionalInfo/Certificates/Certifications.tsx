@@ -1,14 +1,19 @@
-import AboutTextBlock from "@/components/About/Shared/AboutTextBlock";
+import CommentText from "@/components/CommentText/CommentText";
 
 const Certifications = () => {
   const text = `
-        Certifications
-        Professional courses and training certifications
-        Continuous learning in modern web technologies
-        Practical application of learned skills in projects.
+    Learning Journey and Certifications
+    Complete Web Development Course with Jhankar Mahbub (Jan - June 2024).
+    Communication Hacks (Certified, October 27, 2024).
+    Communication Secrets (Certified, November 21, 2024).
+    I treat certifications as checkpoints, then apply what I learn in real projects.
   `;
 
-  return <AboutTextBlock text={text} />;
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default Certifications;

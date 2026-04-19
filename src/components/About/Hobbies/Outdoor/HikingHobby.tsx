@@ -1,4 +1,4 @@
-import AboutTextBlock from "@/components/About/Shared/AboutTextBlock";
+import CommentText from "@/components/CommentText/CommentText";
 
 const HikingHobby = () => {
   const text = `
@@ -7,7 +7,11 @@ const HikingHobby = () => {
         It improves my mindset for problem-solving.
   `;
 
-  return <AboutTextBlock text={text} />;
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default HikingHobby;

@@ -8,6 +8,8 @@ import InterestsInfo from "@/components/About/PersonalInfo/Interests/InterestsIn
 import HighSchoolInfo from "@/components/About/PersonalInfo/Education/HighSchoolInfo";
 import CollegeInfo from "@/components/About/PersonalInfo/Education/CollegeInfo";
 import UniversityInfo from "@/components/About/PersonalInfo/Education/UniversityInfo";
+import MScInfo from "@/components/About/PersonalInfo/Education/MScInfo";
+import BachelorThesisInfo from "@/components/About/PersonalInfo/Education/BachelorThesisInfo";
 import MusicHobby from "@/components/About/Hobbies/Creative/MusicHobby";
 import BooksHobby from "@/components/About/Hobbies/Creative/BooksHobby";
 import HikingHobby from "@/components/About/Hobbies/Outdoor/HikingHobby";
@@ -25,6 +27,7 @@ import {
   FaStar,
   FaUniversity,
   FaUser,
+  FaBookOpen,
 } from "react-icons/fa";
 import { GiSchoolBag } from "react-icons/gi";
 import { FaPersonHiking } from "react-icons/fa6";
@@ -152,8 +155,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "high-school",
-            title: "High School",
-            label: "high-school",
+            title: "School Days",
+            label: "school-days",
             icon: GiSchoolBag,
             activeClass: "text-yellow-500 font-medium",
             hoverClass: "hover:text-yellow-500",
@@ -162,8 +165,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "college",
-            title: "College",
-            label: "college",
+            title: "College Journey",
+            label: "college-journey",
             icon: FaUniversity,
             activeClass: "text-blue-500 font-medium",
             hoverClass: "hover:text-blue-500",
@@ -172,13 +175,33 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "university",
-            title: "University",
-            label: "university",
+            title: "Undergrad Life",
+            label: "undergrad-life",
             icon: FaUserGraduate,
             activeClass: "text-purple-500 font-medium",
             hoverClass: "hover:text-purple-500",
             iconClass: "text-purple-500",
             content: <UniversityInfo />,
+          },
+          {
+            id: "msc-ict",
+            title: "Postgrad Path",
+            label: "postgrad-path",
+            icon: FaUserGraduate,
+            activeClass: "text-cyan-500 font-medium",
+            hoverClass: "hover:text-cyan-500",
+            iconClass: "text-cyan-500",
+            content: <MScInfo />,
+          },
+          {
+            id: "bachelor-thesis",
+            title: "Research Story",
+            label: "research-story",
+            icon: FaBookOpen,
+            activeClass: "text-orange-500 font-medium",
+            hoverClass: "hover:text-orange-500",
+            iconClass: "text-orange-500",
+            content: <BachelorThesisInfo />,
           },
         ],
       },

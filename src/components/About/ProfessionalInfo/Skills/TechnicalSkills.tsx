@@ -1,14 +1,20 @@
-import AboutTextBlock from "@/components/About/Shared/AboutTextBlock";
+import CommentText from "@/components/CommentText/CommentText";
 
 const TechnicalSkills = () => {
   const text = `
-        Technical Skills
-        TypeScript, Next.js, Redux, Tailwind CSS
-        REST API integration and frontend architecture
-        Performance-focused, scalable UI development.
+        Technical Playground
+        Languages I work with: JavaScript (ES6+), TypeScript, PHP, HTML5, CSS3.
+        Frontend focus: React, Next.js, Tailwind CSS, Bootstrap, Redux Toolkit, Framer Motion.
+        Backend and platform: Node.js, Express.js, REST APIs, JWT, Firebase, MongoDB.
+        Daily tools: Git, VS Code, Postman, Axios, Netlify, React Hook Form, SweetAlert.
+        Team strengths: communication, collaboration, ownership, and problem-solving.
   `;
 
-  return <AboutTextBlock text={text} />;
+  return (
+    <div>
+      <CommentText text={text} />
+    </div>
+  );
 };
 
 export default TechnicalSkills;

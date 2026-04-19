@@ -2,17 +2,14 @@ import CommentText from "@/components/CommentText/CommentText";
 
 const BioInfo = () => {
   const text = `
-        About Me
-        Hi, I'm MD. Abdullah Az-Zahur,
-        A passionate and results-driven Web Developer
-        Skilled in React, Tailwind CSS, Node.js, MongoDB, and Next.js
-        Building dynamic, user-friendly web apps
-        Creating seamless frontend experiences and robust backend solutions
-        Designing interactive interfaces, integrating advanced features
-        Contributed to projects like Jobify and Survey Vista
-        Driven by problem-solving and innovation
-        Thrive in collaborative environments and love exploring new tech
-        Let's connect and create something amazing!
+    Hey, I am Md. Abdullah Az-Zahur.
+    I build web experiences that feel clean, fast, and actually enjoyable to use.
+    My comfort zone is the MERN and Next.js ecosystem, but I always love learning beyond it.
+    I enjoy turning rough ideas into polished products with thoughtful UI and reliable backend logic.
+    What excites me most is solving real user problems, not just writing code.
+    Outside of code, I stay curious, collaborative, and always ready for the next challenge.
+    Location: Mongla Port, Khulna, Bangladesh.
+    If you want to build something meaningful together, I would love to connect.
   `;
 
   return (

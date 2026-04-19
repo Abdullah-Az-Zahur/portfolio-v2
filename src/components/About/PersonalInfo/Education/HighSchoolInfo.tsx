@@ -2,8 +2,8 @@ import CommentText from "@/components/CommentText/CommentText";
 
 const HighSchoolInfo = () => {
   const text = `
-        Higher Secondary Certificate
-        Science Group, BN School & College, Mongla | Jessore Board | 2018
+  Higher Secondary Certificate (HSC)
+  Science Group, Bangladesh Navy School and College, Mongla | Jessore Board | 2018
         GPA: 3.92/5.00
         Focused on Science
         Excelling in math, physics, and chemistry.
