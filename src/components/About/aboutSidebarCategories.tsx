@@ -219,16 +219,16 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         arrowClass: "text-rose-500",
         folderClass: "text-rose-500",
         items: [
-          {
-            id: "music",
-            title: "Music",
-            label: "music",
-            icon: FaMusic,
-            activeClass: "text-rose-500 font-medium",
-            hoverClass: "hover:text-rose-500",
-            iconClass: "text-rose-500",
-            content: <MusicHobby />,
-          },
+          // {
+          //   id: "music",
+          //   title: "Music",
+          //   label: "music",
+          //   icon: FaMusic,
+          //   activeClass: "text-rose-500 font-medium",
+          //   hoverClass: "hover:text-rose-500",
+          //   iconClass: "text-rose-500",
+          //   content: <MusicHobby />,
+          // },
           {
             id: "books",
             title: "Books",
