@@ -228,7 +228,7 @@ const AboutMeSidebar = () => {
           const isActive = mobileExpandedCategoryId === category.id;
 
           return (
-            <div key={category.id} className="border-b border-gray-700 py-2">
+            <div key={category.id} className="border-b border-gray-700 py-2 ">
               <motion.button
                 type="button"
                 onClick={() => handleMobileCategoryToggle(category.id)}
@@ -282,7 +282,7 @@ const AboutMeSidebar = () => {
       </div>
 
       <div className="hidden md:flex items-stretch gap-0 md:h-full">
-        <div className="flex self-stretch flex-col items-center gap-2 border-r border-gray-700 pr-3 pt-2 pb-2">
+        <div className="flex self-stretch flex-col items-center gap-2 border-r border-gray-700 px-3 pt-2 pb-2">
           {categories.map((category) => {
             const CategoryIcon = category.icon;
             const isActive = activeCategory.id === category.id;
