@@ -140,7 +140,7 @@ const AboutMeSidebar = () => {
             exit="closed"
             variants={dropdownVariants}
           >
-            <motion.ul className="ml-4 mt-2 space-y-1 overflow-hidden">
+            <motion.ul className="ml-3 mt-2 space-y-1 overflow-hidden">
               {category.groups.map((group) => {
                 const groupKey = `${category.id}-${group.id}`;
 
@@ -176,7 +176,7 @@ const AboutMeSidebar = () => {
                     <AnimatePresence>
                       {isDropdownExpanded(groupKey) && (
                         <motion.ul
-                          className="ml-6 mt-1 space-y-1 overflow-hidden"
+                          className="ml-5 mt-1 space-y-1 overflow-hidden"
                           initial="closed"
                           animate="open"
                           exit="closed"
@@ -225,31 +225,26 @@ const AboutMeSidebar = () => {
     <>
       <div className="flex flex-col md:hidden">
         {categories.map((category) => {
-          const CategoryIcon = category.icon;
           const isActive = mobileExpandedCategoryId === category.id;
 
           return (
-            <div
-              key={category.id}
-              className="border-b border-gray-700 px-3 py-2"
-            >
+            <div key={category.id} className="border-b border-gray-700 py-2">
               <motion.button
                 type="button"
                 onClick={() => handleMobileCategoryToggle(category.id)}
-                className={`flex w-full items-center justify-between gap-3 rounded-md px-2 py-2 text-left transition-colors ${
+                className={`flex w-full items-center gap-2 rounded-md py-2 text-left transition-colors ${
                   isActive ? "bg-[#1f2937]" : "hover:bg-[#1a2234]"
                 }`}
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="flex items-center gap-2 text-white">
-                  <CategoryIcon className={`text-lg ${category.iconClass}`} />
+                  {isActive ? (
+                    <IoMdArrowDropdown className="text-white" />
+                  ) : (
+                    <IoMdArrowDropright className="text-white" />
+                  )}
                   <span>{category.label}</span>
                 </span>
-                {isActive ? (
-                  <IoMdArrowDropdown className="text-white" />
-                ) : (
-                  <IoMdArrowDropright className="text-white" />
-                )}
               </motion.button>
 
               {renderCategoryGroups(category, isActive)}
@@ -257,8 +252,8 @@ const AboutMeSidebar = () => {
           );
         })}
 
-        <div className="border-t border-gray-700 px-3 py-3">
-          <div className="flex items-center justify-between gap-3 border-b border-gray-500 py-2">
+        <div className="border-t border-gray-700 py-3">
+          <div className="flex items-center justify-between gap-3 border-b border-gray-500 px-2 py-2">
             <Link
               href="https://drive.google.com/uc?export=download&id=1fuMYadVqT74gf7RX545ERff8RFl0BJYG"
               target="_blank"
@@ -271,7 +266,7 @@ const AboutMeSidebar = () => {
             </Link>
           </div>
 
-          <div className="flex items-center justify-between gap-3 py-2">
+          <div className="flex items-center justify-between gap-3 px-2 py-2">
             <Link
               href="https://drive.google.com/uc?export=download&id=15_17rv6PbTe_A7zyhBmR2pwwCJXpjPBq"
               target="_blank"
@@ -311,9 +306,9 @@ const AboutMeSidebar = () => {
           })}
         </div>
 
-        <div className="min-w-0 flex-1 pl-3">
+        <div className="min-w-0 flex-1 pl-2">
           <motion.div
-            className="-ml-3 pl-3 flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
+            className="-ml-2 pl-1 flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
             onClick={() => toggleDropdown(`main-${activeCategory.id}`)}
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.98 }}
@@ -341,32 +336,32 @@ const AboutMeSidebar = () => {
           )}
 
           <div
-            className={`-ml-3 mt-2 ${
+            className={`-ml-2 mt-2 ${
               isDropdownExpanded(`main-${activeCategory.id}`)
                 ? "border-t border-gray-500"
                 : "border-t-0"
             }`}
           >
-            <div className="py-2 pl-3 flex items-center justify-between border-b border-gray-500">
+            <div className="py-2 pl-1 flex items-center justify-between border-b border-gray-500">
               <Link
                 href="https://drive.google.com/uc?export=download&id=1fuMYadVqT74gf7RX545ERff8RFl0BJYG"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
+                className="ml-2 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
               >
                 <FaDownload className="text-lg" />
                 Resume
               </Link>
             </div>
 
-            <div className="py-2 pl-3 flex items-center justify-between border-b border-gray-500">
+            <div className="py-2 pl-1 flex items-center justify-between border-b border-gray-500">
               <Link
                 href="https://drive.google.com/uc?export=download&id=15_17rv6PbTe_A7zyhBmR2pwwCJXpjPBq"
                 target="_blank"
                 rel="noopener noreferrer"
                 download
-                className="ml-6 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
+                className="ml-2 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
               >
                 <FaDownload className="text-lg" />
                 CV

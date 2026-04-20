@@ -72,7 +72,7 @@ const ContactSidebar = () => {
       <AnimatePresence>
         {isDropdownExpanded("contact") && (
           <motion.ul
-            className="ml-4 mt-2 space-y-1 overflow-hidden"
+            className="ml-3 mt-2 space-y-1 overflow-hidden"
             initial="closed"
             animate="open"
             exit="closed"
@@ -115,7 +115,7 @@ const ContactSidebar = () => {
       <AnimatePresence>
         {isDropdownExpanded("find-me-also-in") && (
           <motion.ul
-            className="ml-4 mt-2 space-y-1 overflow-hidden"
+            className="ml-3 mt-2 space-y-1 overflow-hidden"
             initial="closed"
             animate="open"
             exit="closed"

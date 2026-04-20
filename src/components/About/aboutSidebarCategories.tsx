@@ -35,7 +35,7 @@ import { FaPersonHiking } from "react-icons/fa6";
 export const aboutSidebarCategories: SidebarCategory[] = [
   {
     id: "professional-info",
-    label: "Professional Info",
+    label: "professional-info",
     icon: FaUserTie,
     iconClass: "text-blue-400",
     groups: [
@@ -46,9 +46,9 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         folderClass: "text-blue-500",
         items: [
           {
-            id: "qwikit",
-            title: "QwikIt",
-            label: "QwikIt",
+            id: "qwik-it",
+            title: "qwik-it",
+            label: "qwik-it",
             icon: FaBriefcase,
             activeClass: "text-yellow-500 font-medium",
             hoverClass: "hover:text-yellow-500",
@@ -57,8 +57,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "encoder-it",
-            title: "Encoder IT",
-            label: "Encoder IT",
+            title: "encoder-it",
+            label: "encoder-it",
             icon: FaBriefcase,
             activeClass: "text-blue-500 font-medium",
             hoverClass: "hover:text-blue-500",
@@ -75,7 +75,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "technical-skills",
-            title: "Technical Skills",
+            title: "technical-skills",
             label: "technical-skills",
             icon: FaLaptopCode,
             activeClass: "text-green-500 font-medium",
@@ -93,7 +93,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "certifications",
-            title: "Certifications",
+            title: "certifications",
             label: "certifications",
             icon: FaCertificate,
             activeClass: "text-purple-500 font-medium",
@@ -107,7 +107,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
   },
   {
     id: "personal-info",
-    label: "Personal Info",
+    label: "personal-info",
     icon: FaUser,
     iconClass: "text-emerald-400",
     groups: [
@@ -119,7 +119,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "bio-item",
-            title: "Bio",
+            title: "bio",
             label: "bio",
             icon: FaUser,
             activeClass: "text-blue-500 font-medium",
@@ -137,7 +137,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "interest-item",
-            title: "Interest",
+            title: "interests",
             label: "interests",
             icon: FaStar,
             activeClass: "text-green-500 font-medium",
@@ -155,7 +155,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "high-school",
-            title: "School Days",
+            title: "school-days",
             label: "school-days",
             icon: GiSchoolBag,
             activeClass: "text-yellow-500 font-medium",
@@ -165,7 +165,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "college",
-            title: "College Journey",
+            title: "college-journey",
             label: "college-journey",
             icon: FaUniversity,
             activeClass: "text-blue-500 font-medium",
@@ -175,7 +175,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "university",
-            title: "Undergrad Life",
+            title: "undergrad-life",
             label: "undergrad-life",
             icon: FaUserGraduate,
             activeClass: "text-purple-500 font-medium",
@@ -185,7 +185,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "msc-ict",
-            title: "Postgrad Path",
+            title: "postgrad-path",
             label: "postgrad-path",
             icon: FaUserGraduate,
             activeClass: "text-cyan-500 font-medium",
@@ -195,7 +195,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "bachelor-thesis",
-            title: "Research Story",
+            title: "research-story",
             label: "research-story",
             icon: FaBookOpen,
             activeClass: "text-orange-500 font-medium",
@@ -209,7 +209,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
   },
   {
     id: "hobbies",
-    label: "Hobbies",
+    label: "hobbies",
     icon: FaGamepad,
     iconClass: "text-amber-400",
     groups: [
@@ -219,19 +219,19 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         arrowClass: "text-rose-500",
         folderClass: "text-rose-500",
         items: [
-          {
-            id: "music",
-            title: "Music",
-            label: "music",
-            icon: FaMusic,
-            activeClass: "text-rose-500 font-medium",
-            hoverClass: "hover:text-rose-500",
-            iconClass: "text-rose-500",
-            content: <MusicHobby />,
-          },
+          // {
+          //   id: "music",
+          //   title: "Music",
+          //   label: "music",
+          //   icon: FaMusic,
+          //   activeClass: "text-rose-500 font-medium",
+          //   hoverClass: "hover:text-rose-500",
+          //   iconClass: "text-rose-500",
+          //   content: <MusicHobby />,
+          // },
           {
             id: "books",
-            title: "Books",
+            title: "books",
             label: "books",
             icon: FaStar,
             activeClass: "text-indigo-500 font-medium",
@@ -249,7 +249,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "hiking",
-            title: "Hiking",
+            title: "hiking",
             label: "hiking",
             icon: FaPersonHiking,
             activeClass: "text-lime-500 font-medium",
@@ -259,7 +259,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "games",
-            title: "Games",
+            title: "games",
             label: "games",
             icon: FaGamepad,
             activeClass: "text-orange-500 font-medium",
@@ -277,7 +277,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "nature-walks",
-            title: "Nature Walks",
+            title: "nature-walks",
             label: "nature-walks",
             icon: FaLeaf,
             activeClass: "text-emerald-500 font-medium",

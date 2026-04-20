@@ -1,4 +1,4 @@
-import { projects } from "@/utils/data";
+import { projects } from "@/data/projects";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProjectState {
@@ -25,7 +25,7 @@ const projectsSlice = createSlice({
         state.filteredProjects = state.allProjects;
       } else {
         state.filteredProjects = state.allProjects.filter((project) =>
-          action.payload.every((skill) => project.skills.includes(skill))
+          action.payload.every((skill) => project.skills.includes(skill)),
         );
       }
     },
@@ -38,7 +38,7 @@ const projectsSlice = createSlice({
         newSelectedSkills = [...state.selectedSkills, action.payload];
       } else {
         newSelectedSkills = state.selectedSkills.filter(
-          (skill) => skill !== action.payload
+          (skill) => skill !== action.payload,
         );
       }
       state.selectedSkills = newSelectedSkills;
@@ -47,7 +47,7 @@ const projectsSlice = createSlice({
         state.filteredProjects = state.allProjects;
       } else {
         state.filteredProjects = state.allProjects.filter((project) =>
-          newSelectedSkills.every((skill) => project.skills.includes(skill))
+          newSelectedSkills.every((skill) => project.skills.includes(skill)),
         );
       }
     },
@@ -60,7 +60,7 @@ const projectsSlice = createSlice({
         state.filteredProjects = state.allProjects;
       } else {
         state.filteredProjects = state.allProjects.filter((project) =>
-          state.selectedSkills.every((skill) => project.skills.includes(skill))
+          state.selectedSkills.every((skill) => project.skills.includes(skill)),
         );
       }
     },
