@@ -30,11 +30,7 @@ const AboutMeSidebar = () => {
     categories[0];
 
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
-    () =>
-      new Set([
-        `main-${activeCategory.id}`,
-        `${activeCategory.id}-${activeCategory.groups[0]?.id ?? ""}`,
-      ]),
+    () => new Set([`main-${activeCategory.id}`]),
   );
 
   const handleCategorySwitch = (categoryId: string) => {
@@ -43,12 +39,7 @@ const AboutMeSidebar = () => {
       categories[0];
 
     setActiveCategoryId(categoryId);
-    setExpandedDropdowns(
-      new Set([
-        `main-${selectedCategory.id}`,
-        `${selectedCategory.id}-${selectedCategory.groups[0]?.id ?? ""}`,
-      ]),
-    );
+    setExpandedDropdowns(new Set([`main-${selectedCategory.id}`]));
   };
 
   const handleMobileCategoryToggle = (categoryId: string) => {

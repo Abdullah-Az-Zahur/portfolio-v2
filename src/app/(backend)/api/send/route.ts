@@ -1,4 +1,4 @@
-// app/api/send/route.ts
+// app/(backend)/api/send/route.ts
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 
