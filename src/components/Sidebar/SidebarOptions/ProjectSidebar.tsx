@@ -63,7 +63,6 @@ const ProjectSidebar = () => {
       addTab({
         id: skillTabId(skill),
         title: skill,
-        content: null,
       }),
     );
   };
@@ -85,7 +84,6 @@ const ProjectSidebar = () => {
           addTab({
             id: tabId,
             title: skill,
-            content: null,
           }),
         );
       }
