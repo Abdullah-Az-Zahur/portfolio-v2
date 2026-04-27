@@ -17,7 +17,7 @@ const HomePage = () => {
   return (
     <div className="grid place-items-center">
       {/* Green Image - Middle Top */}
-      <div className="col-start-1 row-start-1 justify-self-center self-start">
+      <div className="col-start-1 row-start-1 justify-self-center self-start pointer-events-none">
         <Image
           src="/assets/images/home/Green.png"
           alt="Green"
@@ -30,7 +30,7 @@ const HomePage = () => {
       </div>
 
       {/* Blue Image - Middle Right */}
-      <div className="col-start-1 row-start-1 justify-self-end self-center">
+      <div className="col-start-1 row-start-1 justify-self-end self-center pointer-events-none">
         <Image
           src="/assets/images/home/Blue.png"
           alt="Blue"
@@ -43,7 +43,7 @@ const HomePage = () => {
       </div>
 
       {/* Content */}
-      <div className="col-start-1 row-start-1 grid md:grid-cols-2 md:gap-4 md:items-center">
+      <div className="col-start-1 row-start-1 relative z-10 grid md:grid-cols-2 md:gap-4 md:items-center">
         <div className="p-5">
           <div className="mt-10 md:mt-0 md:space-y-5 space-y-3">
             <h4 className="text-[#E5E9F0] text-xl">Hi all. I am</h4>
