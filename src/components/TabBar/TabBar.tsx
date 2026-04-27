@@ -1,8 +1,8 @@
 "use client";
 
-import { uncheckedSkill } from "@/redux/features/projects/projectsSlice";
-import { removeTab, setActiveTab } from "@/redux/features/tabs/tabsSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { uncheckedSkill } from "@/store/features/projects/projectsSlice";
+import { removeTab, setActiveTab } from "@/store/features/tabs/tabsSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { usePathname } from "next/navigation";
 import { FiX } from "react-icons/fi";
 

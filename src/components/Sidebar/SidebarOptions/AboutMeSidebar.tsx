@@ -10,8 +10,8 @@ import {
 } from "react-icons/io";
 import { RiFolder3Fill } from "react-icons/ri";
 import { motion, AnimatePresence } from "framer-motion";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { addTab } from "@/redux/features/tabs/tabsSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import { addTab } from "@/store/features/tabs/tabsSlice";
 import Link from "next/link";
 import { aboutSidebarCategories } from "@/components/About/aboutSidebarCategories";
 import { SidebarCategory } from "@/components/About/sidebarTypes";

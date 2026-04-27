@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import AboutMeSidebar from "./SidebarOptions/AboutMeSidebar";
 import ProjectSidebar from "./SidebarOptions/ProjectSidebar";
 import ContactSidebar from "./SidebarOptions/ContactSidebar";
-import { useAppDispatch } from "@/redux/hooks";
-import { clearTabs } from "@/redux/features/tabs/tabsSlice";
+import { useAppDispatch } from "@/store/hooks";
+import { clearTabs } from "@/store/features/tabs/tabsSlice";
 
 const Sidebar = () => {
   const pathname = usePathname();

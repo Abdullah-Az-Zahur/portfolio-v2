@@ -1,4 +1,4 @@
-import { projects } from "@/data/projects";
+import { projects } from "@/shared/data/projects";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
 interface ProjectState {

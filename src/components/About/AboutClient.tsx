@@ -1,5 +1,5 @@
 "use client";
-import { useAppSelector } from "@/redux/hooks";
+import { useAppSelector } from "@/store/hooks";
 import { aboutSidebarCategories } from "./aboutSidebarCategories";
 import BioInfo from "./PersonalInfo/Bio/BioInfo";
 

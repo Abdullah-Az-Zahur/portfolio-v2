@@ -1,8 +1,8 @@
 "use client";
 
-import { addTab, removeTab } from "@/redux/features/tabs/tabsSlice";
-import { toggleSkill } from "@/redux/features/projects/projectsSlice";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+import { addTab, removeTab } from "@/store/features/tabs/tabsSlice";
+import { toggleSkill } from "@/store/features/projects/projectsSlice";
+import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import React, { useEffect, useState } from "react";
 import { FaCss3Alt, FaHtml5, FaNodeJs, FaReact } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";

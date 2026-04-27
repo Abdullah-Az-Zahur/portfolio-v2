@@ -85,7 +85,7 @@ const tabReducer = (state: TabState, action: TabAction): TabState => {
 
 const TabContext = createContext<ContextType | undefined>(undefined);
 
-export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
+export const AppTabProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const [tabState, dispatchTab] = useReducer(tabReducer, initialTabState);
@@ -167,7 +167,7 @@ export const ContextProvider: React.FC<{ children: React.ReactNode }> = ({
 export const useTabs = () => {
   const context = useContext(TabContext);
   if (!context) {
-    throw new Error("useTabs must be used within a ContextProvider");
+    throw new Error("useTabs must be used within a AppTabProvider");
   }
   return context;
 };
