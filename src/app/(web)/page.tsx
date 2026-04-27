@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 const HomePage = () => {
   return (
-    <div className="grid place-items-center">
+    <div className="h-full grid place-items-center overflow-hidden">
       {/* Green Image - Middle Top */}
       <div className="col-start-1 row-start-1 justify-self-center self-start pointer-events-none">
         <Image
