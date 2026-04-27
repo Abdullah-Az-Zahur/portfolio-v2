@@ -65,21 +65,17 @@ const AboutMeSidebar = () => {
     return expandedDropdowns.has(title);
   };
 
-  const handleSideBarItemClick = (
-    title: string,
-    component: React.ReactNode,
-  ) => {
+  const handleSideBarItemClick = (id: string, title: string) => {
     dispatch(
       addTab({
-        id: title.toLowerCase().replace(/\s+/g, "-"),
+        id,
         title: title,
-        content: component,
       }),
     );
   };
 
-  const isItemActive = (title: string): boolean => {
-    return activeTab === title;
+  const isItemActive = (id: string): boolean => {
+    return activeTab === id;
   };
 
   // Animation variants
@@ -189,15 +185,12 @@ const AboutMeSidebar = () => {
                               <motion.li
                                 key={item.id}
                                 className={`flex items-center gap-2 text-sm ${
-                                  isItemActive(item.title)
+                                  isItemActive(item.id)
                                     ? item.activeClass
                                     : `text-gray-500 ${item.hoverClass}`
                                 } cursor-pointer`}
                                 onClick={() =>
-                                  handleSideBarItemClick(
-                                    item.title,
-                                    item.content,
-                                  )
+                                  handleSideBarItemClick(item.id, item.title)
                                 }
                                 variants={itemVariants}
                                 whileHover="hover"

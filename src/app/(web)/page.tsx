@@ -10,7 +10,7 @@ import { TbSlashes } from "react-icons/tb";
 export const metadata: Metadata = {
   title: "Home",
   description:
-    "Welcome to my portfolio! I’m Md. Abdullah Az Zahur, a passionate MERN Stack and Front-End Developer from Bangladesh. I build scalable, responsive, and user-friendly web applications with React, Next.js, Node.js, and MongoDB.",
+    "Welcome to my portfolio! I’m Md. Abdullah Az-Zahur, a passionate MERN Stack and Front-End Developer from Bangladesh. I build scalable, responsive, and user-friendly web applications with React, Next.js, Node.js, and MongoDB.",
 };
 
 const Home: React.FC = () => {
@@ -24,7 +24,8 @@ const Home: React.FC = () => {
           width={600} // Default size
           height={600}
           priority
-          className="w-[300px] md:w-[500px] lg:w-[600px] opacity-80" // Reduced transparency
+          className="w-[300px] md:w-[500px] lg:w-[600px] h-auto opacity-80" // Reduced transparency
+          style={{ width: "auto", height: "auto" }}
         />
       </div>
 
@@ -36,7 +37,8 @@ const Home: React.FC = () => {
           width={600} // Default size
           height={600}
           priority
-          className="w-[300px] md:w-[500px] lg:w-[600px] opacity-80" // Reduced transparency
+          className="w-[300px] md:w-[500px] lg:w-[600px] h-auto opacity-80" // Reduced transparency
+          style={{ width: "auto", height: "auto" }}
         />
       </div>
 

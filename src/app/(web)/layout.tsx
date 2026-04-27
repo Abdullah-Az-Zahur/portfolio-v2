@@ -13,22 +13,20 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="min-h-screen flex flex-col">
-        <Provider store={store}>
-          <ContextProvider>
-            <NavBar />
-            <div className="flex flex-col md:flex-row flex-1 mt-14">
-              {<Sidebar />}
-              <main className="flex-1 overflow-y-auto pb-10 md:ml-[20%] md:pt-14">
-                {<TabBar />}
-                {children}
-              </main>
-            </div>
-            {<Footer />}
-          </ContextProvider>
-        </Provider>
-      </body>
-    </html>
+    <div className="min-h-screen flex flex-col">
+      <Provider store={store}>
+        <ContextProvider>
+          <NavBar />
+          <div className="flex flex-col md:flex-row flex-1 mt-14">
+            <Sidebar />
+            <main className="flex-1 overflow-y-auto pb-10 md:ml-[20%] md:pt-14">
+              <TabBar />
+              {children}
+            </main>
+          </div>
+          <Footer />
+        </ContextProvider>
+      </Provider>
+    </div>
   );
 }
