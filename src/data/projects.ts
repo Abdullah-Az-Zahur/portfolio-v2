@@ -211,7 +211,7 @@ export const projects = [
   {
     id: 13,
     name: "Portfolio v2",
-    liveLink: "https://portfolio-v2-beige-eta.vercel.app/",
+    liveLink: "https://abdullahzahur.vercel.app/",
     repoLink: "https://github.com/Abdullah-Az-Zahur/portfolio-v2",
     image: "/assets/images/projects/portfolioV2.png",
     description:
