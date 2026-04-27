@@ -1,13 +1,13 @@
 "use client";
-import Footer from "@/components/Footer/Footer";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import TabBar from "@/components/TabBar/TabBar";
-import NavBar from "@/components/NavBar/NavBar";
+import Footer from "@/shared/layout/Footer/Footer";
+import Sidebar from "@/shared/layout/Sidebar/Sidebar";
+import TabBar from "@/shared/layout/TabBar/TabBar";
+import NavBar from "@/shared/layout/NavBar/NavBar";
 import { AppTabProvider } from "@/providers/AppTabProvider";
 import { Provider } from "react-redux";
 import { store } from "@/store/store";
 
-export default function RootLayout({
+export default function WebLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

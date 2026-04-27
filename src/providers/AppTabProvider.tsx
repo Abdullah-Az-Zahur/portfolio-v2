@@ -7,7 +7,7 @@ import {
   useReducer,
 } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import BioInfo from "@/components/About/PersonalInfo/Bio/BioInfo";
+import BioInfo from "@/features/about/components/PersonalInfo/Bio/BioInfo";
 
 interface Tab {
   id: string;
