@@ -1,6 +1,5 @@
-import React from "react";
 import { Metadata } from "next";
-import AboutClient from "@/components/About/AboutClient";
+import AboutClient from "@/features/about/components/AboutClient";
 
 export const metadata: Metadata = {
   title: "About",
@@ -9,11 +8,7 @@ export const metadata: Metadata = {
 };
 
 const AboutPage = () => {
-  return (
-    <>
-      <AboutClient />
-    </>
-  );
+  return <AboutClient />;
 };
 
 export default AboutPage;

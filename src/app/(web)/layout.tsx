@@ -1,13 +1,13 @@
 "use client";
-import Footer from "@/components/Footer/Footer";
-import Sidebar from "@/components/Sidebar/Sidebar";
-import TabBar from "@/components/TabBar/TabBar";
-import NavBar from "@/components/NavBar/NavBar";
-import { ContextProvider } from "@/contexts/Context";
+import Footer from "@/shared/layout/Footer/Footer";
+import Sidebar from "@/shared/layout/Sidebar/Sidebar";
+import TabBar from "@/shared/layout/TabBar/TabBar";
+import NavBar from "@/shared/layout/NavBar/NavBar";
+import { AppTabProvider } from "@/providers/AppTabProvider";
 import { Provider } from "react-redux";
-import { store } from "@/redux/store";
+import { store } from "@/store/store";
 
-export default function RootLayout({
+export default function WebLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -15,7 +15,7 @@ export default function RootLayout({
   return (
     <div className="min-h-screen flex flex-col">
       <Provider store={store}>
-        <ContextProvider>
+        <AppTabProvider>
           <NavBar />
           <div className="flex flex-col md:flex-row flex-1 mt-14">
             <Sidebar />
@@ -25,7 +25,7 @@ export default function RootLayout({
             </main>
           </div>
           <Footer />
-        </ContextProvider>
+        </AppTabProvider>
       </Provider>
     </div>
   );

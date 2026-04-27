@@ -1,6 +1,6 @@
 export const dynamic = "force-dynamic";
 
-import TypingAnimation from "@/components/TypingAnimation/TypingAnimation";
+import TypingAnimation from "@/shared/ui/TypingAnimation/TypingAnimation";
 import { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     "Welcome to my portfolio! I’m Md. Abdullah Az-Zahur, a passionate MERN Stack and Front-End Developer from Bangladesh. I build scalable, responsive, and user-friendly web applications with React, Next.js, Node.js, and MongoDB.",
 };
 
-const Home: React.FC = () => {
+const HomePage = () => {
   return (
     <div className="grid place-items-center">
       {/* Green Image - Middle Top */}
@@ -91,4 +91,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default HomePage;

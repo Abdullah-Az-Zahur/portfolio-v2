@@ -1,4 +1,4 @@
-import ProjectClient from "@/components/Project/ProjectClient";
+import ProjectClient from "@/features/projects/components/ProjectClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -8,11 +8,7 @@ export const metadata: Metadata = {
 };
 
 const ProjectPage = () => {
-  return (
-    <>
-      <ProjectClient />
-    </>
-  );
+  return <ProjectClient />;
 };
 
 export default ProjectPage;
