@@ -24,9 +24,9 @@ export default function WebLayout({
           <div className="flex flex-col md:flex-row flex-1 mt-14">
             <Sidebar />
             <main
-              className={`flex-1 md:ml-[20%] ${
+              className={`flex-1 ${isHomePage ? "md:ml-0" : "md:ml-[20%]"} ${
                 isHomePage
-                  ? "overflow-hidden h-[calc(100vh-56px)] md:h-[calc(100vh-56px-48px)]"
+                  ? "overflow-hidden h-[calc(100dvh-56px)] md:h-[calc(100dvh-56px-48px)]"
                   : "overflow-y-auto pb-10 md:pt-14"
               }`}
             >

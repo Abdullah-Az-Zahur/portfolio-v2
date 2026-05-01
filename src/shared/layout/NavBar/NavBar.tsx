@@ -19,9 +19,18 @@ const navItems = [
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu state
   const pathname = usePathname(); // Gets the current pathname to highlight the active link
+  const isHomePage = pathname === "/";
+
+  const headerClassName = isHomePage
+    ? "fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50 md:bg-gradient-to-r md:from-[#06111f]/78 md:via-[#0b1b2e]/70 md:to-[#06111f]/78 md:backdrop-blur-xl md:border-white/15 md:shadow-[0_8px_30px_rgba(1,22,39,0.35)]"
+    : "fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50";
+
+  const mobileMenuClassName = isHomePage
+    ? "md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)] md:bg-[#06111f]/70 md:backdrop-blur-2xl md:border-white/15 md:shadow-[0_20px_45px_rgba(1,22,39,0.45)]"
+    : "md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]";
 
   return (
-    <header className="fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50">
+    <header className={headerClassName}>
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
         <Link
@@ -114,7 +123,7 @@ const NavBar: React.FC = () => {
 
       {/* Mobile Dropdown Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]">
+        <div className={mobileMenuClassName}>
           <nav className="flex flex-col items-center">
             {navItems.map((item) => (
               <Link

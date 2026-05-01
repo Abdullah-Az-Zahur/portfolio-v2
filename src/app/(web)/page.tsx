@@ -1,8 +1,8 @@
 export const dynamic = "force-dynamic";
 
+import HomeBackgroundBlobs from "@/features/home/components/HomeBackgroundBlobs";
 import TypingAnimation from "@/shared/ui/TypingAnimation/TypingAnimation";
 import { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { IoIosArrowForward } from "react-icons/io";
 import { TbSlashes } from "react-icons/tb";
@@ -15,35 +15,27 @@ export const metadata: Metadata = {
 
 const HomePage = () => {
   return (
-    <div className="h-full grid place-items-center overflow-hidden">
-      {/* Green Image - Middle Top */}
-      <div className="col-start-1 row-start-1 justify-self-center self-start pointer-events-none">
-        <Image
-          src="/assets/images/home/Green.png"
-          alt="Green"
-          width={600} // Default size
-          height={600}
-          priority
-          className="w-[300px] md:w-[500px] lg:w-[600px] h-auto opacity-80" // Reduced transparency
-          style={{ width: "auto", height: "auto" }}
-        />
-      </div>
-
-      {/* Blue Image - Middle Right */}
-      <div className="col-start-1 row-start-1 justify-self-end self-center pointer-events-none">
-        <Image
-          src="/assets/images/home/Blue.png"
-          alt="Blue"
-          width={600} // Default size
-          height={600}
-          priority
-          className="w-[300px] md:w-[500px] lg:w-[600px] h-auto opacity-80" // Reduced transparency
-          style={{ width: "auto", height: "auto" }}
-        />
-      </div>
+    <div className="relative min-h-[calc(100dvh-56px)] overflow-hidden bg-[#011627] md:min-h-[calc(100dvh-56px-48px)]">
+      <div
+        className="pointer-events-none absolute inset-0"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(120% 85% at 20% 15%, rgba(67,217,173,0.16) 0%, rgba(67,217,173,0) 62%), radial-gradient(110% 80% at 80% 35%, rgba(77,91,206,0.2) 0%, rgba(77,91,206,0) 66%)",
+        }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[42%] md:hidden"
+        aria-hidden
+        style={{
+          background:
+            "radial-gradient(75% 100% at 50% 100%, rgba(67,217,173,0.12) 0%, rgba(77,91,206,0.1) 34%, rgba(1,22,39,0) 72%)",
+        }}
+      />
+      <HomeBackgroundBlobs />
 
       {/* Content */}
-      <div className="col-start-1 row-start-1 relative z-10 grid md:grid-cols-2 md:gap-4 md:items-center">
+      <div className="relative z-10 grid h-full place-items-center md:grid-cols-2 md:gap-4 md:items-center">
         <div className="p-5">
           <div className="mt-10 md:mt-0 md:space-y-5 space-y-3">
             <h4 className="text-[#E5E9F0] text-xl">Hi all. I am</h4>
