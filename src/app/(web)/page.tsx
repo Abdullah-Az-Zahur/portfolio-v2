@@ -44,6 +44,7 @@ const HomePage = () => {
               <IoIosArrowForward className="font-bold mr-2" />
               <TypingAnimation
                 texts={[
+                  { text: "Software Engineer" },
                   { text: "Front-End Developer" },
                   { text: "Back-End Developer" },
                   { text: "MERN Stack Developer" },
