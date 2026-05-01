@@ -17,7 +17,7 @@ export async function POST(request: Request) {
   // Email options
   const mailOptions = {
     from: email,
-    to: "abdullah.az.zahur@gmail.com",
+    to: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@example.com",
     subject: `New message from ${name}`,
     text: message,
     html: `

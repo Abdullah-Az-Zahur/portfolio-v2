@@ -4,37 +4,31 @@ import { AnimatePresence, motion } from "framer-motion";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { MdEmail, MdPhone } from "react-icons/md";
 import {
+  FaFacebook,
+  FaLinkedin,
   FaYoutube,
   FaTwitter,
   FaInstagram,
-  FaFacebook,
-  FaLinkedin,
 } from "react-icons/fa";
+import { dropdownVariants } from "@/shared/utils/animationVariants";
 
 const ContactSidebar = () => {
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     () => new Set(["contact"]),
   );
 
-  const dropdownVariants = {
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        opacity: { delay: 0.12 },
-        duration: 0.28,
-        ease: "easeInOut",
-      },
-    },
-    closed: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.25,
-        ease: "easeInOut",
-      },
-    },
-  };
+  // Use environment variables for contact information
+  const contactEmail =
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@example.com";
+  const contactPhone =
+    process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880-1705697897";
+  const facebookUrl =
+    process.env.NEXT_PUBLIC_FACEBOOK_URL ||
+    "https://www.facebook.com/abdullah.az.zahur";
+  const linkedinUrl =
+    process.env.NEXT_PUBLIC_LINKEDIN_URL ||
+    "https://www.linkedin.com/in/md-abdullah-az-zahur/";
+  const youtubeUrl = "https://www.youtube.com/@itsazzahurgaming";
 
   const toggleDropdown = (title: string) => {
     setExpandedDropdowns((prev) => {
@@ -81,16 +75,19 @@ const ContactSidebar = () => {
             <li className="flex items-center gap-2 text-gray-500 hover:text-purple-500 cursor-pointer">
               <MdEmail className="text-purple-500 flex-shrink-0" />
               <a
-                href="mailto:abdullah.az.zahur@gmail.com"
+                href={`mailto:${contactEmail}`}
                 className="truncate hover:underline"
               >
-                abdullah.az.zahur@gmail.com
+                {contactEmail}
               </a>
             </li>
             <li className="flex items-center gap-2 text-gray-500 hover:text-green-500 cursor-pointer">
               <MdPhone className="text-green-500" />
-              <a href="tel:+8801705697897" className="hover:underline">
-                +880-1705697897
+              <a
+                href={`tel:${contactPhone.replace(/-/g, "")}`}
+                className="hover:underline"
+              >
+                {contactPhone}
               </a>
             </li>
           </motion.ul>
@@ -124,7 +121,7 @@ const ContactSidebar = () => {
             <li className="flex items-center gap-2 text-gray-500 hover:text-blue-700">
               <FaFacebook className="text-blue-700" />
               <a
-                href="https://www.facebook.com/abdullah.az.zahur"
+                href={facebookUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
@@ -135,7 +132,7 @@ const ContactSidebar = () => {
             <li className="flex items-center gap-2 text-gray-500 hover:text-blue-600">
               <FaLinkedin className="text-blue-600" />
               <a
-                href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
+                href={linkedinUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"
@@ -146,7 +143,7 @@ const ContactSidebar = () => {
             <li className="flex items-center gap-2 text-gray-500 hover:text-red-500">
               <FaYoutube className="text-red-500" />
               <a
-                href="https://www.youtube.com/@itsazzahurgaming"
+                href={youtubeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:underline"

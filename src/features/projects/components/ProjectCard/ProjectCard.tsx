@@ -30,9 +30,10 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
           {/* Fixed aspect ratio for images */}
           <Image
             src={project.image}
-            alt="Project Image"
+            alt={`${project.name} project showcase`}
             width={400}
-            height={400}
+            height={225}
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
             className="object-cover w-full h-full rounded-t-lg"
           />
         </div>

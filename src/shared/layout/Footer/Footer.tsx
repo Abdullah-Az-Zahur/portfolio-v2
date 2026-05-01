@@ -7,6 +7,7 @@ import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 const Footer: React.FC = () => {
   const pathname = usePathname(); // Get the current path
   const [isMobile, setIsMobile] = useState(false);
+  const isHomePage = pathname === "/";
 
   useEffect(() => {
     // Check if the device is mobile (screen width < 768px)
@@ -26,13 +27,16 @@ const Footer: React.FC = () => {
 
   // Hide the footer only on mobile devices when the path is '/'
   const shouldHideFooter = isMobile && pathname === "/";
+  const footerClassName = isHomePage
+    ? `fixed bottom-0 left-0 h-12 w-full bg-[#011627] border border-gray-500 md:bg-gradient-to-r md:from-[#06111f]/80 md:via-[#0b1b2e]/72 md:to-[#06111f]/80 md:backdrop-blur-xl md:border-white/15 md:shadow-[0_-8px_26px_rgba(1,22,39,0.35)] ${
+        shouldHideFooter ? "hidden" : ""
+      }`
+    : `fixed bg-[#011627] bottom-0 left-0 border border-gray-500 h-12 w-full ${
+        shouldHideFooter ? "hidden" : ""
+      }`;
 
   return (
-    <div
-      className={`fixed bg-[#011627] bottom-0 left-0 border border-gray-500 h-12 w-full ${
-        shouldHideFooter ? "hidden" : ""
-      }`}
-    >
+    <div className={footerClassName}>
       <div className="flex justify-between items-center h-full">
         <div className="flex items-center">
           <h2 className="p-3">find me in:</h2>

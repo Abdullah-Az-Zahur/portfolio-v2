@@ -15,6 +15,7 @@ import { addTab } from "@/store/features/tabs/tabsSlice";
 import Link from "next/link";
 import { aboutSidebarCategories } from "@/features/about/components/aboutSidebarCategories";
 import { SidebarCategory } from "@/features/about/components/sidebarTypes";
+import { dropdownVariants } from "@/shared/utils/animationVariants";
 
 const AboutMeSidebar = () => {
   const dispatch = useAppDispatch();
@@ -79,27 +80,6 @@ const AboutMeSidebar = () => {
   };
 
   // Animation variants
-  const dropdownVariants = {
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        opacity: { delay: 0.15 },
-        duration: 0.34,
-        ease: "easeInOut",
-      },
-    },
-    closed: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        opacity: { duration: 0.2 },
-        height: { duration: 0.42 },
-        ease: "easeOut",
-      },
-    },
-  };
-
   const itemVariants = {
     hover: {
       scale: 1.02,
