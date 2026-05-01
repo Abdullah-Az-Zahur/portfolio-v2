@@ -2,12 +2,12 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const BioInfo = () => {
   const text = `
-    Hey, I’m Md. Abdullah Az-Zahur.
-    I’m a software engineer from Mongla Port, Khulna, and I’ve always liked turning ideas into something people can actually use.
-    I mostly work with MERN and Next.js, but what really drives me is the process behind the code: simplifying complexity, shaping useful interfaces, and making the experience feel smooth.
-    Alongside web development, I’m pursuing M.Sc. in ICT and keeping a strong focus on AI/ML research.
-    My thesis on Parkinson disease prediction made me care even more about healthcare-focused data science and meaningful problem solving.
-    I like building things that are clean, practical, and quietly impressive.
+    Hello — I’m Md. Abdullah Az-Zahur.
+    I’m a software engineer. I turn thoughtful ideas into simple, reliable web experiences that people enjoy using.
+    Day-to-day I build with Next.js and the MERN stack, but what I care about most is clarity: making complex systems feel effortless.
+    I’m currently deepening my AI/ML knowledge through an M.Sc. in ICT, applying research to practical problems.
+    My thesis on Parkinson’s prediction taught me how data and design can create real-world impact.
+    I prefer craft over noise — clean solutions, well-tested, and quietly ambitious.
   `;
 
   return (

@@ -2,9 +2,9 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const HikingHobby = () => {
   const text = `
-        Hiking
-        Hiking helps me reset and return with better focus
-        It improves my mindset for problem-solving.
+      Hiking
+      Time on the trail is time well-invested: clearer thinking, better energy, and fewer blind spots when tackling tough problems.
+      Fresh air fuels better design decisions.
   `;
 
   return (

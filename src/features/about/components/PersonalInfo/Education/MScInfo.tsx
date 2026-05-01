@@ -2,10 +2,10 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const MScInfo = () => {
   const text = `
-    M.Sc.Eng. in ICT (Running)
-    Currently studying at IICT, KUET.
-    This stage is helping me go deeper into advanced ICT topics, research thinking, and AI/ML direction.
-    I want to connect academic depth with practical software engineering and data-driven work.
+    M.Sc.Eng. in ICT (In progress)
+    IICT, KUET
+    Deepening research skills in AI/ML and advanced ICT topics, with a focus on turning experimental models into practical, production-ready features.
+    Goal: bridge academic rigor with pragmatic engineering.
   `;
 
   return (
