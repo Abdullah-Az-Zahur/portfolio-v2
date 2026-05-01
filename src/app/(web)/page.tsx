@@ -1,5 +1,3 @@
-export const dynamic = "force-dynamic";
-
 import HomeBackgroundBlobs from "@/features/home/components/HomeBackgroundBlobs";
 import TypingAnimation from "@/shared/ui/TypingAnimation/TypingAnimation";
 import { Metadata } from "next";

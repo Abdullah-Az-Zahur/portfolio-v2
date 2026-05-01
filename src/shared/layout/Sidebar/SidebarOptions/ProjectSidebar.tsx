@@ -18,6 +18,7 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import SkillCheckbox from "../SkillCheckbox/SkillCheckbox";
+import { dropdownVariants } from "@/shared/utils/animationVariants";
 
 const ProjectSidebar = () => {
   const dispatch = useAppDispatch();
@@ -25,26 +26,6 @@ const ProjectSidebar = () => {
   const { tabs } = useAppSelector((state) => state.tabs);
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const skillTabId = (skill: string) => `project-skill:${skill}`;
-
-  const dropdownVariants = {
-    open: {
-      opacity: 1,
-      height: "auto",
-      transition: {
-        opacity: { delay: 0.12 },
-        duration: 0.28,
-        ease: "easeInOut",
-      },
-    },
-    closed: {
-      opacity: 0,
-      height: 0,
-      transition: {
-        duration: 0.25,
-        ease: "easeInOut",
-      },
-    },
-  };
 
   const toggleDropdown = () => {
     setIsDropdownOpen((prev) => !prev);

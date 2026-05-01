@@ -39,9 +39,10 @@ const NavBar: React.FC = () => {
         >
           <Image
             src="/assets/images/My half Photo.png"
-            height="200"
-            width="200"
-            alt="profile Pic"
+            height="32"
+            width="32"
+            alt="Profile picture"
+            priority
             className="w-7 h-7 rounded-full"
           />
           md. abdullah az-zahur

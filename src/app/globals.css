@@ -17,7 +17,7 @@
 body {
   color: #607b96;
   background: #011627;
-  font-family: "Fira Code", monospace; /* Apply Fira Code as the default font */
+  /* Font is now applied via next/font Fira_Code in layout.tsx */
 }
 
 /* Change color of selected text */
