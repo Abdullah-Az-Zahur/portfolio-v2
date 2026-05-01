@@ -2,9 +2,8 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const GamesHobby = () => {
   const text = `
-        Games
-        I enjoy strategic and story-driven games
-        They help me improve focus and creative thinking.
+      Games
+      Strategic and narrative games sharpen pattern recognition and scenario thinking — skills I bring to system design and UX trade-offs.
   `;
 
   return (

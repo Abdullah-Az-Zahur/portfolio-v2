@@ -3,11 +3,11 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 const TechnicalSkills = () => {
   const text = `
         Technical Playground
-    Languages I work with: Python, JavaScript (ES6+), TypeScript, and PHP.
-    AI & data science: Machine Learning, Deep Learning, PyTorch, Scikit-Learn, Pandas, NumPy, and data analysis.
-    Web development: React, Next.js, Node.js, Express.js, MongoDB, Redux Toolkit, Tailwind CSS, and REST APIs.
-    Tools and workflow: Git & GitHub, Postman, Firebase, Netlify, JWT, React Hook Form, and SweetAlert.
-    Core strengths: problem-solving, research mindset, system design, adaptability, and clear technical communication.
+    Languages: Python, TypeScript, and JavaScript (ES6+).
+    Web: Next.js, React, Node.js, Express, MongoDB — focused on fast, maintainable interfaces.
+    Data & AI: practical ML workflows with PyTorch, Scikit-Learn, Pandas — I translate models into usable features.
+    Workflow: Git, CI-friendly practices, React Hook Form, Tailwind CSS, and pragmatic testing.
+    Strengths: thoughtful system design, clear technical communication, and shipping reliable results.
   `;
 
   return (

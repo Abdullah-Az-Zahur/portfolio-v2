@@ -2,9 +2,9 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const MusicHobby = () => {
   const text = `
-        Music
-        I enjoy coding while listening to instrumental playlists
-        I explore different genres to stay creative and focused.
+      Music
+      Instrumental playlists are my background engine for deep work — they keep focus and spark small creative leaps.
+      I explore diverse genres to reset perspective during long sprints.
   `;
 
   return (

@@ -2,9 +2,8 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const NatureWalksHobby = () => {
   const text = `
-        Nature Walks
-        Short nature walks keep me fresh during long coding sessions
-        They help me maintain clarity and consistency.
+      Nature Walks
+      Short walks reset attention and reduce decision fatigue — tiny rituals that preserve consistency across long projects.
   `;
 
   return (

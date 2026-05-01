@@ -3,10 +3,8 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 const InterestsInfo = () => {
   const text = `
         Interests
-    Sports keep me active, especially football, cricket, and volleyball.
-    I enjoy exploring new web technologies, AI ideas, and practical research work.
-    Travel and culture are also part of how I stay curious and open-minded.
-    I like learning things that help me build better products and better habits.
+    Outside code, I stay curious in ways that sharpen my work: team sports (football, cricket), travel that widens perspective, and hands-on experiments with new web and AI tools.
+    These habits inform my product choices — I look for durability, clarity, and delightful small details.
   `;
 
   return (

@@ -153,8 +153,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         items: [
           {
             id: "high-school",
-            title: "hsc",
-            label: "hsc",
+            title: "school-days",
+            label: "school-days",
             icon: GiSchoolBag,
             activeClass: "text-yellow-500 font-medium",
             hoverClass: "hover:text-yellow-500",
@@ -163,8 +163,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "college",
-            title: "ssc",
-            label: "ssc",
+            title: "college-journey",
+            label: "college-journey",
             icon: FaUniversity,
             activeClass: "text-blue-500 font-medium",
             hoverClass: "hover:text-blue-500",
@@ -173,8 +173,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "university",
-            title: "bsc",
-            label: "bsc",
+            title: "undergrad-life",
+            label: "undergrad-life",
             icon: FaUserGraduate,
             activeClass: "text-purple-500 font-medium",
             hoverClass: "hover:text-purple-500",
@@ -183,8 +183,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "msc-ict",
-            title: "msc-ict",
-            label: "msc-ict",
+            title: "postgrad-path",
+            label: "postgrad-path",
             icon: FaUserGraduate,
             activeClass: "text-cyan-500 font-medium",
             hoverClass: "hover:text-cyan-500",
@@ -193,8 +193,8 @@ export const aboutSidebarCategories: SidebarCategory[] = [
           },
           {
             id: "bachelor-thesis",
-            title: "research",
-            label: "research",
+            title: "research-story",
+            label: "research-story",
             icon: FaBookOpen,
             activeClass: "text-orange-500 font-medium",
             hoverClass: "hover:text-orange-500",

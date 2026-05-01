@@ -3,10 +3,9 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 const CollegeInfo = () => {
   const text = `
     Secondary School Certificate (SSC)
-    Science Group, Mongla Bandar Secondary School, Mongla | 2016
+    Mongla Bandar Secondary School, Mongla | 2016
     GPA: 4.11/5.00
-    Strong performance in science subjects helped build my confidence early on.
-    It also strengthened the logical thinking that later guided me toward tech.
+    Solid foundation in scientific thinking and problem solving — the practical backbone that guided my path into technology.
   `;
 
   return (
