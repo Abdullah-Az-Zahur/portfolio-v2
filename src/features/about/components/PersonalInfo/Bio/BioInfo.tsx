@@ -2,14 +2,12 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const BioInfo = () => {
   const text = `
-    Hey, I am Md. Abdullah Az-Zahur.
-    I build web experiences that feel clean, fast, and actually enjoyable to use.
-    My comfort zone is the MERN and Next.js ecosystem, but I always love learning beyond it.
-    I enjoy turning rough ideas into polished products with thoughtful UI and reliable backend logic.
-    What excites me most is solving real user problems, not just writing code.
-    Outside of code, I stay curious, collaborative, and always ready for the next challenge.
-    Location: Mongla Port, Khulna, Bangladesh.
-    If you want to build something meaningful together, I would love to connect.
+    Hey, I’m Md. Abdullah Az-Zahur.
+    I’m a software engineer from Mongla Port, Khulna, and I’ve always liked turning ideas into something people can actually use.
+    I mostly work with MERN and Next.js, but what really drives me is the process behind the code: simplifying complexity, shaping useful interfaces, and making the experience feel smooth.
+    Alongside web development, I’m pursuing M.Sc. in ICT and keeping a strong focus on AI/ML research.
+    My thesis on Parkinson disease prediction made me care even more about healthcare-focused data science and meaningful problem solving.
+    I like building things that are clean, practical, and quietly impressive.
   `;
 
   return (

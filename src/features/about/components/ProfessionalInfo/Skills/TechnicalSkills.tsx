@@ -3,11 +3,11 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 const TechnicalSkills = () => {
   const text = `
         Technical Playground
-        Languages I work with: JavaScript (ES6+), TypeScript, PHP, HTML5, CSS3.
-        Frontend focus: React, Next.js, Tailwind CSS, Bootstrap, Redux Toolkit, Framer Motion.
-        Backend and platform: Node.js, Express.js, REST APIs, JWT, Firebase, MongoDB.
-        Daily tools: Git, VS Code, Postman, Axios, Netlify, React Hook Form, SweetAlert.
-        Team strengths: communication, collaboration, ownership, and problem-solving.
+    Languages I work with: Python, JavaScript (ES6+), TypeScript, and PHP.
+    AI & data science: Machine Learning, Deep Learning, PyTorch, Scikit-Learn, Pandas, NumPy, and data analysis.
+    Web development: React, Next.js, Node.js, Express.js, MongoDB, Redux Toolkit, Tailwind CSS, and REST APIs.
+    Tools and workflow: Git & GitHub, Postman, Firebase, Netlify, JWT, React Hook Form, and SweetAlert.
+    Core strengths: problem-solving, research mindset, system design, adaptability, and clear technical communication.
   `;
 
   return (
