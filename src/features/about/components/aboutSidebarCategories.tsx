@@ -1,4 +1,4 @@
-import { SidebarCategory } from "@/features/about/components/sidebarTypes";
+import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
 import QwikItExperience from "@/features/about/components/ProfessionalInfo/Experience/QwikItExperience";
 import EncoderITExperience from "@/features/about/components/ProfessionalInfo/Experience/EncoderITExperience";
 import TechnicalSkills from "@/features/about/components/ProfessionalInfo/Skills/TechnicalSkills";
@@ -217,16 +217,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         arrowClass: "text-rose-500",
         folderClass: "text-rose-500",
         items: [
-          // {
-          //   id: "music",
-          //   title: "Music",
-          //   label: "music",
-          //   icon: FaMusic,
-          //   activeClass: "text-rose-500 font-medium",
-          //   hoverClass: "hover:text-rose-500",
-          //   iconClass: "text-rose-500",
-          //   content: <MusicHobby />,
-          // },
           {
             id: "books",
             title: "books",

@@ -7,14 +7,7 @@ import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { motion } from "framer-motion";
 import Image from "next/image";
-
-// Navigation items array
-const navItems = [
-  { href: "/", label: "_hello" },
-  { href: "/about", label: "_about-me" },
-  { href: "/project", label: "_project" },
-  { href: "/contact", label: "_contact-me" },
-];
+import { navItems } from "./navItems";
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu state
