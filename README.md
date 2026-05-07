@@ -1,6 +1,6 @@
-# 🎨 Portfolio v2 — Md. Abdullah Az-Zahur
+# 🎨 Portfolio v2 — Md. Abdullah Az-Zahur, Software Engineer
 
-A clean, minimalistic developer portfolio built with **Next.js 16**, **React 19**, **TypeScript**, and **Framer Motion**. Inspired by VS Code UI, this project showcases my web development journey with smooth animations, skill-based project filtering, a contact form with email backend, and a professional component architecture.
+A clean, minimalistic software engineer portfolio built with **Next.js 16**, **React 19**, **TypeScript**, and **Framer Motion**. Inspired by VS Code UI, this project showcases my software engineering journey, MERN stack work, and AI/ML research background with smooth animations, skill-based project filtering, a contact form with email backend, and a professional component architecture.
 
 **[🌐 Live Demo](https://abdullahzahur.vercel.app/)** • **[📧 Contact](https://abdullahzahur.vercel.app/contact)** • **[🔗 GitHub](https://github.com/Abdullah-Az-Zahur/portfolio-v2)**
 
@@ -8,17 +8,18 @@ A clean, minimalistic developer portfolio built with **Next.js 16**, **React 19*
 
 ## 👤 About This Portfolio
 
-I built this portfolio as a personal project to showcase my **web development skills** and **13+ projects**. It reflects my journey from beginner to intermediate/advanced levels in full-stack development, with a focus on:
+I built this portfolio as a personal project to showcase my **software engineering skills**, **13+ projects**, and the way I approach real-world product work. It reflects my journey from beginner to intermediate/advanced levels in full-stack development, with a focus on:
 
 - **MERN Stack Development** — Building scalable, feature-rich web applications
 - **Modern React Patterns** — Server Components, hooks, and state management with Redux
 - **UI/UX Design** — Clean, minimalistic design inspired by VS Code aesthetics
 - **TypeScript & Best Practices** — Strong typing and professional code quality
 - **Continuous Learning** — Self-taught Next.js, Redux Toolkit, and advanced patterns through free resources
+- **Research Mindset** — Applied academic learning from M.Sc. ICT work and thesis-driven problem solving
 
 ### 🎯 Key Achievement
 
-This portfolio is built with **Next.js 16, TypeScript, Redux Toolkit, and Framer Motion** — skills that I independently learned and applied. These technologies were not part of my initial course curriculum, so I:
+This portfolio is built with **Next.js 16, TypeScript, Redux Toolkit, and Framer Motion** — skills that I independently learned and applied as a software engineer. These technologies were not part of my initial course curriculum, so I:
 
 - 📚 Explored official documentation
 - 🎥 Watched free tutorials and guides
@@ -26,6 +27,8 @@ This portfolio is built with **Next.js 16, TypeScript, Redux Toolkit, and Framer
 - 🚀 Created a production-ready application deployed on Vercel
 
 This demonstrates my ability to **self-learn**, **problem-solve**, and **build modern web applications** independently.
+
+It also reflects the kind of work I value most as a software engineer: clean systems, thoughtful UX, and practical features that feel simple to use.
 
 ---
 
@@ -43,7 +46,7 @@ This demonstrates my ability to **self-learn**, **problem-solve**, and **build m
 
 ## 🎨 Featured Projects
 
-This portfolio showcases **13+ projects** spanning from beginner to advanced levels:
+This portfolio showcases **13+ projects** spanning from beginner to advanced levels and reflects the kind of software engineering work I enjoy building:
 
 ### Advanced MERN Stack Projects
 
