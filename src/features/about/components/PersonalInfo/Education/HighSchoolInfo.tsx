@@ -2,10 +2,10 @@ import CommentText from "@/shared/ui/CommentText/CommentText";
 
 const HighSchoolInfo = () => {
   const text = `
-    Higher Secondary Certificate (HSC)
-    Bangladesh Navy School and College, Mongla | Jessore Board | 2018
-    GPA: 3.92/5.00
-    I developed a rigorous approach to analytical thinking and disciplined study — the early scaffolding for problem-solving in engineering.
+    Secondary School Certificate (SSC)
+    Mongla Bandar Secondary School, Mongla | 2016
+    GPA: 4.11/5.00
+    Solid foundation in scientific thinking and problem solving — the practical backbone that guided my path into technology.
   `;
 
   return (
