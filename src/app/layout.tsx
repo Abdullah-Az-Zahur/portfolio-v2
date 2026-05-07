@@ -14,33 +14,76 @@ export const metadata: Metadata = {
     default: "Md. Abdullah Az-Zahur",
     template: "%s | Md. Abdullah Az-Zahur",
   },
+  metadataBase: new URL("https://abdullahzahur.vercel.app"),
+  applicationName: "Md. Abdullah Az-Zahur Portfolio",
   description:
-    "Portfolio of Md. Abdullah Az-Zahur — MERN Stack and Front-End Developer from Bangladesh. Explore my projects, skills, and contact information.",
+    "Md. Abdullah Az-Zahur's portfolio website — a Next.js-powered showcase of a software engineer's MERN stack, front-end, and full-stack web development projects, skills, and contact details.",
   keywords: [
     "Md. Abdullah Az-Zahur",
     "Portfolio",
+    "Portfolio Website",
+    "Software Engineer",
+    "Software Engineering",
     "Front-End Developer",
     "MERN Stack Developer",
+    "Full Stack Developer",
+    "Software Developer",
     "React Developer",
     "Next.js Developer",
+    "TypeScript Developer",
+    "Full Stack Web Developer",
     "Bangladesh Web Developer",
+    "Bangladesh Software Engineer",
+    "Web Developer Portfolio",
+    "MERN Stack Portfolio",
   ],
   authors: [{ name: "Md. Abdullah Az-Zahur" }],
   creator: "Md. Abdullah Az-Zahur",
-  metadataBase: new URL("https://abdullahzahur.vercel.app"),
+  category: "portfolio",
+  classification: "Personal Portfolio",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+      "max-video-preview": -1,
+    },
+  },
+  icons: {
+    icon: "/window.svg",
+    shortcut: "/window.svg",
+    apple: "/window.svg",
+  },
+  manifest: "/manifest.json",
   openGraph: {
     title: "Md. Abdullah Az-Zahur | MERN Stack & Front-End Developer",
     description:
-      "Welcome to my portfolio! I’m Md. Abdullah Az-Zahur, a passionate MERN Stack and Front-End Developer. Discover my projects, skills, and experience in modern web development.",
+      "Explore Md. Abdullah Az-Zahur's portfolio to see MERN stack projects, front-end work, skills, and contact information.",
     url: "https://abdullahzahur.vercel.app",
     siteName: "Md. Abdullah Az-Zahur Portfolio",
     type: "website",
+    locale: "en_US",
+    images: [
+      {
+        url: "/assets/images/My%20half%20Photo.png",
+        width: 1200,
+        height: 630,
+        alt: "Md. Abdullah Az-Zahur portfolio preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Md. Abdullah Az-Zahur | MERN Stack & Front-End Developer",
     description:
-      "Explore the portfolio of Md. Abdullah Az-Zahur — MERN Stack and Front-End Developer. See projects, skills, and get in touch.",
+      "Explore Md. Abdullah Az-Zahur's web developer portfolio, featured projects, and contact details.",
+    images: ["/assets/images/My%20half%20Photo.png"],
   },
 };
 
@@ -54,10 +97,9 @@ export default function RootLayout({
     "@type": "Person",
     name: "Md. Abdullah Az-Zahur",
     url: "https://abdullahzahur.vercel.app",
-    image:
-      "https://abdullahzahur.vercel.app/assets/images/My%20half%20Photo.png",
-    description: "Software Engineer from Bangladesh",
-    jobTitle: "Full Stack Developer",
+    description:
+      "Md. Abdullah Az-Zahur is a Bangladesh-based software engineer and MERN stack developer.",
+    jobTitle: "Software Engineer",
     sameAs: [
       "https://www.linkedin.com/in/md-abdullah-az-zahur/",
       "https://github.com/Abdullah-Az-Zahur",
@@ -71,6 +113,7 @@ export default function RootLayout({
       email: "abdullah.az.zahur@gmail.com",
     },
     knowsAbout: [
+      "Software Engineering",
       "MERN Stack",
       "React",
       "Next.js",
@@ -81,7 +124,22 @@ export default function RootLayout({
       "Web Development",
       "Front-End Development",
       "Back-End Development",
+      "Full Stack Development",
+      "Web Application Development",
+      "AI/ML",
     ],
+  };
+
+  const webSiteJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    name: "Md. Abdullah Az-Zahur Portfolio",
+    url: "https://abdullahzahur.vercel.app",
+    potentialAction: {
+      "@type": "SearchAction",
+      target: "https://abdullahzahur.vercel.app/project",
+      "query-input": "required name=search_term_string",
+    },
   };
 
   return (
@@ -90,6 +148,10 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
       </head>
       <body suppressHydrationWarning>{children}</body>

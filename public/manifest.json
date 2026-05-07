@@ -1,0 +1,17 @@
+{
+  "name": "Md. Abdullah Az-Zahur Portfolio",
+  "short_name": "Abdullah Portfolio",
+  "description": "Personal portfolio website of Md. Abdullah Az-Zahur, built with Next.js, React, TypeScript, Redux Toolkit, and Framer Motion.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#011627",
+  "theme_color": "#011627",
+  "icons": [
+    {
+      "src": "/window.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}
