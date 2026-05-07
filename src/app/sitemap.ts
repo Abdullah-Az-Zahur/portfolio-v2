@@ -7,7 +7,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: new Date(),
     },
     {
-      url: "https://abdullahzahur.vercel.app/projects",
+      url: "https://abdullahzahur.vercel.app/project",
       lastModified: new Date(),
     },
     {
