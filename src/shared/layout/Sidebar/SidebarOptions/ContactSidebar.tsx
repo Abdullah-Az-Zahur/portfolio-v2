@@ -11,7 +11,7 @@ const ContactSidebar = () => {
   );
 
   const contactEmail =
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "contact@example.com";
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "abdullah.az.zahur@gmail.com";
   const contactPhone =
     process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880-1705697897";
   const facebookUrl =
