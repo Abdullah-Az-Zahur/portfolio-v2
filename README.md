@@ -490,7 +490,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ---
 
 <div align="center">
-  <strong>Made with ❤️ by Md. Abdullah Az-Zahur</strong><br>
+  <strong>Made with ❤️ by Md. Abdullah Az-Zahur </strong><br>
   <sub>Live at <a href="https://abdullahzahur.vercel.app/">abdullahzahur.vercel.app</a></sub><br>
   <sub>Last Updated: May 2026</sub><br>
   <sub><a href="https://github.com/Abdullah-Az-Zahur/portfolio-v2">View on GitHub</a></sub>
