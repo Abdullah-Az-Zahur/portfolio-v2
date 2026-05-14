@@ -7,7 +7,7 @@ import { contactLinkItems, socialLinkItems } from "./contactSidebarConfig";
 import { usePortfolioData } from "@/shared/hooks/usePortfolioData";
 
 const ContactSidebar = () => {
-  const data = usePortfolioData();
+  const { data } = usePortfolioData();
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     () => new Set(["contact"]),
   );

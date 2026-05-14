@@ -13,7 +13,9 @@ const ProjectClient = () => {
     void axios
       .get("/api/projects")
       .then((response) => dispatch(setProjects(response.data)))
-      .catch(() => undefined);
+      .catch((error) => {
+        console.error("Failed to load projects:", error);
+      });
   }, [dispatch]);
 
   return (

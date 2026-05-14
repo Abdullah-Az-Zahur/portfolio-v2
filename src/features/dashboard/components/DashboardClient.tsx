@@ -65,18 +65,35 @@ const DashboardClient = () => {
   const [projectEditId, setProjectEditId] = useState<string | null>(null);
   const [newSkillInput, setNewSkillInput] = useState("");
   const [draggedProjectId, setDraggedProjectId] = useState<string | null>(null);
+  const [loadError, setLoadError] = useState<string | null>(null);
 
   const loadData = async () => {
-    const response = await axios.get<PortfolioPayload>("/api/portfolio");
-    setData(response.data);
-    setLoading(false);
+    try {
+      const response = await axios.get<PortfolioPayload>("/api/portfolio");
+      setData(response.data);
+      setLoadError(null);
+    } catch (error) {
+      setLoadError("Failed to load dashboard data.");
+      console.error("Failed to load dashboard data:", error);
+    } finally {
+      setLoading(false);
+    }
   };
 
   useEffect(() => {
-    void axios.get<PortfolioPayload>("/api/portfolio").then((response) => {
-      setData(response.data);
-      setLoading(false);
-    });
+    void axios
+      .get<PortfolioPayload>("/api/portfolio")
+      .then((response) => {
+        setData(response.data);
+        setLoadError(null);
+      })
+      .catch((error) => {
+        setLoadError("Failed to load dashboard data.");
+        console.error("Failed to load dashboard data:", error);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   }, []);
 
   const availableSkills = useMemo(() => {
@@ -145,8 +162,14 @@ const DashboardClient = () => {
     await axios.post(`/api/${api}`, payload);
   };
 
-  if (loading || !data) {
+  if (loading) {
     return <div className="p-6">Loading dashboard...</div>;
+  }
+
+  if (loadError || !data) {
+    return (
+      <div className="p-6 text-red-400">{loadError || "Data unavailable."}</div>
+    );
   }
 
   return (

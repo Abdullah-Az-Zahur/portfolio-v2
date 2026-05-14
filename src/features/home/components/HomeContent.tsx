@@ -8,7 +8,7 @@ import { TbSlashes } from "react-icons/tb";
 import HomeBackgroundBlobs from "./HomeBackgroundBlobs";
 
 const HomeContent = () => {
-  const data = usePortfolioData();
+  const { data } = usePortfolioData();
   const githubUrl =
     data?.portfolio.social.github || "https://github.com/Abdullah-Az-Zahur";
   const name = data?.portfolio.name || "Md. Abdullah Az-Zahur";

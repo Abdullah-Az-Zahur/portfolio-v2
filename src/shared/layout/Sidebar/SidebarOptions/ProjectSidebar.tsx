@@ -147,7 +147,9 @@ const ProjectSidebar = () => {
           setDynamicSkills(response.data);
         }
       })
-      .catch(() => undefined);
+      .catch((error) => {
+        console.error("Failed to load project skills:", error);
+      });
   }, []);
 
   useEffect(() => {

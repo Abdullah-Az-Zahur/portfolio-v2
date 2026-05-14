@@ -48,19 +48,29 @@ type PortfolioData = {
 
 export const usePortfolioData = () => {
   const [data, setData] = useState<PortfolioData | null>(null);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     let isMounted = true;
-    void axios.get<PortfolioData>("/api/portfolio").then((response) => {
-      if (isMounted) {
-        setData(response.data);
-      }
-    });
+    void axios
+      .get<PortfolioData>("/api/portfolio")
+      .then((response) => {
+        if (isMounted) {
+          setData(response.data);
+          setError(null);
+        }
+      })
+      .catch((requestError) => {
+        if (isMounted) {
+          setError("Failed to load portfolio data.");
+        }
+        console.error("Failed to load portfolio data:", requestError);
+      });
 
     return () => {
       isMounted = false;
     };
   }, []);
 
-  return data;
+  return { data, error };
 };

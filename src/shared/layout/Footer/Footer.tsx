@@ -7,7 +7,7 @@ import { usePortfolioData } from "@/shared/hooks/usePortfolioData";
 
 const Footer: React.FC = () => {
   const pathname = usePathname(); // Get the current path
-  const data = usePortfolioData();
+  const { data } = usePortfolioData();
   const [isMobile, setIsMobile] = useState(false);
   const isHomePage = pathname === "/";
   const linkedinUrl =

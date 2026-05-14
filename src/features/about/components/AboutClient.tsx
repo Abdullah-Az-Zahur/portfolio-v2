@@ -32,7 +32,7 @@ ${entry.description}`
 
 const AboutClient = () => {
   const { activeTab } = useAppSelector((state) => state.tabs);
-  const data = usePortfolioData();
+  const { data } = usePortfolioData();
 
   const education = (data?.education || [])
     .slice()
