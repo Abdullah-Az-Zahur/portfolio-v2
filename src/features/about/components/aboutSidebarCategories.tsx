@@ -11,6 +11,7 @@ import UniversityInfo from "@/features/about/components/PersonalInfo/Education/U
 import MScInfo from "@/features/about/components/PersonalInfo/Education/MScInfo";
 import BachelorThesisInfo from "@/features/about/components/PersonalInfo/Education/BachelorThesisInfo";
 import BooksHobby from "@/features/about/components/Hobbies/Creative/BooksHobby";
+import MusicHobby from "@/features/about/components/Hobbies/Creative/MusicHobby";
 import HikingHobby from "@/features/about/components/Hobbies/Outdoor/HikingHobby";
 import GamesHobby from "@/features/about/components/Hobbies/Outdoor/GamesHobby";
 import NatureWalksHobby from "@/features/about/components/Hobbies/Wellness/NatureWalksHobby";
@@ -226,6 +227,16 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             hoverClass: "hover:text-indigo-500",
             iconClass: "text-indigo-500",
             content: <BooksHobby />,
+          },
+          {
+            id: "music",
+            title: "music",
+            label: "music",
+            icon: FaStar,
+            activeClass: "text-pink-500 font-medium",
+            hoverClass: "hover:text-pink-500",
+            iconClass: "text-pink-500",
+            content: <MusicHobby />,
           },
         ],
       },

@@ -3,11 +3,22 @@ import Link from "next/link";
 import { usePathname } from "next/navigation"; // Import usePathname
 import React, { useEffect, useState } from "react";
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
+import { usePortfolioData } from "@/shared/hooks/usePortfolioData";
 
 const Footer: React.FC = () => {
   const pathname = usePathname(); // Get the current path
+  const data = usePortfolioData();
   const [isMobile, setIsMobile] = useState(false);
   const isHomePage = pathname === "/";
+  const linkedinUrl =
+    data?.portfolio.social.linkedin ||
+    "https://www.linkedin.com/in/md-abdullah-az-zahur/";
+  const facebookUrl =
+    data?.portfolio.social.facebook ||
+    "https://www.facebook.com/abdullah.az.zahur";
+  const githubUrl =
+    data?.portfolio.social.github || "https://github.com/Abdullah-Az-Zahur";
+  const githubHandle = githubUrl.split("/").pop() || "Abdullah-Az-Zahur";
 
   useEffect(() => {
     // Check if the device is mobile (screen width < 768px)
@@ -42,14 +53,14 @@ const Footer: React.FC = () => {
           <h2 className="p-3">find me in:</h2>
           <Link
             target="_blank"
-            href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
+            href={linkedinUrl}
             className="p-[15px] border-l border-gray-500 hidden sm:block"
           >
             <FaLinkedin />
           </Link>
           <Link
             target="_blank"
-            href="https://www.facebook.com/abdullah.az.zahur"
+            href={facebookUrl}
             className="p-[15px] border-x border-gray-500 hidden sm:block"
           >
             <FaFacebookF />
@@ -58,25 +69,21 @@ const Footer: React.FC = () => {
         <div className="flex items-center">
           <Link
             target="_blank"
-            href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
+            href={linkedinUrl}
             className="p-[15px] border-l border-gray-500 block md:hidden"
           >
             <FaLinkedin />
           </Link>
           <Link
             target="_blank"
-            href="https://www.facebook.com/abdullah.az.zahur"
+            href={facebookUrl}
             className="p-[15px] border-x border-gray-500 block md:hidden"
           >
             <FaFacebookF />
           </Link>
-          <Link
-            target="_blank"
-            href="https://github.com/Abdullah-Az-Zahur"
-            className="flex items-center"
-          >
+          <Link target="_blank" href={githubUrl} className="flex items-center">
             <h2 className="p-3 border-l border-gray-500 text-sm hidden sm:block">
-              @Abdullah-Az-Zahur
+              @{githubHandle}
             </h2>
             <div className="px-3">
               <FaGithub />

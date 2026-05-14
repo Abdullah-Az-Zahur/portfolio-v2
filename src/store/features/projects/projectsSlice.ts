@@ -1,9 +1,21 @@
 import { projects } from "@/shared/data/projects";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
+type ProjectItem = {
+  _id?: string;
+  id?: number;
+  name: string;
+  liveLink: string;
+  repoLink: string;
+  image: string;
+  description: string;
+  skills: string[];
+  order?: number;
+};
+
 interface ProjectState {
-  allProjects: typeof projects;
-  filteredProjects: typeof projects;
+  allProjects: ProjectItem[];
+  filteredProjects: ProjectItem[];
   selectedSkills: string[];
 }
 
@@ -17,6 +29,16 @@ const projectsSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {
+    setProjects: (state, action: PayloadAction<ProjectItem[]>) => {
+      state.allProjects = action.payload;
+      if (state.selectedSkills.length === 0) {
+        state.filteredProjects = action.payload;
+      } else {
+        state.filteredProjects = action.payload.filter((project) =>
+          state.selectedSkills.every((skill) => project.skills.includes(skill)),
+        );
+      }
+    },
     setSelectedSkills: (state, action: PayloadAction<string[]>) => {
       state.selectedSkills = action.payload;
 
@@ -72,6 +94,11 @@ const projectsSlice = createSlice({
   },
 });
 
-export const { setSelectedSkills, toggleSkill, resetFilters, uncheckedSkill } =
-  projectsSlice.actions;
+export const {
+  setProjects,
+  setSelectedSkills,
+  toggleSkill,
+  resetFilters,
+  uncheckedSkill,
+} = projectsSlice.actions;
 export default projectsSlice.reducer;

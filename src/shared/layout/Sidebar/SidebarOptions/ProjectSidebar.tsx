@@ -3,6 +3,7 @@
 import { addTab, removeTab } from "@/store/features/tabs/tabsSlice";
 import { toggleSkill } from "@/store/features/projects/projectsSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
+import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { FaCss3Alt, FaHtml5, FaNodeJs, FaReact } from "react-icons/fa";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
@@ -112,6 +113,9 @@ const ProjectSidebar = () => {
   const { selectedSkills } = useAppSelector((state) => state.projects);
   const { tabs } = useAppSelector((state) => state.tabs);
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
+  const [dynamicSkills, setDynamicSkills] = useState<string[]>(
+    projectSkills.map((item) => item.id),
+  );
   const skillTabId = (skill: string) => `project-skill:${skill}`;
 
   const toggleDropdown = () => {
@@ -134,6 +138,17 @@ const ProjectSidebar = () => {
       }),
     );
   };
+
+  useEffect(() => {
+    void axios
+      .get<string[]>("/api/skills")
+      .then((response) => {
+        if (response.data.length > 0) {
+          setDynamicSkills(response.data);
+        }
+      })
+      .catch(() => undefined);
+  }, []);
 
   useEffect(() => {
     const selectedSkillTabIds = new Set(
@@ -188,7 +203,16 @@ const ProjectSidebar = () => {
             exit="closed"
             variants={dropdownVariants}
           >
-            {projectSkills.map((skill) => {
+            {dynamicSkills.map((skillName) => {
+              const skill = projectSkills.find(
+                (item) => item.id === skillName,
+              ) || {
+                id: skillName,
+                skillName,
+                icon: SiJavascript,
+                iconColor: "text-gray-300",
+                hoverColor: "hover:text-gray-100",
+              };
               const SkillIcon = skill.icon;
 
               return (

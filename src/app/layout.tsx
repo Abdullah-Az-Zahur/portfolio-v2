@@ -1,13 +1,5 @@
 import { Metadata } from "next";
-import { Fira_Code } from "next/font/google";
 import "./globals.css";
-
-// Optimize font loading
-const firaCode = Fira_Code({
-  subsets: ["latin"],
-  display: "swap", // Shows fallback while loading
-  weight: ["400", "500", "700"],
-});
 
 export const metadata: Metadata = {
   title: {
@@ -143,7 +135,7 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning className={firaCode.className}>
+    <html lang="en" suppressHydrationWarning className="font-mono">
       <head>
         <script
           type="application/ld+json"

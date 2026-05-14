@@ -4,20 +4,28 @@ import { AnimatePresence, motion } from "framer-motion";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { dropdownVariants } from "@/shared/utils/animationVariants";
 import { contactLinkItems, socialLinkItems } from "./contactSidebarConfig";
+import { usePortfolioData } from "@/shared/hooks/usePortfolioData";
 
 const ContactSidebar = () => {
+  const data = usePortfolioData();
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     () => new Set(["contact"]),
   );
 
   const contactEmail =
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "abdullah.az.zahur@gmail.com";
+    data?.portfolio.contact.email ||
+    process.env.NEXT_PUBLIC_CONTACT_EMAIL ||
+    "abdullah.az.zahur@gmail.com";
   const contactPhone =
-    process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880-1705697897";
+    data?.portfolio.contact.phone ||
+    process.env.NEXT_PUBLIC_CONTACT_PHONE ||
+    "+880-1705697897";
   const facebookUrl =
+    data?.portfolio.social.facebook ||
     process.env.NEXT_PUBLIC_FACEBOOK_URL ||
     "https://www.facebook.com/abdullah.az.zahur";
   const linkedinUrl =
+    data?.portfolio.social.linkedin ||
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
     "https://www.linkedin.com/in/md-abdullah-az-zahur/";
   const youtubeUrl = "https://www.youtube.com/@itsazzahurgaming";

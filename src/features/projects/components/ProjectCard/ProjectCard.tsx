@@ -4,13 +4,15 @@ import React from "react";
 import { TbSlashes } from "react-icons/tb";
 
 type Project = {
-  id: number;
+  _id?: string;
+  id?: number;
   name: string;
   liveLink: string;
   repoLink: string;
   image: string;
   description: string;
   skills: string[];
+  order?: number;
 };
 
 interface ProjectCardProps {
@@ -23,7 +25,9 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div className="flex flex-col h-full">
       <h3 className="flex items-center gap-2 text-sm mb-3">
-        <span className="text-indigo-600 font-bold">Project {project.id}</span>
+        <span className="text-indigo-600 font-bold">
+          Project {project.order ?? project.id}
+        </span>
         <TbSlashes /> {project?.name}
       </h3>
       <div className="rounded-lg border border-gray-800 flex flex-col h-full">

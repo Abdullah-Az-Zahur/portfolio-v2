@@ -225,14 +225,17 @@ Explore all 13+ projects, about page, and contact form directly on the live site
 
 3. **Set up environment variables**
 
-   Create a `.env.local` file in the root directory for email configuration:
+   Copy `.env.local.example` to `.env.local` and configure:
 
-   ```env
-   NEXT_PUBLIC_API_URL=http://localhost:3000
-   EMAIL_USER=your-email@gmail.com
-   EMAIL_PASSWORD=your-app-specific-password
-   EMAIL_TO=recipient@example.com
+   ```bash
+   cp .env.local.example .env.local
    ```
+
+   Required values include:
+   - `MONGODB_URI`
+   - `NEXTAUTH_URL`, `NEXTAUTH_SECRET`
+   - `DASHBOARD_USERNAME`, `DASHBOARD_PASSWORD_HASH` (bcrypt hash)
+   - `CLOUDINARY_CLOUD_NAME`, `CLOUDINARY_API_KEY`, `CLOUDINARY_API_SECRET`
 
 4. **Run the development server**
 
@@ -277,6 +280,12 @@ Explore all 13+ projects, about page, and contact form directly on the live site
 - **Project Details** — Name, description, live link, GitHub repository
 - **Skill Tags** — Technology stack for each project
 - Redux-powered state management for efficient filtering
+
+### 🛠️ Dashboard (`/dashboard`)
+
+- NextAuth-protected admin dashboard
+- Manage portfolio info, projects, hobbies, education, and experience
+- Project CRUD with drag-to-reorder and Cloudinary image upload
 
 ### 📧 Contact Page (`/contact`)
 
