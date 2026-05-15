@@ -1,3 +1,5 @@
+import { Card } from "@/components/ui";
+
 const profileSections = [
   "Personal bio",
   "Professional summary",
@@ -25,16 +27,13 @@ export default function DashboardProfilePage() {
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {profileSections.map((section) => (
-          <article
-            key={section}
-            className="rounded-2xl border border-white/10 bg-[#0b1728] p-5"
-          >
+          <Card key={section} className="p-5">
             <h2 className="text-base font-medium text-white">{section}</h2>
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Placeholder card for dynamic form fields, fetched data, and
               validation.
             </p>
-          </article>
+          </Card>
         ))}
       </section>
     </div>

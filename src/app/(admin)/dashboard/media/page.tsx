@@ -1,4 +1,5 @@
 import { FiCloud, FiUpload } from "react-icons/fi";
+import { Card } from "@/components/ui";
 
 export default function DashboardMediaPage() {
   return (
@@ -22,19 +23,19 @@ export default function DashboardMediaPage() {
       </section>
 
       <section className="grid gap-6 xl:grid-cols-[1fr_1fr]">
-        <article className="rounded-3xl border border-dashed border-cyan-400/30 bg-[#0b1728] p-6">
+        <Card className="border-dashed border-cyan-400/30 p-6">
           <div className="flex items-center gap-3">
             <FiUpload className="h-5 w-5 text-cyan-300" />
             <h2 className="text-lg font-medium text-white">
               Upload placeholder
             </h2>
           </div>
-          <div className="mt-5 rounded-2xl border border-white/10 bg-white/5 px-4 py-10 text-center text-sm text-slate-400">
+          <Card className="mt-5 px-4 py-10 text-center text-sm text-slate-400">
             Drag and drop files here or choose from device
-          </div>
-        </article>
+          </Card>
+        </Card>
 
-        <article className="rounded-3xl border border-white/10 bg-white/5 p-6">
+        <Card className="p-6">
           <h2 className="text-lg font-medium text-white">Stored asset types</h2>
           <div className="mt-5 space-y-3 text-sm text-slate-300">
             {[
@@ -43,15 +44,12 @@ export default function DashboardMediaPage() {
               "Profile and banner assets",
               "Cloudinary public IDs and URLs",
             ].map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-white/10 bg-[#0b1728] px-4 py-3"
-              >
+              <Card key={item} className="px-4 py-3">
                 {item}
-              </div>
+              </Card>
             ))}
           </div>
-        </article>
+        </Card>
       </section>
     </div>
   );

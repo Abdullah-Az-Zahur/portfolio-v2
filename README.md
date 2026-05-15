@@ -495,3 +495,30 @@ This project is open source and available under the [MIT License](LICENSE).
   <sub>Last Updated: May 2026</sub><br>
   <sub><a href="https://github.com/Abdullah-Az-Zahur/portfolio-v2">View on GitHub</a></sub>
 </div>
+
+## Admin & Backend Quick Start
+
+1. Copy the example env file and fill the values:
+
+```bash
+cp .env.local.example .env.local
+# Edit .env.local and add your MongoDB and Cloudinary values
+```
+
+2. Start the dev server:
+
+```bash
+npm install
+npm run dev
+```
+
+3. To populate MongoDB with the initial project/profile/skills dataset, sign in using the admin credentials (or hit the credentials flow), then POST to the bootstrap endpoint:
+
+```
+POST /api/admin/bootstrap
+
+# Example using curl (replace host if needed):
+curl -X POST http://localhost:3000/api/admin/bootstrap
+```
+
+The bootstrap route is protected and requires admin auth (NextAuth Credentials). Use it to load the static `src/shared/data/projects.ts` dataset into MongoDB.

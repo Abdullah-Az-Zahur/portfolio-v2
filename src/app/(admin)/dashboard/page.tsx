@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Card } from "@/components/ui";
 import {
   FiArrowRight,
   FiBarChart2,
@@ -42,10 +43,12 @@ export default function DashboardPage() {
           </div>
           <Link
             href="/dashboard/projects"
-            className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-cyan-300"
+            className="inline-flex items-center gap-2"
           >
-            Open projects
-            <FiArrowRight className="h-4 w-4" />
+            <div className="inline-flex items-center gap-2 rounded-xl bg-cyan-400 px-5 py-3 text-sm font-medium text-slate-950 transition hover:bg-cyan-300">
+              Open projects
+              <FiArrowRight className="h-4 w-4" />
+            </div>
           </Link>
         </div>
       </section>
@@ -54,10 +57,7 @@ export default function DashboardPage() {
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
-            <article
-              key={stat.label}
-              className="rounded-2xl border border-white/10 bg-white/5 p-5"
-            >
+            <Card key={stat.label} className="p-5">
               <div className="flex items-center justify-between gap-4">
                 <div>
                   <p className="text-sm text-slate-400">{stat.label}</p>
@@ -69,7 +69,7 @@ export default function DashboardPage() {
                   <Icon className="h-5 w-5" />
                 </div>
               </div>
-            </article>
+            </Card>
           );
         })}
       </section>
@@ -91,12 +91,9 @@ export default function DashboardPage() {
               "Cloudinary image URLs",
               "Project order and filters",
             ].map((item) => (
-              <div
-                key={item}
-                className="rounded-2xl border border-white/10 bg-[#0b1728] px-4 py-3 text-sm text-slate-300"
-              >
+              <Card key={item} className="px-4 py-3 text-sm text-slate-300">
                 {item}
-              </div>
+              </Card>
             ))}
           </div>
         </article>
@@ -105,14 +102,15 @@ export default function DashboardPage() {
           <h2 className="text-lg font-medium text-white">Quick actions</h2>
           <div className="mt-5 space-y-3">
             {quickLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="flex items-center justify-between rounded-2xl border border-white/10 bg-[#0b1728] px-4 py-3 text-sm text-slate-300 transition hover:border-cyan-400/30 hover:text-white"
-              >
-                <span>{link.label}</span>
-                <FiArrowRight className="h-4 w-4 text-cyan-300" />
-              </Link>
+              <Card key={link.href} className="px-4 py-3">
+                <Link
+                  href={link.href}
+                  className="flex items-center justify-between text-sm text-slate-300"
+                >
+                  <span>{link.label}</span>
+                  <FiArrowRight className="h-4 w-4 text-cyan-300" />
+                </Link>
+              </Card>
             ))}
           </div>
         </article>

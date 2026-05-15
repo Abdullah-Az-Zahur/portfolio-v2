@@ -1,4 +1,5 @@
 import { FiArrowUp, FiFolderPlus, FiMove } from "react-icons/fi";
+import { Card } from "@/components/ui";
 
 const projectSteps = [
   "Add title, description, and live links",
@@ -30,7 +31,7 @@ export default function DashboardProjectsPage() {
       </section>
 
       <section className="grid gap-4 xl:grid-cols-[1.2fr_0.8fr]">
-        <article className="rounded-3xl border border-dashed border-cyan-400/30 bg-[#0b1728] p-6">
+        <Card className="border-dashed border-cyan-400/30 p-6">
           <h2 className="text-lg font-medium text-white">
             New project form placeholder
           </h2>
@@ -44,17 +45,14 @@ export default function DashboardProjectsPage() {
               "Image upload field",
               "Order value",
             ].map((field) => (
-              <div
-                key={field}
-                className="rounded-2xl border border-white/10 bg-white/5 px-4 py-3"
-              >
+              <Card key={field} className="px-4 py-3">
                 {field}
-              </div>
+              </Card>
             ))}
           </div>
-        </article>
+        </Card>
 
-        <article className="rounded-3xl border border-white/10 bg-white/5 p-6">
+        <Card className="p-6">
           <div className="flex items-center gap-3">
             <FiMove className="h-5 w-5 text-cyan-300" />
             <h2 className="text-lg font-medium text-white">
@@ -74,10 +72,10 @@ export default function DashboardProjectsPage() {
               </div>
             ))}
           </div>
-          <div className="mt-5 rounded-2xl border border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
+          <Card className="mt-5 border-emerald-400/20 bg-emerald-400/10 px-4 py-3 text-sm text-emerald-200">
             Existing projects will appear here later for reordering and editing.
-          </div>
-        </article>
+          </Card>
+        </Card>
       </section>
 
       <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
