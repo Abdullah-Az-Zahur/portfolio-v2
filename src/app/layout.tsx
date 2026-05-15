@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
 import "./globals.css";
+import { SessionProvider } from "next-auth/react";
 
 // Optimize font loading
 const firaCode = Fira_Code({
@@ -154,7 +155,9 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
       </head>
-      <body suppressHydrationWarning>{children}</body>
+      <body suppressHydrationWarning>
+        <SessionProvider>{children}</SessionProvider>
+      </body>
     </html>
   );
 }
