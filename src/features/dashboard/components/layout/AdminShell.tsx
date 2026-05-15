@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { signOut } from "next-auth/react";
 import { ReactNode } from "react";
 import {
   FiGrid,
@@ -87,7 +88,11 @@ export default function AdminShell({ children }: AdminShellProps) {
             </div>
           </div>
 
-          <button className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:bg-white/10">
+          <button
+            type="button"
+            onClick={() => signOut({ callbackUrl: "/" })}
+            className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:bg-white/10"
+          >
             <FiLogOut className="h-4 w-4" />
             Sign out
           </button>
