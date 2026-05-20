@@ -1,15 +1,22 @@
 import DashboardLoginClient from "./DashboardLoginClient";
 
 type DashboardLoginPageProps = {
-  searchParams?: {
-    next?: string | string[];
-  };
+  searchParams?:
+    | Promise<{
+        next?: string | string[];
+      }>
+    | {
+        next?: string | string[];
+      };
 };
 
-export default function DashboardLoginPage({ searchParams }: DashboardLoginPageProps) {
-  const nextPath = Array.isArray(searchParams?.next)
-    ? searchParams.next[0]
-    : searchParams?.next;
+export default async function DashboardLoginPage({
+  searchParams,
+}: DashboardLoginPageProps) {
+  const resolvedSearchParams = await Promise.resolve(searchParams);
+  const nextPath = Array.isArray(resolvedSearchParams?.next)
+    ? resolvedSearchParams.next[0]
+    : resolvedSearchParams?.next;
   const redirectPath =
     nextPath && nextPath.startsWith("/dashboard") ? nextPath : "/dashboard";
 
