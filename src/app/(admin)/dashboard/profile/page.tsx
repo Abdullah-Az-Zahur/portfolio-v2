@@ -1,4 +1,4 @@
-import { Card } from "@/components/ui";
+import { requireAdminAuth } from "@/lib/auth/adminServerAuth";
 
 const profileSections = [
   "Personal bio",
@@ -9,7 +9,9 @@ const profileSections = [
   "Hobbies and interests",
 ];
 
-export default function DashboardProfilePage() {
+export default async function DashboardProfilePage() {
+  await requireAdminAuth("/dashboard/profile");
+
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -27,13 +29,13 @@ export default function DashboardProfilePage() {
 
       <section className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
         {profileSections.map((section) => (
-          <Card key={section} className="p-5">
+          <article key={section} className="rounded-2xl border border-white/10 bg-[#0b1728] p-5">
             <h2 className="text-base font-medium text-white">{section}</h2>
             <p className="mt-2 text-sm leading-6 text-slate-400">
               Placeholder card for dynamic form fields, fetched data, and
               validation.
             </p>
-          </Card>
+          </article>
         ))}
       </section>
     </div>

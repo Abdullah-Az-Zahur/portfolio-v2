@@ -1,6 +1,7 @@
-import { Card } from "@/components/ui";
+import { requireAdminAuth } from "@/lib/auth/adminServerAuth";
 
-export default function DashboardSettingsPage() {
+export default async function DashboardSettingsPage() {
+  await requireAdminAuth("/dashboard/settings");
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
@@ -25,9 +26,12 @@ export default function DashboardSettingsPage() {
           "Editor preferences",
           "Cache and refresh rules",
         ].map((item) => (
-          <Card key={item} className="p-5 text-sm text-slate-300">
+          <div
+            key={item}
+            className="rounded-2xl border border-white/10 bg-[#0b1728] p-5 text-sm text-slate-300"
+          >
             {item}
-          </Card>
+          </div>
         ))}
       </section>
     </div>

@@ -1,3 +1,4 @@
+import { requireAdminAuth } from "@/lib/auth/adminServerAuth";
 import Link from "next/link";
 import { Card } from "@/components/ui";
 import {
@@ -23,7 +24,9 @@ const quickLinks = [
   { label: "Settings", href: "/dashboard/settings" },
 ];
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  await requireAdminAuth("/dashboard");
+
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-white/10 bg-gradient-to-br from-cyan-400/10 via-white/5 to-transparent p-6 shadow-2xl shadow-cyan-950/20">

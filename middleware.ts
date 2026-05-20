@@ -1,32 +1,28 @@
-import { NextResponse } from "next/server";
-import type { NextRequest } from "next/server";
-import { getToken } from "next-auth/jwt";
-
-const protectedPathPrefix = "/dashboard";
-const loginPath = "/dashboard/login";
+import { NextRequest, NextResponse } from "next/server";
+import { verifyAdminSessionTokenEdge } from "./src/lib/auth/adminAuthEdge";
+import { ADMIN_SESSION_COOKIE } from "./src/lib/auth/adminSession";
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, search } = request.nextUrl;
 
-  if (!pathname.startsWith(protectedPathPrefix) || pathname === loginPath) {
+  if (pathname === "/dashboard/login") {
     return NextResponse.next();
   }
 
-  const token = await getToken({
-    req: request,
-    secret: process.env.NEXTAUTH_SECRET,
-  });
+  const token = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
 
-  if (token?.role === "admin") {
+  if (token && (await verifyAdminSessionTokenEdge(token))) {
     return NextResponse.next();
   }
 
-  const loginUrl = new URL(loginPath, request.url);
-  loginUrl.searchParams.set("callbackUrl", pathname);
+  const nextPath = `${pathname}${search}`;
+  const redirectUrl = request.nextUrl.clone();
+  redirectUrl.pathname = "/dashboard/login";
+  redirectUrl.search = `next=${encodeURIComponent(nextPath)}`;
 
-  return NextResponse.redirect(loginUrl);
+  return NextResponse.redirect(redirectUrl);
 }
 
 export const config = {
-  matcher: ["/dashboard", "/dashboard/:path*"],
+  matcher: ["/dashboard/:path*"],
 };

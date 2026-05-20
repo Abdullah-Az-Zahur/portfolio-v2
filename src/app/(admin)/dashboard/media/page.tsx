@@ -1,7 +1,10 @@
+import { requireAdminAuth } from "@/lib/auth/adminServerAuth";
 import { FiCloud, FiUpload } from "react-icons/fi";
 import { Card } from "@/components/ui";
 
-export default function DashboardMediaPage() {
+export default async function DashboardMediaPage() {
+  await requireAdminAuth("/dashboard/media");
+
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-6">

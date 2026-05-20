@@ -1,3 +1,4 @@
+import { requireAdminAuth } from "@/lib/auth/adminServerAuth";
 import { FiArrowUp, FiFolderPlus, FiMove } from "react-icons/fi";
 import { Card } from "@/components/ui";
 
@@ -9,7 +10,9 @@ const projectSteps = [
   "Drag projects to reorder display priority",
 ];
 
-export default function DashboardProjectsPage() {
+export default async function DashboardProjectsPage() {
+  await requireAdminAuth("/dashboard/projects");
+
   return (
     <div className="space-y-6">
       <section className="rounded-3xl border border-white/10 bg-white/5 p-6">
