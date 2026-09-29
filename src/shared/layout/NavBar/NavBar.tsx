@@ -26,20 +26,21 @@ const NavBar: React.FC = () => {
     <header className={headerClassName}>
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
-        <Link
-          href="/"
-          className="md:w-1/5 md:border-r p-4 border-gray-500 h-full flex items-center hover:text-gray-400 gap-2"
-        >
-          <Image
-            src="/assets/images/My half Photo.png"
-            height="32"
-            width="32"
-            alt="Profile picture"
-            priority
-            className="w-7 h-7 rounded-full"
-          />
-          md. abdullah az-zahur
-        </Link>
+
+        <div className="md:w-1/5 md:border-r p-4 border-gray-500 h-full flex items-center hover:text-gray-400 gap-5">
+          <Link href="/dashboard">
+            <Image
+              src="/assets/images/My half Photo.png"
+              height="32"
+              width="32"
+              alt="Profile picture"
+              priority
+              className="w-7 h-7 rounded-full"
+            />
+          </Link>
+
+          <Link href="/">md. abdullah az-zahur</Link>
+        </div>
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex flex-1 justify-between items-center h-full">
