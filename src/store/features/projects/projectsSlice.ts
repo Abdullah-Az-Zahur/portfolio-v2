@@ -17,6 +17,11 @@ const projectsSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {
+    replaceProjects: (state, action: PayloadAction<typeof projects>) => {
+      state.allProjects = action.payload;
+      state.filteredProjects = action.payload;
+      state.selectedSkills = [];
+    },
     setSelectedSkills: (state, action: PayloadAction<string[]>) => {
       state.selectedSkills = action.payload;
 
@@ -72,6 +77,11 @@ const projectsSlice = createSlice({
   },
 });
 
-export const { setSelectedSkills, toggleSkill, resetFilters, uncheckedSkill } =
-  projectsSlice.actions;
+export const {
+  replaceProjects,
+  setSelectedSkills,
+  toggleSkill,
+  resetFilters,
+  uncheckedSkill,
+} = projectsSlice.actions;
 export default projectsSlice.reducer;

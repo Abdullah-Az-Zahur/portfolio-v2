@@ -4,20 +4,12 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ReactNode } from "react";
 import { signOut } from "next-auth/react";
-import {
-  FiGrid,
-  FiImage,
-  FiLogOut,
-  FiSettings,
-  FiUser,
-  FiFolder,
-} from "react-icons/fi";
+import { FiGrid, FiLogOut, FiSettings, FiUser, FiFolder } from "react-icons/fi";
 
 const navigationItems = [
   { label: "Dashboard", href: "/dashboard", icon: FiGrid },
   { label: "Profile", href: "/dashboard/profile", icon: FiUser },
   { label: "Projects", href: "/dashboard/projects", icon: FiFolder },
-  { label: "Media", href: "/dashboard/media", icon: FiImage },
   { label: "Settings", href: "/dashboard/settings", icon: FiSettings },
 ];
 
@@ -87,6 +79,14 @@ export default function AdminShell({ children }: AdminShellProps) {
               </span>
             </div>
           </div>
+
+          <Link
+            href="/"
+            className="mt-8 flex w-full items-center justify-center gap-2 rounded-xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-slate-200 transition hover:bg-white/10"
+          >
+            <FiGrid className="h-4 w-4" />
+            Back to Portfolio
+          </Link>
 
           <button
             type="button"
