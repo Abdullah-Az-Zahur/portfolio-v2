@@ -225,14 +225,30 @@ Explore all 13+ projects, about page, and contact form directly on the live site
 
 3. **Set up environment variables**
 
-   Create a `.env.local` file in the root directory for email configuration:
+   Copy `.env.example` to `.env.local` and fill in the values for email,
+   authentication, MongoDB, and Cloudinary:
 
    ```env
-   NEXT_PUBLIC_API_URL=http://localhost:3000
    EMAIL_USER=your-email@gmail.com
-   EMAIL_PASSWORD=your-app-specific-password
-   EMAIL_TO=recipient@example.com
+   EMAIL_PASS=your-app-specific-password
+   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/?appName=Cluster0
+   MONGODB_NAME=portfolio-v2
+   CLOUDINARY_CLOUD_NAME=your-cloud-name
+   CLOUDINARY_API_KEY=your-api-key
+   CLOUDINARY_API_SECRET=your-api-secret
+   NEXTAUTH_URL=http://localhost:3000
+   NEXTAUTH_SECRET=replace-with-a-long-random-secret
+   ADMIN_EMAIL=admin@example.com
+   ADMIN_PASSWORD=replace-with-a-strong-password
    ```
+
+   The complete template, including optional variables, is in
+   [`.env.example`](.env.example). Never commit `.env.local` or real secrets.
+
+   MongoDB Atlas does not require you to create the `portfolio-v2` database
+   manually. The app selects it through `MONGODB_NAME` and MongoDB creates it
+   when the first project is saved. Make sure the Atlas network access and
+   database user permissions allow your local or deployed server to connect.
 
 4. **Run the development server**
 
@@ -285,6 +301,17 @@ Explore all 13+ projects, about page, and contact form directly on the live site
 - **Email Backend** — Server-side email sending via Nodemailer
 - **Success Message** — Confirmation after email is sent
 - **Loading States** — Visual feedback during email transmission
+
+### 🔐 Dashboard (`/dashboard`)
+
+- **Credentials authentication** — Uses the server-side `ADMIN_EMAIL` and
+  `ADMIN_PASSWORD` values through Auth.js
+- **Protected routes** — Unauthenticated visitors are redirected to
+  `/dashboard/login`
+- **Logout** — Clears the Auth.js session and returns to the public home page
+- **API structure** — Authenticated profile and media endpoints remain pending;
+  projects now have MongoDB-backed list, create, update, delete, and reorder
+  APIs
 
 ---
 
