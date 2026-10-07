@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -9,6 +9,7 @@ import { aboutSidebarCategories } from "@/features/about/components/aboutSidebar
 import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
 import AboutSidebarGroups from "./AboutSidebarGroups";
 import AboutSidebarResources from "./AboutSidebarResources";
+import { aboutIconOptions } from "@/shared/data/aboutIconOptions";
 
 const sidebarResources = [
   {
@@ -28,7 +29,63 @@ const AboutMeSidebar = () => {
   const [mobileExpandedCategoryId, setMobileExpandedCategoryId] = useState<
     string | null
   >(null);
-  const categories: SidebarCategory[] = aboutSidebarCategories;
+  const [categories, setCategories] = useState<SidebarCategory[]>(
+    aboutSidebarCategories,
+  );
+
+  useEffect(() => {
+    async function loadDynamicCategories() {
+      try {
+        const response = await fetch("/api/about");
+        const data = await response.json();
+        if (!response.ok || !Array.isArray(data.entries)) return;
+
+        const nextCategories = aboutSidebarCategories.map((category) => ({
+          ...category,
+          groups: category.groups.map((group) => ({
+            ...group,
+            items: data.entries
+              .filter(
+                (entry: { category: string; group: string }) =>
+                  entry.category === category.id && entry.group === group.id,
+              )
+              .sort(
+                (left: { order?: number }, right: { order?: number }) =>
+                  (left.order ?? 0) - (right.order ?? 0),
+              )
+              .map(
+                (entry: {
+                  key: string;
+                  label: string;
+                  iconKey: string;
+                  color: string;
+                }) => {
+                  const icon =
+                    aboutIconOptions[
+                      entry.iconKey as keyof typeof aboutIconOptions
+                    ]?.icon ?? aboutIconOptions.user.icon;
+                  const colorClass = `text-${entry.color}-500`;
+                  return {
+                    id: entry.key,
+                    title: entry.label,
+                    label: entry.label,
+                    icon,
+                    activeClass: `${colorClass} font-medium`,
+                    hoverClass: `hover:${colorClass}`,
+                    iconClass: colorClass,
+                  };
+                },
+              ),
+          })),
+        }));
+        setCategories(nextCategories);
+      } catch {
+        // Static categories remain available when MongoDB is unavailable.
+      }
+    }
+
+    void loadDynamicCategories();
+  }, []);
 
   const activeCategory =
     categories.find((category) => category.id === activeCategoryId) ??
@@ -96,25 +153,31 @@ const AboutMeSidebar = () => {
 
   return (
     <>
-      <div className="flex flex-col md:hidden">
+      {/* ---------- MOBILE ---------- */}
+      <div className="about-sidebar flex flex-col md:hidden">
         {categories.map((category) => {
           const isActive = mobileExpandedCategoryId === category.id;
 
           return (
-            <div key={category.id} className="border-b border-gray-700 py-2 ">
+            <div
+              key={category.id}
+              className="about-sidebar-category border-b py-2"
+            >
               <motion.button
                 type="button"
                 onClick={() => handleMobileCategoryToggle(category.id)}
-                className={`flex w-full items-center gap-2 rounded-md py-2 text-left transition-colors ${
-                  isActive ? "bg-[#1f2937]" : "hover:bg-[#1a2234]"
+                className={`about-sidebar-trigger flex w-full items-center gap-2 rounded-md py-2 text-left transition-colors ${
+                  isActive
+                    ? "about-sidebar-trigger-active"
+                    : "about-sidebar-trigger-idle"
                 }`}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="flex items-center gap-2 text-white">
+                <span className="about-sidebar-trigger-label flex items-center gap-2">
                   {isActive ? (
-                    <IoMdArrowDropdown className="text-white" />
+                    <IoMdArrowDropdown className="about-sidebar-arrow" />
                   ) : (
-                    <IoMdArrowDropright className="text-white" />
+                    <IoMdArrowDropright className="about-sidebar-arrow" />
                   )}
                   <span>{category.label}</span>
                 </span>
@@ -134,14 +197,16 @@ const AboutMeSidebar = () => {
 
         <AboutSidebarResources
           resources={sidebarResources}
-          wrapperClassName="border-t border-gray-700 py-3"
-          linkClassName="flex items-center gap-2 text-blue-300 transition duration-200 hover:text-blue-500"
-          itemClassName="flex items-center justify-between gap-3 border-b border-gray-500 px-2 py-2 last:border-b-0"
+          wrapperClassName="about-sidebar-resources border-t py-3"
+          linkClassName="about-sidebar-link flex items-center gap-2 transition duration-200"
+          itemClassName="about-sidebar-resource-item flex items-center justify-between gap-3 border-b px-2 py-2 last:border-b-0"
         />
       </div>
 
-      <div className="hidden md:flex items-stretch gap-0 md:h-full">
-        <div className="flex self-stretch flex-col items-center gap-2 border-r border-gray-700 px-3 pt-2 pb-2">
+      {/* ---------- DESKTOP ---------- */}
+      <div className="about-sidebar hidden items-stretch gap-0 md:flex md:h-full">
+        {/* Icon rail */}
+        <div className="about-sidebar-rail flex flex-col items-center gap-2 self-stretch border-r px-3 pb-2 pt-2">
           {categories.map((category) => {
             const CategoryIcon = category.icon;
             const isActive = activeCategory.id === category.id;
@@ -151,10 +216,10 @@ const AboutMeSidebar = () => {
                 key={category.id}
                 type="button"
                 onClick={() => handleCategorySwitch(category.id)}
-                className={`rounded-md p-2 transition-colors ${
+                className={`about-sidebar-rail-btn rounded-md p-2 transition-colors ${
                   isActive
-                    ? "bg-[#1f2937] ring-1 ring-blue-500"
-                    : "hover:bg-[#1a2234]"
+                    ? "about-category-active"
+                    : "about-sidebar-rail-btn-idle"
                 }`}
                 title={category.label}
                 aria-label={category.label}
@@ -165,9 +230,10 @@ const AboutMeSidebar = () => {
           })}
         </div>
 
+        {/* Content */}
         <div className="min-w-0 flex-1 pl-2">
           <motion.div
-            className="-ml-2 pl-1 flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
+            className="about-sidebar-header -ml-2 flex cursor-pointer items-center gap-2 border-b py-2 pl-1"
             onClick={() => toggleDropdown(`main-${activeCategory.id}`)}
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.98 }}
@@ -181,9 +247,9 @@ const AboutMeSidebar = () => {
               variants={iconVariants}
             >
               {isDropdownExpanded(`main-${activeCategory.id}`) ? (
-                <IoMdArrowDropdown className="text-white" />
+                <IoMdArrowDropdown className="about-sidebar-arrow" />
               ) : (
-                <IoMdArrowDropright className="text-white" />
+                <IoMdArrowDropright className="about-sidebar-arrow" />
               )}
             </motion.div>
             <span>{activeCategory.label}</span>
@@ -199,17 +265,17 @@ const AboutMeSidebar = () => {
           />
 
           <div
-            className={`-ml-2 mt-2 ${
+            className={`about-sidebar-resources -ml-2 mt-2 ${
               isDropdownExpanded(`main-${activeCategory.id}`)
-                ? "border-t border-gray-500"
+                ? "about-sidebar-resources-open"
                 : "border-t-0"
             }`}
           >
             <AboutSidebarResources
               resources={sidebarResources}
               wrapperClassName=""
-              linkClassName="ml-2 text-blue-300 hover:text-blue-500 flex items-center gap-2 transition duration-200"
-              itemClassName="py-2 pl-1 flex items-center justify-between border-b border-gray-500 last:border-b-0"
+              linkClassName="about-sidebar-link ml-2 flex items-center gap-2 transition duration-200"
+              itemClassName="about-sidebar-resource-item flex items-center justify-between border-b py-2 pl-1 last:border-b-0"
             />
           </div>
         </div>

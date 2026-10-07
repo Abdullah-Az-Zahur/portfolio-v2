@@ -1,5 +1,8 @@
 import { Metadata } from "next";
 import AboutClient from "@/features/about/components/AboutClient";
+import { getPublicAboutContent } from "@/lib/about/getPublicAboutContent";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "About",
@@ -42,8 +45,14 @@ export const metadata: Metadata = {
   },
 };
 
-const AboutPage = () => {
-  return <AboutClient />;
+const AboutPage = async () => {
+  const content = await getPublicAboutContent();
+  return (
+    <AboutClient
+      initialContent={content.content}
+      initialResources={content.resources}
+    />
+  );
 };
 
 export default AboutPage;

@@ -1,25 +1,49 @@
 "use client";
 import { useAppSelector } from "@/store/hooks";
-import { aboutSidebarCategories } from "./aboutSidebarCategories";
-import BioInfo from "./PersonalInfo/Bio/BioInfo";
+import CommentText from "@/shared/ui/CommentText/CommentText";
 
-const aboutTabContentMap = aboutSidebarCategories.reduce<
-  Record<string, React.ReactNode>
->((accumulator, category) => {
-  category.groups.forEach((group) => {
-    group.items.forEach((item) => {
-      accumulator[item.id] = item.content;
-    });
-  });
+type AboutClientProps = {
+  initialContent: Record<string, string>;
+  initialResources: Record<string, string>;
+};
 
-  return accumulator;
-}, {});
-
-const AboutClient = () => {
+const AboutClient = ({
+  initialContent,
+  initialResources,
+}: AboutClientProps) => {
   const { activeTab } = useAppSelector((state) => state.tabs);
-  const activeTabContent = activeTab ? aboutTabContentMap[activeTab] : null;
+  const activeContent =
+    initialContent[activeTab ?? "bio-item"] ?? initialContent["bio-item"];
+  const resourceUrl = initialResources[activeTab ?? "bio-item"];
+  const previewUrl = resourceUrl?.replace(/\/view(?:\?.*)?$/, "/preview");
 
-  return <div>{activeTabContent ?? <BioInfo />}</div>;
+  return (
+    <div>
+      <CommentText text={activeContent} />
+      {resourceUrl ? (
+        <details className="mt-6 rounded-lg border border-gray-700 p-4">
+          <summary className="cursor-pointer text-blue-300 hover:text-blue-200">
+            View attached certificate or document
+          </summary>
+          <a
+            href={resourceUrl}
+            target="_blank"
+            rel="noreferrer"
+            className="mt-3 inline-block text-sm text-blue-300 hover:text-blue-200"
+          >
+            Open in a new tab
+          </a>
+          {previewUrl ? (
+            <iframe
+              title="Attached document preview"
+              src={previewUrl}
+              className="mt-4 h-[min(70vh,720px)] w-full rounded border border-gray-700"
+            />
+          ) : null}
+        </details>
+      ) : null}
+    </div>
+  );
 };
 
 export default AboutClient;

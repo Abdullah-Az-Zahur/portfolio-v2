@@ -9,7 +9,7 @@ export type SidebarItem = {
   activeClass: string;
   hoverClass: string;
   iconClass: string;
-  content: ReactNode;
+  content?: ReactNode;
 };
 
 export type SidebarGroup = {

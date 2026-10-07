@@ -1,5 +1,8 @@
 import ProjectClient from "@/features/projects/components/ProjectClient";
 import { Metadata } from "next";
+import { getPublicProjects } from "@/lib/projects/getPublicProjects";
+
+export const dynamic = "force-dynamic";
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -38,8 +41,9 @@ export const metadata: Metadata = {
   },
 };
 
-const ProjectPage = () => {
-  return <ProjectClient />;
+const ProjectPage = async () => {
+  const projects = await getPublicProjects();
+  return <ProjectClient initialProjects={projects} />;
 };
 
 export default ProjectPage;
