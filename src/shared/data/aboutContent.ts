@@ -2,6 +2,10 @@ export type AboutContentItem = {
   id: string;
   label: string;
   content: string;
+  iconKey: string;
+  color: string;
+  resourceUrl?: string;
+  showResource?: boolean;
 };
 
 export type AboutContentGroup = {
@@ -26,16 +30,20 @@ export const aboutContent: AboutContentCategory[] = [
         label: "experience",
         items: [
           {
-            id: "qwik-it",
-            label: "qwik-it",
-            content:
-              "Qwik IT Services (Remote) | Front-End Developer Intern\nFebruary 2025 - April 2025 (Unpaid Internship)\nFocus: rapid prototyping and client-focused iteration. Converted static designs into a polished React site (Qwik-Bistro) and built a reusable JavaScript tool that later became an Android utility.",
-          },
-          {
             id: "encoder-it",
             label: "encoder-it",
+            iconKey: "briefcase",
+            color: "blue",
             content:
-              "Encoder IT Solution (Remote) | Front-End Developer Intern\nMarch 2025 - June 2025 (Paid Internship)\nFocus: turning polished UI into resilient features. Implemented MERN modules with secure CRUD, authentication, and pragmatic error handling. Highlights: Car-Rental, HQMotoServices, and a PHP extension for WordPress.",
+              "Front-End Developer Intern | Encoder IT Solution (Remote)\nMarch 2025 - June 2025 | Paid Internship\nBuilt full-stack MERN modules with secure CRUD operations and authentication for Car-Rental, HQMotoServices, and Mithun-Chakra. Developed custom PHP plugins for the EISNews WordPress project and collaborated on production-ready applications.",
+          },
+          {
+            id: "qwik-it",
+            label: "qwik-it",
+            iconKey: "briefcase",
+            color: "amber",
+            content:
+              "Front-End Developer Intern | Qwik IT Services (Remote)\nFebruary 2025 - April 2025 | Unpaid Internship\nConverted static HTML/CSS designs into the Qwik-Bistro React website. Built a JavaScript construction calculator for Qwik Tools that was later adapted into an Android application.",
           },
         ],
       },
@@ -44,10 +52,42 @@ export const aboutContent: AboutContentCategory[] = [
         label: "skills",
         items: [
           {
-            id: "technical-skills",
-            label: "technical-skills",
+            id: "programming-languages",
+            label: "programming-languages",
+            iconKey: "code",
+            color: "blue",
+            content: "Python, JavaScript (ES6+), TypeScript, and PHP.",
+          },
+          {
+            id: "ai-data-science",
+            label: "ai-data-science",
+            iconKey: "research",
+            color: "purple",
             content:
-              "Technical Playground\nLanguages: Python, TypeScript, and JavaScript (ES6+).\nWeb: Next.js, React, Node.js, Express, MongoDB.\nData & AI: PyTorch, Scikit-Learn, Pandas.\nWorkflow: Git, React Hook Form, Tailwind CSS, and pragmatic testing.",
+              "Machine Learning, Deep Learning (CNN, Neural Networks), PyTorch, Scikit-Learn, Pandas, NumPy, Matplotlib, and data preprocessing and analysis.",
+          },
+          {
+            id: "web-development",
+            label: "web-development",
+            iconKey: "laptop",
+            color: "green",
+            content:
+              "React, Next.js, Node.js, Express.js, MongoDB, Redux Toolkit, REST APIs, Tailwind CSS, and React Hook Form.",
+          },
+          {
+            id: "tools-version-control",
+            label: "tools-version-control",
+            iconKey: "link",
+            color: "cyan",
+            content: "Git, GitHub, Postman, Netlify, JWT, and Firebase.",
+          },
+          {
+            id: "core-competencies",
+            label: "core-competencies",
+            iconKey: "user",
+            color: "orange",
+            content:
+              "Problem-solving, research methodology, data visualization, system design, adaptability, and technical communication.",
           },
         ],
       },
@@ -56,10 +96,36 @@ export const aboutContent: AboutContentCategory[] = [
         label: "certificates",
         items: [
           {
-            id: "certifications",
-            label: "certifications",
+            id: "web-development-course",
+            label: "web-development-course",
+            iconKey: "certificate",
+            color: "purple",
             content:
-              "Learning Journey & Certifications\nComplete Web Development Course with Jhankar Mahbub (Jan - Jun 2024).\nCommunication Hacks and Communication Secrets certified.\nI treat certificates as fuel: learn, validate, and then build real features.",
+              "Complete Web Development Course with Jhankar Mahbub\nCertificate period: January - June 2024",
+            resourceUrl:
+              "https://drive.google.com/file/d/1sRpxoBcT4rrCLymWiWURXmIigagG0Us-/view?usp=sharing",
+            showResource: true,
+          },
+          {
+            id: "communication-hacks",
+            label: "communication-hacks",
+            iconKey: "certificate",
+            color: "blue",
+            content: "Communication Hacks\nCertificate date: October 27, 2024",
+            resourceUrl:
+              "https://drive.google.com/file/d/1wnEDJs2Z1RyxjNUhDwklr9pYVxdvXjvT/view?usp=sharing",
+            showResource: true,
+          },
+          {
+            id: "communication-secrets",
+            label: "communication-secrets",
+            iconKey: "certificate",
+            color: "cyan",
+            content:
+              "Communication Secrets\nCertificate date: November 21, 2024",
+            resourceUrl:
+              "https://drive.google.com/file/d/1b3DnFXRNYpwmI2SqUQ3FZQtFPj4Fpvxc/view?usp=sharing",
+            showResource: true,
           },
         ],
       },
@@ -76,20 +142,24 @@ export const aboutContent: AboutContentCategory[] = [
           {
             id: "bio-item",
             label: "bio",
+            iconKey: "user",
+            color: "blue",
             content:
-              "Hello — I’m Md. Abdullah Az-Zahur.\nI’m a software engineer who turns thoughtful ideas into simple, reliable web experiences. I build with Next.js and the MERN stack and am deepening my AI/ML knowledge through an M.Sc. in ICT.",
+              "Md. Abdullah Az-Zahur\nSoftware Engineer\nMongla Port, Khulna, Bangladesh\nSoftware Engineer with a strong foundation in MERN stack development and a dedicated focus on AI/ML research. Currently pursuing M.Sc. in ICT with research interest in applying Deep Learning to healthcare challenges.",
           },
         ],
       },
       {
-        id: "interest",
-        label: "interests",
+        id: "contact",
+        label: "contact",
         items: [
           {
-            id: "interest-item",
-            label: "interests",
+            id: "contact-details",
+            label: "contact-details",
+            iconKey: "link",
+            color: "cyan",
             content:
-              "Outside code, I stay curious through team sports, travel, and hands-on experiments with new web and AI tools. These habits inform my product choices: durability, clarity, and delightful small details.",
+              "Phone: +88-01705-697897\nEmail: abdullah.az.zahur@gmail.com\nLinkedIn: linkedin.com/in/abdullahzahur\nGitHub: github.com/Abdullah-Az-Zahur\nPortfolio: abdullahzahur.vercel.app",
           },
         ],
       },
@@ -98,34 +168,72 @@ export const aboutContent: AboutContentCategory[] = [
         label: "education",
         items: [
           {
-            id: "high-school",
-            label: "school-days",
+            id: "msc-ict",
+            label: "postgrad-path",
+            iconKey: "graduation",
+            color: "cyan",
             content:
-              "Secondary School Certificate (SSC)\nMongla Bandar Secondary School, Mongla | 2016\nGPA: 4.11/5.00\nA foundation in scientific thinking and problem solving.",
-          },
-          {
-            id: "college",
-            label: "college-journey",
-            content:
-              "Higher Secondary Certificate (HSC)\nBangladesh Navy School and College, Mongla | Jessore Board | 2018\nGPA: 3.92/5.00\nA rigorous approach to analytical thinking and disciplined study.",
+              "M.Sc. Eng. in Information & Communication Technology (Running)\nInstitute: IICT\nUniversity: Khulna University of Engineering & Technology",
           },
           {
             id: "university",
             label: "undergrad-life",
+            iconKey: "graduation",
+            color: "purple",
             content:
-              "Bachelor of Science in Computer Science and Engineering (B.Sc.)\nNorth Western University, Khulna | Graduated: September 2023\nCGPA: 3.23/4.00\nCore studies in software systems, algorithms, and databases.",
+              "B.Sc. in Computer Science & Engineering\nNorth Western University, Khulna | Graduated: September 2023\nCGPA: 3.23/4.00",
           },
           {
-            id: "msc-ict",
-            label: "postgrad-path",
+            id: "college",
+            label: "college-journey",
+            iconKey: "graduation",
+            color: "blue",
             content:
-              "M.Sc.Eng. in ICT (In progress)\nIICT, KUET\nDeepening research skills in AI/ML and advanced ICT topics, with a focus on practical, production-ready features.",
+              "Higher Secondary Certificate (Science)\nBangladesh Navy School & College, Mongla, Jessore Board | 2018\nGPA: 3.92/5.00",
+          },
+          {
+            id: "high-school",
+            label: "school-days",
+            iconKey: "graduation",
+            color: "amber",
+            content:
+              "Secondary School Certificate (SSC)\nMongla Bandar Secondary School, Mongla | 2016\nGPA: 4.11/5.00",
           },
           {
             id: "bachelor-thesis",
             label: "research-story",
+            iconKey: "research",
+            color: "orange",
             content:
-              "Bachelor's Thesis\nPrediction of Parkinson's Disease using Genetic Algorithms and Machine Learning\nCompleted: September 2023, North Western University, Khulna\nFocus: combining optimization techniques with ML to extract meaningful signals from noisy biomedical data.",
+              "Bachelor's Thesis\nPrediction of Parkinson Disease Using Genetic Algorithm and Machine Learning Technique\nNorth Western University, Khulna, Bangladesh\nCompletion date: September 2023",
+          },
+        ],
+      },
+      {
+        id: "languages",
+        label: "languages",
+        items: [
+          {
+            id: "language-skills",
+            label: "language-skills",
+            iconKey: "language",
+            color: "green",
+            content:
+              "Bengali: Native proficiency\nEnglish: Conversational proficiency",
+          },
+        ],
+      },
+      {
+        id: "personal-details",
+        label: "personal-details",
+        items: [
+          {
+            id: "personal-details-item",
+            label: "personal-details",
+            iconKey: "user",
+            color: "emerald",
+            content:
+              "Date of Birth: October 7, 1999\nNationality: Bangladeshi by birth\nMarital Status: Unmarried\nFather: Md. Ashaduzzaman (Purchase Officer - retired, Mongla Cement Factory)\nMother: Mrs. Nazmun Nahar",
           },
         ],
       },
@@ -136,44 +244,69 @@ export const aboutContent: AboutContentCategory[] = [
     label: "hobbies",
     groups: [
       {
+        id: "sports",
+        label: "sports",
+        items: [
+          {
+            id: "sports-enthusiast",
+            label: "sports-enthusiast",
+            iconKey: "running",
+            color: "amber",
+            content: "Active in football, cricket, and volleyball.",
+          },
+        ],
+      },
+      {
+        id: "technology",
+        label: "technology",
+        items: [
+          {
+            id: "technology-explorer",
+            label: "technology-explorer",
+            iconKey: "globe",
+            color: "blue",
+            content:
+              "Passionate about emerging web technologies and frameworks.",
+          },
+        ],
+      },
+      {
         id: "creative",
         label: "creative",
         items: [
           {
             id: "books",
             label: "books",
-            content:
-              "Books\nI read technology, design, and leadership books to borrow other people’s shortcuts. Biographies give context: how ideas survive and scale in the real world.",
+            iconKey: "book-open",
+            color: "rose",
+            content: "Reading technology, design, leadership, and biographies.",
           },
         ],
       },
       {
-        id: "outdoor",
-        label: "outdoor",
+        id: "gaming",
+        label: "gaming",
         items: [
           {
-            id: "hiking",
-            label: "hiking",
+            id: "gaming-interactive-media",
+            label: "gaming-interactive-media",
+            iconKey: "gamepad",
+            color: "orange",
             content:
-              "Hiking\nTime on the trail is time well-invested: clearer thinking, better energy, and fewer blind spots when tackling tough problems.",
-          },
-          {
-            id: "games",
-            label: "games",
-            content:
-              "Games\nStrategic and narrative games sharpen pattern recognition and scenario thinking — skills I bring to system design and UX trade-offs.",
+              "Exploring interactive technology and user experience design through gaming and interactive media.",
           },
         ],
       },
       {
-        id: "wellness",
-        label: "wellness",
+        id: "travel",
+        label: "travel",
         items: [
           {
-            id: "nature-walks",
-            label: "nature-walks",
-            content:
-              "Nature Walks\nShort walks reset attention and reduce decision fatigue — tiny rituals that preserve consistency across long projects.",
+            id: "travel-culture",
+            label: "travel-culture",
+            iconKey: "plane",
+            color: "emerald",
+            content: "Enjoying diverse cultural experiences and perspectives.",
           },
         ],
       },

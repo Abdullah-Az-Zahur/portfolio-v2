@@ -6,8 +6,9 @@ import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
 import { motion } from "framer-motion";
-import Image from "next/image";
 import { navItems } from "./navItems";
+import ThemeToggle from "@/shared/ui/ThemeToggle/ThemeToggle";
+import { FiTerminal } from "react-icons/fi";
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false); // Mobile menu state
@@ -23,20 +24,18 @@ const NavBar: React.FC = () => {
     : "md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full h-[calc(100vh-56px-48px)]";
 
   return (
-    <header className={headerClassName}>
+    <header className={`site-navbar ${headerClassName}`}>
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo / Name */}
 
-        <div className="md:w-1/5 md:border-r p-4 border-gray-500 h-full flex items-center hover:text-gray-400 gap-5">
-          <Link href="/dashboard">
-            <Image
-              src="/assets/images/My half Photo.png"
-              height="32"
-              width="32"
-              alt="Profile picture"
-              priority
-              className="w-7 h-7 rounded-full"
-            />
+        <div className="md:w-1/5 md:border-r p-4 border-gray-400 h-full flex items-center hover:text-gray-500 gap-5">
+          <Link
+            href="/dashboard"
+            aria-label="Open dashboard"
+            title="Open dashboard"
+            className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition hover:border-cyan-300/50 hover:bg-cyan-400/20"
+          >
+            <FiTerminal className="h-4 w-4" />
           </Link>
 
           <Link href="/">md. abdullah az-zahur</Link>
@@ -73,10 +72,12 @@ const NavBar: React.FC = () => {
 
           {/* Last Item - Right Aligned with Full-Height Left Border */}
           <div className="relative flex items-center h-full">
-            <span className="absolute left-0 top-0 h-full w-[1px] bg-gray-500"></span>
+            <div className="mr-2 hidden md:block">
+              <ThemeToggle />
+            </div>
             <Link
               href={navItems[3].href}
-              className={`hover:text-gray-400 p-4 transition relative flex items-center h-full ${
+              className={`border-l border-gray-400 pl-5 pr-4 hover:text-gray-500 transition relative flex items-center h-full ${
                 pathname === navItems[3].href
                   ? "text-white"
                   : "hover:border-b-4 hover:border-orange-300 hover:bg-transparent/10"
@@ -132,6 +133,9 @@ const NavBar: React.FC = () => {
               </Link>
             ))}
           </nav>
+          <div className="flex justify-center border-t border-gray-600 py-4">
+            <ThemeToggle />
+          </div>
           <hr className="border-gray-600" />
         </div>
       )}

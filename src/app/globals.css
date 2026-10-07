@@ -2,31 +2,447 @@
 @tailwind components;
 @tailwind utilities;
 
-/* :root {
-  --background: #ffffff;
-  --foreground: #171717;
-} */
-
-/* @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-} */
-
+/* ============================================================
+   Base
+   ============================================================ */
 body {
   color: #607b96;
   background: #011627;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
   /* Font is now applied via next/font Fira_Code in layout.tsx */
 }
 
-/* Change color of selected text */
+[data-theme="light"] body {
+  color: #314158;
+  background: #eef3f8;
+}
+
+[data-theme="light"] .bg-\[\#011627\] {
+  background-color: #eef3f8 !important;
+}
+
+[data-theme="light"] .bg-\[\#06111f\],
+[data-theme="light"] .bg-\[\#07111f\],
+[data-theme="light"] .bg-\[\#081524\],
+[data-theme="light"] .bg-\[\#0b1728\] {
+  background-color: #f8fbfe !important;
+}
+
+[data-theme="light"] .text-white {
+  color: #172337 !important;
+}
+
+[data-theme="light"] .text-slate-100,
+[data-theme="light"] .text-slate-200,
+[data-theme="light"] .text-slate-300 {
+  color: #314158 !important;
+}
+
+[data-theme="light"] .text-slate-400,
+[data-theme="light"] .text-slate-500 {
+  color: #607089 !important;
+}
+
+[data-theme="light"] .border-white\/5,
+[data-theme="light"] .border-white\/10 {
+  border-color: #d4deea !important;
+}
+
+[data-theme="light"] .bg-white\/5 {
+  background-color: rgba(255, 255, 255, 0.72) !important;
+}
+
+[data-theme="light"] .text-gray-500,
+[data-theme="light"] .text-gray-600,
+[data-theme="light"] .text-gray-700 {
+  color: #52657d !important;
+}
+
+[data-theme="light"] .border-gray-500,
+[data-theme="light"] .border-gray-600,
+[data-theme="light"] .border-gray-700 {
+  border-color: #cbd6e3 !important;
+}
+
+[data-theme="light"] .bg-gray-950 {
+  background-color: #ffffff !important;
+}
+
+[data-theme="light"] .bg-gray-800,
+[data-theme="light"] .bg-gray-900 {
+  background-color: #e3ebf3 !important;
+  color: #172337 !important;
+}
+
+[data-theme="light"] .shadow-md,
+[data-theme="light"] .shadow-xl,
+[data-theme="light"] .shadow-2xl {
+  --tw-shadow-color: rgba(60, 78, 102, 0.18) !important;
+}
+
+/* ============================================================
+   Home Page — Base (Dark theme default)
+   ============================================================ */
+.home-page {
+  background-color: #011627;
+  transition: background-color 200ms ease;
+}
+
+.home-atmosphere {
+  background:
+    radial-gradient(
+      120% 85% at 20% 15%,
+      rgba(67, 217, 173, 0.16) 0%,
+      rgba(67, 217, 173, 0) 62%
+    ),
+    radial-gradient(
+      110% 80% at 80% 35%,
+      rgba(77, 91, 206, 0.2) 0%,
+      rgba(77, 91, 206, 0) 66%
+    );
+}
+
+.home-atmosphere-mobile {
+  background: radial-gradient(
+    75% 100% at 50% 100%,
+    rgba(67, 217, 173, 0.12) 0%,
+    rgba(77, 91, 206, 0.1) 34%,
+    rgba(1, 22, 39, 0) 72%
+  );
+}
+
+/* Text colors — dark theme */
+.home-title {
+  color: #e5e9f0;
+  transition: color 180ms ease;
+}
+
+.home-role,
+.home-keyword {
+  color: #4d5bce;
+  transition: color 180ms ease;
+}
+
+.home-variable {
+  color: #43d9ad;
+  transition: color 180ms ease;
+}
+
+.home-link {
+  color: #e99287;
+  transition: color 180ms ease;
+}
+
+.home-hint {
+  color: #607b96;
+}
+
+/* CTA buttons — dark theme */
+.home-cta-primary {
+  border-color: rgba(34, 211, 238, 0.4);
+  background-color: rgba(34, 211, 238, 0.1);
+  color: #a5f3fc;
+}
+.home-cta-primary:hover {
+  border-color: #67e8f9;
+  background-color: rgba(34, 211, 238, 0.2);
+}
+
+.home-cta-secondary {
+  border-color: rgba(255, 255, 255, 0.15);
+  color: #cbd5e1;
+}
+.home-cta-secondary:hover {
+  border-color: rgba(103, 232, 249, 0.6);
+  color: #ffffff;
+}
+
+/* Status badge — dark theme */
+.home-status-badge {
+  border-color: rgba(255, 255, 255, 0.15);
+  background-color: rgba(6, 17, 31, 0.75);
+  color: #cbd5e1;
+}
+
+/* Portrait guides — dark theme */
+.home-portrait-guide {
+  border-color: rgba(103, 232, 249, 0.2);
+  transform: rotate(-18deg);
+}
+
+.home-portrait-guide-offset {
+  border-color: rgba(110, 231, 183, 0.2);
+  transform: rotate(28deg);
+}
+
+.home-portrait-halo {
+  background: radial-gradient(
+    circle,
+    rgba(67, 217, 173, 0.2),
+    rgba(77, 91, 206, 0.1) 42%,
+    transparent 72%
+  );
+  filter: blur(18px);
+  animation: portrait-breathe 8s ease-in-out infinite;
+}
+
+.home-portrait {
+  animation: portrait-float 8s ease-in-out infinite;
+}
+
+@keyframes portrait-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-10px) rotate(0.6deg);
+  }
+}
+
+@keyframes portrait-breathe {
+  0%,
+  100% {
+    opacity: 0.7;
+    transform: scale(0.94);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+}
+
+/* ============================================================
+   Home Page — Light Theme Overrides
+   ============================================================ */
+[data-theme="light"] .home-page {
+  background-color: #eef3f8;
+  background-image:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.8), transparent 48%),
+    radial-gradient(
+      circle at 85% 15%,
+      rgba(91, 143, 196, 0.14),
+      transparent 34%
+    ),
+    radial-gradient(circle at 12% 82%, rgba(67, 160, 145, 0.1), transparent 32%);
+}
+
+/* Hide neon blobs / atmosphere in light mode */
+[data-theme="light"] .home-atmosphere,
+[data-theme="light"] .home-blob {
+  opacity: 0 !important;
+}
+
+/* Text colors — light theme */
+[data-theme="light"] .home-title {
+  color: #172337 !important;
+}
+
+[data-theme="light"] .home-role,
+[data-theme="light"] .home-keyword {
+  color: #3b4fbb !important;
+}
+
+[data-theme="light"] .home-variable {
+  color: #087f67 !important;
+}
+
+[data-theme="light"] .home-link {
+  color: #b4534d !important;
+}
+
+[data-theme="light"] .home-hint {
+  color: #52657d !important;
+}
+
+/* CTA buttons — light theme */
+[data-theme="light"] .home-cta-primary {
+  border-color: rgba(14, 116, 144, 0.45) !important;
+  background-color: rgba(14, 116, 144, 0.08) !important;
+  color: #0e7490 !important;
+}
+[data-theme="light"] .home-cta-primary:hover {
+  border-color: #0e7490 !important;
+  background-color: rgba(14, 116, 144, 0.16) !important;
+  color: #075985 !important;
+}
+
+[data-theme="light"] .home-cta-secondary {
+  border-color: #cbd6e3 !important;
+  color: #314158 !important;
+}
+[data-theme="light"] .home-cta-secondary:hover {
+  border-color: #0e7490 !important;
+  color: #0e7490 !important;
+}
+
+/* Status badge — light theme */
+[data-theme="light"] .home-status-badge {
+  border-color: #cbd6e3 !important;
+  background-color: rgba(248, 251, 254, 0.85) !important;
+  color: #314158 !important;
+}
+
+/* Portrait guides — light theme */
+[data-theme="light"] .home-portrait-guide {
+  border-color: rgba(91, 143, 196, 0.28) !important;
+}
+
+[data-theme="light"] .home-portrait-guide-offset {
+  border-color: rgba(67, 160, 145, 0.22) !important;
+}
+
+[data-theme="light"] .home-portrait-halo {
+  background: radial-gradient(
+    circle,
+    rgba(91, 143, 196, 0.2),
+    rgba(67, 160, 145, 0.12) 45%,
+    transparent 72%
+  );
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer {
+  background: #011627;
+  border-color: #607b96;
+  color: #607b96;
+}
+
+@media (min-width: 768px) {
+  .site-footer-home {
+    background: linear-gradient(
+      90deg,
+      rgba(6, 17, 31, 0.8),
+      rgba(11, 27, 46, 0.72),
+      rgba(6, 17, 31, 0.8)
+    );
+    border-color: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(18px);
+    box-shadow: 0 -8px 26px rgba(1, 22, 39, 0.35);
+  }
+}
+
+@media (max-width: 767px) {
+  .site-footer-home {
+    display: none;
+  }
+}
+
+[data-theme="light"] .site-footer {
+  background: rgba(229, 237, 244, 0.96);
+  border-color: #c1cedc;
+  color: #314158;
+}
+
+[data-theme="light"] .site-footer a,
+[data-theme="light"] .site-footer h2 {
+  border-color: #c1cedc;
+}
+
+/* ============================================================
+   About sidebar
+   ============================================================ */
+[data-theme="light"] .about-sidebar li:hover,
+[data-theme="light"] .about-sidebar button:hover,
+[data-theme="light"] .about-sidebar a:hover {
+  color: #2563a8 !important;
+}
+
+[data-theme="light"] .about-sidebar a {
+  color: #2563a8;
+}
+
+[data-theme="light"] .about-category-active {
+  background: #dce7f0 !important;
+  box-shadow: 0 0 0 1px #5b8fc4 !important;
+}
+
+/* ============================================================
+   Navbar
+   ============================================================ */
+[data-theme="light"] .site-navbar .bg-gray-500,
+[data-theme="light"] .site-navbar .border-gray-500 {
+  background-color: #9aabba !important;
+  border-color: #9aabba !important;
+}
+
+.site-navbar .bg-gray-500,
+.site-navbar .border-gray-500 {
+  background-color: #607b96;
+  border-color: #607b96;
+}
+
+/* ============================================================
+   Tab bar
+   ============================================================ */
+[data-theme="light"] .site-tabbar {
+  background: #e5edf4 !important;
+  border-color: #c1cedc !important;
+}
+
+[data-theme="light"] .site-tab {
+  border-color: #c1cedc !important;
+  color: #607089 !important;
+}
+
+[data-theme="light"] .site-tab:hover {
+  background: #dce7f0 !important;
+  color: #172337 !important;
+}
+
+[data-theme="light"] .site-tab-active {
+  background: #cbdbea !important;
+  color: #172337 !important;
+}
+
+/* ============================================================
+   Theme menu
+   ============================================================ */
+[data-theme="light"] .theme-menu {
+  background: #f4f8fb !important;
+  border-color: #c1cedc !important;
+  box-shadow: 0 14px 35px rgba(43, 63, 84, 0.2) !important;
+}
+
+/* ============================================================
+   Project cards — light theme
+   ============================================================ */
+[data-theme="light"] .project-card-frame {
+  border-color: #cbd6e3 !important;
+  background: #f8fbfe;
+  box-shadow: 0 14px 30px rgba(61, 82, 105, 0.1);
+}
+
+[data-theme="light"] .project-card-body {
+  background: #f8fbfe !important;
+  color: #314158;
+}
+
+[data-theme="light"] .project-card-link {
+  background: #d9e7f2 !important;
+  color: #1f4f78 !important;
+}
+
+[data-theme="light"] .project-card-link:hover {
+  background: #c4dbea !important;
+  color: #163c5d !important;
+}
+
+/* ============================================================
+   Selection
+   ============================================================ */
 ::selection {
-  background-color: #607b96; /* Optional: Set background color of the selected text */
+  background-color: #607b96;
   color: white;
 }
 
-/* TabBar horizontal scrollbar */
+/* ============================================================
+   TabBar horizontal scrollbar
+   ============================================================ */
 .tabbar-scroll {
   scrollbar-width: thin;
   scrollbar-color: #3b4f66 #0b2035;

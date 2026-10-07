@@ -47,7 +47,12 @@ export const metadata: Metadata = {
 
 const AboutPage = async () => {
   const content = await getPublicAboutContent();
-  return <AboutClient initialContent={content} />;
+  return (
+    <AboutClient
+      initialContent={content.content}
+      initialResources={content.resources}
+    />
+  );
 };
 
 export default AboutPage;

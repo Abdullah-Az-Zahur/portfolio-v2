@@ -18,14 +18,14 @@ const TabBar = () => {
   }
 
   return (
-    <div className="hidden md:block fixed top-14 left-0 md:left-[20%] w-full md:w-[80%] h-[41px] border-b border-l border-gray-700 bg-[#011627] z-40">
+    <div className="site-tabbar hidden md:block fixed top-14 left-0 md:left-[20%] w-full md:w-[80%] h-[41px] border-b border-l border-gray-700 bg-[#011627] z-40">
       <div className="tabbar-scroll flex h-full w-full items-center overflow-x-auto overflow-y-hidden">
         {tabs.map((tab) => (
           <div
             key={tab.id}
-            className={`group flex shrink-0 items-center px-4 h-full cursor-pointer border-r border-gray-700 relative ${
+            className={`site-tab group flex shrink-0 items-center px-4 h-full cursor-pointer border-r border-gray-700 relative ${
               activeTab === tab.id
-                ? "bg-[#1E1E1E] text-white"
+                ? "site-tab-active bg-[#1E1E1E] text-white"
                 : "text-gray-400 hover:bg-[#1E1E1E]/60"
             }`}
             onClick={() => dispatch(setActiveTab(tab.id))}

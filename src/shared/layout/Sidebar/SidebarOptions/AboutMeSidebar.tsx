@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
@@ -9,6 +9,7 @@ import { aboutSidebarCategories } from "@/features/about/components/aboutSidebar
 import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
 import AboutSidebarGroups from "./AboutSidebarGroups";
 import AboutSidebarResources from "./AboutSidebarResources";
+import { aboutIconOptions } from "@/shared/data/aboutIconOptions";
 
 const sidebarResources = [
   {
@@ -28,7 +29,63 @@ const AboutMeSidebar = () => {
   const [mobileExpandedCategoryId, setMobileExpandedCategoryId] = useState<
     string | null
   >(null);
-  const categories: SidebarCategory[] = aboutSidebarCategories;
+  const [categories, setCategories] = useState<SidebarCategory[]>(
+    aboutSidebarCategories,
+  );
+
+  useEffect(() => {
+    async function loadDynamicCategories() {
+      try {
+        const response = await fetch("/api/about");
+        const data = await response.json();
+        if (!response.ok || !Array.isArray(data.entries)) return;
+
+        const nextCategories = aboutSidebarCategories.map((category) => ({
+          ...category,
+          groups: category.groups.map((group) => ({
+            ...group,
+            items: data.entries
+              .filter(
+                (entry: { category: string; group: string }) =>
+                  entry.category === category.id && entry.group === group.id,
+              )
+              .sort(
+                (left: { order?: number }, right: { order?: number }) =>
+                  (left.order ?? 0) - (right.order ?? 0),
+              )
+              .map(
+                (entry: {
+                  key: string;
+                  label: string;
+                  iconKey: string;
+                  color: string;
+                }) => {
+                  const icon =
+                    aboutIconOptions[
+                      entry.iconKey as keyof typeof aboutIconOptions
+                    ]?.icon ?? aboutIconOptions.user.icon;
+                  const colorClass = `text-${entry.color}-500`;
+                  return {
+                    id: entry.key,
+                    title: entry.label,
+                    label: entry.label,
+                    icon,
+                    activeClass: `${colorClass} font-medium`,
+                    hoverClass: `hover:${colorClass}`,
+                    iconClass: colorClass,
+                  };
+                },
+              ),
+          })),
+        }));
+        setCategories(nextCategories);
+      } catch {
+        // Static categories remain available when MongoDB is unavailable.
+      }
+    }
+
+    void loadDynamicCategories();
+  }, []);
 
   const activeCategory =
     categories.find((category) => category.id === activeCategoryId) ??
@@ -153,7 +210,7 @@ const AboutMeSidebar = () => {
                 onClick={() => handleCategorySwitch(category.id)}
                 className={`rounded-md p-2 transition-colors ${
                   isActive
-                    ? "bg-[#1f2937] ring-1 ring-blue-500"
+                    ? "about-category-active bg-[#1f2937] ring-1 ring-blue-500"
                     : "hover:bg-[#1a2234]"
                 }`}
                 title={category.label}

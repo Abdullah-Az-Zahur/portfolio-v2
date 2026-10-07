@@ -14,15 +14,33 @@ function fallbackContent() {
 
 export async function getPublicAboutContent() {
   const fallback = fallbackContent();
+  const fallbackResources = Object.fromEntries(
+    aboutContent.flatMap((category) =>
+      category.groups.flatMap((group) =>
+        group.items
+          .filter((item) => item.resourceUrl && item.showResource)
+          .map((item) => [item.id, item.resourceUrl as string]),
+      ),
+    ),
+  );
 
   try {
     await connectToDatabase();
     const entries = await AboutEntry.find().lean();
-    return entries.reduce(
-      (content, entry) => ({ ...content, [entry.key]: entry.content }),
-      fallback,
-    );
+    return {
+      content: entries.reduce(
+        (content, entry) => ({ ...content, [entry.key]: entry.content }),
+        fallback,
+      ),
+      resources: entries.reduce(
+        (resources, entry) =>
+          entry.showResource && entry.resourceUrl
+            ? { ...resources, [entry.key]: entry.resourceUrl }
+            : resources,
+        {},
+      ),
+    };
   } catch {
-    return fallback;
+    return { content: fallback, resources: fallbackResources };
   }
 }

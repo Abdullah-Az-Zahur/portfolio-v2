@@ -1,56 +1,32 @@
-"use client"; // Required for client-side hooks
+"use client";
+
 import Link from "next/link";
-import { usePathname } from "next/navigation"; // Import usePathname
-import React, { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
 
-const Footer: React.FC = () => {
-  const pathname = usePathname(); // Get the current path
-  const [isMobile, setIsMobile] = useState(false);
-  const isHomePage = pathname === "/";
-
-  useEffect(() => {
-    // Check if the device is mobile (screen width < 768px)
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-
-    // Set the initial value
-    handleResize();
-
-    // Add event listener for window resize
-    window.addEventListener("resize", handleResize);
-
-    // Cleanup the event listener on component unmount
-    return () => window.removeEventListener("resize", handleResize);
-  }, []);
-
-  // Hide the footer only on mobile devices when the path is '/'
-  const shouldHideFooter = isMobile && pathname === "/";
-  const footerClassName = isHomePage
-    ? `fixed bottom-0 left-0 h-12 w-full bg-[#011627] border border-gray-500 md:bg-gradient-to-r md:from-[#06111f]/80 md:via-[#0b1b2e]/72 md:to-[#06111f]/80 md:backdrop-blur-xl md:border-white/15 md:shadow-[0_-8px_26px_rgba(1,22,39,0.35)] ${
-        shouldHideFooter ? "hidden" : ""
-      }`
-    : `fixed bg-[#011627] bottom-0 left-0 border border-gray-500 h-12 w-full ${
-        shouldHideFooter ? "hidden" : ""
-      }`;
+export default function Footer() {
+  const isHomePage = usePathname() === "/";
 
   return (
-    <div className={footerClassName}>
-      <div className="flex justify-between items-center h-full">
+    <footer
+      className={`site-footer fixed bottom-0 left-0 z-40 h-12 w-full border  ${isHomePage ? "site-footer-home" : ""}`}
+    >
+      <div className="flex h-full items-center justify-between">
         <div className="flex items-center">
-          <h2 className="p-3">find me in:</h2>
+          <h2 className="px-3 text-sm sm:text-base">find me in:</h2>
           <Link
             target="_blank"
             href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
-            className="p-[15px] border-l border-gray-500 hidden sm:block"
+            aria-label="LinkedIn"
+            className="hidden border-l border-gray-500 px-3 py-3 sm:block"
           >
             <FaLinkedin />
           </Link>
           <Link
             target="_blank"
             href="https://www.facebook.com/abdullah.az.zahur"
-            className="p-[15px] border-x border-gray-500 hidden sm:block"
+            aria-label="Facebook"
+            className="hidden border-x border-gray-500 px-3 py-3 sm:block"
           >
             <FaFacebookF />
           </Link>
@@ -59,33 +35,34 @@ const Footer: React.FC = () => {
           <Link
             target="_blank"
             href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
-            className="p-[15px] border-l border-gray-500 block md:hidden"
+            aria-label="LinkedIn"
+            className="block border-l border-gray-500 px-3 py-3 sm:hidden"
           >
             <FaLinkedin />
           </Link>
           <Link
             target="_blank"
             href="https://www.facebook.com/abdullah.az.zahur"
-            className="p-[15px] border-x border-gray-500 block md:hidden"
+            aria-label="Facebook"
+            className="block border-x px-3 py-3 sm:hidden"
           >
             <FaFacebookF />
           </Link>
           <Link
             target="_blank"
             href="https://github.com/Abdullah-Az-Zahur"
+            aria-label="GitHub"
             className="flex items-center"
           >
-            <h2 className="p-3 border-l border-gray-500 text-sm hidden sm:block">
+            <span className="hidden border-l border-gray-500 px-3 py-3 text-sm sm:block">
               @Abdullah-Az-Zahur
-            </h2>
-            <div className="px-3">
+            </span>
+            <span className="px-3">
               <FaGithub />
-            </div>
+            </span>
           </Link>
         </div>
       </div>
-    </div>
+    </footer>
   );
-};
-
-export default Footer;
+}
