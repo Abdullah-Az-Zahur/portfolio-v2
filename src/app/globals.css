@@ -466,3 +466,146 @@ body {
 .tabbar-scroll::-webkit-scrollbar-thumb:hover {
   background: linear-gradient(90deg, #4f6b88 0%, #5f83a8 100%);
 }
+
+/* ============================================================
+   About Sidebar — Base (Dark theme default)
+   ============================================================ */
+.about-sidebar {
+  color: #94a3b8;
+}
+
+/* Category divider */
+.about-sidebar-category {
+  border-color: #374151; /* gray-700 */
+}
+
+/* Mobile trigger */
+.about-sidebar-trigger {
+  padding-left: 0.5rem;
+  padding-right: 0.5rem;
+}
+
+.about-sidebar-trigger-active {
+  background-color: #1f2937;
+}
+
+.about-sidebar-trigger-idle:hover {
+  background-color: #1a2234;
+}
+
+.about-sidebar-trigger-label {
+  color: #ffffff;
+}
+
+.about-sidebar-arrow {
+  color: #ffffff;
+}
+
+/* Desktop icon rail */
+.about-sidebar-rail {
+  border-color: #374151;
+}
+
+.about-sidebar-rail-btn-idle:hover {
+  background-color: #1a2234;
+}
+
+/* Desktop header (category title) */
+.about-sidebar-header {
+  color: #ffffff;
+  border-color: #6b7280;
+}
+
+.about-sidebar-header:hover {
+  color: #3b82f6;
+}
+
+/* Divider above resources */
+.about-sidebar-resources-open {
+  border-top-width: 1px;
+  border-top-color: #6b7280;
+}
+
+.about-sidebar-resources {
+  border-color: #6b7280;
+}
+
+/* Resources links */
+.about-sidebar-link {
+  color: #93c5fd;
+}
+.about-sidebar-link:hover {
+  color: #3b82f6;
+}
+
+/* Resource item row */
+.about-sidebar-resource-item {
+  border-color: #6b7280;
+}
+
+/* ============================================================
+   About Sidebar — Light Theme Overrides
+   ============================================================ */
+[data-theme="light"] .about-sidebar {
+  color: #52657d;
+}
+
+[data-theme="light"] .about-sidebar-category {
+  border-color: #d4deea !important;
+}
+
+[data-theme="light"] .about-sidebar-trigger-active {
+  background-color: #dce7f0 !important;
+}
+
+[data-theme="light"] .about-sidebar-trigger-idle:hover {
+  background-color: #e3ebf3 !important;
+}
+
+[data-theme="light"] .about-sidebar-trigger-label {
+  color: #172337 !important;
+}
+
+[data-theme="light"] .about-sidebar-arrow {
+  color: #172337 !important;
+}
+
+[data-theme="light"] .about-sidebar-rail {
+  border-color: #d4deea !important;
+}
+
+[data-theme="light"] .about-sidebar-rail-btn-idle:hover {
+  background-color: #e3ebf3 !important;
+}
+
+[data-theme="light"] .about-sidebar-header {
+  color: #172337 !important;
+  border-color: #cbd6e3 !important;
+}
+
+[data-theme="light"] .about-sidebar-header:hover {
+  color: #2563a8 !important;
+}
+
+[data-theme="light"] .about-sidebar-resources,
+[data-theme="light"] .about-sidebar-resources-open {
+  border-color: #cbd6e3 !important;
+}
+
+[data-theme="light"] .about-sidebar-link {
+  color: #2563a8 !important;
+}
+
+[data-theme="light"] .about-sidebar-link:hover {
+  color: #0e7490 !important;
+}
+
+[data-theme="light"] .about-sidebar-resource-item {
+  border-color: #cbd6e3 !important;
+}
+
+/* Active category (icon rail) — light theme */
+[data-theme="light"] .about-category-active {
+  background-color: #dce7f0 !important;
+  box-shadow: 0 0 0 1px #5b8fc4 !important;
+}
