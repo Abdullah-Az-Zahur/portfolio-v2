@@ -17,6 +17,7 @@ export type SidebarGroup = {
   label: string;
   arrowClass: string;
   folderClass: string;
+  hoverClass?: string; // ← নতুন (optional, backward-compatible)
   items: SidebarItem[];
 };
 

@@ -12,24 +12,26 @@ const AboutClient = ({
   initialResources,
 }: AboutClientProps) => {
   const { activeTab } = useAppSelector((state) => state.tabs);
-  const activeContent =
-    initialContent[activeTab ?? "bio-item"] ?? initialContent["bio-item"];
-  const resourceUrl = initialResources[activeTab ?? "bio-item"];
+  const activeKey = activeTab ?? "bio-item";
+  const activeContent = initialContent[activeKey] ?? initialContent["bio-item"];
+  const resourceUrl = initialResources[activeKey];
   const previewUrl = resourceUrl?.replace(/\/view(?:\?.*)?$/, "/preview");
 
   return (
     <div>
-      <CommentText text={activeContent} />
+      {/* key দিলে tab change হলেই CommentText reset হবে */}
+      <CommentText key={activeKey} text={activeContent} />
+
       {resourceUrl ? (
-        <details className="mt-6 rounded-lg border border-gray-700 p-4">
-          <summary className="cursor-pointer text-blue-300 hover:text-blue-200">
+        <details className="about-doc-details mt-6 rounded-lg border p-4">
+          <summary className="about-doc-summary cursor-pointer">
             View attached certificate or document
           </summary>
           <a
             href={resourceUrl}
             target="_blank"
             rel="noreferrer"
-            className="mt-3 inline-block text-sm text-blue-300 hover:text-blue-200"
+            className="about-doc-link mt-3 inline-block text-sm"
           >
             Open in a new tab
           </a>
@@ -37,7 +39,7 @@ const AboutClient = ({
             <iframe
               title="Attached document preview"
               src={previewUrl}
-              className="mt-4 h-[min(70vh,720px)] w-full rounded border border-gray-700"
+              className="about-doc-iframe mt-4 h-[min(70vh,720px)] w-full rounded border"
             />
           ) : null}
         </details>

@@ -40,7 +40,9 @@ It also reflects the kind of work I value most as a software engineer: clean sys
 - **📧 Contact Form** — Full-stack email integration using Nodemailer with Gmail SMTP
 - **📱 Fully Responsive** — Mobile-first design that looks great on all devices
 - **⚡ Modern Stack** — Next.js 16 with Turbopack, React 19, TypeScript, and Tailwind CSS
-- **🎯 Production-Ready** — Pre-commit hooks, code linting, and optimized builds
+- **🎯 Production-Ready** — Auth-protected CMS, MongoDB persistence, Cloudinary uploads, theme modes, linting, and optimized builds
+- **🌓 Theme Modes** — Dark (default), light, and system theme selection
+- **🛠️ Content Management Dashboard** — Edit About content, manage projects, reorder projects, and upload project images
 
 ---
 
@@ -98,9 +100,17 @@ This portfolio showcases **13+ projects** spanning from beginner to advanced lev
 
 ### Backend & APIs
 
-- **Node.js/Express** — Backend API routes with Next.js
+- **Next.js Route Handlers** — Server-side API routes with authentication and validation
+- **[Auth.js / NextAuth](https://authjs.dev/)** — Credentials-based admin authentication
+- **[Mongoose](https://mongoosejs.com/)** — MongoDB connection, models, and CRUD operations
+- **[Cloudinary](https://cloudinary.com/)** — Server-side project image uploads
 - **[Nodemailer 8.0.5](https://nodemailer.com)** — Email sending via SMTP
 - **[Dotenv 16.5.0](https://github.com/motdotla/dotenv)** — Environment variable management
+
+### Theme & UI
+
+- **[next-themes](https://github.com/pacocoursey/next-themes)** — System, light, and dark theme persistence
+- **VS Code-inspired UI** — Sidebar navigation, tabs, code-like typography, and focused CMS surfaces
 
 ### Development Tools
 
@@ -113,81 +123,56 @@ This portfolio showcases **13+ projects** spanning from beginner to advanced lev
 
 ## 📂 Project Structure
 
-```
 portfolio-v2/
 ├── src/
-│   ├── app/                          # Next.js App Router pages
-│   │   ├── globals.css              # Global styles
-│   │   ├── layout.tsx               # Root layout
-│   │   ├── (auth)/                  # Auth routes group
-│   │   ├── (backend)/               # Backend API routes
-│   │   │   └── api/send/route.ts    # Email contact endpoint
-│   │   └── (web)/                   # Public web pages
-│   │       ├── page.tsx             # Home page
-│   │       ├── layout.tsx           # Web layout with sidebar
-│   │       ├── about/page.tsx       # About page
-│   │       ├── contact/page.tsx     # Contact page
-│   │       └── project/page.tsx     # Projects page
-│   │
-│   ├── features/                    # Feature-based components
-│   │   ├── about/                   # About feature
-│   │   │   └── components/
-│   │   │       ├── AboutClient.tsx
-│   │   │       ├── PersonalInfo/    # Bio, Education, Interests
-│   │   │       ├── ProfessionalInfo/ # Skills, Experience, Certificates
-│   │   │       └── Hobbies/         # Creative, Outdoor, Wellness
-│   │   ├── contact/                 # Contact feature
-│   │   │   └── components/
-│   │   │       ├── ContactForm.tsx
-│   │   │       └── SuccessMessage.tsx
-│   │   ├── home/                    # Home feature
-│   │   │   └── components/
-│   │   │       └── HomeBackgroundBlobs.tsx
-│   │   └── projects/                # Projects feature
-│   │       └── components/
-│   │           └── ProjectCard.tsx
-│   │
-│   ├── shared/                      # Shared components & utilities
-│   │   ├── layout/
-│   │   │   ├── NavBar/
-│   │   │   ├── Sidebar/
-│   │   │   ├── TabBar/
-│   │   │   └── Footer/
-│   │   ├── ui/                      # Reusable UI components
-│   │   │   ├── CommentText/
-│   │   │   └── TypingAnimation/
-│   │   ├── data/
-│   │   │   ├── projects.ts          # Project data configuration
-│   │   │   └── index.ts
-│   │   └── utils/
-│   │       └── animationVariants.ts
-│   │
-│   ├── store/                       # Redux store
-│   │   ├── store.ts                 # Store configuration
-│   │   ├── hooks.ts                 # Custom Redux hooks
-│   │   └── features/
-│   │       ├── tabs/
-│   │       │   └── tabsSlice.ts     # Tab state management
-│   │       └── projects/
-│   │           └── projectsSlice.ts # Projects & filtering state
-│   │
-│   ├── providers/
-│   │   └── AppTabProvider.tsx       # Redux provider wrapper
-│   │
-│   └── config/                      # Configuration files
+│ ├── app/
+│ │ ├── (web)/ # Public pages and web layout
+│ │ ├── (auth)/dashboard/login/ # Admin login page
+│ │ ├── (admin)/dashboard/ # Protected CMS pages
+│ │ │ ├── page.tsx # Dashboard overview
+│ │ │ ├── profile/page.tsx # About CMS and item CRUD
+│ │ │ ├── projects/page.tsx # Project editor, upload, and reorder
+│ │ │ └── settings/page.tsx # CMS settings surface
+│ │ ├── (backend)/api/ # Route handlers
+│ │ │ ├── auth/[...nextauth]/ # Auth.js credentials session
+│ │ │ ├── dashboard/profile/ # Protected profile APIs
+│ │ │ ├── dashboard/projects/ # Protected project CRUD APIs
+│ │ │ ├── upload/ # Protected Cloudinary upload
+│ │ │ ├── about/ # Public About metadata
+│ │ │ └── send/ # Contact email endpoint
+│ │ ├── globals.css # Theme and global UI styles
+│ │ └── layout.tsx # Root metadata and theme provider
+│ │
+│ ├── features/ # Feature components
+│ │ ├── about/ # About rendering and sidebar
+│ │ ├── contact/ # Contact form and preview
+│ │ ├── home/ # Home motion background
+│ │ └── projects/ # Public project cards and list
+│ │
+│ ├── lib/
+│ │ ├── auth/ # Admin API authorization
+│ │ ├── mongodb/ # Cached Mongoose connection
+│ │ ├── cloudinary/ # Server-only Cloudinary config
+│ │ ├── projects/ # Public project data loader
+│ │ └── about/ # Public About data loader
+│ │
+│ ├── models/
+│ │ ├── projects/Project.ts # Project schema
+│ │ └── profile/AboutEntry.ts # About item schema
+│ ├── shared/data/ # Static seed/fallback datasets
+│ ├── shared/layout/ # Navbar, sidebar, tabs, footer
+│ ├── shared/ui/ # Reusable UI and theme controls
+│ ├── providers/ # Redux and theme providers
+│ └── store/ # Redux tabs and project filters
 │
-├── public/
-│   ├── robots.txt
-│   └── assets/
-│       └── images/                  # Project images
-│
-├── package.json                     # Dependencies & scripts
-├── tsconfig.json                    # TypeScript configuration
-├── next.config.ts                   # Next.js configuration
-├── tailwind.config.ts               # Tailwind CSS configuration
-├── postcss.config.mjs               # PostCSS configuration
-└── eslint.config.mjs                # ESLint configuration
-```
+├── public/assets/images/ # Fallback/static public assets
+├── .env.example # Environment variable template
+├── next.config.ts # Image hosts and Next configuration
+├── package.json # Scripts and dependencies
+└── README.md # Project documentation
+└── eslint.config.mjs # ESLint configuration
+
+````
 
 ---
 
@@ -215,7 +200,7 @@ Explore all 13+ projects, about page, and contact form directly on the live site
    ```bash
    git clone https://github.com/Abdullah-Az-Zahur/portfolio-v2.git
    cd portfolio-v2
-   ```
+````
 
 2. **Install dependencies**
 
@@ -267,7 +252,8 @@ Explore all 13+ projects, about page, and contact form directly on the live site
 ### 🏠 Home Page (`/`)
 
 - Hero section with animated typing effect cycling through multiple roles
-- Dynamic background blobs for visual depth
+- Transparent profile portrait with responsive hero composition
+- Smooth motion background accents in dark mode and a soft light-mode surface
 - Quick navigation to main sections
 - Smooth entry animations with Framer Motion
 
@@ -282,9 +268,8 @@ Explore all 13+ projects, about page, and contact form directly on the live site
   - Experience — Work history and achievements
   - Certificates — Professional certifications
 - **Hobbies**
-  - Creative — Books and music interests
-  - Outdoor — Gaming and hiking activities
-  - Wellness — Nature walks and well-being
+  - Sports, technology, gaming, travel, books, and outdoor interests
+- **Dynamic About CMS** — Edit content, add items, choose icons/colors, and attach optional certificates or documents
 
 ### 🎯 Projects Page (`/project`)
 
@@ -292,6 +277,9 @@ Explore all 13+ projects, about page, and contact form directly on the live site
 - **Interactive Filtering** — Select multiple skills to filter projects
 - **Project Details** — Name, description, live link, GitHub repository
 - **Skill Tags** — Technology stack for each project
+- **MongoDB-backed content** — Dashboard changes can flow back to the public project page
+- **Cloudinary images** — Upload files from the dashboard; MongoDB stores only the returned URL
+- **Project ordering** — Drag projects or use move controls, then persist the order
 - Redux-powered state management for efficient filtering
 
 ### 📧 Contact Page (`/contact`)
@@ -309,9 +297,26 @@ Explore all 13+ projects, about page, and contact form directly on the live site
 - **Protected routes** — Unauthenticated visitors are redirected to
   `/dashboard/login`
 - **Logout** — Clears the Auth.js session and returns to the public home page
-- **API structure** — Authenticated profile and media endpoints remain pending;
-  projects now have MongoDB-backed list, create, update, delete, and reorder
-  APIs
+- **Projects CMS** — Create, edit, delete, reorder, preview, and upload project images
+- **About CMS** — Edit CV-based Professional, Personal, and Hobbies content
+- **Dynamic items** — Add About items to existing groups with controlled icon/color choices
+- **Certificates** — Attach Google Drive or other document URLs with public show/hide control
+- **Protected APIs** — Dashboard API routes require the authenticated admin session
+- **Theme controls** — System, dark, and light modes; dark is the default
+
+### 🔌 API Overview
+
+| Endpoint                          | Methods                        | Purpose                                                                      |
+| --------------------------------- | ------------------------------ | ---------------------------------------------------------------------------- |
+| `/api/dashboard/projects`         | `GET`, `POST`                  | List and create projects; seeds static projects when the collection is empty |
+| `/api/dashboard/projects/[id]`    | `GET`, `PATCH`, `DELETE`       | Read, update, and delete one project                                         |
+| `/api/dashboard/projects/reorder` | `PATCH`                        | Persist project order in MongoDB                                             |
+| `/api/dashboard/profile/about`    | `GET`, `POST`, `PUT`, `DELETE` | About item CRUD and CV seed migration                                        |
+| `/api/upload`                     | `POST`                         | Authenticated Cloudinary image upload                                        |
+| `/api/about`                      | `GET`                          | Public About sidebar metadata                                                |
+| `/api/send`                       | `POST`                         | Contact form email delivery                                                  |
+
+All dashboard endpoints require an authenticated Auth.js session. Public loaders retain static fallback data when MongoDB is unavailable.
 
 ---
 
@@ -348,6 +353,23 @@ Full-stack email sending with Nodemailer:
 - **Error Handling** — Graceful error messages and retry logic
 
 **Location:** [src/app/(backend)/api/send/route.ts](<src/app/(backend)/api/send/route.ts>)
+
+### 🗃️ MongoDB and Cloudinary Content Flow
+
+MongoDB is selected with `MONGODB_NAME` and is created automatically by MongoDB
+on the first write. The application stores structured project/About data in
+MongoDB and keeps uploaded image binaries in Cloudinary. Project documents store
+only Cloudinary's `secure_url`.
+
+The first authenticated project request seeds the existing static project list;
+the first About CMS request performs the CV content seed/migration. This keeps
+the current portfolio useful before any manual database population.
+
+### 🌓 Theme Behavior
+
+Dark mode is the default because the public interface is designed around a VS
+Code-inspired dark workspace. Users can switch to light mode or follow the
+operating system through the compact theme menu in the navigation bar.
 
 ### 📱 Responsive Layout
 
@@ -412,8 +434,16 @@ The easiest way to deploy this Next.js app:
    - In Vercel dashboard, go to Project Settings → Environment Variables
    - Add the same variables from your `.env.local`:
      - `EMAIL_USER`
-     - `EMAIL_PASSWORD`
-     - `EMAIL_TO`
+       - `EMAIL_PASS`
+       - `MONGODB_URI`
+       - `MONGODB_NAME`
+       - `CLOUDINARY_CLOUD_NAME`
+       - `CLOUDINARY_API_KEY`
+       - `CLOUDINARY_API_SECRET`
+       - `NEXTAUTH_URL`
+       - `NEXTAUTH_SECRET`
+       - `ADMIN_EMAIL`
+       - `ADMIN_PASSWORD`
 
 4. **Deploy**
    - Vercel automatically builds and deploys on every push to `main`
@@ -474,21 +504,34 @@ npx eslint . --fix
 
 ### Adding/Editing Projects
 
-Projects are defined in [src/shared/data/projects.ts](src/shared/data/projects.ts). Each project includes:
+The dashboard is the primary project editor. The static dataset in
+[src/shared/data/projects.ts](src/shared/data/projects.ts) is used as the
+initial seed and fallback when MongoDB is empty or unavailable. Each project
+contains:
 
 ```typescript
 {
-  id: number,
   name: string,
   liveLink: string,
   repoLink: string,
   image: string,
   description: string,
-  skills: string[]  // Used for filtering
+   skills: string[]  // Must use the shared skill catalog for filtering
 }
 ```
 
-Simply add a new object to the `projects` array to include it on the Projects page.
+Use `/dashboard/projects` to create or edit projects. Images are uploaded to
+Cloudinary, and only the returned URL is stored in MongoDB. The public project
+page reads MongoDB first and falls back to the static dataset.
+
+### Adding About Content
+
+Use `/dashboard/profile` to edit the CV-based About content. The root sections
+are Professional Info, Personal Info, and Hobbies. Existing groups support new
+items with controlled icons, colors, order, and optional document links. New
+root sections or groups should be added in
+[src/shared/data/aboutContent.ts](src/shared/data/aboutContent.ts) so the
+sidebar fallback and MongoDB seed remain aligned.
 
 ---
 
@@ -519,6 +562,6 @@ This project is open source and available under the [MIT License](LICENSE).
 <div align="center">
   <strong>Made with ❤️ by Md. Abdullah Az-Zahur</strong><br>
   <sub>Live at <a href="https://abdullahzahur.vercel.app/">abdullahzahur.vercel.app</a></sub><br>
-  <sub>Last Updated: May 2026</sub><br>
+   <sub>Last Updated: October 2026</sub><br>
   <sub><a href="https://github.com/Abdullah-Az-Zahur/portfolio-v2">View on GitHub</a></sub>
 </div>

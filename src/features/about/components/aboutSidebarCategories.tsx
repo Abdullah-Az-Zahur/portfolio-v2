@@ -1,19 +1,4 @@
 import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
-import QwikItExperience from "@/features/about/components/ProfessionalInfo/Experience/QwikItExperience";
-import EncoderITExperience from "@/features/about/components/ProfessionalInfo/Experience/EncoderITExperience";
-import TechnicalSkills from "@/features/about/components/ProfessionalInfo/Skills/TechnicalSkills";
-import Certifications from "@/features/about/components/ProfessionalInfo/Certificates/Certifications";
-import BioInfo from "@/features/about/components/PersonalInfo/Bio/BioInfo";
-import InterestsInfo from "@/features/about/components/PersonalInfo/Interests/InterestsInfo";
-import HighSchoolInfo from "@/features/about/components/PersonalInfo/Education/HighSchoolInfo";
-import CollegeInfo from "@/features/about/components/PersonalInfo/Education/CollegeInfo";
-import UniversityInfo from "@/features/about/components/PersonalInfo/Education/UniversityInfo";
-import MScInfo from "@/features/about/components/PersonalInfo/Education/MScInfo";
-import BachelorThesisInfo from "@/features/about/components/PersonalInfo/Education/BachelorThesisInfo";
-import BooksHobby from "@/features/about/components/Hobbies/Creative/BooksHobby";
-import HikingHobby from "@/features/about/components/Hobbies/Outdoor/HikingHobby";
-import GamesHobby from "@/features/about/components/Hobbies/Outdoor/GamesHobby";
-import NatureWalksHobby from "@/features/about/components/Hobbies/Wellness/NatureWalksHobby";
 import {
   FaBriefcase,
   FaCertificate,
@@ -42,6 +27,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "experience",
         arrowClass: "text-blue-500",
         folderClass: "text-blue-500",
+        hoverClass: "hover:text-blue-500",
         items: [
           {
             id: "qwik-it",
@@ -51,7 +37,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-yellow-500 font-medium",
             hoverClass: "hover:text-yellow-500",
             iconClass: "text-yellow-500",
-            content: <QwikItExperience />,
           },
           {
             id: "encoder-it",
@@ -61,7 +46,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-blue-500 font-medium",
             hoverClass: "hover:text-blue-500",
             iconClass: "text-blue-500",
-            content: <EncoderITExperience />,
           },
         ],
       },
@@ -70,6 +54,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "skills",
         arrowClass: "text-green-500",
         folderClass: "text-green-500",
+        hoverClass: "hover:text-green-500",
         items: [
           {
             id: "technical-skills",
@@ -79,7 +64,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-green-500 font-medium",
             hoverClass: "hover:text-green-500",
             iconClass: "text-green-500",
-            content: <TechnicalSkills />,
           },
         ],
       },
@@ -88,6 +72,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "certificates",
         arrowClass: "text-purple-500",
         folderClass: "text-purple-500",
+        hoverClass: "hover:text-purple-500",
         items: [
           {
             id: "certifications",
@@ -97,7 +82,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-purple-500 font-medium",
             hoverClass: "hover:text-purple-500",
             iconClass: "text-purple-500",
-            content: <Certifications />,
           },
         ],
       },
@@ -114,6 +98,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "bio",
         arrowClass: "text-blue-500",
         folderClass: "text-blue-500",
+        hoverClass: "hover:text-blue-500",
         items: [
           {
             id: "bio-item",
@@ -123,7 +108,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-blue-500 font-medium",
             hoverClass: "hover:text-blue-500",
             iconClass: "text-blue-500",
-            content: <BioInfo />,
           },
         ],
       },
@@ -132,6 +116,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "interests",
         arrowClass: "text-green-500",
         folderClass: "text-green-500",
+        hoverClass: "hover:text-green-500",
         items: [
           {
             id: "interest-item",
@@ -141,7 +126,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-green-500 font-medium",
             hoverClass: "hover:text-green-500",
             iconClass: "text-green-500",
-            content: <InterestsInfo />,
           },
         ],
       },
@@ -150,6 +134,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "education",
         arrowClass: "text-purple-500",
         folderClass: "text-purple-500",
+        hoverClass: "hover:text-purple-500",
         items: [
           {
             id: "high-school",
@@ -159,7 +144,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-yellow-500 font-medium",
             hoverClass: "hover:text-yellow-500",
             iconClass: "text-yellow-500",
-            content: <HighSchoolInfo />,
           },
           {
             id: "college",
@@ -169,7 +153,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-blue-500 font-medium",
             hoverClass: "hover:text-blue-500",
             iconClass: "text-blue-500",
-            content: <CollegeInfo />,
           },
           {
             id: "university",
@@ -179,7 +162,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-purple-500 font-medium",
             hoverClass: "hover:text-purple-500",
             iconClass: "text-purple-500",
-            content: <UniversityInfo />,
           },
           {
             id: "msc-ict",
@@ -189,7 +171,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-cyan-500 font-medium",
             hoverClass: "hover:text-cyan-500",
             iconClass: "text-cyan-500",
-            content: <MScInfo />,
           },
           {
             id: "bachelor-thesis",
@@ -199,7 +180,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-orange-500 font-medium",
             hoverClass: "hover:text-orange-500",
             iconClass: "text-orange-500",
-            content: <BachelorThesisInfo />,
           },
         ],
       },
@@ -216,6 +196,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "creative",
         arrowClass: "text-rose-500",
         folderClass: "text-rose-500",
+        hoverClass: "hover:text-rose-500",
         items: [
           {
             id: "books",
@@ -225,7 +206,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-indigo-500 font-medium",
             hoverClass: "hover:text-indigo-500",
             iconClass: "text-indigo-500",
-            content: <BooksHobby />,
           },
         ],
       },
@@ -234,6 +214,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "outdoor",
         arrowClass: "text-lime-500",
         folderClass: "text-lime-500",
+        hoverClass: "hover:text-lime-500",
         items: [
           {
             id: "hiking",
@@ -243,7 +224,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-lime-500 font-medium",
             hoverClass: "hover:text-lime-500",
             iconClass: "text-lime-500",
-            content: <HikingHobby />,
           },
           {
             id: "games",
@@ -253,7 +233,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-orange-500 font-medium",
             hoverClass: "hover:text-orange-500",
             iconClass: "text-orange-500",
-            content: <GamesHobby />,
           },
         ],
       },
@@ -262,6 +241,7 @@ export const aboutSidebarCategories: SidebarCategory[] = [
         label: "wellness",
         arrowClass: "text-emerald-500",
         folderClass: "text-emerald-500",
+        hoverClass: "hover:text-emerald-500",
         items: [
           {
             id: "nature-walks",
@@ -271,7 +251,6 @@ export const aboutSidebarCategories: SidebarCategory[] = [
             activeClass: "text-emerald-500 font-medium",
             hoverClass: "hover:text-emerald-500",
             iconClass: "text-emerald-500",
-            content: <NatureWalksHobby />,
           },
         ],
       },

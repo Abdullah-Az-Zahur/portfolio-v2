@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addTab } from "@/store/features/tabs/tabsSlice";
 import { aboutSidebarCategories } from "@/features/about/components/aboutSidebarCategories";
@@ -10,6 +10,13 @@ import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
 import AboutSidebarGroups from "./AboutSidebarGroups";
 import AboutSidebarResources from "./AboutSidebarResources";
 import { aboutIconOptions } from "@/shared/data/aboutIconOptions";
+import {
+  categoryListVariants,
+  categoryRowVariants,
+  dropdownVariants,
+  arrowVariants,
+  resourcesVariants,
+} from "@/shared/utils/animationVariants";
 
 const sidebarResources = [
   {
@@ -128,39 +135,29 @@ const AboutMeSidebar = () => {
   };
 
   const handleSideBarItemClick = (id: string, title: string) => {
-    dispatch(
-      addTab({
-        id,
-        title: title,
-      }),
-    );
+    dispatch(addTab({ id, title }));
   };
 
-  const isItemActive = (id: string): boolean => {
-    return activeTab === id;
-  };
-
-  const iconVariants = {
-    rotate: {
-      rotate: 0,
-      transition: { duration: 0.2 },
-    },
-    rotateReverse: {
-      rotate: -0,
-      transition: { duration: 0.2 },
-    },
-  };
+  const isItemActive = (id: string): boolean => activeTab === id;
 
   return (
     <>
-      {/* ---------- MOBILE ---------- */}
-      <div className="about-sidebar flex flex-col md:hidden">
+      {/* ============================================================
+          MOBILE — Categories stagger in
+          ============================================================ */}
+      <motion.div
+        className="about-sidebar flex flex-col md:hidden"
+        initial="hidden"
+        animate="visible"
+        variants={categoryListVariants}
+      >
         {categories.map((category) => {
           const isActive = mobileExpandedCategoryId === category.id;
 
           return (
-            <div
+            <motion.div
               key={category.id}
+              variants={categoryRowVariants}
               className="about-sidebar-category border-b py-2"
             >
               <motion.button
@@ -174,24 +171,44 @@ const AboutMeSidebar = () => {
                 whileTap={{ scale: 0.98 }}
               >
                 <span className="about-sidebar-trigger-label flex items-center gap-2">
-                  {isActive ? (
-                    <IoMdArrowDropdown className="about-sidebar-arrow" />
-                  ) : (
-                    <IoMdArrowDropright className="about-sidebar-arrow" />
-                  )}
+                  <motion.span
+                    className="flex items-center"
+                    animate={isActive ? "rotate" : "rotateReverse"}
+                    variants={arrowVariants}
+                  >
+                    {isActive ? (
+                      <IoMdArrowDropdown className="about-sidebar-arrow" />
+                    ) : (
+                      <IoMdArrowDropright className="about-sidebar-arrow" />
+                    )}
+                  </motion.span>
                   <span>{category.label}</span>
                 </span>
               </motion.button>
 
-              <AboutSidebarGroups
-                category={category}
-                isExpanded={isActive}
-                expandedDropdowns={expandedDropdowns}
-                isItemActive={isItemActive}
-                onToggleDropdown={toggleDropdown}
-                onSelectItem={handleSideBarItemClick}
-              />
-            </div>
+              {/* Category dropdown — animated height */}
+              <AnimatePresence initial={false}>
+                {isActive && (
+                  <motion.div
+                    key={`mobile-${category.id}-dropdown`}
+                    initial="closed"
+                    animate="open"
+                    exit="closed"
+                    variants={dropdownVariants}
+                    style={{ overflow: "hidden" }}
+                  >
+                    <AboutSidebarGroups
+                      category={category}
+                      isExpanded={isActive}
+                      expandedDropdowns={expandedDropdowns}
+                      isItemActive={isItemActive}
+                      onToggleDropdown={toggleDropdown}
+                      onSelectItem={handleSideBarItemClick}
+                    />
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
           );
         })}
 
@@ -201,18 +218,25 @@ const AboutMeSidebar = () => {
           linkClassName="about-sidebar-link flex items-center gap-2 transition duration-200"
           itemClassName="about-sidebar-resource-item flex items-center justify-between gap-3 border-b px-2 py-2 last:border-b-0"
         />
-      </div>
+      </motion.div>
 
-      {/* ---------- DESKTOP ---------- */}
+      {/* ============================================================
+          DESKTOP
+          ============================================================ */}
       <div className="about-sidebar hidden items-stretch gap-0 md:flex md:h-full">
-        {/* Icon rail */}
-        <div className="about-sidebar-rail flex flex-col items-center gap-2 self-stretch border-r px-3 pb-2 pt-2">
+        {/* Icon rail — categories stagger in */}
+        <motion.div
+          className="about-sidebar-rail flex flex-col items-center gap-2 self-stretch border-r px-3 pb-2 pt-2"
+          initial="hidden"
+          animate="visible"
+          variants={categoryListVariants}
+        >
           {categories.map((category) => {
             const CategoryIcon = category.icon;
             const isActive = activeCategory.id === category.id;
 
             return (
-              <button
+              <motion.button
                 key={category.id}
                 type="button"
                 onClick={() => handleCategorySwitch(category.id)}
@@ -223,12 +247,15 @@ const AboutMeSidebar = () => {
                 }`}
                 title={category.label}
                 aria-label={category.label}
+                variants={categoryRowVariants}
+                whileHover={{ scale: 1.08 }}
+                whileTap={{ scale: 0.94 }}
               >
                 <CategoryIcon className={`text-lg ${category.iconClass}`} />
-              </button>
+              </motion.button>
             );
           })}
-        </div>
+        </motion.div>
 
         {/* Content */}
         <div className="min-w-0 flex-1 pl-2">
@@ -244,7 +271,7 @@ const AboutMeSidebar = () => {
                   ? "rotate"
                   : "rotateReverse"
               }
-              variants={iconVariants}
+              variants={arrowVariants}
             >
               {isDropdownExpanded(`main-${activeCategory.id}`) ? (
                 <IoMdArrowDropdown className="about-sidebar-arrow" />
@@ -255,29 +282,54 @@ const AboutMeSidebar = () => {
             <span>{activeCategory.label}</span>
           </motion.div>
 
-          <AboutSidebarGroups
-            category={activeCategory}
-            isExpanded={isDropdownExpanded(`main-${activeCategory.id}`)}
-            expandedDropdowns={expandedDropdowns}
-            isItemActive={isItemActive}
-            onToggleDropdown={toggleDropdown}
-            onSelectItem={handleSideBarItemClick}
-          />
+          {/* Category switch fade */}
+          <AnimatePresence mode="wait" initial={false}>
+            <motion.div
+              key={activeCategory.id}
+              initial={{ opacity: 0, y: 6 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.24, ease: [0.4, 0, 0.2, 1] }}
+            >
+              {/* Desktop category dropdown — height animated */}
+              <AnimatePresence initial={false}>
+                {isDropdownExpanded(`main-${activeCategory.id}`) && (
+                  <motion.div
+                    key={`desktop-${activeCategory.id}-dropdown`}
+                    initial="closed"
+                    animate="open"
+                    exit="closed"
+                    variants={dropdownVariants}
+                    style={{ overflow: "hidden" }}
+                  >
+                    <AboutSidebarGroups
+                      category={activeCategory}
+                      isExpanded
+                      expandedDropdowns={expandedDropdowns}
+                      isItemActive={isItemActive}
+                      onToggleDropdown={toggleDropdown}
+                      onSelectItem={handleSideBarItemClick}
+                    />
 
-          <div
-            className={`about-sidebar-resources -ml-2 mt-2 ${
-              isDropdownExpanded(`main-${activeCategory.id}`)
-                ? "about-sidebar-resources-open"
-                : "border-t-0"
-            }`}
-          >
-            <AboutSidebarResources
-              resources={sidebarResources}
-              wrapperClassName=""
-              linkClassName="about-sidebar-link ml-2 flex items-center gap-2 transition duration-200"
-              itemClassName="about-sidebar-resource-item flex items-center justify-between border-b py-2 pl-1 last:border-b-0"
-            />
-          </div>
+                    <motion.div
+                      key={`resources-${activeCategory.id}`}
+                      variants={resourcesVariants}
+                      initial="hidden"
+                      animate="visible"
+                      className="about-sidebar-resources about-sidebar-resources-open -ml-2 mt-2"
+                    >
+                      <AboutSidebarResources
+                        resources={sidebarResources}
+                        wrapperClassName=""
+                        linkClassName="about-sidebar-link ml-2 flex items-center gap-2 transition duration-200"
+                        itemClassName="about-sidebar-resource-item flex items-center justify-between border-b py-2 pl-1 last:border-b-0"
+                      />
+                    </motion.div>
+                  </motion.div>
+                )}
+              </AnimatePresence>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
     </>
