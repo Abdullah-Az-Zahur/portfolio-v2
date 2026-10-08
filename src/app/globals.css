@@ -11,7 +11,6 @@ body {
   transition:
     background-color 180ms ease,
     color 180ms ease;
-  /* Font is now applied via next/font Fira_Code in layout.tsx */
 }
 
 [data-theme="light"] body {
@@ -19,6 +18,9 @@ body {
   background: #eef3f8;
 }
 
+/* ============================================================
+   Utility Color Overrides — Light Theme
+   ============================================================ */
 [data-theme="light"] .bg-\[\#011627\] {
   background-color: #eef3f8 !important;
 }
@@ -83,7 +85,7 @@ body {
 }
 
 /* ============================================================
-   Home Page — Base (Dark theme default)
+   Home Page — Dark (Default)
    ============================================================ */
 .home-page {
   background-color: #011627;
@@ -113,7 +115,6 @@ body {
   );
 }
 
-/* Text colors — dark theme */
 .home-title {
   color: #e5e9f0;
   transition: color 180ms ease;
@@ -139,7 +140,6 @@ body {
   color: #607b96;
 }
 
-/* CTA buttons — dark theme */
 .home-cta-primary {
   border-color: rgba(34, 211, 238, 0.4);
   background-color: rgba(34, 211, 238, 0.1);
@@ -159,14 +159,12 @@ body {
   color: #ffffff;
 }
 
-/* Status badge — dark theme */
 .home-status-badge {
   border-color: rgba(255, 255, 255, 0.15);
   background-color: rgba(6, 17, 31, 0.75);
   color: #cbd5e1;
 }
 
-/* Portrait guides — dark theme */
 .home-portrait-guide {
   border-color: rgba(103, 232, 249, 0.2);
   transform: rotate(-18deg);
@@ -215,7 +213,7 @@ body {
 }
 
 /* ============================================================
-   Home Page — Light Theme Overrides
+   Home Page — Light Overrides
    ============================================================ */
 [data-theme="light"] .home-page {
   background-color: #eef3f8;
@@ -229,13 +227,11 @@ body {
     radial-gradient(circle at 12% 82%, rgba(67, 160, 145, 0.1), transparent 32%);
 }
 
-/* Hide neon blobs / atmosphere in light mode */
 [data-theme="light"] .home-atmosphere,
 [data-theme="light"] .home-blob {
   opacity: 0 !important;
 }
 
-/* Text colors — light theme */
 [data-theme="light"] .home-title {
   color: #172337 !important;
 }
@@ -257,7 +253,6 @@ body {
   color: #52657d !important;
 }
 
-/* CTA buttons — light theme */
 [data-theme="light"] .home-cta-primary {
   border-color: rgba(14, 116, 144, 0.45) !important;
   background-color: rgba(14, 116, 144, 0.08) !important;
@@ -278,14 +273,12 @@ body {
   color: #0e7490 !important;
 }
 
-/* Status badge — light theme */
 [data-theme="light"] .home-status-badge {
   border-color: #cbd6e3 !important;
   background-color: rgba(248, 251, 254, 0.85) !important;
   color: #314158 !important;
 }
 
-/* Portrait guides — light theme */
 [data-theme="light"] .home-portrait-guide {
   border-color: rgba(91, 143, 196, 0.28) !important;
 }
@@ -344,36 +337,18 @@ body {
 }
 
 /* ============================================================
-   About sidebar
-   ============================================================ */
-[data-theme="light"] .about-sidebar li:hover,
-[data-theme="light"] .about-sidebar button:hover,
-[data-theme="light"] .about-sidebar a:hover {
-  color: #2563a8 !important;
-}
-
-[data-theme="light"] .about-sidebar a {
-  color: #2563a8;
-}
-
-[data-theme="light"] .about-category-active {
-  background: #dce7f0 !important;
-  box-shadow: 0 0 0 1px #5b8fc4 !important;
-}
-
-/* ============================================================
    Navbar
    ============================================================ */
-[data-theme="light"] .site-navbar .bg-gray-500,
-[data-theme="light"] .site-navbar .border-gray-500 {
-  background-color: #9aabba !important;
-  border-color: #9aabba !important;
-}
-
 .site-navbar .bg-gray-500,
 .site-navbar .border-gray-500 {
   background-color: #607b96;
   border-color: #607b96;
+}
+
+[data-theme="light"] .site-navbar .bg-gray-500,
+[data-theme="light"] .site-navbar .border-gray-500 {
+  background-color: #9aabba !important;
+  border-color: #9aabba !important;
 }
 
 /* ============================================================
@@ -400,16 +375,7 @@ body {
 }
 
 /* ============================================================
-   Theme menu
-   ============================================================ */
-[data-theme="light"] .theme-menu {
-  background: #f4f8fb !important;
-  border-color: #c1cedc !important;
-  box-shadow: 0 14px 35px rgba(43, 63, 84, 0.2) !important;
-}
-
-/* ============================================================
-   Project cards — light theme
+   Project cards — Light theme
    ============================================================ */
 [data-theme="light"] .project-card-frame {
   border-color: #cbd6e3 !important;
@@ -433,53 +399,16 @@ body {
 }
 
 /* ============================================================
-   Selection
-   ============================================================ */
-::selection {
-  background-color: #607b96;
-  color: white;
-}
-
-/* ============================================================
-   TabBar horizontal scrollbar
-   ============================================================ */
-.tabbar-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: #3b4f66 #0b2035;
-}
-
-.tabbar-scroll::-webkit-scrollbar {
-  height: 8px;
-}
-
-.tabbar-scroll::-webkit-scrollbar-track {
-  background: #0b2035;
-  border-radius: 999px;
-}
-
-.tabbar-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #3b4f66 0%, #4f6b88 100%);
-  border-radius: 999px;
-  border: 1px solid #0b2035;
-}
-
-.tabbar-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #4f6b88 0%, #5f83a8 100%);
-}
-
-/* ============================================================
-   About Sidebar — Base (Dark theme default)
+   About Sidebar — Dark (Default)
    ============================================================ */
 .about-sidebar {
   color: #94a3b8;
 }
 
-/* Category divider */
 .about-sidebar-category {
-  border-color: #374151; /* gray-700 */
+  border-color: #374151;
 }
 
-/* Mobile trigger */
 .about-sidebar-trigger {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
@@ -501,7 +430,6 @@ body {
   color: #ffffff;
 }
 
-/* Desktop icon rail */
 .about-sidebar-rail {
   border-color: #374151;
 }
@@ -510,7 +438,6 @@ body {
   background-color: #1a2234;
 }
 
-/* Desktop header (category title) */
 .about-sidebar-header {
   color: #ffffff;
   border-color: #6b7280;
@@ -520,7 +447,6 @@ body {
   color: #3b82f6;
 }
 
-/* Divider above resources */
 .about-sidebar-resources-open {
   border-top-width: 1px;
   border-top-color: #6b7280;
@@ -530,7 +456,6 @@ body {
   border-color: #6b7280;
 }
 
-/* Resources links */
 .about-sidebar-link {
   color: #93c5fd;
 }
@@ -538,13 +463,12 @@ body {
   color: #3b82f6;
 }
 
-/* Resource item row */
 .about-sidebar-resource-item {
   border-color: #6b7280;
 }
 
 /* ============================================================
-   About Sidebar — Light Theme Overrides
+   About Sidebar — Light Overrides
    ============================================================ */
 [data-theme="light"] .about-sidebar {
   color: #52657d;
@@ -604,8 +528,173 @@ body {
   border-color: #cbd6e3 !important;
 }
 
-/* Active category (icon rail) — light theme */
 [data-theme="light"] .about-category-active {
   background-color: #dce7f0 !important;
   box-shadow: 0 0 0 1px #5b8fc4 !important;
+}
+
+/* ============================================================
+   Theme Toggle — Trigger Button (icon only)
+   ============================================================ */
+.theme-toggle-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background-color 180ms ease;
+}
+
+/* Dark theme (default) */
+.theme-toggle-btn:hover {
+  background-color: rgba(255, 255, 255, 0.08);
+}
+
+.theme-toggle-icon {
+  color: #67e8f9;
+  transition: color 180ms ease;
+}
+
+/* Light theme overrides */
+[data-theme="light"] .theme-toggle-btn:hover {
+  background-color: rgba(14, 116, 144, 0.08);
+}
+
+[data-theme="light"] .theme-toggle-icon {
+  color: #0e7490;
+}
+
+/* ============================================================
+   Theme Toggle — Dropdown Menu
+   ============================================================ */
+.theme-menu {
+  background: #081524;
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 16px 40px rgba(1, 22, 39, 0.5);
+}
+
+.theme-menu-item {
+  color: #cbd5e1;
+}
+.theme-menu-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.theme-menu-item-active {
+  background: #67e8f9;
+  color: #0b1b2e;
+}
+.theme-menu-item-active:hover {
+  background: #a5f3fc;
+  color: #0b1b2e;
+}
+
+/* Light theme overrides */
+[data-theme="light"] .theme-menu {
+  background: #ffffff;
+  border-color: #cbd6e3;
+  box-shadow: 0 16px 40px rgba(43, 63, 84, 0.18);
+}
+
+[data-theme="light"] .theme-menu-item {
+  color: #314158;
+}
+[data-theme="light"] .theme-menu-item:hover {
+  background: #e0eef5;
+  color: #172337;
+}
+
+[data-theme="light"] .theme-menu-item-active {
+  background: #0e7490;
+  color: #ffffff;
+}
+[data-theme="light"] .theme-menu-item-active:hover {
+  background: #075985;
+  color: #ffffff;
+}
+
+/* ============================================================
+   Selection
+   ============================================================ */
+::selection {
+  background-color: #607b96;
+  color: white;
+}
+
+/* ============================================================
+   TabBar horizontal scrollbar
+   ============================================================ */
+.tabbar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3b4f66 #0b2035;
+}
+
+.tabbar-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+
+.tabbar-scroll::-webkit-scrollbar-track {
+  background: #0b2035;
+  border-radius: 999px;
+}
+
+.tabbar-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #3b4f66 0%, #4f6b88 100%);
+  border-radius: 999px;
+  border: 1px solid #0b2035;
+}
+
+.tabbar-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #4f6b88 0%, #5f83a8 100%);
+}
+
+/* ============================================================
+   About Document Viewer (details / summary / iframe)
+   ============================================================ */
+.about-doc-details {
+  border-color: #374151;
+  background: transparent;
+}
+
+.about-doc-summary {
+  color: #93c5fd;
+  transition: color 180ms ease;
+}
+.about-doc-summary:hover {
+  color: #bfdbfe;
+}
+
+.about-doc-link {
+  color: #93c5fd;
+  transition: color 180ms ease;
+}
+.about-doc-link:hover {
+  color: #bfdbfe;
+}
+
+.about-doc-iframe {
+  border-color: #374151;
+}
+
+/* Light theme overrides */
+[data-theme="light"] .about-doc-details {
+  border-color: #cbd6e3 !important;
+  background: #f8fbfe;
+}
+
+[data-theme="light"] .about-doc-summary {
+  color: #2563a8 !important;
+}
+[data-theme="light"] .about-doc-summary:hover {
+  color: #0e7490 !important;
+}
+
+[data-theme="light"] .about-doc-link {
+  color: #2563a8 !important;
+}
+[data-theme="light"] .about-doc-link:hover {
+  color: #0e7490 !important;
+}
+
+[data-theme="light"] .about-doc-iframe {
+  border-color: #cbd6e3 !important;
 }

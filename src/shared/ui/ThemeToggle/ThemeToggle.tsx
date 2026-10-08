@@ -1,8 +1,9 @@
 "use client";
 
-import { useSyncExternalStore, useState } from "react";
+import { useSyncExternalStore, useState, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
-import { FiMonitor, FiMoon, FiSun } from "react-icons/fi";
+import { FiMonitor, FiMoon, FiSun, FiCheck } from "react-icons/fi";
+import { motion, AnimatePresence } from "framer-motion";
 
 const themes = [
   { value: "system", label: "System", icon: FiMonitor },
@@ -13,11 +14,31 @@ const themes = [
 export default function ThemeToggle() {
   const { theme, setTheme } = useTheme();
   const [open, setOpen] = useState(false);
+  const menuRef = useRef<HTMLDivElement>(null);
   const mounted = useSyncExternalStore(
     () => () => undefined,
     () => true,
     () => false,
   );
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    if (!open) return;
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        setOpen(false);
+      }
+    };
+    const handleEsc = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setOpen(false);
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    document.addEventListener("keydown", handleEsc);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+      document.removeEventListener("keydown", handleEsc);
+    };
+  }, [open]);
 
   if (!mounted) return <div className="h-8 w-8" aria-hidden />;
 
@@ -25,41 +46,57 @@ export default function ThemeToggle() {
   const CurrentIcon = current.icon;
 
   return (
-    <div className="relative">
+    <div ref={menuRef} className="relative">
+      {/* Trigger button */}
       <button
         type="button"
         onClick={() => setOpen((value) => !value)}
         aria-expanded={open}
         aria-haspopup="menu"
-        className="grid h-8 w-8 place-items-center rounded-lg text-slate-400 transition hover:bg-white/10 hover:text-cyan-300"
+        aria-label="Choose theme"
+        title="Choose theme"
+        className="theme-toggle-btn grid h-8 w-8 place-items-center rounded-lg"
       >
-        <CurrentIcon className="h-4 w-4 text-cyan-300" />
+        <CurrentIcon className="theme-toggle-icon h-4 w-4" />
       </button>
-      {open ? (
-        <div
-          className="theme-menu absolute right-0 top-11 z-50 w-32 rounded-xl border border-white/10 bg-[#081524] p-1 shadow-xl"
-          role="menu"
-        >
-          {themes.map((item) => {
-            const Icon = item.icon;
-            return (
-              <button
-                key={item.value}
-                type="button"
-                role="menuitem"
-                onClick={() => {
-                  setTheme(item.value);
-                  setOpen(false);
-                }}
-                className={`flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs transition ${theme === item.value ? "bg-cyan-400 text-slate-950" : "text-slate-300 hover:bg-white/10 hover:text-white"}`}
-              >
-                <Icon className="h-4 w-4" />
-                {item.label}
-              </button>
-            );
-          })}
-        </div>
-      ) : null}
+
+      {/* Dropdown menu */}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            role="menu"
+            initial={{ opacity: 0, y: -6, scale: 0.96 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: -6, scale: 0.96 }}
+            transition={{ duration: 0.18, ease: [0.4, 0, 0.2, 1] }}
+            className="theme-menu absolute right-0 top-11 z-50 w-32 overflow-hidden rounded-xl border p-1 shadow-xl"
+          >
+            {themes.map((item) => {
+              const Icon = item.icon;
+              const isActive = theme === item.value;
+              return (
+                <button
+                  key={item.value}
+                  type="button"
+                  role="menuitemradio"
+                  aria-checked={isActive}
+                  onClick={() => {
+                    setTheme(item.value);
+                    setOpen(false);
+                  }}
+                  className={`theme-menu-item flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-xs transition ${
+                    isActive ? "theme-menu-item-active" : ""
+                  }`}
+                >
+                  <Icon className="h-4 w-4 shrink-0" />
+                  <span className="flex-1">{item.label}</span>
+                  {isActive && <FiCheck className="h-3.5 w-3.5 shrink-0" />}
+                </button>
+              );
+            })}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

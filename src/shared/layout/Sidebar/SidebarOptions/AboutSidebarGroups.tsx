@@ -15,6 +15,41 @@ type AboutSidebarGroupsProps = {
   onSelectItem: (id: string, title: string) => void;
 };
 
+// ✅ Group row — new stagger animation
+const groupRowVariants = {
+  hidden: { opacity: 0, x: -10 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.26, ease: [0.4, 0, 0.2, 1] as const },
+  },
+  exit: {
+    opacity: 0,
+    x: -8,
+    transition: { duration: 0.14, ease: [0.4, 0, 0.2, 1] as const },
+  },
+};
+
+// ✅ Group list — staggers group rows in
+const groupListVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.06,
+      delayChildren: 0.05,
+    },
+  },
+  exit: {
+    opacity: 0,
+    transition: {
+      staggerChildren: 0.03,
+      staggerDirection: -1 as const,
+    },
+  },
+};
+
+// ❌ Item hover — existing behaviour অটুট
 const itemVariants = {
   hover: {
     scale: 1.02,
@@ -57,14 +92,23 @@ const AboutSidebarGroups = ({
           exit="closed"
           variants={dropdownVariants}
         >
-          <motion.ul className="ml-3 mt-2 space-y-1 overflow-hidden">
+          {/* ✅ Group list staggers its children */}
+          <motion.ul
+            className="ml-3 mt-2 space-y-1"
+            initial="hidden"
+            animate="visible"
+            exit="exit"
+            variants={groupListVariants}
+          >
             {category.groups.map((group) => {
               const groupKey = `${category.id}-${group.id}`;
 
               return (
-                <div key={groupKey}>
+                <motion.div key={groupKey} variants={groupRowVariants}>
                   <motion.li
-                    className="flex items-center gap-2 text-gray-500 cursor-pointer"
+                    className={`about-sidebar-group-row flex cursor-pointer items-center gap-2 text-gray-500 ${
+                      group.hoverClass ?? ""
+                    }`}
                     onClick={() => onToggleDropdown(groupKey)}
                     variants={itemVariants}
                     whileHover="hover"
@@ -85,12 +129,11 @@ const AboutSidebarGroups = ({
                       )}
                     </motion.div>
                     <RiFolder3Fill className={group.folderClass} />
-                    <span className={`hover:${group.folderClass}`}>
-                      {group.label}
-                    </span>
+                    <span>{group.label}</span>
                   </motion.li>
 
-                  <AnimatePresence>
+                  {/* ❌ Items — existing animation (changed nothing) */}
+                  <AnimatePresence initial={false}>
                     {isDropdownExpanded(groupKey) && (
                       <motion.ul
                         className="ml-5 mt-1 space-y-1 overflow-hidden"
@@ -105,11 +148,11 @@ const AboutSidebarGroups = ({
                           return (
                             <motion.li
                               key={item.id}
-                              className={`flex items-center gap-2 text-sm ${
+                              className={`about-sidebar-item flex cursor-pointer items-center gap-2 text-sm ${
                                 isItemActive(item.id)
                                   ? item.activeClass
-                                  : `text-gray-500 ${item.hoverClass}`
-                              } cursor-pointer`}
+                                  : `text-gray-500 ${item.hoverClass ?? ""}`
+                              }`}
                               onClick={() => onSelectItem(item.id, item.title)}
                               variants={itemVariants}
                               whileHover="hover"
@@ -123,7 +166,7 @@ const AboutSidebarGroups = ({
                       </motion.ul>
                     )}
                   </AnimatePresence>
-                </div>
+                </motion.div>
               );
             })}
           </motion.ul>

@@ -1,0 +1,79 @@
+## 📂 Project Structure
+
+```
+portfolio-v2/
+├── src/
+│   ├── app/                          # Next.js App Router pages
+│   │   ├── globals.css              # Global styles
+│   │   ├── layout.tsx               # Root layout
+│   │   ├── (auth)/                  # Auth routes group
+│   │   ├── (backend)/               # Backend API routes
+│   │   │   └── api/send/route.ts    # Email contact endpoint
+│   │   └── (web)/                   # Public web pages
+│   │       ├── page.tsx             # Home page
+│   │       ├── layout.tsx           # Web layout with sidebar
+│   │       ├── about/page.tsx       # About page
+│   │       ├── contact/page.tsx     # Contact page
+│   │       └── project/page.tsx     # Projects page
+│   │
+│   ├── features/                    # Feature-based components
+│   │   ├── about/                   # About feature
+│   │   │   └── components/
+│   │   │       ├── AboutClient.tsx
+│   │   │       ├── PersonalInfo/    # Bio, Education, Interests
+│   │   │       ├── ProfessionalInfo/ # Skills, Experience, Certificates
+│   │   │       └── Hobbies/         # Creative, Outdoor, Wellness
+│   │   ├── contact/                 # Contact feature
+│   │   │   └── components/
+│   │   │       ├── ContactForm.tsx
+│   │   │       └── SuccessMessage.tsx
+│   │   ├── home/                    # Home feature
+│   │   │   └── components/
+│   │   │       └── HomeBackgroundBlobs.tsx
+│   │   └── projects/                # Projects feature
+│   │       └── components/
+│   │           └── ProjectCard.tsx
+│   │
+│   ├── shared/                      # Shared components & utilities
+│   │   ├── layout/
+│   │   │   ├── NavBar/
+│   │   │   ├── Sidebar/
+│   │   │   ├── TabBar/
+│   │   │   └── Footer/
+│   │   ├── ui/                      # Reusable UI components
+│   │   │   ├── CommentText/
+│   │   │   └── TypingAnimation/
+│   │   ├── data/
+│   │   │   ├── projects.ts          # Project data configuration
+│   │   │   └── index.ts
+│   │   └── utils/
+│   │       └── animationVariants.ts
+│   │
+│   ├── store/                       # Redux store
+│   │   ├── store.ts                 # Store configuration
+│   │   ├── hooks.ts                 # Custom Redux hooks
+│   │   └── features/
+│   │       ├── tabs/
+│   │       │   └── tabsSlice.ts     # Tab state management
+│   │       └── projects/
+│   │           └── projectsSlice.ts # Projects & filtering state
+│   │
+│   ├── providers/
+│   │   └── AppTabProvider.tsx       # Redux provider wrapper
+│   │
+│   └── config/                      # Configuration files
+│
+├── public/
+│   ├── robots.txt
+│   └── assets/
+│       └── images/                  # Project images
+│
+├── package.json                     # Dependencies & scripts
+├── tsconfig.json                    # TypeScript configuration
+├── next.config.ts                   # Next.js configuration
+├── tailwind.config.ts               # Tailwind CSS configuration
+├── postcss.config.mjs               # PostCSS configuration
+└── eslint.config.mjs                # ESLint configuration
+```
+
+---
