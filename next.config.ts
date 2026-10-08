@@ -10,7 +10,7 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "res.cloudinary.com",
-        pathname: "/dgxp76gso/**",
+        pathname: "/**", // সব ক্লাউডিনারি ইমেজ পাথ অ্যালাউ করার জন্য
       },
     ],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
