@@ -68,6 +68,12 @@ body {
   border-color: #cbd6e3 !important;
 }
 
+[data-theme="light"] .bg-gray-500,
+[data-theme="light"] .bg-gray-600,
+[data-theme="light"] .bg-gray-700 {
+  background-color: #cbd6e3 !important;
+}
+
 [data-theme="light"] .bg-gray-950 {
   background-color: #ffffff !important;
 }
@@ -297,6 +303,17 @@ body {
 }
 
 /* ============================================================
+   Shared Divider — Navbar + Footer
+   ============================================================ */
+.border-app-divider {
+  border-color: #4a627a; /* dark theme — deep color */
+}
+
+[data-theme="light"] .border-app-divider {
+  border-color: #7a8fa5 !important; /* light theme — deep color */
+}
+
+/* ============================================================
    Footer
    ============================================================ */
 .site-footer {
@@ -319,12 +336,6 @@ body {
   }
 }
 
-@media (max-width: 767px) {
-  .site-footer-home {
-    display: none;
-  }
-}
-
 [data-theme="light"] .site-footer {
   background: rgba(229, 237, 244, 0.96);
   border-color: #c1cedc;
@@ -339,15 +350,15 @@ body {
 /* ============================================================
    Navbar
    ============================================================ */
-.site-navbar .bg-gray-500,
-.site-navbar .border-gray-500 {
-  background-color: #607b96;
-  border-color: #607b96;
+.site-navbar {
+  border-bottom-color: #607b96;
 }
 
-[data-theme="light"] .site-navbar .bg-gray-500,
-[data-theme="light"] .site-navbar .border-gray-500 {
-  background-color: #9aabba !important;
+[data-theme="light"] .site-navbar {
+  border-bottom-color: #9aabba !important;
+}
+
+[data-theme="light"] .site-navbar hr {
   border-color: #9aabba !important;
 }
 
@@ -543,7 +554,6 @@ body {
   transition: background-color 180ms ease;
 }
 
-/* Dark theme (default) */
 .theme-toggle-btn:hover {
   background-color: rgba(255, 255, 255, 0.08);
 }
@@ -553,7 +563,6 @@ body {
   transition: color 180ms ease;
 }
 
-/* Light theme overrides */
 [data-theme="light"] .theme-toggle-btn:hover {
   background-color: rgba(14, 116, 144, 0.08);
 }
@@ -588,7 +597,6 @@ body {
   color: #0b1b2e;
 }
 
-/* Light theme overrides */
 [data-theme="light"] .theme-menu {
   background: #ffffff;
   border-color: #cbd6e3;
@@ -675,7 +683,6 @@ body {
   border-color: #374151;
 }
 
-/* Light theme overrides */
 [data-theme="light"] .about-doc-details {
   border-color: #cbd6e3 !important;
   background: #f8fbfe;

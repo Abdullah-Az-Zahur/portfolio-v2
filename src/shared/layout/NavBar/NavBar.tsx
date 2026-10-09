@@ -20,18 +20,18 @@ const NavBar: React.FC = () => {
   const isHomePage = pathname === "/";
 
   const headerClassName = isHomePage
-    ? "fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50 md:bg-gradient-to-r md:from-[#06111f]/78 md:via-[#0b1b2e]/70 md:to-[#06111f]/78 md:backdrop-blur-xl md:border-white/15 md:shadow-[0_8px_30px_rgba(1,22,39,0.35)]"
-    : "fixed w-full h-14 bg-[#011627] border-b border-gray-500 z-50";
+    ? "fixed w-full h-14 bg-[#011627] border-b border-gray-700 rounded-t-lg z-50 md:bg-gradient-to-r md:from-[#06111f]/78 md:via-[#0b1b2e]/70 md:to-[#06111f]/78 md:backdrop-blur-xl md:border-white/15 md:shadow-[0_8px_30px_rgba(1,22,39,0.35)]"
+    : "fixed w-full h-14 bg-[#011627] border-b border-gray-700 rounded-t-lg z-50";
 
   const mobileMenuClassName = isHomePage
-    ? "md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full md:bg-[#06111f]/70 md:backdrop-blur-2xl md:border-white/15 md:shadow-[0_20px_45px_rgba(1,22,39,0.45)]"
-    : "md:hidden bg-[#011627] border-r-2 border-gray-600 shadow-md absolute w-full";
+    ? "md:hidden bg-[#011627] border-r-2 border-gray-700 shadow-md absolute w-full md:bg-[#06111f]/70 md:backdrop-blur-2xl md:border-white/15 md:shadow-[0_20px_45px_rgba(1,22,39,0.45)]"
+    : "md:hidden bg-[#011627] border-r-2 border-gray-700 shadow-md absolute w-full";
 
   return (
     <header className={`site-navbar ${headerClassName}`}>
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo */}
-        <div className="md:w-1/5 md:border-r p-4 border-gray-400 h-full flex items-center hover:text-gray-500 gap-5">
+        <div className="md:w-1/5 md:border-r border-app-divider p-4 h-full flex items-center hover:text-gray-500 gap-5">
           <Link
             href="/dashboard"
             aria-label="Open dashboard"
@@ -42,7 +42,7 @@ const NavBar: React.FC = () => {
           <Link href="/">md. abdullah az-zahur</Link>
         </div>
 
-        {/* Desktop nav (same as before) */}
+        {/* Desktop nav */}
         <nav className="hidden md:flex flex-1 justify-between items-center h-full">
           <div className="flex h-full">
             {navItems.slice(0, 3).map((item) => (
@@ -63,7 +63,7 @@ const NavBar: React.FC = () => {
                     <span className="absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300"></span>
                   )}
                 </Link>
-                <span className="absolute right-0 top-0 h-full w-[1px] bg-gray-500"></span>
+                <span className="absolute right-0 top-0 h-full border-l border-app-divider"></span>
               </div>
             ))}
           </div>
@@ -73,7 +73,7 @@ const NavBar: React.FC = () => {
             </div>
             <Link
               href={navItems[3].href}
-              className={`border-l border-gray-400 pl-5 pr-4 hover:text-gray-500 transition relative flex items-center h-full ${
+              className={`border-l border-app-divider pl-5 pr-4 hover:text-gray-500 transition relative flex items-center h-full ${
                 pathname === navItems[3].href
                   ? "text-white"
                   : "hover:border-b-4 hover:border-orange-300 hover:bg-transparent/10"
@@ -123,7 +123,7 @@ const NavBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Menu — animation from animationVariants.ts */}
+      {/* Mobile Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -147,7 +147,7 @@ const NavBar: React.FC = () => {
                     className="block w-full text-start text-white"
                     onClick={() => setIsOpen(false)}
                   >
-                    <hr className="border-gray-600" />
+                    <hr className="border-app-divider" />
                     <div className="p-4">{item.label}</div>
                   </Link>
                 </motion.div>

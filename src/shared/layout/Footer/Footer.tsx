@@ -20,7 +20,7 @@ export default function Footer() {
             target="_blank"
             href="https://www.linkedin.com/in/md-abdullah-az-zahur/"
             aria-label="LinkedIn"
-            className="flex h-full items-center border-l border-gray-700 px-3"
+            className="flex h-full items-center border-l border-app-divider px-3"
           >
             <FaLinkedin />
           </Link>
@@ -28,7 +28,7 @@ export default function Footer() {
             target="_blank"
             href="https://www.facebook.com/abdullah.az.zahur"
             aria-label="Facebook"
-            className="flex h-full items-center border-x border-gray-700 px-3"
+            className="flex h-full items-center border-x border-app-divider px-3"
           >
             <FaFacebookF />
           </Link>
@@ -38,7 +38,7 @@ export default function Footer() {
             target="_blank"
             href="https://github.com/Abdullah-Az-Zahur"
             aria-label="GitHub"
-            className="flex h-full items-center border-l border-gray-700"
+            className="flex h-full items-center border-l border-app-divider"
           >
             <span className="hidden px-3 text-sm sm:block">
               @Abdullah-Az-Zahur
