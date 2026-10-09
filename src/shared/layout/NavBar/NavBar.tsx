@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState } from "react";
-import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
@@ -13,6 +12,7 @@ import {
   mobileMenuVariants,
   mobileMenuItemVariants,
 } from "@/shared/utils/animationVariants";
+import PendingLink from "@/shared/ui/PendingLink/PendingLink";
 
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -32,14 +32,14 @@ const NavBar: React.FC = () => {
       <div className="mx-auto flex items-center justify-between h-full">
         {/* Logo */}
         <div className="md:w-1/5 md:border-r border-app-divider p-4 h-full flex items-center hover:text-gray-500 gap-5">
-          <Link
+          <PendingLink
             href="/dashboard"
             aria-label="Open dashboard"
             className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition hover:border-cyan-300/50 hover:bg-cyan-400/20"
           >
             <FiTerminal className="h-4 w-4" />
-          </Link>
-          <Link href="/">md. abdullah az-zahur</Link>
+          </PendingLink>
+          <PendingLink href="/">md. abdullah az-zahur</PendingLink>
         </div>
 
         {/* Desktop nav */}
@@ -50,7 +50,7 @@ const NavBar: React.FC = () => {
                 key={item.href}
                 className="relative flex items-center h-full"
               >
-                <Link
+                <PendingLink
                   href={item.href}
                   className={`hover:text-gray-400 hover:bg-[#011627]/10 p-4 transition relative flex items-center h-full ${
                     pathname === item.href
@@ -62,7 +62,7 @@ const NavBar: React.FC = () => {
                   {pathname === item.href && (
                     <span className="absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300"></span>
                   )}
-                </Link>
+                </PendingLink>
                 <span className="absolute right-0 top-0 h-full border-l border-app-divider"></span>
               </div>
             ))}
@@ -71,7 +71,7 @@ const NavBar: React.FC = () => {
             <div className="mr-2 hidden md:block">
               <ThemeToggle />
             </div>
-            <Link
+            <PendingLink
               href={navItems[3].href}
               className={`border-l border-app-divider pl-5 pr-4 hover:text-gray-500 transition relative flex items-center h-full ${
                 pathname === navItems[3].href
@@ -83,7 +83,7 @@ const NavBar: React.FC = () => {
               {pathname === navItems[3].href && (
                 <span className="absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300"></span>
               )}
-            </Link>
+            </PendingLink>
           </div>
         </nav>
 
@@ -142,14 +142,14 @@ const NavBar: React.FC = () => {
                   className="w-full"
                   variants={mobileMenuItemVariants}
                 >
-                  <Link
+                  <PendingLink
                     href={item.href}
                     className="block w-full text-start text-white"
                     onClick={() => setIsOpen(false)}
                   >
                     <hr className="border-app-divider" />
                     <div className="p-4">{item.label}</div>
-                  </Link>
+                  </PendingLink>
                 </motion.div>
               ))}
             </nav>
