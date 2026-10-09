@@ -2,6 +2,8 @@ import { Metadata } from "next";
 import { Fira_Code } from "next/font/google";
 import "./globals.css";
 import ThemeProvider from "@/providers/ThemeProvider";
+import { Suspense } from "react";
+import NavigationProgress from "@/providers/NavigationProgress";
 
 // Optimize font loading
 const firaCode = Fira_Code({
@@ -156,7 +158,12 @@ export default function RootLayout({
         />
       </head>
       <body suppressHydrationWarning>
-        <ThemeProvider>{children}</ThemeProvider>
+        <ThemeProvider>
+          <Suspense fallback={null}>
+            <NavigationProgress />
+          </Suspense>
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );

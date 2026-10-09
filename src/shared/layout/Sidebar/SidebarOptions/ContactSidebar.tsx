@@ -20,7 +20,7 @@ const ContactSidebar = () => {
   const linkedinUrl =
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
     "https://www.linkedin.com/in/md-abdullah-az-zahur/";
-  const youtubeUrl = "https://www.youtube.com/@itsazzahurgaming";
+  const youtubeUrl = "https://www.youtube.com/@AzZahur";
 
   const toggleDropdown = (title: string) => {
     setExpandedDropdowns((prev) => {
