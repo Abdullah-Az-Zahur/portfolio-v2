@@ -698,3 +698,7 @@ body {
 [data-theme="light"] .about-doc-iframe {
   border-color: #cbd6e3 !important;
 }
+
+@theme {
+  --color-footer-border: var(--color-gray-700);
+}
