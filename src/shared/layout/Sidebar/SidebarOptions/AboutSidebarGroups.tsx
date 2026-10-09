@@ -92,9 +92,9 @@ const AboutSidebarGroups = ({
           exit="closed"
           variants={dropdownVariants}
         >
-          {/* ✅ Group list staggers its children */}
+          {/* ✅ Group list staggers its children — no ml-3, borders span full width */}
           <motion.ul
-            className="ml-3 mt-2 space-y-1"
+            className="mt-2 space-y-1"
             initial="hidden"
             animate="visible"
             exit="exit"
@@ -106,7 +106,7 @@ const AboutSidebarGroups = ({
               return (
                 <motion.div key={groupKey} variants={groupRowVariants}>
                   <motion.li
-                    className={`about-sidebar-group-row flex cursor-pointer items-center gap-2 text-gray-500 ${
+                    className={`about-sidebar-group-row flex cursor-pointer items-center gap-2 pl-3 text-gray-500 ${
                       group.hoverClass ?? ""
                     }`}
                     onClick={() => onToggleDropdown(groupKey)}
@@ -136,7 +136,7 @@ const AboutSidebarGroups = ({
                   <AnimatePresence initial={false}>
                     {isDropdownExpanded(groupKey) && (
                       <motion.ul
-                        className="ml-5 mt-1 space-y-1 overflow-hidden"
+                        className="mt-1 space-y-1 overflow-hidden"
                         initial="closed"
                         animate="open"
                         exit="closed"
@@ -148,7 +148,7 @@ const AboutSidebarGroups = ({
                           return (
                             <motion.li
                               key={item.id}
-                              className={`about-sidebar-item flex cursor-pointer items-center gap-2 text-sm ${
+                              className={`about-sidebar-item flex cursor-pointer items-center gap-2 pl-6 text-sm ${
                                 isItemActive(item.id)
                                   ? item.activeClass
                                   : `text-gray-500 ${item.hoverClass ?? ""}`

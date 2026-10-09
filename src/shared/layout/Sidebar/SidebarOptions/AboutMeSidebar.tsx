@@ -257,10 +257,10 @@ const AboutMeSidebar = () => {
           })}
         </motion.div>
 
-        {/* Content */}
-        <div className="min-w-0 flex-1 pl-2">
+        {/* Content — no left padding on wrapper, borders span full width */}
+        <div className="min-w-0 flex-1">
           <motion.div
-            className="about-sidebar-header -ml-2 flex cursor-pointer items-center gap-2 border-b py-2 pl-1"
+            className="about-sidebar-header flex cursor-pointer items-center gap-2 border-b py-2 pl-3"
             onClick={() => toggleDropdown(`main-${activeCategory.id}`)}
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.98 }}
@@ -316,13 +316,13 @@ const AboutMeSidebar = () => {
                       variants={resourcesVariants}
                       initial="hidden"
                       animate="visible"
-                      className="about-sidebar-resources about-sidebar-resources-open -ml-2 mt-2"
+                      className="about-sidebar-resources about-sidebar-resources-open mt-2"
                     >
                       <AboutSidebarResources
                         resources={sidebarResources}
                         wrapperClassName=""
-                        linkClassName="about-sidebar-link ml-2 flex items-center gap-2 transition duration-200"
-                        itemClassName="about-sidebar-resource-item flex items-center justify-between border-b py-2 pl-1 last:border-b-0"
+                        linkClassName="about-sidebar-link flex items-center gap-2 transition duration-200 pl-3"
+                        itemClassName="about-sidebar-resource-item flex items-center justify-between border-b py-2 pl-3 last:border-b-0"
                       />
                     </motion.div>
                   </motion.div>
