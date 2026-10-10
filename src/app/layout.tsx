@@ -8,7 +8,7 @@ import NavigationProgress from "@/providers/NavigationProgress";
 // Optimize font loading
 const firaCode = Fira_Code({
   subsets: ["latin"],
-  display: "swap", // Shows fallback while loading
+  display: "swap",
   weight: ["400", "500", "700"],
 });
 
@@ -146,7 +146,12 @@ export default function RootLayout({
   };
 
   return (
-    <html lang="en" suppressHydrationWarning className={firaCode.className}>
+    <html
+      lang="en"
+      data-theme="dark"
+      suppressHydrationWarning
+      className={firaCode.className}
+    >
       <head>
         <script
           type="application/ld+json"
