@@ -10,8 +10,10 @@ export default function ThemeProvider({
   return (
     <NextThemesProvider
       attribute="data-theme"
-      defaultTheme="system"
-      enableSystem
+      defaultTheme="dark"
+      enableSystem={false}
+      disableTransitionOnChange
+      storageKey="theme"
     >
       {children}
     </NextThemesProvider>
