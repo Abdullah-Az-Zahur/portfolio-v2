@@ -18,6 +18,14 @@
 /* ============================================================
    Base
    ============================================================ */
+html {
+  background-color: #011627;
+}
+
+html[data-theme="light"] {
+  background-color: #eef3f8;
+}
+
 body {
   color: #607b96;
   background: #011627;
@@ -382,6 +390,25 @@ body {
   font-weight: 500;
 }
 
+/* Navbar — Pending Spinner (on click) */
+.nav-pending-spinner {
+  border-radius: 9999px;
+  border: 2px solid rgba(103, 232, 249, 0.25);
+  border-top-color: #67e8f9;
+  animation: nav-spinner-spin 0.7s linear infinite;
+}
+
+[data-theme="light"] .nav-pending-spinner {
+  border-color: rgba(14, 116, 144, 0.25);
+  border-top-color: #0e7490;
+}
+
+@keyframes nav-spinner-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 /* ============================================================
    Footer
    ============================================================ */
@@ -721,7 +748,6 @@ body {
     transform 260ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Light Theme */
 [data-theme="light"] .brand-btn {
   --brand-bg: rgba(255, 255, 255, 0.78);
   --brand-border: rgba(14, 116, 144, 0.42);
@@ -736,6 +762,25 @@ body {
     0 0 0 1px rgba(14, 116, 144, 0.06),
     0 0 10px var(--brand-glow),
     inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.brand-btn:hover {
+  border-color: var(--brand-border);
+  box-shadow:
+    0 0 0 1px rgba(103, 232, 249, 0.16),
+    0 0 22px rgba(103, 232, 249, 0.55),
+    0 0 40px rgba(103, 232, 249, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .brand-btn:hover {
+  border-color: rgba(14, 116, 144, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(14, 116, 144, 0.12),
+    0 0 20px rgba(14, 116, 144, 0.35),
+    0 0 36px rgba(14, 116, 144, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* ============================================================
@@ -778,11 +823,6 @@ body {
 
 /* ============================================================
    Brand Letter — After Effects style flicker-in
-   ------------------------------------------------------------
-   Flow:
-     1. Letter starts INVISIBLE (opacity 0) during delay
-     2. Flickers ON → OFF → ON → OFF → ON (5 flashes)
-     3. Settles at opacity 1
    ============================================================ */
 .brand-btn-letter {
   display: inline-block;
@@ -860,7 +900,6 @@ body {
   }
 }
 
-/* Idle Flicker (JS-triggered random letter) */
 .brand-btn-letter-active {
   animation: brand-btn-letter-active-flick 300ms ease-out 1 !important;
 }
@@ -894,15 +933,10 @@ body {
 }
 
 /* ============================================================
-   Brand Button — Shimmer Sweep (every 14s)
-   ============================================================ */
-/* ============================================================
    Brand Button — Shimmer Sweep
-   Default: auto (every 14s)
-   Hover:   re-trigger immediately (fast sweep)
+   Idle: auto (every 14s)
+   Hover: fast sweep (0.9s, re-trigger)
    ============================================================ */
-
-/* Base — shimmer hidden by default, animation only on demand */
 .brand-btn-shimmer {
   position: absolute;
   inset: 0;
@@ -915,7 +949,7 @@ body {
   transform: translateX(-120%);
   pointer-events: none;
   mix-blend-mode: screen;
-  /* No auto animation — controlled via classes/hover */
+  animation: brand-btn-shimmer-auto 14s ease-in-out infinite;
 }
 
 [data-theme="light"] .brand-btn-shimmer {
@@ -923,17 +957,10 @@ body {
   opacity: 0.6;
 }
 
-/* Auto shimmer — every 14s (idle) */
-.brand-btn .brand-btn-shimmer {
-  animation: brand-btn-shimmer-auto 14s ease-in-out infinite;
-}
-
-/* Hover: fast sweep, re-triggers every hover */
 .brand-btn:hover .brand-btn-shimmer {
   animation: brand-btn-shimmer-hover 0.9s ease-in-out 1;
 }
 
-/* Keyframes — auto (long cycle, occasional sweep) */
 @keyframes brand-btn-shimmer-auto {
   0%,
   70% {
@@ -947,7 +974,6 @@ body {
   }
 }
 
-/* Keyframes — hover (immediate full sweep) */
 @keyframes brand-btn-shimmer-hover {
   0% {
     transform: translateX(-120%);
@@ -955,46 +981,6 @@ body {
   100% {
     transform: translateX(120%);
   }
-}
-
-[data-theme="light"] .brand-btn-shimmer {
-  mix-blend-mode: multiply;
-  opacity: 0.6;
-}
-
-@keyframes brand-btn-shimmer {
-  0%,
-  70% {
-    transform: translateX(-120%);
-  }
-  85% {
-    transform: translateX(120%);
-  }
-  100% {
-    transform: translateX(120%);
-  }
-}
-
-/* ============================================================
-   Brand Button — Hover
-   ============================================================ */
-.brand-btn:hover {
-  border-color: var(--brand-border);
-  box-shadow:
-    0 0 0 1px rgba(103, 232, 249, 0.16),
-    0 0 22px rgba(103, 232, 249, 0.55),
-    0 0 40px rgba(103, 232, 249, 0.25),
-    inset 0 1px 0 rgba(255, 255, 255, 0.08);
-  transform: translateY(-1px);
-}
-
-[data-theme="light"] .brand-btn:hover {
-  border-color: rgba(14, 116, 144, 0.75);
-  box-shadow:
-    0 0 0 1px rgba(14, 116, 144, 0.12),
-    0 0 20px rgba(14, 116, 144, 0.35),
-    0 0 36px rgba(14, 116, 144, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.6);
 }
 
 /* ============================================================
