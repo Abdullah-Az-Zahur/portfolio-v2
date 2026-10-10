@@ -3,32 +3,16 @@
 @tailwind utilities;
 
 /* ============================================================
-   Central Border Token
-   ------------------------------------------------------------
-   Change these two lines to update EVERY border in the app:
-     - Navbar + Footer dividers
-     - About sidebar (rails, headers, resources, items)
-     - Tab bar
-     - Project cards
-     - Document viewer
-   ------------------------------------------------------------
-   Usage in components:
-     class="border border-app-border"   -> uses --app-border-color
+   Border Tokens — Single Source of Truth
    ============================================================ */
 :root {
-  --app-border-color: #4a627a; /* dark theme — deep slate */
-  --app-border-color-soft: #374151; /* dark theme — softer variant */
+  --app-border-color: #4a627a;
+  --app-border-color-soft: #374151;
 }
 
 [data-theme="light"] {
-  --app-border-color: #7a8fa5; /* light theme — deep slate */
-  --app-border-color-soft: #cbd6e3; /* light theme — softer variant */
-}
-
-/* Expose as Tailwind utility: border-app-border, border-app-border-soft */
-@theme inline {
-  --color-app-border: var(--app-border-color);
-  --color-app-border-soft: var(--app-border-color-soft);
+  --app-border-color: #7a8fa5;
+  --app-border-color-soft: #cbd6e3;
 }
 
 /* ============================================================
@@ -45,6 +29,25 @@ body {
 [data-theme="light"] body {
   color: #314158;
   background: #eef3f8;
+}
+
+/* ============================================================
+   Global Border Utilities
+   ============================================================ */
+.app-border {
+  border-color: var(--app-border-color);
+}
+
+.app-border-soft {
+  border-color: var(--app-border-color-soft);
+}
+
+.border-app-divider {
+  border-color: var(--app-border-color);
+}
+
+.border-app-divider-soft {
+  border-color: var(--app-border-color-soft);
 }
 
 /* ============================================================
@@ -76,31 +79,10 @@ body {
   color: #607089 !important;
 }
 
-[data-theme="light"] .border-white\/5,
-[data-theme="light"] .border-white\/10 {
-  border-color: #d4deea !important;
-}
-
-[data-theme="light"] .bg-white\/5 {
-  background-color: rgba(255, 255, 255, 0.72) !important;
-}
-
 [data-theme="light"] .text-gray-500,
 [data-theme="light"] .text-gray-600,
 [data-theme="light"] .text-gray-700 {
   color: #52657d !important;
-}
-
-[data-theme="light"] .border-gray-500,
-[data-theme="light"] .border-gray-600,
-[data-theme="light"] .border-gray-700 {
-  border-color: var(--app-border-color-soft) !important;
-}
-
-[data-theme="light"] .bg-gray-500,
-[data-theme="light"] .bg-gray-600,
-[data-theme="light"] .bg-gray-700 {
-  background-color: var(--app-border-color-soft) !important;
 }
 
 [data-theme="light"] .bg-gray-950 {
@@ -186,7 +168,7 @@ body {
 }
 
 .home-cta-secondary {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--app-border-color);
   color: #cbd5e1;
 }
 .home-cta-secondary:hover {
@@ -195,7 +177,7 @@ body {
 }
 
 .home-status-badge {
-  border-color: rgba(255, 255, 255, 0.15);
+  border-color: var(--app-border-color);
   background-color: rgba(6, 17, 31, 0.75);
   color: #cbd5e1;
 }
@@ -247,9 +229,7 @@ body {
   }
 }
 
-/* ============================================================
-   Home Page — Light Overrides
-   ============================================================ */
+/* Home Page — Light Overrides */
 [data-theme="light"] .home-page {
   background-color: #eef3f8;
   background-image:
@@ -299,17 +279,13 @@ body {
   color: #075985 !important;
 }
 
-[data-theme="light"] .home-cta-secondary {
-  border-color: var(--app-border-color-soft) !important;
-  color: #314158 !important;
-}
 [data-theme="light"] .home-cta-secondary:hover {
   border-color: #0e7490 !important;
   color: #0e7490 !important;
 }
 
 [data-theme="light"] .home-status-badge {
-  border-color: var(--app-border-color-soft) !important;
+  border-color: var(--app-border-color) !important;
   background-color: rgba(248, 251, 254, 0.85) !important;
   color: #314158 !important;
 }
@@ -332,10 +308,78 @@ body {
 }
 
 /* ============================================================
-   Shared Divider — Navbar + Footer + About Sidebar
+   Navbar — Links
    ============================================================ */
-.border-app-divider {
-  border-color: var(--app-border-color);
+.site-navbar {
+  border-bottom-color: var(--app-border-color);
+}
+
+.site-navbar .nav-divider {
+  background-color: var(--app-border-color);
+}
+
+.nav-link {
+  color: #607b96;
+}
+
+.nav-link-idle:hover {
+  color: #cbd5e1;
+  background-color: rgba(1, 22, 39, 0.1);
+}
+
+.nav-link-active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.04);
+  font-weight: 500;
+}
+.nav-link-active:hover {
+  color: #ffffff;
+}
+
+.nav-link-underline {
+  pointer-events: none;
+}
+
+.nav-link-mobile {
+  color: #e5e9f0;
+  transition:
+    background-color 180ms ease,
+    color 180ms ease;
+}
+.nav-link-mobile:hover {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+.nav-link-mobile-active {
+  color: #ffffff;
+  background-color: rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+}
+
+[data-theme="light"] .nav-link {
+  color: #52657d;
+}
+[data-theme="light"] .nav-link-idle:hover {
+  color: #172337;
+  background-color: rgba(23, 35, 55, 0.04);
+}
+[data-theme="light"] .nav-link-active {
+  color: #0f172a;
+  background-color: rgba(15, 23, 42, 0.06);
+  font-weight: 500;
+}
+[data-theme="light"] .nav-link-active:hover {
+  color: #0f172a;
+}
+[data-theme="light"] .nav-link-mobile {
+  color: #172337;
+}
+[data-theme="light"] .nav-link-mobile:hover {
+  background-color: rgba(15, 23, 42, 0.04);
+}
+[data-theme="light"] .nav-link-mobile-active {
+  color: #0f172a;
+  background-color: rgba(15, 23, 42, 0.06);
+  font-weight: 500;
 }
 
 /* ============================================================
@@ -355,7 +399,7 @@ body {
       rgba(11, 27, 46, 0.72),
       rgba(6, 17, 31, 0.8)
     );
-    border-color: rgba(255, 255, 255, 0.15);
+    border-color: var(--app-border-color);
     backdrop-filter: blur(18px);
     box-shadow: 0 -8px 26px rgba(1, 22, 39, 0.35);
   }
@@ -373,26 +417,22 @@ body {
 }
 
 /* ============================================================
-   Navbar
-   ============================================================ */
-.site-navbar {
-  border-bottom-color: var(--app-border-color);
-}
-
-[data-theme="light"] .site-navbar hr {
-  border-color: var(--app-border-color) !important;
-}
-
-/* ============================================================
    Tab bar
    ============================================================ */
+.site-tabbar {
+  border-color: var(--app-border-color);
+}
+
+.site-tab {
+  border-color: var(--app-border-color);
+}
+
 [data-theme="light"] .site-tabbar {
   background: #e5edf4 !important;
   border-color: var(--app-border-color) !important;
 }
 
 [data-theme="light"] .site-tab {
-  border-color: var(--app-border-color) !important;
   color: #607089 !important;
 }
 
@@ -404,6 +444,26 @@ body {
 [data-theme="light"] .site-tab-active {
   background: #cbdbea !important;
   color: #172337 !important;
+}
+
+.tabbar-scroll {
+  scrollbar-width: thin;
+  scrollbar-color: #3b4f66 #0b2035;
+}
+.tabbar-scroll::-webkit-scrollbar {
+  height: 8px;
+}
+.tabbar-scroll::-webkit-scrollbar-track {
+  background: #0b2035;
+  border-radius: 999px;
+}
+.tabbar-scroll::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #3b4f66 0%, #4f6b88 100%);
+  border-radius: 999px;
+  border: 1px solid #0b2035;
+}
+.tabbar-scroll::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(90deg, #4f6b88 0%, #5f83a8 100%);
 }
 
 /* ============================================================
@@ -499,9 +559,6 @@ body {
   border-color: var(--app-border-color);
 }
 
-/* ============================================================
-   About Sidebar — Light Overrides
-   ============================================================ */
 [data-theme="light"] .about-sidebar {
   color: #52657d;
 }
@@ -536,16 +593,10 @@ body {
 
 [data-theme="light"] .about-sidebar-header {
   color: #172337 !important;
-  border-color: var(--app-border-color) !important;
 }
 
 [data-theme="light"] .about-sidebar-header:hover {
   color: #2563a8 !important;
-}
-
-[data-theme="light"] .about-sidebar-resources,
-[data-theme="light"] .about-sidebar-resources-open {
-  border-color: var(--app-border-color) !important;
 }
 
 [data-theme="light"] .about-sidebar-link {
@@ -556,17 +607,13 @@ body {
   color: #0e7490 !important;
 }
 
-[data-theme="light"] .about-sidebar-resource-item {
-  border-color: var(--app-border-color) !important;
-}
-
 [data-theme="light"] .about-category-active {
   background-color: #dce7f0 !important;
   box-shadow: 0 0 0 1px #5b8fc4 !important;
 }
 
 /* ============================================================
-   Theme Toggle — Trigger Button (icon only)
+   Theme Toggle — Icon only
    ============================================================ */
 .theme-toggle-btn {
   background: transparent;
@@ -593,91 +640,7 @@ body {
 }
 
 /* ============================================================
-   Theme Toggle — Dropdown Menu
-   ============================================================ */
-.theme-menu {
-  background: #081524;
-  border-color: rgba(255, 255, 255, 0.1);
-  box-shadow: 0 16px 40px rgba(1, 22, 39, 0.5);
-}
-
-.theme-menu-item {
-  color: #cbd5e1;
-}
-.theme-menu-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
-}
-
-.theme-menu-item-active {
-  background: #67e8f9;
-  color: #0b1b2e;
-}
-.theme-menu-item-active:hover {
-  background: #a5f3fc;
-  color: #0b1b2e;
-}
-
-[data-theme="light"] .theme-menu {
-  background: #ffffff;
-  border-color: var(--app-border-color-soft);
-  box-shadow: 0 16px 40px rgba(43, 63, 84, 0.18);
-}
-
-[data-theme="light"] .theme-menu-item {
-  color: #314158;
-}
-[data-theme="light"] .theme-menu-item:hover {
-  background: #e0eef5;
-  color: #172337;
-}
-
-[data-theme="light"] .theme-menu-item-active {
-  background: #0e7490;
-  color: #ffffff;
-}
-[data-theme="light"] .theme-menu-item-active:hover {
-  background: #075985;
-  color: #ffffff;
-}
-
-/* ============================================================
-   Selection
-   ============================================================ */
-::selection {
-  background-color: #607b96;
-  color: white;
-}
-
-/* ============================================================
-   TabBar horizontal scrollbar
-   ============================================================ */
-.tabbar-scroll {
-  scrollbar-width: thin;
-  scrollbar-color: #3b4f66 #0b2035;
-}
-
-.tabbar-scroll::-webkit-scrollbar {
-  height: 8px;
-}
-
-.tabbar-scroll::-webkit-scrollbar-track {
-  background: #0b2035;
-  border-radius: 999px;
-}
-
-.tabbar-scroll::-webkit-scrollbar-thumb {
-  background: linear-gradient(90deg, #3b4f66 0%, #4f6b88 100%);
-  border-radius: 999px;
-  border: 1px solid #0b2035;
-}
-
-.tabbar-scroll::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(90deg, #4f6b88 0%, #5f83a8 100%);
-}
-
-/* ============================================================
-   About Document Viewer (details / summary / iframe)
+   About Document Viewer
    ============================================================ */
 .about-doc-details {
   border-color: var(--app-border-color-soft);
@@ -709,20 +672,356 @@ body {
   background: #f8fbfe;
 }
 
-[data-theme="light"] .about-doc-summary {
-  color: #2563a8 !important;
-}
-[data-theme="light"] .about-doc-summary:hover {
-  color: #0e7490 !important;
-}
-
+[data-theme="light"] .about-doc-summary,
 [data-theme="light"] .about-doc-link {
   color: #2563a8 !important;
 }
+[data-theme="light"] .about-doc-summary:hover,
 [data-theme="light"] .about-doc-link:hover {
   color: #0e7490 !important;
 }
 
 [data-theme="light"] .about-doc-iframe {
   border-color: var(--app-border-color-soft) !important;
+}
+
+/* ============================================================
+   Selection
+   ============================================================ */
+::selection {
+  background-color: #607b96;
+  color: white;
+}
+
+/* ============================================================
+   Brand Button — Base (Dark Theme Default)
+   ============================================================ */
+.brand-btn {
+  --brand-bg: rgba(6, 17, 31, 0.72);
+  --brand-border: rgba(103, 232, 249, 0.42);
+  --brand-glow: rgba(103, 232, 249, 0.28);
+  --brand-text-grad-1: #67e8f9;
+  --brand-text-grad-2: #a5f3fc;
+  --brand-text-grad-3: #c4b5fd;
+  --brand-shimmer-color: rgba(165, 243, 252, 0.55);
+  --brand-letter-glow: rgba(103, 232, 249, 0.85);
+
+  padding: 5px 12px;
+  background: var(--brand-bg);
+  border: 1px solid var(--brand-border);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  box-shadow:
+    0 0 0 1px rgba(103, 232, 249, 0.06),
+    0 0 12px var(--brand-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition:
+    box-shadow 260ms ease,
+    border-color 260ms ease,
+    transform 260ms cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Light Theme */
+[data-theme="light"] .brand-btn {
+  --brand-bg: rgba(255, 255, 255, 0.78);
+  --brand-border: rgba(14, 116, 144, 0.42);
+  --brand-glow: rgba(14, 116, 144, 0.22);
+  --brand-text-grad-1: #0e7490;
+  --brand-text-grad-2: #0891b2;
+  --brand-text-grad-3: #6d28d9;
+  --brand-shimmer-color: rgba(14, 116, 144, 0.35);
+  --brand-letter-glow: rgba(14, 116, 144, 0.7);
+
+  box-shadow:
+    0 0 0 1px rgba(14, 116, 144, 0.06),
+    0 0 10px var(--brand-glow),
+    inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+/* ============================================================
+   Brand Name Container — Gradient Flow
+   ============================================================ */
+.brand-btn-name {
+  display: inline-flex;
+  align-items: center;
+  font-family: var(--font-fira-code, "Fira Code", monospace);
+  font-size: 0.95rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+
+  background: linear-gradient(
+    90deg,
+    var(--brand-text-grad-1) 0%,
+    var(--brand-text-grad-2) 20%,
+    var(--brand-text-grad-3) 40%,
+    var(--brand-text-grad-2) 55%,
+    var(--brand-text-grad-3) 70%,
+    var(--brand-text-grad-2) 85%,
+    var(--brand-text-grad-1) 100%
+  );
+  background-size: 300% auto;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+
+  animation: brand-btn-flow 16s linear infinite;
+}
+
+@keyframes brand-btn-flow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 300% center;
+  }
+}
+
+/* ============================================================
+   Brand Letter — After Effects style flicker-in
+   ------------------------------------------------------------
+   Flow:
+     1. Letter starts INVISIBLE (opacity 0) during delay
+     2. Flickers ON → OFF → ON → OFF → ON (5 flashes)
+     3. Settles at opacity 1
+   ============================================================ */
+.brand-btn-letter {
+  display: inline-block;
+  position: relative;
+  opacity: 0;
+  will-change: opacity, filter;
+  animation: brand-btn-letter-mount 2s ease-out 1 both;
+}
+
+@keyframes brand-btn-letter-mount {
+  0% {
+    opacity: 0;
+    filter: brightness(8) blur(1.5px);
+    text-shadow: 0 0 20px var(--brand-letter-glow);
+  }
+  5% {
+    opacity: 1;
+    filter: brightness(0.1);
+    text-shadow: none;
+  }
+  10% {
+    opacity: 0;
+    filter: brightness(8) blur(1.2px);
+    text-shadow: 0 0 20px var(--brand-letter-glow);
+  }
+  18% {
+    opacity: 1;
+    filter: brightness(0.15);
+    text-shadow: none;
+  }
+  24% {
+    opacity: 0;
+    filter: brightness(6) blur(1px);
+    text-shadow: 0 0 18px var(--brand-letter-glow);
+  }
+  34% {
+    opacity: 1;
+    filter: brightness(0.3);
+    text-shadow: none;
+  }
+  42% {
+    opacity: 0.15;
+    filter: brightness(5) blur(0.8px);
+    text-shadow: 0 0 14px var(--brand-letter-glow);
+  }
+  54% {
+    opacity: 1;
+    filter: brightness(0.5);
+    text-shadow: none;
+  }
+  62% {
+    opacity: 0.35;
+    filter: brightness(3) blur(0.5px);
+    text-shadow: 0 0 10px var(--brand-letter-glow);
+  }
+  74% {
+    opacity: 1;
+    filter: brightness(0.85);
+    text-shadow: none;
+  }
+  82% {
+    opacity: 0.6;
+    filter: brightness(1.8) blur(0.2px);
+    text-shadow: 0 0 6px var(--brand-letter-glow);
+  }
+  92% {
+    opacity: 1;
+    filter: brightness(1.2);
+    text-shadow: 0 0 3px var(--brand-letter-glow);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow: none;
+  }
+}
+
+/* Idle Flicker (JS-triggered random letter) */
+.brand-btn-letter-active {
+  animation: brand-btn-letter-active-flick 300ms ease-out 1 !important;
+}
+
+@keyframes brand-btn-letter-active-flick {
+  0% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow: 0 0 0 transparent;
+  }
+  25% {
+    opacity: 0.15;
+    filter: brightness(4);
+    text-shadow: 0 0 12px var(--brand-letter-glow);
+  }
+  50% {
+    opacity: 1;
+    filter: brightness(2.5);
+    text-shadow: 0 0 18px var(--brand-letter-glow);
+  }
+  75% {
+    opacity: 0.3;
+    filter: brightness(3.5);
+    text-shadow: 0 0 10px var(--brand-letter-glow);
+  }
+  100% {
+    opacity: 1;
+    filter: brightness(1);
+    text-shadow: 0 0 0 transparent;
+  }
+}
+
+/* ============================================================
+   Brand Button — Shimmer Sweep (every 14s)
+   ============================================================ */
+/* ============================================================
+   Brand Button — Shimmer Sweep
+   Default: auto (every 14s)
+   Hover:   re-trigger immediately (fast sweep)
+   ============================================================ */
+
+/* Base — shimmer hidden by default, animation only on demand */
+.brand-btn-shimmer {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    100deg,
+    transparent 30%,
+    var(--brand-shimmer-color) 50%,
+    transparent 70%
+  );
+  transform: translateX(-120%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+  /* No auto animation — controlled via classes/hover */
+}
+
+[data-theme="light"] .brand-btn-shimmer {
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+/* Auto shimmer — every 14s (idle) */
+.brand-btn .brand-btn-shimmer {
+  animation: brand-btn-shimmer-auto 14s ease-in-out infinite;
+}
+
+/* Hover: fast sweep, re-triggers every hover */
+.brand-btn:hover .brand-btn-shimmer {
+  animation: brand-btn-shimmer-hover 0.9s ease-in-out 1;
+}
+
+/* Keyframes — auto (long cycle, occasional sweep) */
+@keyframes brand-btn-shimmer-auto {
+  0%,
+  70% {
+    transform: translateX(-120%);
+  }
+  85% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* Keyframes — hover (immediate full sweep) */
+@keyframes brand-btn-shimmer-hover {
+  0% {
+    transform: translateX(-120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+[data-theme="light"] .brand-btn-shimmer {
+  mix-blend-mode: multiply;
+  opacity: 0.6;
+}
+
+@keyframes brand-btn-shimmer {
+  0%,
+  70% {
+    transform: translateX(-120%);
+  }
+  85% {
+    transform: translateX(120%);
+  }
+  100% {
+    transform: translateX(120%);
+  }
+}
+
+/* ============================================================
+   Brand Button — Hover
+   ============================================================ */
+.brand-btn:hover {
+  border-color: var(--brand-border);
+  box-shadow:
+    0 0 0 1px rgba(103, 232, 249, 0.16),
+    0 0 22px rgba(103, 232, 249, 0.55),
+    0 0 40px rgba(103, 232, 249, 0.25),
+    inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  transform: translateY(-1px);
+}
+
+[data-theme="light"] .brand-btn:hover {
+  border-color: rgba(14, 116, 144, 0.75);
+  box-shadow:
+    0 0 0 1px rgba(14, 116, 144, 0.12),
+    0 0 20px rgba(14, 116, 144, 0.35),
+    0 0 36px rgba(14, 116, 144, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.6);
+}
+
+/* ============================================================
+   Reduced Motion — Accessibility
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  .brand-btn {
+    transition:
+      box-shadow 200ms ease,
+      border-color 200ms ease;
+  }
+  .brand-btn-name {
+    animation: none !important;
+    background: none;
+    -webkit-background-clip: initial;
+    background-clip: initial;
+    color: var(--brand-text-grad-2);
+  }
+  .brand-btn-letter,
+  .brand-btn-letter-active {
+    animation: none !important;
+    opacity: 1 !important;
+    filter: none;
+    text-shadow: none;
+  }
+  .brand-btn-shimmer {
+    animation: none !important;
+    display: none;
+  }
 }
