@@ -16,62 +16,30 @@ import {
 } from "@/shared/utils/animationVariants";
 
 /* ============================================================
-   Nav Item — with pending spinner on click
-   No setState in useEffect — derived during render
+   NavItemLink — controlled by parent's pendingHref
    ============================================================ */
 type NavItemLinkProps = {
   href: string;
   label: string;
   isActive: boolean;
+  showSpinner: boolean;
   className: string;
-  onNavigate?: () => void;
+  onClick: () => void;
 };
 
 const NavItemLink: React.FC<NavItemLinkProps> = ({
   href,
   label,
   isActive,
+  showSpinner,
   className,
-  onNavigate,
+  onClick,
 }) => {
-  const [isPending, setIsPending] = useState(false);
-  const pendingTimerRef = useRef<NodeJS.Timeout | null>(null);
-
-  // ✅ Derive during render — no Effect needed
-  const showPending = isPending && !isActive;
-
-  const handleClick = () => {
-    if (isActive) return;
-
-    // Clear previous safety timer
-    if (pendingTimerRef.current) {
-      clearTimeout(pendingTimerRef.current);
-      pendingTimerRef.current = null;
-    }
-
-    setIsPending(true);
-
-    // Safety: auto-clear pending after 3s if navigation fails
-    pendingTimerRef.current = setTimeout(() => {
-      setIsPending(false);
-      pendingTimerRef.current = null;
-    }, 3000);
-
-    onNavigate?.();
-  };
-
-  // Cleanup only — valid Effect (external timer sync)
-  useEffect(() => {
-    return () => {
-      if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
-    };
-  }, []);
-
   return (
-    <Link href={href} className={className} onClick={handleClick}>
+    <Link href={href} className={className} onClick={onClick}>
       <span>{label}</span>
 
-      {showPending && (
+      {showSpinner && (
         <span
           aria-hidden
           className="nav-pending-spinner ml-2 inline-block h-3 w-3 shrink-0"
@@ -90,8 +58,34 @@ const NavItemLink: React.FC<NavItemLinkProps> = ({
    ============================================================ */
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [pendingHref, setPendingHref] = useState<string | null>(null);
+  const pendingTimerRef = useRef<NodeJS.Timeout | null>(null);
+
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+
+  // ✅ Clear pending when route changes (pathname matched)
+  // No setState in effect body — this is event-driven
+  // We use derived logic: if pendingHref === pathname → done
+  const visiblePendingHref =
+    pendingHref && pendingHref !== pathname ? pendingHref : null;
+
+  // Auto-clear pending after safety timeout
+  useEffect(() => {
+    if (!pendingHref) return;
+    if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+    pendingTimerRef.current = setTimeout(() => {
+      setPendingHref(null);
+    }, 3000);
+    return () => {
+      if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+    };
+  }, [pendingHref]);
+
+  const handleNavClick = (href: string) => {
+    if (href === pathname) return;
+    setPendingHref(href);
+  };
 
   const headerClassName = isHomePage
     ? "fixed w-full h-14 bg-[#011627] border-b border-app-divider z-50 md:bg-gradient-to-r md:from-[#06111f]/78 md:via-[#0b1b2e]/70 md:to-[#06111f]/78 md:backdrop-blur-xl md:shadow-[0_8px_30px_rgba(1,22,39,0.35)]"
@@ -131,6 +125,7 @@ const NavBar: React.FC = () => {
           <div className="flex h-full">
             {navItems.slice(0, 3).map((item) => {
               const isActive = pathname === item.href;
+              const showSpinner = visiblePendingHref === item.href;
               return (
                 <div
                   key={item.href}
@@ -140,7 +135,9 @@ const NavBar: React.FC = () => {
                     href={item.href}
                     label={item.label}
                     isActive={isActive}
+                    showSpinner={showSpinner}
                     className={getDesktopLinkClass(item.href)}
+                    onClick={() => handleNavClick(item.href)}
                   />
                   <span className="nav-divider absolute right-0 top-0 h-full w-[1px]" />
                 </div>
@@ -156,9 +153,11 @@ const NavBar: React.FC = () => {
               href={navItems[3].href}
               label={navItems[3].label}
               isActive={pathname === navItems[3].href}
+              showSpinner={visiblePendingHref === navItems[3].href}
               className={`${getDesktopLinkClass(
                 navItems[3].href,
               )} border-l border-app-divider pl-5 pr-4`}
+              onClick={() => handleNavClick(navItems[3].href)}
             />
           </div>
         </nav>
