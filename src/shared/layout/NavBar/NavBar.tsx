@@ -8,6 +8,7 @@ import { IoMenu } from "react-icons/io5";
 import { AnimatePresence, motion } from "framer-motion";
 import { navItems } from "./navItems";
 import ThemeToggle from "@/shared/ui/ThemeToggle/ThemeToggle";
+import BrandButton from "@/shared/ui/BrandName/BrandButton";
 import { FiTerminal } from "react-icons/fi";
 import {
   mobileMenuVariants,
@@ -27,7 +28,6 @@ const NavBar: React.FC = () => {
     ? "md:hidden bg-[#011627] border-r-2 border-app-divider shadow-md absolute w-full md:bg-[#06111f]/70 md:backdrop-blur-2xl md:shadow-[0_20px_45px_rgba(1,22,39,0.45)]"
     : "md:hidden bg-[#011627] border-r-2 border-app-divider shadow-md absolute w-full";
 
-  // ✅ Active link — hover-এর মতো bright, + orange underline
   const getDesktopLinkClass = (href: string) => {
     const isActive = pathname === href;
     return `nav-link relative flex items-center h-full p-4 transition ${
@@ -40,20 +40,22 @@ const NavBar: React.FC = () => {
   return (
     <header className={`site-navbar ${headerClassName}`}>
       <div className="mx-auto flex items-center justify-between h-full">
-        {/* Logo / Name */}
-        <div className="md:w-1/5 md:border-r border-app-divider p-4 h-full flex items-center hover:text-gray-500 gap-5">
+        {/* ---------- Logo / Name ---------- */}
+        <div className="md:w-1/5 md:border-r border-app-divider px-3 py-2 h-full flex items-center gap-2">
           <Link
             href="/dashboard"
             aria-label="Open dashboard"
             title="Open dashboard"
-            className="grid h-8 w-8 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition hover:border-cyan-300/50 hover:bg-cyan-400/20"
+            className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition hover:border-cyan-300/50 hover:bg-cyan-400/20"
           >
             <FiTerminal className="h-4 w-4" />
           </Link>
-          <Link href="/">md. abdullah az-zahur</Link>
+
+          {/* ✅ Brand Button — আলাদা component */}
+          <BrandButton href="/" key={pathname} />
         </div>
 
-        {/* Desktop Navigation */}
+        {/* ---------- Desktop Navigation ---------- */}
         <nav className="hidden md:flex flex-1 justify-between items-center h-full">
           <div className="flex h-full">
             {navItems.slice(0, 3).map((item) => {
@@ -72,7 +74,6 @@ const NavBar: React.FC = () => {
                       <span className="nav-link-underline absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300" />
                     )}
                   </Link>
-                  {/* ✅ Vertical divider using shared token */}
                   <span className="nav-divider absolute right-0 top-0 h-full w-[1px]" />
                 </div>
               );
@@ -97,7 +98,7 @@ const NavBar: React.FC = () => {
           </div>
         </nav>
 
-        {/* Mobile: Theme Toggle + Hamburger */}
+        {/* ---------- Mobile: Theme Toggle + Hamburger ---------- */}
         <div className="md:hidden flex items-center gap-2 mr-3">
           <ThemeToggle />
           <button
@@ -133,7 +134,7 @@ const NavBar: React.FC = () => {
         </div>
       </div>
 
-      {/* Mobile Dropdown Menu */}
+      {/* ---------- Mobile Dropdown Menu ---------- */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
