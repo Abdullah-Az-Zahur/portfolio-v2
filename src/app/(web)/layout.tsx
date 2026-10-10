@@ -1,12 +1,14 @@
 "use client";
-import Footer from "@/shared/layout/Footer/Footer";
-import Sidebar from "@/shared/layout/Sidebar/Sidebar";
-import TabBar from "@/shared/layout/TabBar/TabBar";
-import NavBar from "@/shared/layout/NavBar/NavBar";
+
 import { AppTabProvider } from "@/providers/AppTabProvider";
 import { Provider } from "react-redux";
-import { store } from "@/store/store";
+
 import { usePathname } from "next/navigation";
+import { store } from "@/store/store";
+import NavBar from "@/shared/layout/NavBar/NavBar";
+import Sidebar from "@/shared/layout/Sidebar/Sidebar";
+import TabBar from "@/shared/layout/TabBar/TabBar";
+import Footer from "@/shared/layout/Footer/Footer";
 
 export default function WebLayout({
   children,

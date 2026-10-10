@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
@@ -15,6 +15,79 @@ import {
   mobileMenuItemVariants,
 } from "@/shared/utils/animationVariants";
 
+/* ============================================================
+   Nav Item — with pending spinner on click
+   No setState in useEffect — derived during render
+   ============================================================ */
+type NavItemLinkProps = {
+  href: string;
+  label: string;
+  isActive: boolean;
+  className: string;
+  onNavigate?: () => void;
+};
+
+const NavItemLink: React.FC<NavItemLinkProps> = ({
+  href,
+  label,
+  isActive,
+  className,
+  onNavigate,
+}) => {
+  const [isPending, setIsPending] = useState(false);
+  const pendingTimerRef = useRef<NodeJS.Timeout | null>(null);
+
+  // ✅ Derive during render — no Effect needed
+  const showPending = isPending && !isActive;
+
+  const handleClick = () => {
+    if (isActive) return;
+
+    // Clear previous safety timer
+    if (pendingTimerRef.current) {
+      clearTimeout(pendingTimerRef.current);
+      pendingTimerRef.current = null;
+    }
+
+    setIsPending(true);
+
+    // Safety: auto-clear pending after 3s if navigation fails
+    pendingTimerRef.current = setTimeout(() => {
+      setIsPending(false);
+      pendingTimerRef.current = null;
+    }, 3000);
+
+    onNavigate?.();
+  };
+
+  // Cleanup only — valid Effect (external timer sync)
+  useEffect(() => {
+    return () => {
+      if (pendingTimerRef.current) clearTimeout(pendingTimerRef.current);
+    };
+  }, []);
+
+  return (
+    <Link href={href} className={className} onClick={handleClick}>
+      <span>{label}</span>
+
+      {showPending && (
+        <span
+          aria-hidden
+          className="nav-pending-spinner ml-2 inline-block h-3 w-3 shrink-0"
+        />
+      )}
+
+      {isActive && (
+        <span className="nav-link-underline absolute bottom-0 left-0 h-1 w-full border-b-4 border-orange-300" />
+      )}
+    </Link>
+  );
+};
+
+/* ============================================================
+   NavBar
+   ============================================================ */
 const NavBar: React.FC = () => {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
@@ -39,7 +112,7 @@ const NavBar: React.FC = () => {
 
   return (
     <header className={`site-navbar ${headerClassName}`}>
-      <div className="mx-auto flex items-center justify-between h-full">
+      <div className="mx-auto flex h-full items-center justify-between">
         {/* ---------- Logo / Name ---------- */}
         <div className="md:w-1/5 md:border-r border-app-divider px-3 py-2 h-full flex items-center gap-2">
           <Link
@@ -50,56 +123,48 @@ const NavBar: React.FC = () => {
           >
             <FiTerminal className="h-4 w-4" />
           </Link>
-
-          {/* ✅ Brand Button — আলাদা component */}
           <BrandButton href="/" key={pathname} />
         </div>
 
         {/* ---------- Desktop Navigation ---------- */}
-        <nav className="hidden md:flex flex-1 justify-between items-center h-full">
+        <nav className="hidden md:flex flex-1 items-center justify-between h-full">
           <div className="flex h-full">
             {navItems.slice(0, 3).map((item) => {
               const isActive = pathname === item.href;
               return (
                 <div
                   key={item.href}
-                  className="relative flex items-center h-full"
+                  className="relative flex h-full items-center"
                 >
-                  <Link
+                  <NavItemLink
                     href={item.href}
+                    label={item.label}
+                    isActive={isActive}
                     className={getDesktopLinkClass(item.href)}
-                  >
-                    {item.label}
-                    {isActive && (
-                      <span className="nav-link-underline absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300" />
-                    )}
-                  </Link>
+                  />
                   <span className="nav-divider absolute right-0 top-0 h-full w-[1px]" />
                 </div>
               );
             })}
           </div>
 
-          <div className="relative flex items-center h-full">
+          <div className="relative flex h-full items-center">
             <div className="mr-2 hidden md:block">
               <ThemeToggle />
             </div>
-            <Link
+            <NavItemLink
               href={navItems[3].href}
+              label={navItems[3].label}
+              isActive={pathname === navItems[3].href}
               className={`${getDesktopLinkClass(
                 navItems[3].href,
               )} border-l border-app-divider pl-5 pr-4`}
-            >
-              {navItems[3].label}
-              {pathname === navItems[3].href && (
-                <span className="nav-link-underline absolute bottom-0 left-0 w-full h-1 border-b-4 border-orange-300" />
-              )}
-            </Link>
+            />
           </div>
         </nav>
 
         {/* ---------- Mobile: Theme Toggle + Hamburger ---------- */}
-        <div className="md:hidden flex items-center gap-2 mr-3">
+        <div className="md:hidden mr-3 flex items-center gap-2">
           <ThemeToggle />
           <button
             className="flex items-center justify-center p-1"
