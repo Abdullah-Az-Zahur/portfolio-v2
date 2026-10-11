@@ -934,8 +934,8 @@ body {
 
 /* ============================================================
    Brand Button — Shimmer Sweep
-   Idle: auto (every 14s)
-   Hover: fast sweep (0.9s, re-trigger)
+   Idle: auto (every 10s)
+   Hover: fast sweep (1s, re-trigger)
    ============================================================ */
 .brand-btn-shimmer {
   position: absolute;
@@ -949,7 +949,7 @@ body {
   transform: translateX(-120%);
   pointer-events: none;
   mix-blend-mode: screen;
-  animation: brand-btn-shimmer-auto 14s ease-in-out infinite;
+  animation: brand-btn-shimmer-auto 10s ease-in-out infinite;
 }
 
 [data-theme="light"] .brand-btn-shimmer {
@@ -958,7 +958,7 @@ body {
 }
 
 .brand-btn:hover .brand-btn-shimmer {
-  animation: brand-btn-shimmer-hover 0.9s ease-in-out 1;
+  animation: brand-btn-shimmer-hover 1s ease-in-out 1;
 }
 
 @keyframes brand-btn-shimmer-auto {
