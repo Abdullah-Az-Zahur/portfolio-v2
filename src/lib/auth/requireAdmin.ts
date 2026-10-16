@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { auth } from "@/auth";
+import { auth } from "@/app/(admin)/login/_components/auth";
 
 export async function requireAdmin() {
   const session = await auth();

@@ -1,4 +1,4 @@
-import ContactClient from "@/features/contact/components/ContactClient";
+import ContactClient from "@/app/(web)/contact/_components/ContactClient";
 import { Metadata } from "next";
 
 export const metadata: Metadata = {

@@ -4,7 +4,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { IoIosArrowDown, IoIosArrowForward } from "react-icons/io";
 import { RiFolder3Fill } from "react-icons/ri";
 import { dropdownVariants } from "@/shared/utils/animationVariants";
-import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
+import { SidebarCategory } from "@/app/(web)/about/_components/aboutSidebarTypes";
 
 type AboutSidebarGroupsProps = {
   category: SidebarCategory;

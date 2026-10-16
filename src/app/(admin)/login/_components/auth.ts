@@ -8,12 +8,12 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   },
 
   pages: {
-    signIn: "/dashboard/login",
+    signIn: "/login",
   },
 
   callbacks: {
     authorized({ auth: session, request }) {
-      const isLoginRoute = request.nextUrl.pathname === "/dashboard/login";
+      const isLoginRoute = request.nextUrl.pathname === "login";
 
       return isLoginRoute || Boolean(session?.user);
     },

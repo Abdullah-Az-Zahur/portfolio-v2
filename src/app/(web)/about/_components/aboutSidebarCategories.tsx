@@ -1,4 +1,3 @@
-import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
 import {
   FaBriefcase,
   FaCertificate,
@@ -14,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { GiSchoolBag } from "react-icons/gi";
 import { FaPersonHiking } from "react-icons/fa6";
+import { SidebarCategory } from "./aboutSidebarTypes";
 
 export const aboutSidebarCategories: SidebarCategory[] = [
   {
