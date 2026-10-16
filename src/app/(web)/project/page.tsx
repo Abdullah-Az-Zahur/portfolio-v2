@@ -1,4 +1,4 @@
-import ProjectClient from "@/features/projects/components/ProjectClient";
+import ProjectClient from "@/app/(web)/project/_components/ProjectClient";
 import { Metadata } from "next";
 import { getPublicProjects } from "@/lib/projects/getPublicProjects";
 

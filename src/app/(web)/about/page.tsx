@@ -1,6 +1,6 @@
 import { Metadata } from "next";
-import AboutClient from "@/features/about/components/AboutClient";
 import { getPublicAboutContent } from "@/lib/about/getPublicAboutContent";
+import AboutClient from "./_components/AboutClient";
 
 export const dynamic = "force-dynamic";
 

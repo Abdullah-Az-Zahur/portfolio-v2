@@ -5,8 +5,6 @@ import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { AnimatePresence, motion } from "framer-motion";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { addTab } from "@/store/features/tabs/tabsSlice";
-import { aboutSidebarCategories } from "@/features/about/components/aboutSidebarCategories";
-import { SidebarCategory } from "@/features/about/components/aboutSidebarTypes";
 import AboutSidebarGroups from "./AboutSidebarGroups";
 import AboutSidebarResources from "./AboutSidebarResources";
 import { aboutIconOptions } from "@/shared/data/aboutIconOptions";
@@ -17,6 +15,8 @@ import {
   arrowVariants,
   resourcesVariants,
 } from "@/shared/utils/animationVariants";
+import { SidebarCategory } from "@/app/(web)/about/_components/aboutSidebarTypes";
+import { aboutSidebarCategories } from "@/app/(web)/about/_components/aboutSidebarCategories";
 
 const sidebarResources = [
   {
