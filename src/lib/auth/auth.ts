@@ -13,7 +13,7 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
 
   callbacks: {
     authorized({ auth: session, request }) {
-      const isLoginRoute = request.nextUrl.pathname === "login";
+      const isLoginRoute = request.nextUrl.pathname === "/login";
 
       return isLoginRoute || Boolean(session?.user);
     },
