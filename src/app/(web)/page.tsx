@@ -27,22 +27,6 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  openGraph: {
-    title: "Md. Abdullah Az-Zahur | Home",
-    description:
-      "Visit Md. Abdullah Az-Zahur's home page to view his portfolio, role summary, and software engineer profile.",
-    url: "https://abdullahzahur.vercel.app/",
-    siteName: "Md. Abdullah Az-Zahur Portfolio",
-    type: "website",
-    images: ["/assets/images/My%20half%20Photo.png"],
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "Md. Abdullah Az-Zahur | Home",
-    description:
-      "Visit the home page of Md. Abdullah Az-Zahur's portfolio and see his software engineer profile.",
-    images: ["/assets/images/My%20half%20Photo.png"],
-  },
 };
 
 const HomePage = () => {

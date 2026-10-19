@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb/connect";
 import { Project } from "@/models/projects/Project";
-import { parseProjectInput } from "@/lib/validators/project";
+import { parseProjectInput } from "@/lib/projects/project";
 import { requireAdmin } from "@/lib/auth/requireAdmin";
 import { projects as staticProjects } from "@/shared/data/projects";
 

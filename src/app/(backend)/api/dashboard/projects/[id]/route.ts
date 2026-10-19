@@ -2,7 +2,7 @@ import { NextResponse } from "next/server";
 import { isValidObjectId } from "mongoose";
 import { connectToDatabase } from "@/lib/mongodb/connect";
 import { Project } from "@/models/projects/Project";
-import { parseProjectInput } from "@/lib/validators/project";
+import { parseProjectInput } from "@/lib/projects/project";
 import { requireAdmin } from "@/lib/auth/requireAdmin";
 
 type RouteContext = { params: Promise<{ id: string }> };
