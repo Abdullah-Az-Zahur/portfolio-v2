@@ -16,10 +16,10 @@ const ContactSidebar = () => {
     process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880-1705697897";
   const facebookUrl =
     process.env.NEXT_PUBLIC_FACEBOOK_URL ||
-    "https://www.facebook.com/abdullah.az.zahur";
+    "https://www.facebook.com/AbdullahAzZahur";
   const linkedinUrl =
     process.env.NEXT_PUBLIC_LINKEDIN_URL ||
-    "https://www.linkedin.com/in/md-abdullah-az-zahur/";
+    "https://www.linkedin.com/in/abdullahazzahur/";
   const youtubeUrl = "https://www.youtube.com/@AzZahur";
 
   const toggleDropdown = (title: string) => {
