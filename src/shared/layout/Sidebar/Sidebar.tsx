@@ -1,4 +1,5 @@
 "use client";
+
 import type { ComponentType } from "react";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
@@ -29,13 +30,11 @@ const Sidebar = () => {
   const ActiveSidebar = sidebarByPath[pathname];
 
   return (
-    <div
-      className={`about-shell ${pathname === "/about" ? "about-sidebar" : ""} md:fixed w-full md:w-1/5 border-r border-gray-500 md:h-[calc(100vh-56px-48px)] h-auto overflow-y-auto bg-[#011627]`}
-    >
+    <aside className="h-auto w-full overflow-y-auto border-r border-(--app-border-color) bg-[#011627] text-[#94a3b8] transition-colors duration-180 ease-in-out light:bg-[#eef3f8] light:border-[#7a8fa5] light:text-[#52657d] md:fixed md:h-[calc(100vh-56px-48px)] md:w-1/5">
       <nav className="md:h-full">
         {ActiveSidebar ? <ActiveSidebar /> : null}
       </nav>
-    </div>
+    </aside>
   );
 };
 

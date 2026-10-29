@@ -41,11 +41,9 @@ const CommentText: React.FC<CommentTextProps> = ({
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
   // Sync visibleChars length with lineContents when text changes
-  // Uses functional update — avoids setState warning (no direct call in effect body)
   useEffect(() => {
     const t = setTimeout(() => {
       setVisibleChars((prev) => {
-        // same length + all zeros → no change, avoid re-render
         if (prev.length === lineContents.length && prev.every((v) => v === 0)) {
           return prev;
         }
@@ -63,14 +61,13 @@ const CommentText: React.FC<CommentTextProps> = ({
     return () => clearTimeout(t);
   }, [started, startDelay]);
 
-  // Typing loop — safe against index mismatch
+  // Typing loop
   useEffect(() => {
     if (!started) return;
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
 
     const currentLineIndex = visibleChars.findIndex((count, i) => {
       const line = lineContents[i];
-      // Guard: line might not exist if arrays are momentarily out of sync
       if (!line) return false;
       return count < line.length;
     });
@@ -85,7 +82,6 @@ const CommentText: React.FC<CommentTextProps> = ({
     timeoutRef.current = setTimeout(
       () => {
         setVisibleChars((prev) => {
-          // Guard against index change mid-flight
           if (currentLineIndex >= prev.length) return prev;
           const next = [...prev];
           next[currentLineIndex] = nextCount;
@@ -101,7 +97,7 @@ const CommentText: React.FC<CommentTextProps> = ({
   }, [started, visibleChars, lineContents, typingSpeed, lineDelay]);
 
   return (
-    <div className="font-mono leading-6 md:p-10 p-3 text-[#607b96]">
+    <div className="font-mono leading-6 p-3 md:p-10 text-[#607b96] data-[theme=light]:text-[#314158]">
       <div className="grid gap-y-1 text-sm md:text-base">
         {lineContents.map((fullContent, index) => {
           const visibleCount = visibleChars[index] ?? 0;
@@ -112,9 +108,9 @@ const CommentText: React.FC<CommentTextProps> = ({
           return (
             <div
               key={`${fullContent}-${index}`}
-              className="grid grid-cols-[2rem_minmax(0,1fr)] gap-x-2 items-start md:grid-cols-[2.5rem_minmax(0,1fr)] md:gap-x-3"
+              className="grid grid-cols-[2rem_minmax(0,1fr)] items-start gap-x-2 md:grid-cols-[2.5rem_minmax(0,1fr)] md:gap-x-3"
             >
-              <span className="select-none text-right text-gray-500 tabular-nums">
+              <span className="select-none text-right tabular-nums text-[#607089] data-[theme=light]:text-[#52657d]">
                 {index + 1}
               </span>
               <span className="min-w-0 whitespace-pre-wrap [overflow-wrap:anywhere]">
@@ -128,7 +124,7 @@ const CommentText: React.FC<CommentTextProps> = ({
                       repeat: Infinity,
                       ease: "linear",
                     }}
-                    className="ml-px inline-block"
+                    className="ml-px inline-block text-[#43d9ad] data-[theme=light]:text-[#087f67]"
                   >
                     ▍
                   </motion.span>

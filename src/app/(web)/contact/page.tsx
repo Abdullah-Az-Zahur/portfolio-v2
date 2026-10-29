@@ -25,14 +25,23 @@ export const metadata: Metadata = {
     url: "https://abdullahzahur.vercel.app/contact",
     siteName: "Md. Abdullah Az-Zahur Portfolio",
     type: "website",
-    images: ["/assets/images/My%20half%20Photo.png"],
+    images: [
+      {
+        url: "https://abdullahzahur.vercel.app/assets/images/My%20half%20Photo.png",
+        width: 1200,
+        height: 630,
+        alt: "Md. Abdullah Az-Zahur Contact Page Preview",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Contact | Md. Abdullah Az-Zahur",
     description:
       "Send a message to Md. Abdullah Az-Zahur using the contact form on his portfolio.",
-    images: ["/assets/images/My%20half%20Photo.png"],
+    images: [
+      "https://abdullahzahur.vercel.app/assets/images/My%20half%20Photo.png",
+    ],
   },
 };
 

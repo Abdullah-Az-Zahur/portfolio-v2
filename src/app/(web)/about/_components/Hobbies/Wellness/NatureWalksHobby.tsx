@@ -1,15 +1,18 @@
 import CommentText from "@/shared/ui/CommentText/CommentText";
 
-const NatureWalksHobby = () => {
-  const text = `
-      Nature Walks
-      Short walks reset attention and reduce decision fatigue — tiny rituals that preserve consistency across long projects.
-  `;
+const NATURE_WALKS_CONTENT = `
+Nature Walks
+Short walks reset attention and reduce decision fatigue — tiny rituals that preserve consistency across long projects.
+`.trim();
 
+const NatureWalksHobby = () => {
   return (
-    <div>
-      <CommentText text={text} />
-    </div>
+    <article
+      aria-label="Nature Walks Hobbies and Productivity"
+      className="w-full"
+    >
+      <CommentText text={NATURE_WALKS_CONTENT} />
+    </article>
   );
 };
 

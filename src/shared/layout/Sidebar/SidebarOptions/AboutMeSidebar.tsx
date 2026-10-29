@@ -146,7 +146,7 @@ const AboutMeSidebar = () => {
           MOBILE — Categories stagger in
           ============================================================ */}
       <motion.div
-        className="about-sidebar flex flex-col md:hidden"
+        className="flex flex-col text-[#94a3b8] light:text-[#52657d] md:hidden"
         initial="hidden"
         animate="visible"
         variants={categoryListVariants}
@@ -158,28 +158,28 @@ const AboutMeSidebar = () => {
             <motion.div
               key={category.id}
               variants={categoryRowVariants}
-              className="about-sidebar-category border-b py-2"
+              className="border-b border-(--app-border-color-soft) py-2 light:border-[#cbd6e3]"
             >
               <motion.button
                 type="button"
                 onClick={() => handleMobileCategoryToggle(category.id)}
-                className={`about-sidebar-trigger flex w-full items-center gap-2 rounded-md py-2 text-left transition-colors ${
+                className={`flex w-full items-center gap-2 rounded-md px-2 py-2 text-left transition-colors ${
                   isActive
-                    ? "about-sidebar-trigger-active"
-                    : "about-sidebar-trigger-idle"
+                    ? "bg-[#1f2937] light:bg-[#dce7f0]"
+                    : "hover:bg-[#1a2234] light:hover:bg-[#e3ebf3]"
                 }`}
                 whileTap={{ scale: 0.98 }}
               >
-                <span className="about-sidebar-trigger-label flex items-center gap-2">
+                <span className="flex items-center gap-2 text-white light:text-[#172337]">
                   <motion.span
                     className="flex items-center"
                     animate={isActive ? "rotate" : "rotateReverse"}
                     variants={arrowVariants}
                   >
                     {isActive ? (
-                      <IoMdArrowDropdown className="about-sidebar-arrow" />
+                      <IoMdArrowDropdown className="text-white light:text-[#172337]" />
                     ) : (
-                      <IoMdArrowDropright className="about-sidebar-arrow" />
+                      <IoMdArrowDropright className="text-white light:text-[#172337]" />
                     )}
                   </motion.span>
                   <span>{category.label}</span>
@@ -214,19 +214,19 @@ const AboutMeSidebar = () => {
 
         <AboutSidebarResources
           resources={sidebarResources}
-          wrapperClassName="about-sidebar-resources border-t py-3"
-          linkClassName="about-sidebar-link flex items-center gap-2 transition duration-200"
-          itemClassName="about-sidebar-resource-item flex items-center justify-between gap-3 border-b px-2 py-2 last:border-b-0"
+          wrapperClassName="py-3 border-t border-(--app-border-color) light:border-[#7a8fa5]"
+          linkClassName="flex items-center gap-2 text-[#93c5fd] hover:text-[#3b82f6] light:text-[#2563a8] light:hover:text-[#0e7490] transition duration-200"
+          itemClassName="flex items-center justify-between gap-3 border-b border-(--app-border-color) light:border-[#7a8fa5] px-2 py-2 last:border-b-0"
         />
       </motion.div>
 
       {/* ============================================================
           DESKTOP
           ============================================================ */}
-      <div className="about-sidebar hidden items-stretch gap-0 md:flex md:h-full">
+      <div className="hidden items-stretch gap-0 text-[#94a3b8] light:text-[#52657d] md:flex md:h-full">
         {/* Icon rail — categories stagger in */}
         <motion.div
-          className="about-sidebar-rail flex flex-col items-center gap-2 self-stretch border-r px-3 pb-2 pt-2"
+          className="flex flex-col items-center gap-2 self-stretch border-r border-(--app-border-color) px-3 pb-2 pt-2 light:border-[#7a8fa5]"
           initial="hidden"
           animate="visible"
           variants={categoryListVariants}
@@ -240,10 +240,10 @@ const AboutMeSidebar = () => {
                 key={category.id}
                 type="button"
                 onClick={() => handleCategorySwitch(category.id)}
-                className={`about-sidebar-rail-btn rounded-md p-2 transition-colors ${
+                className={`rounded-md p-2 transition-colors ${
                   isActive
-                    ? "about-category-active"
-                    : "about-sidebar-rail-btn-idle"
+                    ? "bg-[#1f2937] light:bg-[#dce7f0] light:shadow-[0_0_0_1px_#5b8fc4]"
+                    : "hover:bg-[#1a2234] light:hover:bg-[#e3ebf3]"
                 }`}
                 title={category.label}
                 aria-label={category.label}
@@ -260,7 +260,7 @@ const AboutMeSidebar = () => {
         {/* Content — no left padding on wrapper, borders span full width */}
         <div className="min-w-0 flex-1">
           <motion.div
-            className="about-sidebar-header flex cursor-pointer items-center gap-2 border-b py-2 pl-3"
+            className="flex cursor-pointer items-center gap-2 border-b border-(--app-border-color) py-2 pl-3 text-white hover:text-[#3b82f6] light:border-[#7a8fa5] light:text-[#172337] light:hover:text-[#2563a8]"
             onClick={() => toggleDropdown(`main-${activeCategory.id}`)}
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.98 }}
@@ -274,9 +274,9 @@ const AboutMeSidebar = () => {
               variants={arrowVariants}
             >
               {isDropdownExpanded(`main-${activeCategory.id}`) ? (
-                <IoMdArrowDropdown className="about-sidebar-arrow" />
+                <IoMdArrowDropdown className="text-white light:text-[#172337]" />
               ) : (
-                <IoMdArrowDropright className="about-sidebar-arrow" />
+                <IoMdArrowDropright className="text-white light:text-[#172337]" />
               )}
             </motion.div>
             <span>{activeCategory.label}</span>
@@ -316,13 +316,13 @@ const AboutMeSidebar = () => {
                       variants={resourcesVariants}
                       initial="hidden"
                       animate="visible"
-                      className="about-sidebar-resources about-sidebar-resources-open mt-2"
+                      className="mt-2 border-t border-(--app-border-color) light:border-[#7a8fa5]"
                     >
                       <AboutSidebarResources
                         resources={sidebarResources}
                         wrapperClassName=""
-                        linkClassName="about-sidebar-link flex items-center gap-2 transition duration-200 pl-3"
-                        itemClassName="about-sidebar-resource-item flex items-center justify-between border-b py-2 pl-3 last:border-b-0"
+                        linkClassName="flex items-center gap-2 text-[#93c5fd] hover:text-[#3b82f6] light:text-[#2563a8] light:hover:text-[#0e7490] transition duration-200 pl-3"
+                        itemClassName="flex items-center justify-between border-b border-(--app-border-color) light:border-[#7a8fa5] py-2 pl-3 last:border-b-0"
                       />
                     </motion.div>
                   </motion.div>

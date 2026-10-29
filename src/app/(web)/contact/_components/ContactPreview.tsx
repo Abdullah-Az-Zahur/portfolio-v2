@@ -1,6 +1,8 @@
 "use client";
 
-interface FormData {
+import { useSyncExternalStore } from "react";
+
+export interface FormData {
   name: string;
   email: string;
   message: string;
@@ -10,65 +12,103 @@ interface ContactPreviewProps {
   formData: FormData;
 }
 
+// Client-side hydration status helper (avoiding state in useEffect)
+const emptySubscribe = () => () => {};
+const useIsHydrated = () => {
+  return useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
+};
+
 const ContactPreview = ({ formData }: ContactPreviewProps) => {
+  const isHydrated = useIsHydrated();
+
+  // Calculate date conditionally without useEffect setState
+  const formattedDate = isHydrated
+    ? new Date().toLocaleString("en-US", {
+        weekday: "short",
+        day: "numeric",
+        month: "short",
+      })
+    : "";
+
   return (
-    <div className="p-5 md:py-32 h-auto md:w-1/2">
-      <pre className="p-4 rounded-md text-sm text-indigo-500 overflow-x-auto">
+    <div
+      aria-hidden="true"
+      className="flex h-full w-full items-center justify-center p-4 sm:p-6 lg:p-10"
+    >
+      <pre className="w-full overflow-x-auto rounded-lg border border-(--app-border-color) bg-[#010e1a] p-5 font-mono text-xs leading-relaxed text-[#607b96] light:border-[#cbd6e3] light:bg-white light:text-[#475569] sm:text-sm md:p-8">
         <code>
-          <>{`\n`}</>
-          <span className="text-purple-400">const</span>{" "}
-          <span className="">button</span>{" "}
-          <span className="text-purple-400">= </span>
-          document.querySelector(
-          <span className="text-orange-400">&#39;#sendBtn&#39;</span>);
-          <br />
-          <br />
-          <span className="text-purple-400">const</span> message{" "}
-          <span className="text-purple-400">= </span>{" "}
-          <span className="text-gray-400">{"{"}</span>
-          <br />
-          &nbsp;&nbsp;name:{" "}
-          <span className="text-orange-400">
-            &quot;{formData.name || '""'}&quot;
+          <span className="text-[#4d5bce] light:text-[#3b4fbb]">const</span>{" "}
+          <span className="text-[#e5e9f0] light:text-[#0f172a]">button</span>{" "}
+          <span className="text-[#4d5bce] light:text-[#3b4fbb]">=</span>{" "}
+          <span className="text-[#e5e9f0] light:text-[#0f172a]">
+            document.querySelector
           </span>
-          ,
-          <br />
-          &nbsp;&nbsp;email:{" "}
-          <span className="text-orange-400">
-            &quot;{formData.email || '""'}&quot;
+          (
+          <span className="text-[#e99287] light:text-[#b4534d]">
+            &apos;#sendBtn&apos;
           </span>
-          ,
+          );
           <br />
-          &nbsp;&nbsp;message:{" "}
-          <span className="text-orange-400">
-            &quot;{formData.message || '""'}&quot;
+          <br />
+          <span className="text-[#4d5bce] light:text-[#3b4fbb]">
+            const
+          </span>{" "}
+          <span className="text-[#43d9ad] light:text-[#087f67]">message</span>{" "}
+          <span className="text-[#4d5bce] light:text-[#3b4fbb]">=</span> &#123;
+          <br />
+          &nbsp;&nbsp;
+          <span className="text-[#607b96] light:text-[#475569]">
+            name
+          </span>:{" "}
+          <span className="text-[#e99287] light:text-[#b4534d]">
+            &quot;{formData.name || ""}&quot;
           </span>
-          ,
-          <br />
-          &nbsp;&nbsp;<span className="text-gray-400">date:</span>{" "}
-          <span className="text-orange-400">
-            &quot;
-            {new Date().toLocaleString("en-US", {
-              weekday: "short",
-              day: "numeric",
-              month: "short",
-            })}
-            &quot;
+          ,<br />
+          &nbsp;&nbsp;
+          <span className="text-[#607b96] light:text-[#475569]">
+            email
+          </span>:{" "}
+          <span className="text-[#e99287] light:text-[#b4534d]">
+            &quot;{formData.email || ""}&quot;
+          </span>
+          ,<br />
+          &nbsp;&nbsp;
+          <span className="text-[#607b96] light:text-[#475569]">
+            message
+          </span>:{" "}
+          <span className="text-[#e99287] light:text-[#b4534d]">
+            &quot;{formData.message || ""}&quot;
+          </span>
+          ,<br />
+          &nbsp;&nbsp;
+          <span className="text-[#607b96] light:text-[#475569]">
+            date
+          </span>:{" "}
+          <span className="text-[#e99287] light:text-[#b4534d]">
+            &quot;{formattedDate}&quot;
           </span>
           <br />
-          <span className="text-gray-400">{"}"}</span>
+          &#125;;
           <br />
           <br />
-          <span className="">button</span>.addEventListener(
-          <span className="text-orange-400">&#39;click&#39;</span>,{" "}
-          <span className="text-gray-400">()</span>{" "}
-          <span className="text-purple-400">=&gt;</span>{" "}
-          <span className="text-gray-400">{"{"}</span>
+          <span className="text-[#e5e9f0] light:text-[#0f172a]">button</span>
+          .addEventListener(
+          <span className="text-[#e99287] light:text-[#b4534d]">
+            &apos;click&apos;
+          </span>
+          , (){" "}
+          <span className="text-[#4d5bce] light:text-[#3b4fbb]">&rArr;</span>{" "}
+          &#123;
           <br />
-          &nbsp;&nbsp;<span className="">form</span>
+          &nbsp;&nbsp;
+          <span className="text-[#43d9ad] light:text-[#087f67]">form</span>
           .send(message);
           <br />
-          <span className="text-gray-400">{"}"}</span>
+          &#125;);
         </code>
       </pre>
     </div>

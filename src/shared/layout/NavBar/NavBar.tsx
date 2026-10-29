@@ -42,12 +42,12 @@ const NavItemLink: React.FC<NavItemLinkProps> = ({
       {showSpinner && (
         <span
           aria-hidden
-          className="nav-pending-spinner ml-2 inline-block h-3 w-3 shrink-0"
+          className="ml-2 inline-block h-3 w-3 shrink-0 animate-spin rounded-full border-2 border-[rgba(103,232,249,0.25)] border-t-[#67e8f9] light:border-[rgba(14,116,144,0.25)] light:border-t-[#0e7490]"
         />
       )}
 
       {isActive && (
-        <span className="nav-link-underline absolute bottom-0 left-0 h-1 w-full border-b-4 border-orange-300" />
+        <span className="pointer-events-none absolute bottom-0 left-0 h-1 w-full border-b-4 border-orange-300" />
       )}
     </Link>
   );
@@ -64,9 +64,6 @@ const NavBar: React.FC = () => {
   const pathname = usePathname();
   const isHomePage = pathname === "/";
 
-  // ✅ Clear pending when route changes (pathname matched)
-  // No setState in effect body — this is event-driven
-  // We use derived logic: if pendingHref === pathname → done
   const visiblePendingHref =
     pendingHref && pendingHref !== pathname ? pendingHref : null;
 
@@ -88,27 +85,27 @@ const NavBar: React.FC = () => {
   };
 
   const headerClassName = isHomePage
-    ? "fixed w-full h-14 bg-[#011627] border-b border-app-divider z-50 md:bg-gradient-to-r md:from-[#06111f]/78 md:via-[#0b1b2e]/70 md:to-[#06111f]/78 md:backdrop-blur-xl md:shadow-[0_8px_30px_rgba(1,22,39,0.35)]"
-    : "fixed w-full h-14 bg-[#011627] border-b border-app-divider z-50";
+    ? "fixed z-50 h-14 w-full border-b border-(--app-border-color) bg-[#011627] light:bg-[#eef3f8] light:border-[#7a8fa5] md:bg-gradient-to-r md:from-[#06111f]/85 md:via-[#0b1b2e]/75 md:to-[#06111f]/85 md:backdrop-blur-xl md:shadow-[0_8px_30px_rgba(1,22,39,0.35)] light:md:bg-gradient-to-r light:md:from-[#eef3f8]/90 light:md:via-[#e2ebf4]/85 light:md:to-[#eef3f8]/90 light:md:shadow-[0_4px_20px_rgba(122,143,165,0.15)]"
+    : "fixed z-50 h-14 w-full border-b border-(--app-border-color) bg-[#011627] light:bg-[#eef3f8] light:border-[#7a8fa5]";
 
   const mobileMenuClassName = isHomePage
-    ? "md:hidden bg-[#011627] border-r-2 border-app-divider shadow-md absolute w-full md:bg-[#06111f]/70 md:backdrop-blur-2xl md:shadow-[0_20px_45px_rgba(1,22,39,0.45)]"
-    : "md:hidden bg-[#011627] border-r-2 border-app-divider shadow-md absolute w-full";
+    ? "md:hidden bg-[#011627] light:bg-[#eef3f8] border-r-2 border-(--app-border-color) light:border-[#7a8fa5] shadow-md absolute w-full md:bg-[#06111f]/70 md:backdrop-blur-2xl md:shadow-[0_20px_45px_rgba(1,22,39,0.45)]"
+    : "md:hidden bg-[#011627] light:bg-[#eef3f8] border-r-2 border-(--app-border-color) light:border-[#7a8fa5] shadow-md absolute w-full";
 
   const getDesktopLinkClass = (href: string) => {
     const isActive = pathname === href;
-    return `nav-link relative flex items-center h-full p-4 transition ${
+    return `relative flex items-center h-full p-4 transition-colors duration-180 text-[#607b96] light:text-[#52657d] ${
       isActive
-        ? "nav-link-active"
-        : "nav-link-idle hover:border-b-4 hover:border-orange-300"
+        ? "text-white font-medium bg-white/5 light:text-[#0f172a] light:bg-[#0f172a]/10"
+        : "hover:text-[#cbd5e1] hover:bg-[#011627]/10 light:hover:text-[#172337] light:hover:bg-[#172337]/5 hover:border-b-4 hover:border-orange-300"
     }`;
   };
 
   return (
-    <header className={`site-navbar ${headerClassName}`}>
+    <header className={headerClassName}>
       <div className="mx-auto flex h-full items-center justify-between">
         {/* ---------- Logo / Name ---------- */}
-        <div className="md:w-1/5 md:border-r border-app-divider px-3 py-2 h-full flex items-center gap-2">
+        <div className="flex h-full items-center gap-2 border-(--app-border-color) px-3 py-2 md:w-1/5 md:border-r light:border-[#7a8fa5]">
           <Link
             href="/dashboard"
             aria-label="Open dashboard"
@@ -121,7 +118,7 @@ const NavBar: React.FC = () => {
         </div>
 
         {/* ---------- Desktop Navigation ---------- */}
-        <nav className="hidden md:flex flex-1 items-center justify-between h-full">
+        <nav className="hidden h-full flex-1 items-center justify-between md:flex">
           <div className="flex h-full">
             {navItems.slice(0, 3).map((item) => {
               const isActive = pathname === item.href;
@@ -139,7 +136,7 @@ const NavBar: React.FC = () => {
                     className={getDesktopLinkClass(item.href)}
                     onClick={() => handleNavClick(item.href)}
                   />
-                  <span className="nav-divider absolute right-0 top-0 h-full w-[1px]" />
+                  <span className="absolute right-0 top-0 h-full w-px bg-(--app-border-color) light:bg-[#7a8fa5]" />
                 </div>
               );
             })}
@@ -156,17 +153,17 @@ const NavBar: React.FC = () => {
               showSpinner={visiblePendingHref === navItems[3].href}
               className={`${getDesktopLinkClass(
                 navItems[3].href,
-              )} border-l border-app-divider pl-5 pr-4`}
+              )} border-l border-(--app-border-color) light:border-[#7a8fa5] pl-5 pr-4`}
               onClick={() => handleNavClick(navItems[3].href)}
             />
           </div>
         </nav>
 
         {/* ---------- Mobile: Theme Toggle + Hamburger ---------- */}
-        <div className="md:hidden mr-3 flex items-center gap-2">
+        <div className="mr-3 flex items-center gap-2 md:hidden">
           <ThemeToggle />
           <button
-            className="flex items-center justify-center p-1"
+            className="flex items-center justify-center p-1 text-[#607b96] light:text-[#314158]"
             onClick={() => setIsOpen(!isOpen)}
             aria-label={isOpen ? "Close menu" : "Open menu"}
             aria-expanded={isOpen}
@@ -180,7 +177,7 @@ const NavBar: React.FC = () => {
                   exit={{ opacity: 0, rotate: 90, scale: 0.8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <IoMdClose className="w-6 h-6" />
+                  <IoMdClose className="h-6 w-6" />
                 </motion.div>
               ) : (
                 <motion.div
@@ -190,7 +187,7 @@ const NavBar: React.FC = () => {
                   exit={{ opacity: 0, rotate: -90, scale: 0.8 }}
                   transition={{ duration: 0.2 }}
                 >
-                  <IoMenu className="w-6 h-6" />
+                  <IoMenu className="h-6 w-6" />
                 </motion.div>
               )}
             </AnimatePresence>
@@ -221,12 +218,14 @@ const NavBar: React.FC = () => {
                   >
                     <Link
                       href={item.href}
-                      className={`nav-link-mobile block w-full text-start ${
-                        isActive ? "nav-link-mobile-active" : ""
+                      className={`block w-full text-start text-[#e5e9f0] transition-colors duration-180 hover:bg-white/5 light:text-[#172337] light:hover:bg-[#0f172a]/5 ${
+                        isActive
+                          ? "bg-white/10 font-medium text-white light:bg-[#0f172a]/10 light:text-[#0f172a]"
+                          : ""
                       }`}
                       onClick={() => setIsOpen(false)}
                     >
-                      <hr className="border-app-divider" />
+                      <hr className="border-(--app-border-color) light:border-[#7a8fa5]" />
                       <div className="p-4">{item.label}</div>
                     </Link>
                   </motion.div>

@@ -38,12 +38,16 @@ export default function ProjectSidebar() {
   return (
     <>
       <motion.div
-        className="flex cursor-pointer items-center gap-2 border-b border-gray-500 py-2 text-white hover:text-blue-500"
+        className="flex cursor-pointer items-center gap-2 border-b border-(--app-border-color) py-2 pl-3 text-white hover:text-[#3b82f6] light:border-[#7a8fa5] light:text-[#172337] light:hover:text-[#2563a8]"
         onClick={() => setIsDropdownOpen((open) => !open)}
         whileHover={{ x: 3 }}
         whileTap={{ scale: 0.98 }}
       >
-        {isDropdownOpen ? <IoMdArrowDropdown /> : <IoMdArrowDropright />}
+        {isDropdownOpen ? (
+          <IoMdArrowDropdown className="text-white light:text-[#172337]" />
+        ) : (
+          <IoMdArrowDropright className="text-white light:text-[#172337]" />
+        )}
         <span>Projects</span>
       </motion.div>
       <AnimatePresence>
@@ -66,7 +70,7 @@ export default function ProjectSidebar() {
                   checked={selectedSkills.includes(skill.id)}
                   onChange={() => handleSkillToggle(skill.id)}
                   iconColor={skill.color}
-                  hoverColor="hover:text-blue-500"
+                  hoverColor="hover:text-blue-500 light:hover:text-blue-600"
                 />
               );
             })}
