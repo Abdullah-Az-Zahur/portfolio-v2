@@ -5,16 +5,16 @@ import ThemeProvider from "@/providers/ThemeProvider";
 import { Suspense } from "react";
 import NavigationProgress from "@/providers/NavigationProgress";
 
-// Optimize font loading
 const firaCode = Fira_Code({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-fira-code",
   weight: ["400", "500", "700"],
 });
 
 export const metadata: Metadata = {
   title: {
-    default: "Md. Abdullah Az-Zahur",
+    default: "Md. Abdullah Az-Zahur | Software Engineer",
     template: "%s | Md. Abdullah Az-Zahur",
   },
   metadataBase: new URL("https://abdullahzahur.vercel.app"),
@@ -40,10 +40,13 @@ export const metadata: Metadata = {
     "Web Developer Portfolio",
     "MERN Stack Portfolio",
   ],
-  authors: [{ name: "Md. Abdullah Az-Zahur" }],
+  authors: [
+    { name: "Md. Abdullah Az-Zahur", url: "https://abdullahzahur.vercel.app" },
+  ],
   creator: "Md. Abdullah Az-Zahur",
-  category: "portfolio",
-  classification: "Personal Portfolio",
+  publisher: "Md. Abdullah Az-Zahur",
+  category: "technology",
+  classification: "Personal Portfolio & Software Development Showcase",
   alternates: {
     canonical: "/",
   },
@@ -77,7 +80,7 @@ export const metadata: Metadata = {
         url: "/assets/images/My%20half%20Photo.png",
         width: 1200,
         height: 630,
-        alt: "Md. Abdullah Az-Zahur portfolio preview",
+        alt: "Md. Abdullah Az-Zahur software engineer portfolio preview",
       },
     ],
   },
@@ -100,9 +103,19 @@ export default function RootLayout({
     "@type": "Person",
     name: "Md. Abdullah Az-Zahur",
     url: "https://abdullahzahur.vercel.app",
+    image:
+      "https://abdullahzahur.vercel.app/assets/images/My%20half%20Photo.png",
     description:
-      "Md. Abdullah Az-Zahur is a Bangladesh-based software engineer and MERN stack developer.",
+      "Md. Abdullah Az-Zahur is a Bangladesh-based software engineer specializing in MERN stack, Next.js, and front-end development.",
     jobTitle: "Software Engineer",
+    worksFor: {
+      "@type": "Organization",
+      name: "Freelance / Self-Employed",
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressCountry: "Bangladesh",
+    },
     sameAs: [
       "https://www.linkedin.com/in/md-abdullah-az-zahur/",
       "https://github.com/Abdullah-Az-Zahur",
@@ -111,7 +124,7 @@ export default function RootLayout({
     email: "mailto:abdullah.az.zahur@gmail.com",
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "Personal",
+      contactType: "Personal Support & Collaboration",
       telephone: "+880-1705697897",
       email: "abdullah.az.zahur@gmail.com",
     },
@@ -124,12 +137,12 @@ export default function RootLayout({
       "MongoDB",
       "TypeScript",
       "JavaScript",
+      "Tailwind CSS",
       "Web Development",
       "Front-End Development",
       "Back-End Development",
       "Full Stack Development",
-      "Web Application Development",
-      "AI/ML",
+      "AI/ML Applications",
     ],
   };
 
@@ -138,9 +151,14 @@ export default function RootLayout({
     "@type": "WebSite",
     name: "Md. Abdullah Az-Zahur Portfolio",
     url: "https://abdullahzahur.vercel.app",
+    author: {
+      "@type": "Person",
+      name: "Md. Abdullah Az-Zahur",
+    },
     potentialAction: {
       "@type": "SearchAction",
-      target: "https://abdullahzahur.vercel.app/project",
+      target:
+        "https://abdullahzahur.vercel.app/project?search={search_term_string}",
       "query-input": "required name=search_term_string",
     },
   };
@@ -148,9 +166,8 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      data-theme="dark"
       suppressHydrationWarning
-      className={firaCode.className}
+      className={`${firaCode.variable} ${firaCode.className}`}
     >
       <head>
         <script
@@ -162,7 +179,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteJsonLd) }}
         />
       </head>
-      <body suppressHydrationWarning>
+      <body className="antialiased" suppressHydrationWarning>
         <ThemeProvider>
           <Suspense fallback={null}>
             <NavigationProgress />

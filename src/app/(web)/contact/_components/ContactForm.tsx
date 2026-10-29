@@ -1,7 +1,8 @@
 "use client";
+
 import React, { ChangeEvent } from "react";
 
-interface FormData {
+export interface FormData {
   name: string;
   email: string;
   message: string;
@@ -20,15 +21,19 @@ const ContactForm = ({
   formData,
   handleChange,
   handleSubmit,
-  isSubmitting,
+  isSubmitting = false,
 }: ContactFormProps) => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="p-5 md:p-24 lg:p-32 h-auto md:w-1/2 md:border-r border-gray-600"
+      aria-label="Contact Form"
+      className="h-full w-full p-6 md:p-12 lg:p-16"
     >
-      <div className="flex flex-col mb-4">
-        <label htmlFor="name" className="mb-2">
+      <div className="mb-4 flex flex-col">
+        <label
+          htmlFor="name"
+          className="mb-2 text-sm text-[#607b96] light:text-[#314158]"
+        >
           _name:
         </label>
         <input
@@ -38,11 +43,17 @@ const ContactForm = ({
           value={formData.name}
           onChange={handleChange}
           required
-          className="bg-gray-950 border border-gray-600 rounded-lg h-10"
+          aria-required="true"
+          autoComplete="name"
+          className="h-10 rounded-lg border border-(--app-border-color) bg-[#011221] px-3 text-[#e5e9f0] outline-none transition duration-150 focus:border-[#43d9ad] focus:ring-1 focus:ring-[#43d9ad] light:border-[#cbd6e3] light:bg-white light:text-[#0f172a] light:focus:border-[#0e7490] light:focus:ring-[#0e7490]"
         />
       </div>
-      <div className="flex flex-col mb-4">
-        <label htmlFor="email" className="mb-2">
+
+      <div className="mb-4 flex flex-col">
+        <label
+          htmlFor="email"
+          className="mb-2 text-sm text-[#607b96] light:text-[#314158]"
+        >
           _email:
         </label>
         <input
@@ -52,11 +63,17 @@ const ContactForm = ({
           value={formData.email}
           onChange={handleChange}
           required
-          className="bg-gray-950 border border-gray-600 rounded-lg h-10"
+          aria-required="true"
+          autoComplete="email"
+          className="h-10 rounded-lg border border-(--app-border-color) bg-[#011221] px-3 text-[#e5e9f0] outline-none transition duration-150 focus:border-[#43d9ad] focus:ring-1 focus:ring-[#43d9ad] light:border-[#cbd6e3] light:bg-white light:text-[#0f172a] light:focus:border-[#0e7490] light:focus:ring-[#0e7490]"
         />
       </div>
-      <div className="flex flex-col mb-4">
-        <label htmlFor="message" className="mb-2">
+
+      <div className="mb-6 flex flex-col">
+        <label
+          htmlFor="message"
+          className="mb-2 text-sm text-[#607b96] light:text-[#314158]"
+        >
           _message:
         </label>
         <textarea
@@ -66,15 +83,17 @@ const ContactForm = ({
           value={formData.message}
           onChange={handleChange}
           required
-          className="bg-gray-950 border border-gray-600 rounded-lg"
+          aria-required="true"
+          className="rounded-lg border border-(--app-border-color) bg-[#011221] p-3 text-[#e5e9f0] outline-none transition duration-150 focus:border-[#43d9ad] focus:ring-1 focus:ring-[#43d9ad] light:border-[#cbd6e3] light:bg-white light:text-[#0f172a] light:focus:border-[#0e7490] light:focus:ring-[#0e7490]"
         />
       </div>
 
       <button
         type="submit"
         disabled={isSubmitting}
-        className={`inline-block p-2 bg-gray-800 text-white rounded-lg text-sm hover:bg-gray-700 transition ${
-          isSubmitting ? "opacity-50 cursor-not-allowed" : ""
+        aria-busy={isSubmitting}
+        className={`inline-block rounded-lg bg-[#1c2b3a] px-4 py-2.5 text-sm font-medium text-white transition hover:bg-[#263b50] light:bg-[#0e7490] light:text-white light:hover:bg-[#0891b2] ${
+          isSubmitting ? "cursor-not-allowed opacity-50" : ""
         }`}
       >
         {isSubmitting ? "Sending..." : "submit-message"}

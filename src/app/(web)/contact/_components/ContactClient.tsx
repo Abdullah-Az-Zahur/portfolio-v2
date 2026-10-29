@@ -1,10 +1,11 @@
 "use client";
+
 import React, { ChangeEvent, useState } from "react";
 import SuccessMessage from "./SuccessMessage";
 import ContactForm from "./ContactForm";
 import ContactPreview from "./ContactPreview";
 
-interface FormData {
+export interface FormData {
   name: string;
   email: string;
   message: string;
@@ -47,10 +48,10 @@ const ContactClient = () => {
         setIsSuccess(true);
         setFormData({ name: "", email: "", message: "" });
       } else {
-        console.error("Error sending message");
+        console.error("Failed to send message.");
       }
     } catch (error) {
-      console.error("Error sending message", error);
+      console.error("Error sending message:", error);
     } finally {
       setIsSubmitting(false);
     }
@@ -61,20 +62,32 @@ const ContactClient = () => {
   };
 
   return (
-    <div className="flex flex-col-reverse md:flex-row">
-      {isSuccess ? (
-        <SuccessMessage onNewMessage={handleNewMessage} />
-      ) : (
-        <ContactForm
-          formData={formData}
-          handleChange={handleChange}
-          handleSubmit={handleSubmit}
-          isSubmitting={isSubmitting}
-        />
-      )}
+    <section
+      aria-label="Contact Section"
+      className="grid w-full min-h-[calc(100dvh-56px-48px)] grid-cols-1 md:grid-cols-2 bg-[#011627] text-[#607b96] transition-colors duration-200 light:bg-[#eef3f8] light:text-[#314158]"
+    >
+      {/* Left Column: Form / Success Message */}
+      <div className="flex w-full items-center justify-center border-b border-(--app-border-color) light:border-[#cbd6e3] md:border-b-0 md:border-r">
+        {isSuccess ? (
+          <SuccessMessage onNewMessage={handleNewMessage} />
+        ) : (
+          <ContactForm
+            formData={formData}
+            handleChange={handleChange}
+            handleSubmit={handleSubmit}
+            isSubmitting={isSubmitting}
+          />
+        )}
+      </div>
 
-      <ContactPreview formData={formData} />
-    </div>
+      {/* Right Column: Code Preview (Full Height & Full Width) */}
+      <div
+        className="flex w-full items-center justify-center"
+        aria-label="Code Preview"
+      >
+        <ContactPreview formData={formData} />
+      </div>
+    </section>
   );
 };
 

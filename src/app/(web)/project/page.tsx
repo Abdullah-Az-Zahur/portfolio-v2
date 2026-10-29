@@ -30,14 +30,23 @@ export const metadata: Metadata = {
     url: "https://abdullahzahur.vercel.app/project",
     siteName: "Md. Abdullah Az-Zahur Portfolio",
     type: "website",
-    images: ["/assets/images/projects/portfolioV2.png"],
+    images: [
+      {
+        url: "https://abdullahzahur.vercel.app/assets/images/projects/portfolioV2.png",
+        width: 1200,
+        height: 630,
+        alt: "Md. Abdullah Az-Zahur Projects Portfolio Showcase",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Projects | Md. Abdullah Az-Zahur",
     description:
       "Discover the featured projects built by Md. Abdullah Az-Zahur.",
-    images: ["/assets/images/projects/portfolioV2.png"],
+    images: [
+      "https://abdullahzahur.vercel.app/assets/images/projects/portfolioV2.png",
+    ],
   },
 };
 

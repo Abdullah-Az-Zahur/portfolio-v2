@@ -7,11 +7,11 @@ const HomeBackgroundBlobs = () => {
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 overflow-hidden"
+      className="pointer-events-none absolute inset-0 overflow-hidden light:opacity-50"
       aria-hidden
     >
       <motion.div
-        className="home-blob home-blob-green absolute left-[25%] top-[30%] h-[clamp(14rem,58vw,20rem)] w-[clamp(14rem,58vw,20rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[64px] will-change-transform md:h-[clamp(11rem,26vw,24rem)] md:w-[clamp(11rem,26vw,24rem)] md:blur-[72px]"
+        className="home-blob home-blob-green absolute left-[25%] top-[30%] h-[clamp(14rem,58vw,20rem)] w-[clamp(14rem,58vw,20rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[64px] will-change-transform light:opacity-40 md:h-[clamp(11rem,26vw,24rem)] md:w-[clamp(11rem,26vw,24rem)] md:blur-[72px]"
         style={{
           background:
             "radial-gradient(circle at 35% 35%, rgba(67,217,173,0.76) 0%, rgba(67,217,173,0.28) 42%, rgba(67,217,173,0) 78%)",
@@ -37,7 +37,7 @@ const HomeBackgroundBlobs = () => {
       />
 
       <motion.div
-        className="home-blob home-blob-blue absolute left-[72%] top-[36%] h-[clamp(15rem,62vw,24rem)] w-[clamp(15rem,62vw,24rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[74px] will-change-transform md:h-[clamp(12rem,30vw,26rem)] md:w-[clamp(12rem,30vw,26rem)] md:blur-[82px]"
+        className="home-blob home-blob-blue absolute left-[72%] top-[36%] h-[clamp(15rem,62vw,24rem)] w-[clamp(15rem,62vw,24rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[74px] will-change-transform light:opacity-40 md:h-[clamp(12rem,30vw,26rem)] md:w-[clamp(12rem,30vw,26rem)] md:blur-[82px]"
         style={{
           background:
             "radial-gradient(circle at 30% 30%, rgba(77,91,206,0.76) 0%, rgba(77,91,206,0.3) 42%, rgba(77,91,206,0) 78%)",
@@ -63,7 +63,7 @@ const HomeBackgroundBlobs = () => {
       />
 
       <motion.div
-        className="home-blob home-blob-mobile absolute left-[52%] top-[78%] h-[clamp(10rem,48vw,16rem)] w-[clamp(10rem,48vw,16rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[56px] will-change-transform md:hidden"
+        className="home-blob home-blob-mobile absolute left-[52%] top-[78%] h-[clamp(10rem,48vw,16rem)] w-[clamp(10rem,48vw,16rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[56px] will-change-transform light:opacity-30 md:hidden"
         style={{
           background:
             "radial-gradient(circle at 35% 35%, rgba(67,217,173,0.24) 0%, rgba(77,91,206,0.18) 48%, rgba(77,91,206,0) 82%)",

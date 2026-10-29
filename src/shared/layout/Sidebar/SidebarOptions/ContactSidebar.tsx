@@ -1,4 +1,5 @@
 "use client";
+
 import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
@@ -41,15 +42,15 @@ const ContactSidebar = () => {
   return (
     <>
       <motion.div
-        className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-b border-gray-500 py-2"
+        className="flex cursor-pointer items-center gap-2 border-b border-(--app-border-color) py-2 pl-3 text-white hover:text-[#3b82f6] light:border-[#7a8fa5] light:text-[#172337] light:hover:text-[#2563a8]"
         onClick={() => toggleDropdown("contact")}
         whileHover={{ x: 3 }}
         whileTap={{ scale: 0.98 }}
       >
         {isDropdownExpanded("contact") ? (
-          <IoMdArrowDropdown className="text-white" />
+          <IoMdArrowDropdown className="text-white light:text-[#172337]" />
         ) : (
-          <IoMdArrowDropright className="text-white" />
+          <IoMdArrowDropright className="text-white light:text-[#172337]" />
         )}
         <span>Contact</span>
       </motion.div>
@@ -85,15 +86,15 @@ const ContactSidebar = () => {
       </AnimatePresence>
 
       <motion.div
-        className="flex items-center gap-2 cursor-pointer text-white hover:text-blue-500 border-y border-gray-500 py-2"
+        className="flex cursor-pointer items-center gap-2 border-y border-(--app-border-color) py-2 pl-3 text-white hover:text-[#3b82f6] light:border-[#7a8fa5] light:text-[#172337] light:hover:text-[#2563a8]"
         onClick={() => toggleDropdown("find-me-also-in")}
         whileHover={{ x: 3 }}
         whileTap={{ scale: 0.98 }}
       >
         {isDropdownExpanded("find-me-also-in") ? (
-          <IoMdArrowDropdown className="text-white" />
+          <IoMdArrowDropdown className="text-white light:text-[#172337]" />
         ) : (
-          <IoMdArrowDropright className="text-white" />
+          <IoMdArrowDropright className="text-white light:text-[#172337]" />
         )}
         <span>find-me-also-in</span>
       </motion.div>

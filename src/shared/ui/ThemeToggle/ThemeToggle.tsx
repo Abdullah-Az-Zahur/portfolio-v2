@@ -22,9 +22,12 @@ export default function ThemeToggle() {
         type="button"
         aria-label="Toggle theme"
         title="Toggle theme"
-        className="theme-toggle-btn grid h-8 w-8 place-items-center rounded-lg"
+        className="grid h-8 w-8 cursor-pointer place-items-center rounded-lg border-0 bg-transparent transition-colors duration-180 ease-in-out hover:bg-white/8 data-[theme=light]:hover:bg-[rgba(14,116,144,0.08)]"
       >
-        <span className="theme-toggle-icon block h-4 w-4" aria-hidden />
+        <span
+          className="block h-4 w-4 text-[#67e8f9] transition-colors duration-180 ease-in-out data-[theme=light]:text-[#0e7490]"
+          aria-hidden
+        />
       </button>
     );
   }
@@ -37,7 +40,7 @@ export default function ThemeToggle() {
       onClick={() => setTheme(isDark ? "light" : "dark")}
       aria-label={isDark ? "Switch to light theme" : "Switch to dark theme"}
       title={isDark ? "Switch to light theme" : "Switch to dark theme"}
-      className="theme-toggle-btn grid h-8 w-8 place-items-center rounded-lg"
+      className="grid h-8 w-8 cursor-pointer place-items-center rounded-lg border-0 bg-transparent transition-colors duration-180 ease-in-out hover:bg-white/8 data-[theme=light]:hover:bg-[rgba(14,116,144,0.08)]"
     >
       <AnimatePresence mode="wait" initial={false}>
         {isDark ? (
@@ -47,7 +50,7 @@ export default function ThemeToggle() {
             animate={{ opacity: 1, rotate: 0, scale: 1 }}
             exit={{ opacity: 0, rotate: 90, scale: 0.6 }}
             transition={{ duration: 0.2 }}
-            className="theme-toggle-icon"
+            className="text-[#67e8f9] transition-colors duration-180 ease-in-out data-[theme=light]:text-[#0e7490]"
           >
             <FiSun className="h-4 w-4" />
           </motion.span>
@@ -58,7 +61,7 @@ export default function ThemeToggle() {
             animate={{ opacity: 1, rotate: 0, scale: 1 }}
             exit={{ opacity: 0, rotate: -90, scale: 0.6 }}
             transition={{ duration: 0.2 }}
-            className="theme-toggle-icon"
+            className="text-[#67e8f9] transition-colors duration-180 ease-in-out data-[theme=light]:text-[#0e7490]"
           >
             <FiMoon className="h-4 w-4" />
           </motion.span>
