@@ -18,23 +18,27 @@ export default function WebLayout({
   const isHomePage = pathname === "/";
 
   return (
-    <div className="flex min-h-dvh flex-col bg-[#011627] text-[#607b96] transition-colors duration-200 light:bg-[#eef3f8] light:text-[#314158]">
-      <Provider store={store}>
-        <AppTabProvider>
-          <header className="fixed top-0 z-50 w-full">
-            <NavBar />
-          </header>
+    <Provider store={store}>
+      <AppTabProvider>
+        {/* Main Viewport Wrapper: Full screen without extra padding */}
+        <div className="relative flex h-dvh w-full flex-col overflow-hidden bg-[#011627] text-[#607b96] transition-colors duration-200 light:bg-[#eef3f8] light:text-[#314158]">
+          {/* Windows 11 Inset Frame Border (Content choto korbe na) */}
+          <div className="pointer-events-none absolute inset-0 z-50 rounded-lg border border-(--app-border-color) light:border-[#cbd6e3]" />
 
-          <div className="mt-14 flex flex-1 flex-col md:flex-row">
-            <aside aria-label="Sidebar Navigation">
+          {/* Top Navbar */}
+          <NavBar />
+
+          {/* Middle Body */}
+          <div className="flex flex-1 overflow-hidden">
+            <aside aria-label="Sidebar Navigation" className="h-full">
               <Sidebar />
             </aside>
 
             <main
-              className={`flex-1 ${
+              className={`flex-1 flex-col ${
                 isHomePage
-                  ? "h-[calc(100dvh-56px)] overflow-hidden md:h-[calc(100dvh-56px-48px)] md:ml-0"
-                  : "overflow-y-auto pb-10 md:ml-[20%] md:pt-14"
+                  ? "h-full overflow-hidden"
+                  : "h-full overflow-y-auto pb-6"
               }`}
             >
               <TabBar />
@@ -42,9 +46,10 @@ export default function WebLayout({
             </main>
           </div>
 
+          {/* Bottom Footer */}
           <Footer />
-        </AppTabProvider>
-      </Provider>
-    </div>
+        </div>
+      </AppTabProvider>
+    </Provider>
   );
 }

@@ -29,10 +29,14 @@ const Sidebar = () => {
 
   const ActiveSidebar = sidebarByPath[pathname];
 
+  if (!ActiveSidebar) {
+    return null;
+  }
+
   return (
-    <aside className="h-auto w-full overflow-y-auto border-r border-(--app-border-color) bg-[#011627] text-[#94a3b8] transition-colors duration-180 ease-in-out light:bg-[#eef3f8] light:border-[#7a8fa5] light:text-[#52657d] md:fixed md:h-[calc(100vh-56px-48px)] md:w-1/5">
-      <nav className="md:h-full">
-        {ActiveSidebar ? <ActiveSidebar /> : null}
+    <aside className="h-full w-full overflow-y-auto border-r border-(--app-border-color) bg-[#011627] text-[#94a3b8] transition-colors duration-200 ease-in-out light:border-[#cbd6e3] light:bg-[#eef3f8] light:text-[#52657d] md:w-64 lg:w-72 shrink-0">
+      <nav aria-label="Sidebar Inner Navigation" className="h-full">
+        <ActiveSidebar />
       </nav>
     </aside>
   );
