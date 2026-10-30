@@ -4,7 +4,7 @@ import { uncheckedSkill } from "@/store/features/projects/projectsSlice";
 import { removeTab, setActiveTab } from "@/store/features/tabs/tabsSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { usePathname } from "next/navigation";
-import { FiX } from "react-icons/fi";
+import { FiX as CloseIcon } from "react-icons/fi";
 
 const PROJECT_SKILL_TAB_PREFIX = "project-skill:";
 
@@ -13,17 +13,19 @@ const TabBar = () => {
   const dispatch = useAppDispatch();
   const pathname = usePathname();
 
+  // হোম পেজ হলে TabBar রেন্ডার হবে না
   if (pathname === "/") {
     return null;
   }
 
-  // Tabs khali thakle container rendering skip korbe
+  // ট্যাব খালি থাকলেও রেন্ডার বাদ যাবে
   if (!tabs || tabs.length === 0) {
     return null;
   }
 
   return (
-    <div className="sticky top-0 z-30 h-10 w-full shrink-0 border-b border-(--app-border-color) bg-[#011627] light:border-[#cbd6e3] light:bg-[#eef3f8]">
+    /* hidden md:block দিয়ে মোবাইলে হাইড এবং ডেক্সটপে শো করা হয়েছে */
+    <div className="sticky top-0 z-30 hidden h-10 w-full shrink-0 border-b border-(--app-border-color) bg-[#011627] light:border-[#cbd6e3] light:bg-[#eef3f8] md:block">
       <div className="flex h-full w-full items-center overflow-x-auto overflow-y-hidden scrollbar-none [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden">
         {tabs.map((tab) => {
           const isActive = activeTab === tab.id;
@@ -59,10 +61,10 @@ const TabBar = () => {
                 }`}
                 aria-label={`Close ${tab.title} tab`}
               >
-                <FiX size={14} />
+                <CloseIcon size={14} />
               </button>
 
-              {/* Active Indicator Bar */}
+              {/* অ্যাক্টিভ ইনডিকেটর বার */}
               {isActive && (
                 <span
                   aria-hidden="true"

@@ -34,8 +34,8 @@ const Sidebar = () => {
   }
 
   return (
-    <aside className="h-full w-full overflow-y-auto border-r border-(--app-border-color) bg-[#011627] text-[#94a3b8] transition-colors duration-200 ease-in-out light:border-[#cbd6e3] light:bg-[#eef3f8] light:text-[#52657d] md:w-64 lg:w-72 shrink-0">
-      <nav aria-label="Sidebar Inner Navigation" className="h-full">
+    <aside className="h-auto w-full border-r border-(--app-border-color) bg-[#011627] text-[#94a3b8] transition-colors duration-200 ease-in-out light:border-[#cbd6e3] light:bg-[#eef3f8] light:text-[#52657d] md:h-full md:w-64 lg:w-72 md:overflow-y-auto shrink-0">
+      <nav aria-label="Sidebar Inner Navigation" className="h-full w-full">
         <ActiveSidebar />
       </nav>
     </aside>

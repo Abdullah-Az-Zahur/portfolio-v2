@@ -99,8 +99,8 @@ const NavBar: React.FC = () => {
   return (
     <header className={headerClassName}>
       <div className="mx-auto flex h-full items-center justify-between">
-        {/* ---------- Logo / Name ---------- */}
-        <div className="flex h-full items-center gap-2 border-r border-(--app-border-color) px-3 py-2 light:border-[#cbd6e3] md:w-1/5">
+        {/* ---------- Logo / Name (Mobile-e border-r hide kora hoyeche) ---------- */}
+        <div className="flex h-full items-center gap-2 border-r-0 border-(--app-border-color) px-3 py-2 light:border-[#cbd6e3] md:w-1/5 md:border-r">
           <Link
             href="/dashboard"
             aria-label="Open dashboard"
@@ -151,7 +151,7 @@ const NavBar: React.FC = () => {
               showSpinner={visiblePendingHref === navItems[3].href}
               className={`${getDesktopLinkClass(
                 navItems[3].href,
-              )} border-l border-(--app-border-color) light:border-[#cbd6e3] pl-5 pr-4`}
+              )} md:border-l md:border-(--app-border-color) light:md:border-[#cbd6e3] pl-5 pr-4`}
               onClick={() => handleNavClick(navItems[3].href)}
             />
           </div>
