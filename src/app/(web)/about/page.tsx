@@ -59,8 +59,8 @@ const AboutPage = async () => {
 
   return (
     <AboutClient
-      initialContent={content.content}
-      initialResources={content.resources}
+      initialContent={content?.content ?? {}}
+      initialResources={content?.resources ?? {}}
     />
   );
 };

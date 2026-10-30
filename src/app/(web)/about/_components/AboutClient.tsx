@@ -19,8 +19,9 @@ const AboutClient = ({
 
   const { activeKey, activeContent, resourceUrl, previewUrl } = useMemo(() => {
     const key = activeTab ?? DEFAULT_KEY;
-    const content = initialContent[key] ?? initialContent[DEFAULT_KEY] ?? "";
-    const resUrl = initialResources[key];
+    const content =
+      initialContent?.[key] ?? initialContent?.[DEFAULT_KEY] ?? "";
+    const resUrl = initialResources?.[key];
     const prevUrl = resUrl?.replace(/\/view(?:\?.*)?$/, "/preview");
 
     return {
@@ -32,7 +33,7 @@ const AboutClient = ({
   }, [activeTab, initialContent, initialResources]);
 
   return (
-    <div>
+    <div className="w-full p-4 sm:p-6 lg:p-8">
       {/* key দিলে tab change হলেই CommentText reset হবে */}
       <CommentText key={activeKey} text={activeContent} />
 
@@ -46,14 +47,14 @@ const AboutClient = ({
             href={resourceUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="mt-3 inline-block text-sm text-[#93c5fd] transition-colors duration-180 ease-in-out hover:text-[#bfdbfe] light:text-[#2563a8] light:hover:text-[#0e7490]"
+            className="mt-3 inline-block text-sm text-[#93c5fd] transition-colors duration-180 ease-in-out hover:text-[#bfdbfe] focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 light:text-[#2563a8] light:hover:text-[#0e7490]"
           >
-            Open in a new tab
+            Open in a new tab ↗
           </a>
 
           {previewUrl && (
             <iframe
-              title="Attached document preview"
+              title={`Attached document preview for ${activeKey}`}
               src={previewUrl}
               loading="lazy"
               className="mt-4 h-[min(70vh,720px)] w-full rounded border border-(--app-border-color) light:border-[#cbd6e3]"
