@@ -1,15 +1,25 @@
-import { projects } from "@/shared/data/projects";
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { projectHasSkill } from "@/shared/data/projectSkills";
+
+export type Project = {
+  id: number;
+  name: string;
+  liveLink: string;
+  repoLink: string;
+  image: string;
+  description: string;
+  skills: string[];
+};
 
 interface ProjectState {
-  allProjects: typeof projects;
-  filteredProjects: typeof projects;
+  allProjects: Project[];
+  filteredProjects: Project[];
   selectedSkills: string[];
 }
 
 const initialState: ProjectState = {
-  allProjects: projects,
-  filteredProjects: projects,
+  allProjects: [],
+  filteredProjects: [],
   selectedSkills: [],
 };
 
@@ -17,7 +27,7 @@ const projectsSlice = createSlice({
   name: "projects",
   initialState,
   reducers: {
-    replaceProjects: (state, action: PayloadAction<typeof projects>) => {
+    replaceProjects: (state, action: PayloadAction<Project[]>) => {
       state.allProjects = action.payload;
       state.filteredProjects = action.payload;
       state.selectedSkills = [];
@@ -30,7 +40,9 @@ const projectsSlice = createSlice({
         state.filteredProjects = state.allProjects;
       } else {
         state.filteredProjects = state.allProjects.filter((project) =>
-          action.payload.every((skill) => project.skills.includes(skill)),
+          action.payload.every((skill) =>
+            projectHasSkill(project.skills, skill),
+          ),
         );
       }
     },
@@ -52,7 +64,9 @@ const projectsSlice = createSlice({
         state.filteredProjects = state.allProjects;
       } else {
         state.filteredProjects = state.allProjects.filter((project) =>
-          newSelectedSkills.every((skill) => project.skills.includes(skill)),
+          newSelectedSkills.every((skill) =>
+            projectHasSkill(project.skills, skill),
+          ),
         );
       }
     },
@@ -65,7 +79,9 @@ const projectsSlice = createSlice({
         state.filteredProjects = state.allProjects;
       } else {
         state.filteredProjects = state.allProjects.filter((project) =>
-          state.selectedSkills.every((skill) => project.skills.includes(skill)),
+          state.selectedSkills.every((skill) =>
+            projectHasSkill(project.skills, skill),
+          ),
         );
       }
     },

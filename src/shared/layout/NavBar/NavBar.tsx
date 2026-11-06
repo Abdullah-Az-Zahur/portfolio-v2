@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { IoMdClose } from "react-icons/io";
 import { IoMenu } from "react-icons/io5";
@@ -9,7 +10,6 @@ import { AnimatePresence, motion } from "framer-motion";
 import { navItems } from "./navItems";
 import ThemeToggle from "@/shared/ui/ThemeToggle/ThemeToggle";
 import BrandButton from "@/shared/ui/BrandName/BrandButton";
-import { FiTerminal } from "react-icons/fi";
 import {
   mobileMenuVariants,
   mobileMenuItemVariants,
@@ -105,9 +105,15 @@ const NavBar: React.FC = () => {
             href="/dashboard"
             aria-label="Open dashboard"
             title="Open dashboard"
-            className="grid h-8 w-8 shrink-0 place-items-center rounded-lg border border-cyan-400/20 bg-cyan-400/10 text-cyan-300 transition hover:border-cyan-300/50 hover:bg-cyan-400/20 light:border-cyan-700/30 light:bg-cyan-600/10 light:text-cyan-700"
+            className="relative h-8 w-8 shrink-0 overflow-hidden rounded-full border border-cyan-400/30 bg-cyan-400/10 transition hover:border-cyan-300/70 hover:bg-cyan-400/20 light:border-cyan-700/30 light:bg-cyan-600/10"
           >
-            <FiTerminal className="h-4 w-4" />
+            <Image
+              src="/az-icon.webp"
+              alt="AZ logo"
+              fill
+              sizes="32px"
+              className="object-cover"
+            />
           </Link>
           <BrandButton href="/" key={pathname} />
         </div>

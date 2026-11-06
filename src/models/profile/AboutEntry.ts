@@ -12,7 +12,6 @@ const aboutEntrySchema = new Schema(
     resourceUrl: { type: String, default: "" },
     showResource: { type: Boolean, default: false },
     order: { type: Number, default: 0 },
-    seedVersion: { type: Number, default: 2 },
   },
   { timestamps: true },
 );

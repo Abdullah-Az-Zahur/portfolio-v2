@@ -1,28 +1,7 @@
 import { NextResponse } from "next/server";
-import { aboutContent } from "@/shared/data/aboutContent";
 import { requireAdmin } from "@/lib/auth/requireAdmin";
 import { connectToDatabase } from "@/lib/mongodb/connect";
 import { AboutEntry } from "@/models/profile/AboutEntry";
-
-function seedEntries() {
-  return aboutContent.flatMap((category) =>
-    category.groups.flatMap((group) =>
-      group.items.map((item) => ({
-        key: item.id,
-        category: category.id,
-        group: group.id,
-        label: item.label,
-        content: item.content,
-        iconKey: item.iconKey,
-        color: item.color,
-        resourceUrl: item.resourceUrl ?? "",
-        showResource: item.showResource ?? Boolean(item.resourceUrl),
-        order: group.items.indexOf(item),
-        seedVersion: 2,
-      })),
-    ),
-  );
-}
 
 export async function GET() {
   const unauthorized = await requireAdmin();
@@ -30,28 +9,9 @@ export async function GET() {
 
   try {
     await connectToDatabase();
-    let entries = await AboutEntry.find()
+    const entries = await AboutEntry.find()
       .sort({ category: 1, group: 1, order: 1 })
       .lean();
-    const seed = seedEntries();
-    const hasCurrentSeed = await AboutEntry.exists({ seedVersion: 2 });
-    if (!hasCurrentSeed) {
-      await AboutEntry.bulkWrite(
-        seed.map((entry) => ({
-          updateOne: {
-            filter: { key: entry.key },
-            update: { $set: entry },
-            upsert: true,
-          },
-        })),
-      );
-      entries = await AboutEntry.find()
-        .sort({ category: 1, group: 1, order: 1 })
-        .lean();
-    } else if (entries.length === 0) {
-      await AboutEntry.insertMany(seed);
-      entries = await AboutEntry.find().lean();
-    }
     return NextResponse.json({ entries });
   } catch (error) {
     console.error("Failed to load About content", error);
@@ -76,9 +36,8 @@ export async function PUT(request: Request) {
 
   try {
     await connectToDatabase();
-    const seededSource = seedEntries().find((entry) => entry.key === body.key);
     const existingSource = await AboutEntry.findOne({ key: body.key }).lean();
-    const source = seededSource ?? existingSource;
+    const source = existingSource;
     if (!source)
       return NextResponse.json(
         { message: "Unknown About content key." },
@@ -101,7 +60,6 @@ export async function PUT(request: Request) {
           typeof body.showResource === "boolean"
             ? body.showResource
             : source.showResource,
-        seedVersion: 2,
       },
       { upsert: true, new: true, runValidators: true },
     ).lean();
@@ -120,13 +78,10 @@ export async function POST(request: Request) {
   if (unauthorized) return unauthorized;
 
   const body = await request.json().catch(() => null);
-  const category = aboutContent.find((item) => item.id === body?.category);
-  const group = category?.groups.find((item) => item.id === body?.group);
-
   if (
-    !category ||
-    !group ||
     typeof body?.key !== "string" ||
+    typeof body?.category !== "string" ||
+    typeof body?.group !== "string" ||
     typeof body?.label !== "string" ||
     typeof body?.content !== "string"
   ) {
@@ -140,15 +95,15 @@ export async function POST(request: Request) {
     await connectToDatabase();
     const entry = await AboutEntry.create({
       key: body.key,
-      category: category.id,
-      group: group.id,
+      category: body.category,
+      group: body.group,
       label: body.label,
       content: body.content,
       iconKey: body.iconKey || "user",
       color: body.color || "blue",
       resourceUrl: body.resourceUrl || "",
       showResource: Boolean(body.showResource),
-      order: group.items.length,
+      order: 0,
     });
     return NextResponse.json({ entry }, { status: 201 });
   } catch (error) {

@@ -6,16 +6,22 @@ import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { addTab, removeTab } from "@/store/features/tabs/tabsSlice";
 import { toggleSkill } from "@/store/features/projects/projectsSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { projectSkills } from "@/shared/data/projectSkills";
+import { getProjectSkillOptions } from "@/shared/data/projectSkills";
 import { dropdownVariants } from "@/shared/utils/animationVariants";
 import SkillCheckbox from "../SkillCheckbox/SkillCheckbox";
 
 export default function ProjectSidebar() {
   const dispatch = useAppDispatch();
-  const { selectedSkills } = useAppSelector((state) => state.projects);
+  const { allProjects, selectedSkills } = useAppSelector(
+    (state) => state.projects,
+  );
   const { tabs } = useAppSelector((state) => state.tabs);
   const [isDropdownOpen, setIsDropdownOpen] = useState(true);
   const skillTabId = (skill: string) => `project-skill:${skill}`;
+  const availableSkills = Array.from(
+    new Set(allProjects.flatMap((project) => project.skills)),
+  ).sort();
+  const projectSkills = getProjectSkillOptions(availableSkills);
 
   function handleSkillToggle(skill: string) {
     const isSelected = selectedSkills.includes(skill);
@@ -63,12 +69,12 @@ export default function ProjectSidebar() {
               const SkillIcon = skill.icon;
               return (
                 <SkillCheckbox
-                  key={skill.id}
-                  id={skill.id}
+                  key={skill.value}
+                  id={skill.value}
                   skillName={skill.label}
                   icon={<SkillIcon />}
-                  checked={selectedSkills.includes(skill.id)}
-                  onChange={() => handleSkillToggle(skill.id)}
+                  checked={selectedSkills.includes(skill.value)}
+                  onChange={() => handleSkillToggle(skill.value)}
                   iconColor={skill.color}
                   hoverColor="hover:text-blue-500 light:hover:text-blue-600"
                 />

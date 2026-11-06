@@ -62,9 +62,9 @@ export const metadata: Metadata = {
     },
   },
   icons: {
-    icon: "/window.svg",
-    shortcut: "/window.svg",
-    apple: "/window.svg",
+    icon: "/az-icon.webp",
+    shortcut: "/az-icon.webp",
+    apple: "/az-icon.webp",
   },
   manifest: "/manifest.json",
   openGraph: {

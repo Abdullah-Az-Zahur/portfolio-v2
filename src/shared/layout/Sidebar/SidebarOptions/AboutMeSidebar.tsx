@@ -45,7 +45,10 @@ const AboutMeSidebar = () => {
       try {
         const response = await fetch("/api/about");
         const data = await response.json();
-        if (!response.ok || !Array.isArray(data.entries)) return;
+        if (!response.ok || !Array.isArray(data.entries)) {
+          setCategories([]);
+          return;
+        }
 
         const nextCategories = aboutSidebarCategories.map((category) => ({
           ...category,
@@ -87,7 +90,7 @@ const AboutMeSidebar = () => {
         }));
         setCategories(nextCategories);
       } catch {
-        // Static categories remain available when MongoDB is unavailable.
+        setCategories([]);
       }
     }
 

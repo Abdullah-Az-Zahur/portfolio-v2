@@ -1,24 +1,43 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
 import { replaceProjects } from "@/store/features/projects/projectsSlice";
 import ProjectCard from "./ProjectCard/ProjectCard";
-import { projects as staticProjects } from "@/shared/data/projects";
+import type { Project } from "@/store/features/projects/projectsSlice";
 
 type ProjectClientProps = {
-  initialProjects?: typeof staticProjects;
+  initialProjects: Project[];
 };
 
-const ProjectClient = ({
-  initialProjects = staticProjects,
-}: ProjectClientProps) => {
+const ProjectClient = ({ initialProjects }: ProjectClientProps) => {
   const dispatch = useAppDispatch();
   const { filteredProjects } = useAppSelector((state) => state.projects);
+  const [visibleCount, setVisibleCount] = useState(1);
 
   useEffect(() => {
     dispatch(replaceProjects(initialProjects));
   }, [dispatch, initialProjects]);
+
+  useEffect(() => {
+    const resetTimer = window.setTimeout(() => {
+      setVisibleCount(filteredProjects.length > 0 ? 1 : 0);
+    }, 0);
+    if (filteredProjects.length <= 1) {
+      return () => window.clearTimeout(resetTimer);
+    }
+
+    const timer = window.setInterval(() => {
+      setVisibleCount((count) =>
+        count < filteredProjects.length ? count + 1 : count,
+      );
+    }, 350);
+
+    return () => {
+      window.clearTimeout(resetTimer);
+      window.clearInterval(timer);
+    };
+  }, [filteredProjects]);
 
   return (
     <section
@@ -39,11 +58,20 @@ const ProjectClient = ({
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
-          {filteredProjects.map((project) => (
+          {filteredProjects.slice(0, visibleCount).map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       )}
+      {visibleCount < filteredProjects.length ? (
+        <p
+          role="status"
+          aria-live="polite"
+          className="mt-6 text-center text-sm text-[#607b96] light:text-[#475569]"
+        >
+          Loading more projects...
+        </p>
+      ) : null}
     </section>
   );
 };
