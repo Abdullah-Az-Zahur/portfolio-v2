@@ -10,8 +10,7 @@ import {
   FiSave,
   FiTrash2,
 } from "react-icons/fi";
-import { projects as fallbackProjects } from "@/shared/data/projects";
-import { projectSkills } from "@/shared/data/projectSkills";
+import { getProjectSkillOptions } from "@/shared/data/projectSkills";
 
 type DashboardProject = {
   _id?: string;
@@ -33,18 +32,6 @@ const emptyProject: DashboardProject = {
   skills: [],
 };
 
-function fallbackData() {
-  return fallbackProjects.map((project, order) => ({
-    name: project.name,
-    description: project.description,
-    liveLink: project.liveLink,
-    repoLink: project.repoLink,
-    image: project.image,
-    skills: project.skills,
-    order,
-  }));
-}
-
 export default function DashboardProjectsPage() {
   const [projects, setProjects] = useState<DashboardProject[]>([]);
   const [selected, setSelected] = useState<DashboardProject>(emptyProject);
@@ -58,20 +45,25 @@ export default function DashboardProjectsPage() {
       try {
         const response = await fetch("/api/dashboard/projects");
         const data = await response.json();
-        const loaded =
-          response.ok && data.projects?.length ? data.projects : fallbackData();
+        if (!response.ok) {
+          setMessage(data.message ?? "Unable to load projects.");
+          return;
+        }
+        const loaded = Array.isArray(data.projects) ? data.projects : [];
         setProjects(loaded);
         setSelected(loaded[0] ?? emptyProject);
       } catch {
-        const fallback = fallbackData();
-        setProjects(fallback);
-        setSelected(fallback[0] ?? emptyProject);
-        setMessage("MongoDB is unavailable. Showing existing project data.");
+        setMessage("Unable to reach the projects API.");
       }
     }
 
     void loadProjects();
   }, []);
+
+  const availableSkills = Array.from(
+    new Set(projects.flatMap((project) => project.skills)),
+  ).sort();
+  const projectSkills = getProjectSkillOptions(availableSkills);
 
   function changeField(field: keyof DashboardProject, value: string) {
     setSelected((current) => ({ ...current, [field]: value }));
@@ -402,10 +394,10 @@ export default function DashboardProjectsPage() {
               <div className="grid gap-2 sm:grid-cols-2">
                 {projectSkills.map((skill) => {
                   const SkillIcon = skill.icon;
-                  const checked = selected.skills.includes(skill.id);
+                  const checked = selected.skills.includes(skill.value);
                   return (
                     <label
-                      key={skill.id}
+                      key={skill.value}
                       className="flex cursor-pointer items-center gap-2 rounded-xl border border-white/10 bg-[#0b1728] px-3 py-2 hover:border-cyan-400/40"
                     >
                       <input
@@ -416,9 +408,9 @@ export default function DashboardProjectsPage() {
                             ...current,
                             skills: checked
                               ? current.skills.filter(
-                                  (item) => item !== skill.id,
+                                  (item) => item !== skill.value,
                                 )
-                              : [...current.skills, skill.id],
+                              : [...current.skills, skill.value],
                           }))
                         }
                       />

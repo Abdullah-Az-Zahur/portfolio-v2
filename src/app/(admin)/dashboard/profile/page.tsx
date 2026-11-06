@@ -8,7 +8,6 @@ import {
   FiSave,
   FiTrash2,
 } from "react-icons/fi";
-import { aboutContent } from "@/shared/data/aboutContent";
 import {
   aboutColorClass,
   aboutColorOptions,
@@ -35,8 +34,8 @@ type NewItem = Omit<AboutEntry, "category" | "group" | "order"> & {
 
 const emptyItem: NewItem = {
   key: "",
-  category: "professional-info",
-  group: "experience",
+  category: "",
+  group: "",
   label: "",
   content: "",
   iconKey: "user",
@@ -44,25 +43,6 @@ const emptyItem: NewItem = {
   resourceUrl: "",
   showResource: false,
 };
-
-function seedEntries(): AboutEntry[] {
-  return aboutContent.flatMap((category) =>
-    category.groups.flatMap((group) =>
-      group.items.map((item, order) => ({
-        key: item.id,
-        label: item.label,
-        content: item.content,
-        iconKey: item.iconKey,
-        color: item.color,
-        resourceUrl: item.resourceUrl,
-        showResource: Boolean(item.resourceUrl),
-        category: category.id,
-        group: group.id,
-        order,
-      })),
-    ),
-  );
-}
 
 function previewUrl(url: string) {
   return url.replace(/\/view(?:\?.*)?$/, "/preview");
@@ -120,42 +100,68 @@ function ColorPicker({
 }
 
 export default function DashboardProfilePage() {
-  const [entries, setEntries] = useState<AboutEntry[]>(seedEntries);
+  const [entries, setEntries] = useState<AboutEntry[]>([]);
   const [newItem, setNewItem] = useState<NewItem>(emptyItem);
   const [showNewItem, setShowNewItem] = useState(false);
   const [savingKey, setSavingKey] = useState<string | null>(null);
   const [message, setMessage] = useState("");
-  const [activeCategory, setActiveCategory] = useState("professional-info");
+  const [activeCategory, setActiveCategory] = useState("");
 
   useEffect(() => {
     async function loadEntries() {
       try {
         const response = await fetch("/api/dashboard/profile/about");
         const data = await response.json();
-        if (response.ok && Array.isArray(data.entries))
+        if (response.ok && Array.isArray(data.entries)) {
           setEntries(data.entries);
+          setActiveCategory(
+            (current) => current || data.entries[0]?.category || "",
+          );
+        } else {
+          setMessage(data.message ?? "Unable to load About content.");
+        }
       } catch {
-        setMessage("MongoDB is unavailable. Showing CV seed content.");
+        setMessage("Unable to reach the About content API.");
       }
     }
     void loadEntries();
   }, []);
 
-  const categoryGroups = useMemo(
-    () =>
-      aboutContent.map((category) => ({
-        ...category,
-        groups: category.groups.map((group) => ({
-          ...group,
-          items: entries
-            .filter(
-              (entry) =>
-                entry.category === category.id && entry.group === group.id,
-            )
-            .sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
-        })),
+  const categoryGroups = useMemo(() => {
+    const categories = new Map<
+      string,
+      { id: string; label: string; groups: Map<string, AboutEntry[]> }
+    >();
+
+    entries.forEach((entry) => {
+      const category =
+        categories.get(entry.category) ??
+        categories
+          .set(entry.category, {
+            id: entry.category,
+            label: entry.category,
+            groups: new Map(),
+          })
+          .get(entry.category)!;
+      const group = category.groups.get(entry.group) ?? [];
+      group.push(entry);
+      category.groups.set(entry.group, group);
+    });
+
+    return Array.from(categories.values()).map((category) => ({
+      id: category.id,
+      label: category.label,
+      groups: Array.from(category.groups.entries()).map(([id, items]) => ({
+        id,
+        label: id,
+        items: items.sort((a, b) => (a.order ?? 0) - (b.order ?? 0)),
       })),
-    [entries],
+    }));
+  }, [entries]);
+
+  const categories = categoryGroups;
+  const selectedCategory = categories.find(
+    (category) => category.id === newItem.category,
   );
 
   function updateEntry(key: string, field: keyof AboutEntry, value: string) {
@@ -251,14 +257,14 @@ export default function DashboardProfilePage() {
                     ...item,
                     category: event.target.value,
                     group:
-                      aboutContent.find(
+                      categories.find(
                         (category) => category.id === event.target.value,
                       )?.groups[0]?.id ?? "",
                   }))
                 }
                 className="w-full rounded-xl border border-white/10 bg-[#0b1728] px-3 py-3 text-white"
               >
-                {aboutContent.map((category) => (
+                {categories.map((category) => (
                   <option key={category.id} value={category.id}>
                     {category.label}
                   </option>
@@ -274,11 +280,7 @@ export default function DashboardProfilePage() {
                 }
                 className="w-full rounded-xl border border-white/10 bg-[#0b1728] px-3 py-3 text-white"
               >
-                {(
-                  aboutContent.find(
-                    (category) => category.id === newItem.category,
-                  )?.groups ?? []
-                ).map((group) => (
+                {(selectedCategory?.groups ?? []).map((group) => (
                   <option key={group.id} value={group.id}>
                     {group.label}
                   </option>
