@@ -235,6 +235,18 @@ export function getProjectSkillOptions(availableSkills: string[]) {
   });
 }
 
+export function getAvailableProjectSkillOptions(availableSkills: string[]) {
+  return projectSkillDefinitions.flatMap((definition) => {
+    const value = availableSkills.find((skill) =>
+      definition.aliases.some(
+        (alias) => normalizeSkill(alias) === normalizeSkill(skill),
+      ),
+    );
+
+    return value ? [{ ...definition, value }] : [];
+  });
+}
+
 export function projectHasSkill(
   projectSkills: string[],
   selectedSkill: string,
