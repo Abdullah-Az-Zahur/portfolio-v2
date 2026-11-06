@@ -29,6 +29,13 @@ const ContactForm = ({
       aria-label="Contact Form"
       className="h-full w-full p-6 md:p-12 lg:p-16"
     >
+      <header className="sr-only">
+        <h1 id="contact-heading">Contact Md. Abdullah Az-Zahur</h1>
+        <p>
+          Send a message about software engineering, web development, AI
+          research, collaboration, or a project opportunity.
+        </p>
+      </header>
       <div className="mb-4 flex flex-col">
         <label
           htmlFor="name"

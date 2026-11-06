@@ -6,7 +6,7 @@ import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { addTab, removeTab } from "@/store/features/tabs/tabsSlice";
 import { toggleSkill } from "@/store/features/projects/projectsSlice";
 import { useAppDispatch, useAppSelector } from "@/store/hooks";
-import { getProjectSkillOptions } from "@/shared/data/projectSkills";
+import { getAvailableProjectSkillOptions } from "@/shared/data/projectSkills";
 import { dropdownVariants } from "@/shared/utils/animationVariants";
 import SkillCheckbox from "../SkillCheckbox/SkillCheckbox";
 
@@ -21,7 +21,7 @@ export default function ProjectSidebar() {
   const availableSkills = Array.from(
     new Set(allProjects.flatMap((project) => project.skills)),
   ).sort();
-  const projectSkills = getProjectSkillOptions(availableSkills);
+  const projectSkills = getAvailableProjectSkillOptions(availableSkills);
 
   function handleSkillToggle(skill: string) {
     const isSelected = selectedSkills.includes(skill);
