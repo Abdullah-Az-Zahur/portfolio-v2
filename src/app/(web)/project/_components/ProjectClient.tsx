@@ -41,14 +41,11 @@ const ProjectClient = ({ initialProjects }: ProjectClientProps) => {
       aria-label="Projects List"
       className="w-full min-h-[calc(100dvh-56px-48px)] p-6 sm:p-10 md:p-16 lg:p-20"
     >
-      <header className="mx-auto mb-8 max-w-4xl">
-        <h1
-          id="projects-heading"
-          className="text-2xl font-bold text-[#e5e9f0] light:text-[#172337] sm:text-3xl"
-        >
+      <header className="sr-only">
+        <h1 id="projects-heading" className="">
           Projects
         </h1>
-        <p className="mt-3 max-w-3xl text-sm leading-7 text-[#9fb1c5] light:text-[#52657d] sm:text-base">
+        <p>
           Explore web applications and software projects built with modern
           frontend, backend, database, and machine learning technologies. Select
           a technology from the sidebar to view matching projects.

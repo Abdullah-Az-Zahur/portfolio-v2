@@ -29,14 +29,9 @@ const ContactForm = ({
       aria-label="Contact Form"
       className="h-full w-full p-6 md:p-12 lg:p-16"
     >
-      <header className="mb-6">
-        <h1
-          id="contact-heading"
-          className="text-2xl font-bold text-[#e5e9f0] light:text-[#172337] md:text-3xl"
-        >
-          Contact Md. Abdullah Az-Zahur
-        </h1>
-        <p className="mt-3 max-w-xl text-sm leading-6 text-[#9fb1c5] light:text-[#52657d]">
+      <header className="sr-only">
+        <h1 id="contact-heading">Contact Md. Abdullah Az-Zahur</h1>
+        <p>
           Send a message about software engineering, web development, AI
           research, collaboration, or a project opportunity.
         </p>
