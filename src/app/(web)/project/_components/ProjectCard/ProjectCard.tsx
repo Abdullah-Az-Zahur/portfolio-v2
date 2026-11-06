@@ -25,7 +25,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
       aria-label={`Project: ${project.name}`}
       className="project-card flex flex-col h-full"
     >
-      <h3 className="flex items-center gap-2 text-sm font-mono mb-3 text-[#e5e9f0] light:text-[#172337]">
+      <h2 className="flex items-center gap-2 text-sm font-mono mb-3 text-[#e5e9f0] light:text-[#172337]">
         <span className="text-[#4d5bce] font-bold light:text-[#3b4fbb]">
           Project {project.id}
         </span>
@@ -33,7 +33,7 @@ const ProjectCard = ({ project }: ProjectCardProps) => {
         <span className="text-[#607b96] light:text-[#475569]">
           {project?.name}
         </span>
-      </h3>
+      </h2>
 
       <div className="project-card-frame rounded-lg border border-(--app-border-color) bg-[#011221] flex flex-col h-full overflow-hidden transition-colors duration-200 light:border-[#cbd6e3] light:bg-white">
         <div className="aspect-video w-full overflow-hidden border-b border-(--app-border-color) light:border-[#cbd6e3]">

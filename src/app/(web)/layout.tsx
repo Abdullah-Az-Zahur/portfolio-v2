@@ -19,6 +19,12 @@ export default function WebLayout({
   return (
     <Provider store={store}>
       <div className="relative flex h-dvh w-full flex-col overflow-hidden bg-[#011627] text-[#607b96] transition-colors duration-200 light:bg-[#eef3f8] light:text-[#314158]">
+        <a
+          href="#main-content"
+          className="sr-only z-[60] rounded bg-cyan-400 px-4 py-2 text-slate-950 focus:not-sr-only focus:absolute focus:left-4 focus:top-4"
+        >
+          Skip to main content
+        </a>
         {/* Windows 11 Frame Border */}
         <div className="pointer-events-none absolute inset-0 z-50 rounded-lg border border-(--app-border-color) light:border-[#cbd6e3]" />
 
@@ -44,6 +50,7 @@ export default function WebLayout({
 
           {/* Main Content Area */}
           <main
+            id="main-content"
             className={`relative flex flex-1 flex-col min-w-0 ${
               isHomePage
                 ? "h-full w-full overflow-hidden"

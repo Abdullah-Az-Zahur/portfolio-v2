@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
 const HomePage = () => {
   return (
-    <main className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[#011627] text-[#607b96] transition-colors duration-200 light:bg-[#eef3f8] light:text-[#314158]">
+    <div className="relative flex h-full w-full flex-col justify-between overflow-hidden bg-[#011627] text-[#607b96] transition-colors duration-200 light:bg-[#eef3f8] light:text-[#314158]">
       {/* Atmosphere layers (Gradient Backgrounds) */}
       <div
         className="pointer-events-none absolute inset-0 bg-[radial-gradient(120%_85%_at_20%_15%,rgba(67,217,173,0.16)_0%,transparent_62%),radial-gradient(110%_80%_at_80%_35%,rgba(77,91,206,0.2)_0%,transparent_66%)] light:opacity-0"
@@ -47,7 +47,7 @@ const HomePage = () => {
       <div className="relative z-10 grid h-full w-full flex-1 items-center gap-1 px-4 py-2 sm:px-8 md:grid-cols-2 md:gap-4 md:px-12 md:py-4">
         {/* Portrait Section (flex-[1.4] giving more space to image + overflow-visible) */}
         <section
-          aria-label="Developer Portrait"
+          aria-labelledby="portrait-heading"
           className="relative order-1 flex w-full flex-[1.4] min-h-0 items-center justify-center overflow-visible py-1 md:order-2 md:h-full md:py-0"
         >
           {/* Halo Aura */}
@@ -75,6 +75,9 @@ const HomePage = () => {
             priority
             className="relative z-10 h-auto max-h-[44vh] w-[78vw] max-w-[330px] object-contain drop-shadow-[0_28px_35px_rgba(0,0,0,0.35)] sm:max-h-[50vh] sm:w-auto sm:max-w-none md:h-[min(76vh,40rem)] md:max-h-none md:w-auto"
           />
+          <span id="portrait-heading" className="sr-only">
+            Portrait of Md. Abdullah Az-Zahur
+          </span>
 
           <div className="absolute bottom-[12%] left-[8%] z-20 hidden rounded-lg border border-(--app-border-color) bg-[rgba(6,17,31,0.75)] px-3 py-2 text-xs text-[#cbd5e1] backdrop-blur light:border-[#7a8fa5] light:bg-[rgba(248,251,254,0.85)] light:text-[#314158] md:block">
             <span className="text-[#43d9ad] light:text-[#087f67]">status</span>{" "}
@@ -156,7 +159,7 @@ const HomePage = () => {
           </div>
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 

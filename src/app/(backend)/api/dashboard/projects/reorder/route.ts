@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { connectToDatabase } from "@/lib/mongodb/connect";
 import { Project } from "@/models/projects/Project";
 import { requireAdmin } from "@/lib/auth/requireAdmin";
+import { revalidateTag } from "next/cache";
 
 export async function PATCH(request: Request) {
   const unauthorized = await requireAdmin();
@@ -28,6 +29,7 @@ export async function PATCH(request: Request) {
       })),
     );
 
+    revalidateTag("public-projects", "max");
     return NextResponse.json({ reordered: true });
   } catch (error) {
     console.error("Failed to reorder projects", error);

@@ -262,7 +262,9 @@ const AboutMeSidebar = () => {
 
         {/* Content — no left padding on wrapper, borders span full width */}
         <div className="min-w-0 flex-1">
-          <motion.div
+          <motion.button
+            type="button"
+            aria-expanded={isDropdownExpanded(`main-${activeCategory.id}`)}
             className="flex cursor-pointer items-center gap-2 border-b border-(--app-border-color) py-2 pl-3 text-white hover:text-[#3b82f6] light:border-[#7a8fa5] light:text-[#172337] light:hover:text-[#2563a8]"
             onClick={() => toggleDropdown(`main-${activeCategory.id}`)}
             whileHover={{ x: 3 }}
@@ -283,7 +285,7 @@ const AboutMeSidebar = () => {
               )}
             </motion.div>
             <span>{activeCategory.label}</span>
-          </motion.div>
+          </motion.button>
 
           {/* Category switch fade */}
           <AnimatePresence mode="wait" initial={false}>

@@ -98,6 +98,7 @@ const CommentText: React.FC<CommentTextProps> = ({
 
   return (
     <div className="font-mono leading-6 p-3 md:p-10 text-[#607b96] data-[theme=light]:text-[#314158]">
+      <p className="sr-only">{text}</p>
       <div className="grid gap-y-1 text-sm md:text-base">
         {lineContents.map((fullContent, index) => {
           const visibleCount = visibleChars[index] ?? 0;
