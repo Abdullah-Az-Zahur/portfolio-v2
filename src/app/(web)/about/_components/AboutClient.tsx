@@ -33,7 +33,13 @@ const AboutClient = ({
   }, [activeTab, initialContent, initialResources]);
 
   return (
-    <div className="w-full p-4 sm:p-6 lg:p-8">
+    <article
+      aria-labelledby="about-content-heading"
+      className="w-full p-4 sm:p-6 lg:p-8"
+    >
+      <h1 id="about-content-heading" className="sr-only">
+        About Md. Abdullah Az-Zahur
+      </h1>
       {/* key দিলে tab change হলেই CommentText reset হবে */}
       <CommentText key={activeKey} text={activeContent} />
 
@@ -62,7 +68,7 @@ const AboutClient = ({
           )}
         </details>
       )}
-    </div>
+    </article>
   );
 };
 

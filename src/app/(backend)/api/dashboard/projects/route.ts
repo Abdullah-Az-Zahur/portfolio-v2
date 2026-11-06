@@ -3,6 +3,7 @@ import { connectToDatabase } from "@/lib/mongodb/connect";
 import { Project } from "@/models/projects/Project";
 import { parseProjectInput } from "@/lib/projects/project";
 import { requireAdmin } from "@/lib/auth/requireAdmin";
+import { revalidateTag } from "next/cache";
 
 export async function GET() {
   const unauthorized = await requireAdmin();
@@ -38,6 +39,7 @@ export async function POST(request: Request) {
     const input = parseProjectInput(await request.json());
     await connectToDatabase();
     const project = await Project.create(input);
+    revalidateTag("public-projects", "max");
     return NextResponse.json({ project }, { status: 201 });
   } catch (error) {
     const message = error instanceof Error ? error.message : "Invalid request.";

@@ -4,6 +4,7 @@ import { connectToDatabase } from "@/lib/mongodb/connect";
 import { Project } from "@/models/projects/Project";
 import { parseProjectInput } from "@/lib/projects/project";
 import { requireAdmin } from "@/lib/auth/requireAdmin";
+import { revalidateTag } from "next/cache";
 
 type RouteContext = { params: Promise<{ id: string }> };
 
@@ -25,9 +26,12 @@ export async function GET(_request: Request, context: RouteContext) {
 
   await connectToDatabase();
   const project = await Project.findById(id).lean();
-  return project
-    ? NextResponse.json({ project })
-    : NextResponse.json({ message: "Project not found." }, { status: 404 });
+  if (project) {
+    revalidateTag("public-projects", "max");
+    return NextResponse.json({ project });
+  }
+
+  return NextResponse.json({ message: "Project not found." }, { status: 404 });
 }
 
 export async function PATCH(request: Request, context: RouteContext) {
@@ -49,9 +53,15 @@ export async function PATCH(request: Request, context: RouteContext) {
       runValidators: true,
     }).lean();
 
-    return project
-      ? NextResponse.json({ project })
-      : NextResponse.json({ message: "Project not found." }, { status: 404 });
+    if (project) {
+      revalidateTag("public-projects", "max");
+      return NextResponse.json({ project });
+    }
+
+    return NextResponse.json(
+      { message: "Project not found." },
+      { status: 404 },
+    );
   } catch (error) {
     const message = error instanceof Error ? error.message : "Invalid request.";
     return NextResponse.json({ message }, { status: 400 });
@@ -71,7 +81,10 @@ export async function DELETE(_request: Request, context: RouteContext) {
 
   await connectToDatabase();
   const result = await Project.findByIdAndDelete(id);
-  return result
-    ? NextResponse.json({ deleted: true })
-    : NextResponse.json({ message: "Project not found." }, { status: 404 });
+  if (result) {
+    revalidateTag("public-projects", "max");
+    return NextResponse.json({ deleted: true });
+  }
+
+  return NextResponse.json({ message: "Project not found." }, { status: 404 });
 }

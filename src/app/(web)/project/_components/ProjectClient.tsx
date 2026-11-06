@@ -12,7 +12,9 @@ type ProjectClientProps = {
 
 const ProjectClient = ({ initialProjects }: ProjectClientProps) => {
   const dispatch = useAppDispatch();
-  const { filteredProjects } = useAppSelector((state) => state.projects);
+  const { filteredProjects, selectedSkills } = useAppSelector(
+    (state) => state.projects,
+  );
   const [visibleCount, setVisibleCount] = useState(1);
 
   useEffect(() => {
@@ -20,30 +22,26 @@ const ProjectClient = ({ initialProjects }: ProjectClientProps) => {
   }, [dispatch, initialProjects]);
 
   useEffect(() => {
-    const resetTimer = window.setTimeout(() => {
-      setVisibleCount(filteredProjects.length > 0 ? 1 : 0);
-    }, 0);
-    if (filteredProjects.length <= 1) {
-      return () => window.clearTimeout(resetTimer);
-    }
+    if (initialProjects.length <= 1) return;
 
     const timer = window.setInterval(() => {
       setVisibleCount((count) =>
-        count < filteredProjects.length ? count + 1 : count,
+        count < initialProjects.length ? count + 1 : count,
       );
     }, 350);
 
-    return () => {
-      window.clearTimeout(resetTimer);
-      window.clearInterval(timer);
-    };
-  }, [filteredProjects]);
+    return () => window.clearInterval(timer);
+  }, [initialProjects.length]);
 
   return (
     <section
+      aria-labelledby="projects-heading"
       aria-label="Projects List"
       className="w-full min-h-[calc(100dvh-56px-48px)] p-6 sm:p-10 md:p-16 lg:p-20"
     >
+      <h1 id="projects-heading" className="sr-only">
+        Projects by Md. Abdullah Az-Zahur
+      </h1>
       {filteredProjects.length === 0 ? (
         <div
           role="status"
@@ -58,12 +56,15 @@ const ProjectClient = ({ initialProjects }: ProjectClientProps) => {
         </div>
       ) : (
         <div className="grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-8 lg:grid-cols-3 lg:gap-10">
-          {filteredProjects.slice(0, visibleCount).map((project) => (
+          {(selectedSkills.length > 0
+            ? filteredProjects
+            : filteredProjects.slice(0, visibleCount)
+          ).map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
       )}
-      {visibleCount < filteredProjects.length ? (
+      {selectedSkills.length === 0 && visibleCount < filteredProjects.length ? (
         <p
           role="status"
           aria-live="polite"

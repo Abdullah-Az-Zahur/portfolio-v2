@@ -105,8 +105,10 @@ const AboutSidebarGroups = ({
 
               return (
                 <motion.div key={groupKey} variants={groupRowVariants}>
-                  <motion.li
-                    className={`about-sidebar-group-row flex cursor-pointer items-center gap-2 pl-3 text-gray-500 ${
+                  <motion.button
+                    type="button"
+                    aria-expanded={isDropdownExpanded(groupKey)}
+                    className={`about-sidebar-group-row flex w-full cursor-pointer items-center gap-2 pl-3 text-left text-gray-500 ${
                       group.hoverClass ?? ""
                     }`}
                     onClick={() => onToggleDropdown(groupKey)}
@@ -130,7 +132,7 @@ const AboutSidebarGroups = ({
                     </motion.div>
                     <RiFolder3Fill className={group.folderClass} />
                     <span>{group.label}</span>
-                  </motion.li>
+                  </motion.button>
 
                   {/* ❌ Items — existing animation (changed nothing) */}
                   <AnimatePresence initial={false}>
@@ -146,8 +148,12 @@ const AboutSidebarGroups = ({
                           const ItemIcon = item.icon;
 
                           return (
-                            <motion.li
+                            <motion.button
+                              type="button"
                               key={item.id}
+                              aria-current={
+                                isItemActive(item.id) ? "page" : undefined
+                              }
                               className={`about-sidebar-item flex cursor-pointer items-center gap-2 pl-6 text-sm ${
                                 isItemActive(item.id)
                                   ? item.activeClass
@@ -160,7 +166,7 @@ const AboutSidebarGroups = ({
                             >
                               <ItemIcon className={item.iconClass} />
                               <span>{item.label}</span>
-                            </motion.li>
+                            </motion.button>
                           );
                         })}
                       </motion.ul>

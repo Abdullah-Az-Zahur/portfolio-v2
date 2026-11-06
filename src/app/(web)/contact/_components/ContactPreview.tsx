@@ -36,9 +36,12 @@ const ContactPreview = ({ formData }: ContactPreviewProps) => {
 
   return (
     <div
-      aria-hidden="true"
+      aria-labelledby="contact-preview-heading"
       className="flex h-full w-full items-center justify-center p-4 sm:p-6 lg:p-10"
     >
+      <h2 id="contact-preview-heading" className="sr-only">
+        Contact form code preview
+      </h2>
       <pre className="w-full overflow-x-auto rounded-lg border border-(--app-border-color) bg-[#010e1a] p-5 font-mono text-xs leading-relaxed text-[#607b96] light:border-[#cbd6e3] light:bg-white light:text-[#475569] sm:text-sm md:p-8">
         <code>
           <span className="text-[#4d5bce] light:text-[#3b4fbb]">const</span>{" "}
