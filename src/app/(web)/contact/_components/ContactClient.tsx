@@ -67,13 +67,9 @@ const ContactClient = () => {
 
   return (
     <section
-      aria-labelledby="contact-heading"
       aria-label="Contact Section"
       className="grid w-full min-h-[calc(100dvh-56px-48px)] grid-cols-1 md:grid-cols-2 bg-[#011627] text-[#607b96] transition-colors duration-200 light:bg-[#eef3f8] light:text-[#314158]"
     >
-      <h1 id="contact-heading" className="sr-only">
-        Contact Md. Abdullah Az-Zahur
-      </h1>
       {/* Left Column: Form / Success Message */}
       <div className="flex w-full items-center justify-center border-b border-(--app-border-color) light:border-[#cbd6e3] md:border-b-0 md:border-r">
         {isSuccess ? (

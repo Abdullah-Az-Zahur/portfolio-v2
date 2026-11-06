@@ -37,9 +37,19 @@ const AboutClient = ({
       aria-labelledby="about-content-heading"
       className="w-full p-4 sm:p-6 lg:p-8"
     >
-      <h1 id="about-content-heading" className="sr-only">
-        About Md. Abdullah Az-Zahur
-      </h1>
+      <header className="mb-6 max-w-3xl">
+        <h1
+          id="about-content-heading"
+          className="text-2xl font-bold text-[#e5e9f0] light:text-[#172337] sm:text-3xl"
+        >
+          About Md. Abdullah Az-Zahur
+        </h1>
+        <p className="mt-3 text-sm leading-7 text-[#9fb1c5] light:text-[#52657d] sm:text-base">
+          Learn about my experience, education, technical skills, research
+          interests, and professional journey as a software engineer and AI and
+          machine learning researcher.
+        </p>
+      </header>
       {/* key দিলে tab change হলেই CommentText reset হবে */}
       <CommentText key={activeKey} text={activeContent} />
 

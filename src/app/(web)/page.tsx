@@ -94,6 +94,11 @@ const HomePage = () => {
             <h1 className="text-lg font-bold text-[#e5e9f0] light:text-[#172337] sm:text-3xl md:text-5xl lg:text-7xl leading-tight">
               Md. Abdullah Az&#8209;Zahur
             </h1>
+            <p className="max-w-2xl text-xs leading-6 text-[#9fb1c5] light:text-[#52657d] sm:text-base">
+              Md. Abdullah Az-Zahur is a software engineer, web developer, and
+              AI and machine learning researcher who builds reliable digital
+              products with modern technologies.
+            </p>
             <div className="flex items-center text-xs text-[#4d5bce] light:text-[#3b4fbb] sm:text-base md:text-lg">
               <IoIosArrowForward
                 className="mr-1 font-bold sm:mr-2"
