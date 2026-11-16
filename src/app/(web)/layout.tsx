@@ -42,7 +42,7 @@ export default function WebLayout({
           {!isHomePage && (
             <aside
               aria-label="Sidebar Navigation"
-              className="w-full shrink-0 border-b border-(--app-border-color) light:border-[#cbd6e3] md:h-full md:w-64 lg:w-72 md:border-b-0 md:border-r md:overflow-y-auto"
+              className="w-full shrink-0 overflow-x-hidden md:h-full md:w-64 lg:w-72 md:overflow-y-auto"
             >
               <Sidebar />
             </aside>
