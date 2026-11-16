@@ -12,9 +12,9 @@ interface CommentTextProps {
 
 const CommentText: React.FC<CommentTextProps> = ({
   text,
-  typingSpeed = 30,
-  lineDelay = 220,
-  startDelay = 350,
+  typingSpeed = 5, // ৩০ থেকে কমিয়ে ৫ করা হয়েছে (খুব দ্রুত টাইপ হবে)
+  lineDelay = 30, // ২২০ থেকে কমিয়ে ৩০ করা হয়েছে
+  startDelay = 100, // ৩৫০ থেকে কমিয়ে ১০০ করা হয়েছে
 }) => {
   const lines = useMemo(
     () => text.split("\n").filter((line) => line.trim() !== ""),
@@ -33,14 +33,12 @@ const CommentText: React.FC<CommentTextProps> = ({
     [formattedLines],
   );
 
-  // visibleChars always matches lineContents length on each render
   const [visibleChars, setVisibleChars] = useState<number[]>(() =>
     lineContents.map(() => 0),
   );
   const [started, setStarted] = useState(false);
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Sync visibleChars length with lineContents when text changes
   useEffect(() => {
     const t = setTimeout(() => {
       setVisibleChars((prev) => {
@@ -54,14 +52,12 @@ const CommentText: React.FC<CommentTextProps> = ({
     return () => clearTimeout(t);
   }, [lineContents]);
 
-  // Start typing after delay
   useEffect(() => {
     if (started) return;
     const t = setTimeout(() => setStarted(true), startDelay);
     return () => clearTimeout(t);
   }, [started, startDelay]);
 
-  // Typing loop
   useEffect(() => {
     if (!started) return;
     if (timeoutRef.current) clearTimeout(timeoutRef.current);
@@ -77,7 +73,12 @@ const CommentText: React.FC<CommentTextProps> = ({
     const currentLine = lineContents[currentLineIndex];
     if (!currentLine) return;
 
-    const nextCount = (visibleChars[currentLineIndex] ?? 0) + 1;
+    // লেখা যদি অনেক বড় হয় তবে একবারে ২টি করে অক্ষর টাইপ হবে, এতে আরও দ্রুত শেষ হবে
+    const step = currentLine.length > 80 ? 2 : 1;
+    const nextCount = Math.min(
+      (visibleChars[currentLineIndex] ?? 0) + step,
+      currentLine.length,
+    );
 
     timeoutRef.current = setTimeout(
       () => {
