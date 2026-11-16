@@ -1,88 +1,158 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { useCallback, useEffect, useState } from "react";
+
+interface RoamingTarget {
+  x: string;
+  y: string;
+  scale: number;
+  duration: number;
+}
+
+const getRandomTarget = (
+  minDuration: number,
+  maxDuration: number,
+): RoamingTarget => ({
+  x: `${Math.floor(Math.random() * 75) + 10}vw`,
+  y: `${Math.floor(Math.random() * 75) + 10}vh`,
+  scale: Number((0.95 + Math.random() * 0.15).toFixed(2)),
+  duration: Number(
+    (minDuration + Math.random() * (maxDuration - minDuration)).toFixed(1),
+  ),
+});
+
+interface BlobPair {
+  green: RoamingTarget;
+  blue: RoamingTarget;
+}
 
 const HomeBackgroundBlobs = () => {
   const shouldReduceMotion = useReducedMotion();
+  const [blobs, setBlobs] = useState<BlobPair | null>(null);
+
+  const triggerNextGreen = useCallback(() => {
+    setBlobs((prev) =>
+      prev ? { ...prev, green: getRandomTarget(7, 11) } : prev,
+    );
+  }, []);
+
+  const triggerNextBlue = useCallback(() => {
+    setBlobs((prev) =>
+      prev ? { ...prev, blue: getRandomTarget(8, 13) } : prev,
+    );
+  }, []);
+
+  useEffect(() => {
+    const initTimer = setTimeout(() => {
+      setBlobs({
+        green: getRandomTarget(7, 11),
+        blue: getRandomTarget(8, 13),
+      });
+    }, 0);
+
+    if (shouldReduceMotion) {
+      return () => clearTimeout(initTimer);
+    }
+
+    const greenTimer = setTimeout(triggerNextGreen, 200);
+    const blueTimer = setTimeout(triggerNextBlue, 1400);
+
+    return () => {
+      clearTimeout(initTimer);
+      clearTimeout(greenTimer);
+      clearTimeout(blueTimer);
+    };
+  }, [shouldReduceMotion, triggerNextGreen, triggerNextBlue]);
+
+  if (!blobs) return null;
 
   return (
     <div
-      className="pointer-events-none absolute inset-0 overflow-hidden light:opacity-50"
-      aria-hidden
+      aria-hidden="true"
+      className="pointer-events-none absolute inset-0 overflow-hidden"
     >
+      {/* Green Bulb (#43D9AD) */}
       <motion.div
-        className="home-blob home-blob-green absolute left-[25%] top-[30%] h-[clamp(14rem,58vw,20rem)] w-[clamp(14rem,58vw,20rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[64px] will-change-transform light:opacity-40 md:h-[clamp(11rem,26vw,24rem)] md:w-[clamp(11rem,26vw,24rem)] md:blur-[72px]"
-        style={{
-          background:
-            "radial-gradient(circle at 35% 35%, rgba(67,217,173,0.76) 0%, rgba(67,217,173,0.28) 42%, rgba(67,217,173,0) 78%)",
-          boxShadow:
-            "0 0 100px rgba(67,217,173,0.3), 0 0 190px rgba(67,217,173,0.14)",
+        className="absolute left-0 top-0 aspect-square w-[80vw] min-w-104 max-w-[90vh] rounded-full bg-[#43D9AD] blur-[110px] will-change-transform light:opacity-75"
+        style={{ translateX: "-50%", translateY: "-50%" }}
+        initial={{
+          x: blobs.green.x,
+          y: blobs.green.y,
+          scale: blobs.green.scale,
+          opacity: 0.26,
         }}
         animate={
           shouldReduceMotion
-            ? { opacity: 0.42 }
+            ? { opacity: 0.26 }
             : {
-                x: ["0vw", "18vw", "-10vw", "14vw", "0vw"],
-                y: ["0vh", "12vh", "-15vh", "16vh", "0vh"],
-                scale: [1, 1.12, 0.94, 1.08, 1],
-                opacity: [0.34, 0.48, 0.38, 0.46, 0.34],
+                x: blobs.green.x,
+                y: blobs.green.y,
+                scale: blobs.green.scale,
+                opacity: [0.22, 0.3, 0.24, 0.29, 0.22],
               }
         }
         transition={{
-          duration: 34,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "reverse",
+          x: { duration: blobs.green.duration, ease: "linear" },
+          y: { duration: blobs.green.duration, ease: "linear" },
+          scale: { duration: blobs.green.duration, ease: "easeInOut" },
+          opacity: {
+            duration: 20,
+            ease: "easeInOut",
+            repeat: Infinity,
+          },
+        }}
+        onAnimationComplete={(definition) => {
+          if (
+            !shouldReduceMotion &&
+            typeof definition === "object" &&
+            definition !== null &&
+            "x" in definition
+          ) {
+            triggerNextGreen();
+          }
         }}
       />
 
+      {/* Blue Bulb (#4D5BCE) */}
       <motion.div
-        className="home-blob home-blob-blue absolute left-[72%] top-[36%] h-[clamp(15rem,62vw,24rem)] w-[clamp(15rem,62vw,24rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[74px] will-change-transform light:opacity-40 md:h-[clamp(12rem,30vw,26rem)] md:w-[clamp(12rem,30vw,26rem)] md:blur-[82px]"
-        style={{
-          background:
-            "radial-gradient(circle at 30% 30%, rgba(77,91,206,0.76) 0%, rgba(77,91,206,0.3) 42%, rgba(77,91,206,0) 78%)",
-          boxShadow:
-            "0 0 110px rgba(77,91,206,0.32), 0 0 200px rgba(77,91,206,0.15)",
+        className="absolute left-0 top-0 aspect-square w-[80vw] min-w-md max-w-[90vh] rounded-full bg-[#4D5BCE] blur-[120px] will-change-transform light:opacity-75"
+        style={{ translateX: "-50%", translateY: "-50%" }}
+        initial={{
+          x: blobs.blue.x,
+          y: blobs.blue.y,
+          scale: blobs.blue.scale,
+          opacity: 0.3,
         }}
         animate={
           shouldReduceMotion
-            ? { opacity: 0.4 }
+            ? { opacity: 0.3 }
             : {
-                x: ["0vw", "-18vw", "12vw", "-14vw", "0vw"],
-                y: ["0vh", "-15vh", "16vh", "-10vh", "0vh"],
-                scale: [1, 0.94, 1.12, 0.96, 1],
-                opacity: [0.32, 0.45, 0.36, 0.44, 0.32],
+                x: blobs.blue.x,
+                y: blobs.blue.y,
+                scale: blobs.blue.scale,
+                opacity: [0.32, 0.25, 0.34, 0.27, 0.32],
               }
         }
         transition={{
-          duration: 38,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "reverse",
+          x: { duration: blobs.blue.duration, ease: "linear" },
+          y: { duration: blobs.blue.duration, ease: "linear" },
+          scale: { duration: blobs.blue.duration, ease: "easeInOut" },
+          opacity: {
+            duration: 24,
+            ease: "easeInOut",
+            repeat: Infinity,
+          },
         }}
-      />
-
-      <motion.div
-        className="home-blob home-blob-mobile absolute left-[52%] top-[78%] h-[clamp(10rem,48vw,16rem)] w-[clamp(10rem,48vw,16rem)] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[56px] will-change-transform light:opacity-30 md:hidden"
-        style={{
-          background:
-            "radial-gradient(circle at 35% 35%, rgba(67,217,173,0.24) 0%, rgba(77,91,206,0.18) 48%, rgba(77,91,206,0) 82%)",
-        }}
-        animate={
-          shouldReduceMotion
-            ? { opacity: 0.24 }
-            : {
-                x: ["0vw", "-12vw", "10vw", "0vw"],
-                y: ["0vh", "-10vh", "5vh", "0vh"],
-                scale: [1, 1.08, 0.94, 1],
-                opacity: [0.2, 0.3, 0.22, 0.2],
-              }
-        }
-        transition={{
-          duration: 28,
-          ease: "easeInOut",
-          repeat: Infinity,
-          repeatType: "reverse",
+        onAnimationComplete={(definition) => {
+          if (
+            !shouldReduceMotion &&
+            typeof definition === "object" &&
+            definition !== null &&
+            "x" in definition
+          ) {
+            triggerNextBlue();
+          }
         }}
       />
     </div>
