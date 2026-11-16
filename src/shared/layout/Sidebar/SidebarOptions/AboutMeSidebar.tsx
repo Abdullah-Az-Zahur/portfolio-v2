@@ -265,7 +265,7 @@ const AboutMeSidebar = () => {
           <motion.button
             type="button"
             aria-expanded={isDropdownExpanded(`main-${activeCategory.id}`)}
-            className="flex cursor-pointer items-center gap-2 border-b border-(--app-border-color) py-2 pl-3 text-white hover:text-[#3b82f6] light:border-[#7a8fa5] light:text-[#172337] light:hover:text-[#2563a8]"
+            className="flex w-full cursor-pointer items-center gap-2 border-b border-(--app-border-color) py-2 pl-3 pr-3 text-left text-white hover:text-[#3b82f6] light:border-[#7a8fa5] light:text-[#172337] light:hover:text-[#2563a8]"
             onClick={() => toggleDropdown(`main-${activeCategory.id}`)}
             whileHover={{ x: 3 }}
             whileTap={{ scale: 0.98 }}
