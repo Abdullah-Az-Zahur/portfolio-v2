@@ -10,6 +10,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { navItems } from "./navItems";
 import ThemeToggle from "@/shared/ui/ThemeToggle/ThemeToggle";
 import BrandButton from "@/shared/ui/BrandName/BrandButton";
+import { usePublicSiteSettings } from "@/shared/hooks/usePublicSiteSettings";
 import {
   mobileMenuVariants,
   mobileMenuItemVariants,
@@ -60,6 +61,7 @@ const NavBar: React.FC = () => {
 
   const pathname = usePathname();
   const isHomePage = pathname === "/";
+  const settings = usePublicSiteSettings();
 
   const visiblePendingHref =
     pendingHref && pendingHref !== pathname ? pendingHref : null;
@@ -242,6 +244,34 @@ const NavBar: React.FC = () => {
                 );
               })}
             </nav>
+            <motion.div
+              className="mt-2 flex w-full items-center justify-center gap-2 border-t border-(--app-border-color) px-4 pb-3 pt-3 light:border-[#cbd6e3]"
+              variants={mobileMenuItemVariants}
+            >
+              <span className="mr-2 text-[10px] uppercase tracking-[0.18em] text-[#607b96] light:text-[#64748b]">
+                Downloads
+              </span>
+              <Link
+                href={settings.resume}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="rounded-md px-3 py-1.5 text-xs text-[#93c5fd] transition-colors hover:bg-white/5 hover:text-white light:text-[#2563a8] light:hover:bg-[#0f172a]/5 light:hover:text-[#172337]"
+                onClick={() => setIsOpen(false)}
+              >
+                Resume
+              </Link>
+              <Link
+                href={settings.cv}
+                target="_blank"
+                rel="noopener noreferrer"
+                download
+                className="rounded-md px-3 py-1.5 text-xs text-[#93c5fd] transition-colors hover:bg-white/5 hover:text-white light:text-[#2563a8] light:hover:bg-[#0f172a]/5 light:hover:text-[#172337]"
+                onClick={() => setIsOpen(false)}
+              >
+                CV
+              </Link>
+            </motion.div>
           </motion.div>
         )}
       </AnimatePresence>

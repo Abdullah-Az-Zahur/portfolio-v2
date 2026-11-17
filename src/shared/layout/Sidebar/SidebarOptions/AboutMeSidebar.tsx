@@ -161,7 +161,7 @@ const AboutMeSidebar = () => {
             <motion.div
               key={category.id}
               variants={categoryRowVariants}
-              className="border-b border-(--app-border-color-soft) py-2 light:border-[#cbd6e3]"
+              className="border-b border-(--app-border-color-soft) py-2 last:border-b-0 light:border-[#cbd6e3]"
             >
               <motion.button
                 type="button"
@@ -214,13 +214,6 @@ const AboutMeSidebar = () => {
             </motion.div>
           );
         })}
-
-        <AboutSidebarResources
-          resources={sidebarResources}
-          wrapperClassName="py-3 border-t border-(--app-border-color) light:border-[#7a8fa5]"
-          linkClassName="flex items-center gap-2 text-[#93c5fd] hover:text-[#3b82f6] light:text-[#2563a8] light:hover:text-[#0e7490] transition duration-200"
-          itemClassName="flex items-center justify-between gap-3 border-b border-(--app-border-color) light:border-[#7a8fa5] px-2 py-2 last:border-b-0"
-        />
       </motion.div>
 
       {/* ============================================================
@@ -327,7 +320,7 @@ const AboutMeSidebar = () => {
                         resources={sidebarResources}
                         wrapperClassName=""
                         linkClassName="flex items-center gap-2 text-[#93c5fd] hover:text-[#3b82f6] light:text-[#2563a8] light:hover:text-[#0e7490] transition duration-200 pl-3"
-                        itemClassName="flex items-center justify-between border-b border-(--app-border-color) light:border-[#7a8fa5] py-2 pl-3 last:border-b-0"
+                        itemClassName="flex items-center justify-between border-b border-(--app-border-color) light:border-[#7a8fa5] py-2 pl-3"
                       />
                     </motion.div>
                   </motion.div>

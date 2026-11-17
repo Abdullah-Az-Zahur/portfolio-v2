@@ -4,24 +4,17 @@ import React, { useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { IoMdArrowDropdown, IoMdArrowDropright } from "react-icons/io";
 import { dropdownVariants } from "@/shared/utils/animationVariants";
-import { contactLinkItems, socialLinkItems } from "./contactSidebarConfig";
+import {
+  contactLinkItems,
+  socialLinkItems,
+} from "@/shared/data/contactSidebar";
+import { usePublicSiteSettings } from "@/shared/hooks/usePublicSiteSettings";
 
 const ContactSidebar = () => {
+  const settings = usePublicSiteSettings();
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     () => new Set(["contact"]),
   );
-
-  const contactEmail =
-    process.env.NEXT_PUBLIC_CONTACT_EMAIL || "abdullah.az.zahur@gmail.com";
-  const contactPhone =
-    process.env.NEXT_PUBLIC_CONTACT_PHONE || "+880-1705697897";
-  const facebookUrl =
-    process.env.NEXT_PUBLIC_FACEBOOK_URL ||
-    "https://www.facebook.com/AbdullahAzZahur";
-  const linkedinUrl =
-    process.env.NEXT_PUBLIC_LINKEDIN_URL ||
-    "https://www.linkedin.com/in/abdullahazzahur/";
-  const youtubeUrl = "https://www.youtube.com/@AzZahur";
 
   const toggleDropdown = (title: string) => {
     setExpandedDropdowns((prev) => {
@@ -67,7 +60,7 @@ const ContactSidebar = () => {
             {contactLinkItems.map((item) => {
               const Icon = item.icon;
               const value =
-                item.href === "contactEmail" ? contactEmail : contactPhone;
+                item.href === "contactEmail" ? settings.email : settings.phone;
               const href = item.transformHref
                 ? item.transformHref(value)
                 : value;
@@ -111,11 +104,11 @@ const ContactSidebar = () => {
             {socialLinkItems.map((item) => {
               const Icon = item.icon;
               const hrefMap = {
-                facebookUrl,
-                linkedinUrl,
-                youtubeUrl,
-                twitterUrl: "https://x.com/abdullahazzahur",
-                instagramUrl: "https://www.instagram.com/abdullah.az.zahur/",
+                facebookUrl: settings.facebook,
+                linkedinUrl: settings.linkedin,
+                youtubeUrl: settings.youtube,
+                twitterUrl: settings.twitter,
+                instagramUrl: settings.instagram,
               } as const;
 
               return (

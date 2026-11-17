@@ -22,7 +22,7 @@ const SkillCheckbox: React.FC<SkillCheckboxProps> = ({
   return (
     <label
       htmlFor={id}
-      className={`group flex cursor-pointer items-center gap-2 py-1 px-1.5 rounded transition-colors duration-150 text-[#94a3b8] [html[data-theme=light]_&]:text-[#52657d] ${hoverColor} ${
+      className={`group flex min-w-0 cursor-pointer items-center gap-2 rounded px-1.5 py-1 text-[#94a3b8] transition-colors duration-150 [html[data-theme=light]_&]:text-[#52657d] ${hoverColor} ${
         checked
           ? "font-medium text-white [html[data-theme=light]_&]:text-[#0f172a]"
           : ""
@@ -36,7 +36,7 @@ const SkillCheckbox: React.FC<SkillCheckboxProps> = ({
         className="h-4 w-4 rounded border-(--app-border-color,#4a627a) bg-[#011627] text-cyan-500 accent-cyan-500 focus:ring-0 focus:ring-offset-0 [html[data-theme=light]_&]:border-[#7a8fa5] [html[data-theme=light]_&]:bg-white cursor-pointer"
       />
       <span className={`text-base shrink-0 ${iconColor}`}>{icon}</span>
-      <span className="text-sm select-none">{skillName}</span>
+      <span className="min-w-0 truncate text-sm select-none">{skillName}</span>
     </label>
   );
 };

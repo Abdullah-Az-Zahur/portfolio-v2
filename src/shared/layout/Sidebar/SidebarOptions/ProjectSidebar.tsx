@@ -59,7 +59,7 @@ export default function ProjectSidebar() {
       <AnimatePresence>
         {isDropdownOpen ? (
           <motion.ul
-            className="ml-3 mt-2 space-y-1 overflow-hidden"
+            className="ml-3 mt-2 grid grid-cols-2 gap-x-2 gap-y-1 overflow-hidden md:block md:space-y-1"
             initial="closed"
             animate="open"
             exit="closed"
