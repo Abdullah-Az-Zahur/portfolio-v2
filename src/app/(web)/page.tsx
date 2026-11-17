@@ -6,8 +6,7 @@ import Link from "next/link";
 import { FiArrowUpRight, FiGithub } from "react-icons/fi";
 import { IoIosArrowForward } from "react-icons/io";
 import { TbSlashes } from "react-icons/tb";
-
-const GITHUB_URL = "https://github.com/Abdullah-Az-Zahur";
+import { getPublicSiteSettings } from "@/lib/site/getPublicSiteSettings";
 
 const DEVELOPER_ROLES = [
   { text: "Software Engineer" },
@@ -39,7 +38,9 @@ export const metadata: Metadata = {
   },
 };
 
-const HomePage = () => {
+const HomePage = async () => {
+  const settings = await getPublicSiteSettings();
+
   return (
     <main className="relative flex min-h-[calc(100svh-3.5rem)] w-full flex-col justify-center overflow-x-hidden bg-slate-950 pb-14 text-slate-400 transition-colors duration-200 light:bg-slate-50 light:text-slate-600 md:pb-12">
       {/* Dynamic Roaming Background Blobs */}
@@ -127,12 +128,12 @@ const HomePage = () => {
               </span>{" "}
               ={" "}
               <Link
-                href={GITHUB_URL}
+                href={settings.github}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="break-all text-rose-300 underline underline-offset-4 transition-colors hover:text-rose-200 sm:break-normal light:text-rose-700 light:hover:text-rose-800"
               >
-                &quot;{GITHUB_URL}&quot;
+                &quot;{settings.github}&quot;
               </Link>
             </div>
           </div>
@@ -140,7 +141,7 @@ const HomePage = () => {
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-3 pt-1 sm:pt-2">
             <Link
-              href="/project"
+              href={settings.projects}
               className="inline-flex items-center gap-2 rounded-lg border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-xs font-medium text-cyan-200 transition hover:border-cyan-300 hover:bg-cyan-400/20 sm:py-2.5 sm:text-sm light:border-cyan-700/40 light:bg-cyan-700/10 light:text-cyan-800 light:hover:border-cyan-700 light:hover:bg-cyan-700/20"
             >
               Explore projects
@@ -148,7 +149,7 @@ const HomePage = () => {
             </Link>
 
             <Link
-              href={GITHUB_URL}
+              href={settings.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 rounded-lg border border-slate-700 px-4 py-2 text-xs font-medium text-slate-200 transition hover:border-cyan-300/60 hover:text-white sm:py-2.5 sm:text-sm light:border-slate-300 light:text-slate-700 light:hover:border-cyan-700 light:hover:text-cyan-800"

@@ -49,7 +49,6 @@ const groupListVariants = {
   },
 };
 
-// ❌ Item hover — existing behaviour অটুট
 const itemVariants = {
   hover: {
     scale: 1.02,

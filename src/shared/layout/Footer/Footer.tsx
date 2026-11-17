@@ -3,9 +3,11 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { FaFacebookF, FaGithub, FaLinkedin } from "react-icons/fa";
+import { usePublicSiteSettings } from "@/shared/hooks/usePublicSiteSettings";
 
 export default function Footer() {
   const isHomePage = usePathname() === "/";
+  const settings = usePublicSiteSettings();
 
   const footerClassName = `relative z-40 h-12 w-full shrink-0 border-t border-(--app-border-color,#4a627a) light:border-[#7a8fa5] bg-[#011627] text-[#607b96] light:bg-[#eef3f8] light:text-[#314158] transition-colors duration-180 ease-in-out ${
     isHomePage
@@ -29,7 +31,7 @@ export default function Footer() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://www.linkedin.com/in/md-amanullah-az-zahur/"
+            href={settings.linkedin}
             aria-label="LinkedIn"
             className={socialIconClassName}
           >
@@ -40,7 +42,7 @@ export default function Footer() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://www.facebook.com/abdullah.az.zahur"
+            href={settings.facebook}
             aria-label="Facebook"
             className={`${socialIconClassName} sm:border-r`}
           >
@@ -51,7 +53,7 @@ export default function Footer() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/Abdullah-Az-Zahur"
+            href={settings.github}
             aria-label="GitHub"
             className={`${socialIconClassName} sm:hidden`}
           >
@@ -64,7 +66,7 @@ export default function Footer() {
           <Link
             target="_blank"
             rel="noopener noreferrer"
-            href="https://github.com/Abdullah-Az-Zahur"
+            href={settings.github}
             aria-label="GitHub"
             className="flex h-full items-center border-l border-(--app-border-color,#4a627a) light:border-[#7a8fa5] transition-colors duration-180 hover:text-white hover:bg-white/5 light:hover:text-[#0f172a] light:hover:bg-[#0f172a]/5"
           >
