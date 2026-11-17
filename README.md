@@ -95,8 +95,8 @@ The portfolio includes a growing collection of projects spanning beginner to adv
 
 ### State Management
 
-- **[@reduxjs/toolkit 2.7.0](https://redux-toolkit.js.org)** — State management library
-- **[React Redux 9.2.0](https://react-redux.js.org)** — Official React bindings for Redux
+- **[@reduxjs/toolkit 2.13.0](https://redux-toolkit.js.org)** — State management library
+- **[React Redux 9.3.1](https://react-redux.js.org)** — Official React bindings for Redux
 
 ### Backend & APIs
 
@@ -256,7 +256,7 @@ Explore the dynamic project catalog, About page, and contact form directly on th
 | `/api/dashboard/projects`         | `GET`, `POST`                  | List and create MongoDB-backed projects |
 | `/api/dashboard/projects/[id]`    | `GET`, `PATCH`, `DELETE`       | Read, update, and delete one project    |
 | `/api/dashboard/projects/reorder` | `PATCH`                        | Persist project order in MongoDB        |
-| `/api/dashboard/profile/about`    | `GET`, `POST`, `PUT`, `DELETE` | About item CRUD and CV seed migration   |
+| `/api/dashboard/profile/about`    | `GET`, `POST`, `PUT`, `DELETE` | About content management                |
 | `/api/upload`                     | `POST`                         | Authenticated Cloudinary image upload   |
 | `/api/about`                      | `GET`                          | Public About sidebar metadata           |
 | `/api/send`                       | `POST`                         | Contact form email delivery             |
