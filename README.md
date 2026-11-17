@@ -124,45 +124,43 @@ The portfolio includes a growing collection of projects spanning beginner to adv
 
 ```text
 portfolio-v2/
-├── public/ # Static assets, icons, manifest, and images
+├── public/
 ├── src/
 │ ├── app/
-│ │ ├── (web)/ # Public portfolio pages and web layout
-│ │ │ ├── about/ # About page
-│ │ │ ├── contact/ # Contact page
-│ │ │ ├── project/ # Dynamic project showcase
-│ │ │ ├── layout.tsx # Public layout
-│ │ │ └── page.tsx # Home page
-│ │ ├── (admin)/ # Admin login and protected dashboard
-│ │ │ ├── login/ # Admin login page
-│ │ │ └── dashboard/ # Dashboard, profile, projects, settings
-│ │ ├── (backend)/api/ # Next.js API route handlers
-│ │ │ ├── auth/ # Auth.js session endpoint
-│ │ │ ├── dashboard/ # Protected CMS APIs
-│ │ │ ├── about/ # Public About metadata
-│ │ │ ├── send/ # Contact email endpoint
-│ │ │ └── upload/ # Cloudinary upload endpoint
-│ │ ├── globals.css # Global styles and theme tokens
-│ │ └── layout.tsx # Root metadata and providers
-│ ├── features/ # Feature-specific UI components
-│ ├── lib/ # Auth, database, media, and data access
-│ ├── models/ # Mongoose schemas and models
-│ ├── providers/ # Theme and navigation providers
+│ │ ├── (web)/
+│ │ ├── (admin)/
+│ │ ├── (backend)/api/
+│ │ ├── globals.css
+│ │ └── layout.tsx
+│ ├── features/
+│ ├── lib/
+│ ├── models/
+│ ├── providers/
 │ ├── shared/
-│ │ ├── data/ # Shared content and skill definitions
-│ │ ├── hooks/ # Reusable client hooks
-│ │ ├── layout/ # Navbar, sidebar, tabs, and footer
-│ │ └── ui/ # Reusable interface components
-│ └── store/ # Redux store, tabs, and project filters
-├── eslint.config.mjs # ESLint configuration
-├── next.config.ts # Next.js configuration
-├── package.json # Scripts and dependencies
-├── postcss.config.mjs # PostCSS configuration
-├── tailwind.config.ts # Tailwind configuration
-├── tsconfig.json # TypeScript configuration
-└── README.md # Project documentation
-
+│ └── store/
+├── eslint.config.mjs
+├── next.config.ts
+├── package.json
+├── postcss.config.mjs
+├── tailwind.config.ts
+├── tsconfig.json
+└── README.md
 ```
+
+### Structure Guide
+
+| Path                     | Responsibility                                         |
+| ------------------------ | ------------------------------------------------------ |
+| `public/`                | Static assets, icons, manifest, and public images      |
+| `src/app/(web)/`         | Public Home, About, Projects, and Contact pages        |
+| `src/app/(admin)/`       | Admin login and protected CMS dashboard                |
+| `src/app/(backend)/api/` | Authentication, CMS, upload, and contact APIs          |
+| `src/features/`          | Domain-specific feature components                     |
+| `src/lib/`               | Authentication, database, media, and data-access logic |
+| `src/models/`            | Mongoose schemas and database models                   |
+| `src/providers/`         | Theme and navigation providers                         |
+| `src/shared/`            | Shared data, hooks, layouts, and UI components         |
+| `src/store/`             | Redux store, tabs, and project filtering state         |
 
 ---
 
