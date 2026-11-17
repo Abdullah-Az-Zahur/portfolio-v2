@@ -46,7 +46,6 @@ const AboutMeSidebar = () => {
         const response = await fetch("/api/about");
         const data = await response.json();
         if (!response.ok || !Array.isArray(data.entries)) {
-          setCategories([]);
           return;
         }
 
@@ -90,7 +89,7 @@ const AboutMeSidebar = () => {
         }));
         setCategories(nextCategories);
       } catch {
-        setCategories([]);
+        // Keep the built-in category structure when the dynamic request is unavailable.
       }
     }
 
@@ -99,7 +98,8 @@ const AboutMeSidebar = () => {
 
   const activeCategory =
     categories.find((category) => category.id === activeCategoryId) ??
-    categories[0];
+    categories[0] ??
+    aboutSidebarCategories[0];
 
   const [expandedDropdowns, setExpandedDropdowns] = useState<Set<string>>(
     () => new Set([`main-${activeCategory.id}`]),
