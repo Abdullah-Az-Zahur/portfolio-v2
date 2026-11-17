@@ -122,8 +122,8 @@ The portfolio includes a growing collection of projects spanning beginner to adv
 
 ## 📂 Project Structure
 
+```text
 portfolio-v2/
-├── public/ # Static assets, icons, manifest, and images
 ├── public/ # Static assets, icons, manifest, and images
 ├── src/
 │ ├── app/
@@ -162,7 +162,7 @@ portfolio-v2/
 ├── tsconfig.json # TypeScript configuration
 └── README.md # Project documentation
 
-````
+```
 
 ---
 
@@ -190,7 +190,7 @@ Explore the dynamic project catalog, About page, and contact form directly on th
    ```bash
    git clone https://github.com/Abdullah-Az-Zahur/portfolio-v2.git
    cd portfolio-v2
-````
+   ```
 
 2. **Install dependencies**
 
