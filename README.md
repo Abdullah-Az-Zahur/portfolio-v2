@@ -123,44 +123,29 @@ The portfolio includes a growing collection of projects spanning beginner to adv
 ## 📂 Project Structure
 
 ```text
-portfolio-v2/
-├── public/
-├── src/
-│ ├── app/
-│ │ ├── (web)/
-│ │ ├── (admin)/
-│ │ ├── (backend)/api/
-│ │ ├── globals.css
-│ │ └── layout.tsx
-│ ├── features/
-│ ├── lib/
-│ ├── models/
-│ ├── providers/
-│ ├── shared/
-│ └── store/
-├── eslint.config.mjs
-├── next.config.ts
-├── package.json
-├── postcss.config.mjs
-├── tailwind.config.ts
-├── tsconfig.json
-└── README.md
+portfolio-v2/                                                            # Project root
+├── public/                                                        # Static assets and public images
+├── src/                                                           # Application source code
+│   ├── app/                                                     # Next.js App Router
+│   │   ├── (web)/                                             # Public portfolio experience
+│   │   ├── (admin)/                                           # Protected admin dashboard
+│   │   ├── (backend)/api/                                     # Server-side API routes
+│   │   ├── globals.css                                        # Global styles and theme tokens
+│   │   └── layout.tsx                                         # Root layout and providers
+│   ├── features/                                                # Domain-specific components
+│   ├── lib/                                                     # Auth, database, media, and data access
+│   ├── models/                                                  # Mongoose schemas and models
+│   ├── providers/                                               # Theme and navigation providers
+│   ├── shared/                                                  # Shared UI, layout, hooks, and data
+│   └── store/                                                   # Redux store and client state
+├── eslint.config.mjs                                              # ESLint configuration
+├── next.config.ts                                                 # Next.js configuration
+├── package.json                                                   # Scripts and dependencies
+├── postcss.config.mjs                                             # PostCSS configuration
+├── tailwind.config.ts                                             # Tailwind configuration
+├── tsconfig.json                                                  # TypeScript configuration
+└── README.md                                                      # Project documentation
 ```
-
-### Structure Guide
-
-| Path                     | Responsibility                                         |
-| ------------------------ | ------------------------------------------------------ |
-| `public/`                | Static assets, icons, manifest, and public images      |
-| `src/app/(web)/`         | Public Home, About, Projects, and Contact pages        |
-| `src/app/(admin)/`       | Admin login and protected CMS dashboard                |
-| `src/app/(backend)/api/` | Authentication, CMS, upload, and contact APIs          |
-| `src/features/`          | Domain-specific feature components                     |
-| `src/lib/`               | Authentication, database, media, and data-access logic |
-| `src/models/`            | Mongoose schemas and database models                   |
-| `src/providers/`         | Theme and navigation providers                         |
-| `src/shared/`            | Shared data, hooks, layouts, and UI components         |
-| `src/store/`             | Redux store, tabs, and project filtering state         |
 
 ---
 
