@@ -20,14 +20,22 @@ const cached =
   (globalMongoose.mongooseCache = { connection: null, promise: null });
 
 export async function connectToDatabase() {
-  if (cached.connection) {
+  if (cached.connection?.connection.readyState === 1) {
     return cached.connection;
   }
 
   if (!cached.promise) {
-    cached.promise = mongoose.connect(mongoUri, {
-      dbName: process.env.MONGODB_NAME || "portfolio-v2",
-    });
+    cached.promise = mongoose
+      .connect(mongoUri, {
+        dbName: process.env.MONGODB_NAME || "portfolio-v2",
+        serverSelectionTimeoutMS: 10000,
+        maxPoolSize: 10,
+      })
+      .catch((error) => {
+        cached.promise = null;
+        cached.connection = null;
+        throw error;
+      });
   }
 
   cached.connection = await cached.promise;
