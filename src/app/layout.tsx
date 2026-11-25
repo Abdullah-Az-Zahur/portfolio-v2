@@ -4,6 +4,7 @@ import "./globals.css";
 import ThemeProvider from "@/providers/ThemeProvider";
 import { Suspense } from "react";
 import NavigationProgress from "@/providers/NavigationProgress";
+import { siteLinks } from "@/shared/data/siteLinks";
 
 const firaCode = Fira_Code({
   subsets: ["latin"],
@@ -23,6 +24,7 @@ export const metadata: Metadata = {
     "Md. Abdullah Az-Zahur's portfolio website — a Next.js-powered showcase of a software engineer's MERN stack, front-end, and full-stack web development projects, skills, and contact details.",
   keywords: [
     "Md. Abdullah Az-Zahur",
+    "Md. Abdullah Az Zahur",
     "Portfolio",
     "Portfolio Website",
     "Software Engineer",
@@ -60,6 +62,9 @@ export const metadata: Metadata = {
       "max-snippet": -1,
       "max-video-preview": -1,
     },
+  },
+  verification: {
+    google: "1VaxQ__HgPKaj01qhnKBi3Y-fhgBugMJHjeLmck9klQ",
   },
   icons: {
     icon: "/az-icon.webp",
@@ -102,6 +107,11 @@ export default function RootLayout({
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Md. Abdullah Az-Zahur",
+    alternateName: [
+      "Md. Abdullah Az Zahur",
+      "Abdullah Az Zahur",
+      "Abdullah Zahur",
+    ],
     url: "https://abdullahzahur.vercel.app",
     image:
       "https://abdullahzahur.vercel.app/assets/images/My%20half%20Photo.png",
@@ -116,11 +126,7 @@ export default function RootLayout({
       "@type": "PostalAddress",
       addressCountry: "Bangladesh",
     },
-    sameAs: [
-      "https://www.linkedin.com/in/md-abdullah-az-zahur/",
-      "https://github.com/Abdullah-Az-Zahur",
-      "https://www.facebook.com/abdullah.az.zahur",
-    ],
+    sameAs: [siteLinks.linkedin, siteLinks.github, siteLinks.facebook],
     email: "mailto:abdullah.az.zahur@gmail.com",
     contactPoint: {
       "@type": "ContactPoint",
